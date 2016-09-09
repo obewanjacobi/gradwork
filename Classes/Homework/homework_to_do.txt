@@ -1,8 +1,14 @@
-Stats
+STATS
 
-N\A
+14.4 Review Exercises (p. 405)
+17, 19
+15.4 Review Exercises (p. 442)
+2, 5, 6
+Extra Credits:
+14.4 16, 20
+15.4 3
 
-Analysis
+ANALYSIS
 
 Due 9/13
 Proof from Notebook
@@ -10,3 +16,12 @@ Proof from Notebook
 
 Due 9/15
 3.1,3.2,3.3,3.4,3.6
+
+ALGEBRA
+
+
+
+SEMINAR
+
+teaching philosophy due Tuesday
+check blackboard for week 4 stuff
