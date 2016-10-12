@@ -3,7 +3,7 @@ STATS
 
 Assigned 10/7/16, Friday, due 10/17/16, Monday
 16.6 Review Exercises (p. 483)
-2, 3, 5, 9, 10, 11, 20, 21
+3, 9, 20, 21
 
 Assigned 10/14/16, Friday, due 10/24/16, Monday
 16.6 Review Exercises (p. 483)
@@ -20,5 +20,5 @@ N/A
 -----------------------------------------------------
 SEMINAR
 
-post to forum
+post to forum after going to large lecture
 -----------------------------------------------------
