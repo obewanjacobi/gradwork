@@ -1,9 +1,7 @@
 -----------------------------------------------------
 STATS
 
-Assigned 10/14/16, Friday, due 10/28/16, Monday
-16.6 Review Exercises (p. 483)
-6
+N/A
 -----------------------------------------------------
 ANALYSIS
 
@@ -17,5 +15,5 @@ Study For Quiz on Nov. 3rd
 SEMINAR
 
 Make Lecture about Chain Rule by Nov. 11th
-(use Dillman Notes)
+(use Dillman Notes) (directory made in Teaching)
 -----------------------------------------------------
