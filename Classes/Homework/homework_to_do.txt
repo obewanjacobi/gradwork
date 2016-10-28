@@ -11,6 +11,12 @@ Problems 5.3, 5.5, 5.9, 6.2, 6.3, 6.6
 ALGEBRA
 
 Study For Quiz on Nov. 3rd
+
+A. Read the definition of ``characteristic subgroup''
+ given on page 135. Then do #6 and #7 on page 137. 
+For #7,  you might want to  use this easy observation:   
+If A is a subgroup of B, and \phi  is an automorphism
+of B,  then \phi(A) is a subgroup of B
 -----------------------------------------------------
 SEMINAR
 
