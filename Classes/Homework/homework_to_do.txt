@@ -12,17 +12,11 @@ due 12/05/14, Chapter 18
 -----------------------------------------------------
 ANALYSIS
 
-N/A
+CHAPTER 7 homework in notebook (update this later)
 -----------------------------------------------------
 ALGEBRA
 
 Study For Quiz on Nov. 3rd
-
-A. Read the definition of ``characteristic subgroup''
- given on page 135. Then do #6 and #7 on page 137. 
-For #7,  you might want to  use this easy observation:   
-If A is a subgroup of B, and \phi  is an automorphism
-of B,  then \phi(A) is a subgroup of B
 -----------------------------------------------------
 SEMINAR
 
