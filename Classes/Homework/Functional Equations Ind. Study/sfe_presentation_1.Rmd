@@ -1,0 +1,191 @@
+---
+title: "Functional Equations Presentation on Sine F.E."
+author: "Jacob Townson"
+date: "03/20/2017"
+output: ioslides_presentation
+---
+  
+```{r include=FALSE}
+require(mosaic)
+```
+
+## Lemma 3.2
+<div class="blue2">
+
+Let $G$ be a group and $\mathbb{C}$ be the field of complex numbers. Let $\sigma : G \rightarrow G$ be an involution. If $f : G \rightarrow \mathbb{C}$ is a solution of (3.1): $$f(xy)f(x\sigma(y)) = f(x)^2 - f(y)^2,$$ then the following hold:
+
+</div>
+
+## Lemma 3.2 cont.
+<div class="blue2">
+
+- (3.3) $f(e) = 0$ 
+- (3.4) $f(\sigma(x)) = -f(x)$ 
+- (3.5) $f(x)^2 = f (x^-1)^2$ 
+- (3.6) $f(x\sigma(x)) = 0$ 
+- (3.7) $f(xy\sigma(y))^2 = f(x)^2$ 
+
+for all $x,y \in G$
+
+</div>
+
+
+
+
+
+## Lemma 3.2 Proof
+<div class="blue2">
+
+- Letting $x = y = e$ in (3.1) it is fairly obvious to find that $f(e) = 0$. So we're good here.
+
+</div>
+
+## Lemma 3.2 Proof cont.
+<div class="blue2">
+
+-Next, let $x = e$ in (3.1) and using what we found in (3.3), we have a new equation (3.8) $$f(y)[f(\sigma(y)) +f(y)] = 0$$ for all $y \in G$. Swapping $y$ with $\sigma(y)$ in (3.8) gives us a new equation (3.9) such that $$f(\sigma(y))[f(y)+ f(\sigma(y))] =0$$ for all $y \in G$. When we add together (3.8) and (3.9) using simple algebra, we find that $$[f(y)+f(\sigma(y))]^2 = 0$$ for all $y \in G$ which implies (3.4).
+
+</div>
+
+## Lemma 3.2 Proof cont.
+<div class="blue2">
+
+-Now we have to prove (3.5) To begin let $y = x^{-1}$ in (3.1) and using (3.3) we obtain $f(x)^2 = f(x^{-1})^2$ which is exactly (3.5).
+
+</div>
+
+## Lemma 3.2 Proof cont.
+<div class="blue2">
+
+- Next up is (3.6). Let $x = e$ in (3.1). This gives us $$f(y)f(\sigma(y)) = -f(y)^2.$$ Replacing $y$ with $y\sigma(y)$ in the above equation gives us $$f(y\sigma(y))f(y\sigma(y)) = -f(y\sigma(y))^2.$$ This implies that $2f(y\sigma(y))^2 = 0$ and thus gives us (3.6).
+
+</div>
+
+## Lemma 3.2 Proof cont.
+<div class="blue2">
+
+- Finally, replacing $y$ with $y\sigma(y))$ in (3.1), we get a new equation, (3.10), where $$f(xy\sigma(y))f(xy\sigma(y)) = f(x)^2 - f(y\sigma(y))^2$$ for all $x,y \in G$. Using (3.6) and (3.10), we find the relation presented in (3.7) and thus we have proven the lemma
+
+- QED
+
+</div>
+
+
+
+
+
+
+
+
+## Lemma 3.3
+<div class="blue2">
+
+Let $G$ be a group and $\mathbb{C}$ be the field of complex numbers. Let $\sigma : G \rightarrow G$ be an involution. If $f: G \rightarrow \mathbb{C}$ is a solution of (3.1), then:
+
+- $K_f(G)$ is a subgroup of $G$
+- If $xy \in K_f(G)$, then $yx \in K_f(G)$
+- $K_f(G)$ is a normal subgroup of $G$
+
+</div>
+
+## Lemma 3.3 Proof
+<div class="blue2">
+
+- First we will show that $K_f(G)$ is a subgroup of $G$. Suppose $x \in K_f(G)$. Then $f(x) = 0$, and by (3.1), then $$f(xy)f(x\sigma(y)) = -f(y)^2.$$ Let $y = x^{-1}$. Then the above equation gives us $$f(e)f(x\sigma(x^{-1})) = -f(x^{-1})^2.$$ Thus by eautaion (3.3), we find that $f(x^{-1}) = 0$. This implies that $x^{-1} \in K_f(G)$ and that $K_f(G)$ is closed under inverses.
+
+</div>
+
+
+## Lemma 3.3 Proof cont.
+<div class="blue2">
+
+- Suppose $x,y \in K_f(G)$. Replacing $X$ with $xy$ and $y$ with $y^{-1}$ in equation (3.1), we find that $$f(xyy^{-1})f(xy\sigma(y^{-1})) = f(xy)^2 - f(y^{-1})^2$$ which simplifies to $$f(x)f(xy\sigma(y^{-1})) = f(xy)^2 - f(y^{-1})^2$$ fo all $x,y \in G$. Since $x \in K_f(G)$, thus from the previous equality, we find that $f(xy)^2 = 0$ which implies that $f(xy) =0$. Thus $xy \in K_f(G)$ and $K_f(G)$ is closed under multiplication. Thus $K_f(G)$ is a subgroup of $G$, proving our first bullet point in the Lemma. 
+
+</div>
+
+## Lemma 3.3 Proof cont.
+<div class="blue2">
+
+- To begin proving our second bullet point, suppose $xy \in K_f(G)$. Using equation (3.1), we have that $$f(x)^2 = f(y)^2$$ which we will call equation (3.11). If we replace $x$ and $y$ with $\sigma(x)$ and $\sigma(y)$ respectively in (3.1), and then use some simple substitution using equations (3.4) and (3.11), we get that $$f(\sigma(x)\sigma(y))f(\sigma(x)y) = f(\sigma(x))^2 - f(\sigma(y))^2 = $$ $$f(x)^2 - f(y)^2 = 0$$ By equation (3.4), the last equality reduces to equation (3.12): $$f(yx)f(\sigma(x)y) = 0$$
+
+</div>
+
+## Lemma 3.3 Proof cont.
+<div class="blue2">
+
+Then from equation (3.1), swapping $x$ and $y$, and using equation (3.11), we find our new equation (3.13) $$f(yx)f(y\sigma(x)) = f(y)^2 - f(x)^2 = 0$$ So by equations (3.12) and (3.13) we have that either $f(xy) = 0$ or $f(\sigma(x)y) = f(y\sigma(x)) = 0$. Now we consider 2 separate cases. 
+
+-**Case 1**: Suppose $f(yx) = 0$. Then $yx \in K_f(G)$. Therefore our second bullet holds under Case 1.
+
+</div>
+
+## Lemma 3.3 Proof cont.
+<div class="blue2">
+
+-**Case 2:** Suppose $f(\sigma(x)y) = f(y\sigma(x)) =0$. Then $\sigma(x)y$, $y\sigma(x) \in K_f(G)$. Since $K_f(G)$ is a subgroup of $G$, therefore $$y^{-1}\sigma(x)^{-1}, \sigma(x)^{-1}y^{-1} \in K_f(G).$$ Because $xy \in K_f(G)$, by equation (3.4) we find that $\sigma(xy) \in K_f(G)$ and hence $$\sigma(y)\sigma(x) \in K_f(G).$$ 
+
+</div>
+
+## Lemma 3.3 Proof cont.
+<div class="blue2">
+***Case 2 cont.***
+Because $\sigma(y)\sigma(x), \sigma(x)^{-1}y^{-1} \in K_f(G)$, therefore $$\sigma(y)\sigma(x)\sigma(x)^{-1}y^{-1} \in K_f(G)$$ which implies that $$\sigma(y)y^{-1} \in K_f(G)$$ by properties of groups. Since we also have $\sigma(x)y \in K_f(G)$, then $$\sigma(\sigma(x)y) = \sigma(y)x \in K_f(G).$$
+
+</div>
+
+## Lemma 3.3 Proof cont.
+<div class="blue2">
+
+- **Case 2 cont.:** Since $K_f(G)$ is a subgroup of $G$, from the last statement, we have that $x^{-1}\sigma(y)^{-1} \in K_f(G)$. Since $K_f(G)$ is closed under multiplication, we find $$x^{-1}\sigma(y)^{-1}\sigma(y)y^{-1} = x^{-1}y^{-1} \in K_f(G).$$ Because $K_f(G)$ is closed under inverses, we have that $yx \in K_f(G)$. This completes the proof of our second bullet in Case 2. 
+
+</div>
+
+## Lemma 3.3 Proof cont.
+<div class="blue2">
+
+-The proof of the third bullet follows directly from the proof of the second. To show this, let $u$ be some arbitrary element of the subgroup $K_f(G)$. For all $g \in G$, we have $u = ug^{-1}g \in K_f(G)$ and hence using the second bullet, we find that $$gug^{-1} \in K_f(G).$$ Hence $K_f(G)$ is a normal subgroup of G by definition. Thus we've proven Lemma 3.3
+
+QED
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Lemma 3.4
+<div class="blue2">
+
+Let $G$ be a $2$-divisible group and $\mathbb{C}$ be a field of complex numbers. Let $[G,G]$ be the commutator subgroup of $G$. Let $\sigma : G \rightarrow G$ be an involution. If $f : G \rightarrow \mathbb{C}$ is a solution of (3.1), then $f(u) =0$ for all $u \in [G,G]$ and $[G,G] \subseteq K_f(G)$.
+  
+</div>
+
+## Lemma 3.4 Proof
+<div class="blue2">
+
+to be done by Trevor
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
