@@ -2,17 +2,78 @@
 title: "Functional Equations Presentation on Sine F.E. 2"
 author: "Jacob Townson"
 date: "03/24/2017"
-output: ioslides_presentation
+output:
+  ioslides_presentation: default
+  beamer_presentation: default
 ---
   
 ```{r include=FALSE}
 require(mosaic)
 ```
 
-## Lemma 3.2
+## Lemma 3.5
 <div class="blue2">
 
+- Let $G$ be a group and $\sigma : G \rightarrow G$ be an involution. If $f : G \rightarrow \mathbb{C}$ is a solution of equation (3.1) (i.e. $f(xy)f(x\sigma(y)) = f(x)^2 - f(y)^2$), then $$K_f(G) = N_f(G) = M_f(G)$$
 
+</div>
+
+
+
+
+
+## Lemma 3.5 Proof
+<div class="blue2">
+
+- First let's show that $K_f(G) = N_f(G)$. Let $u \in K_f(G)$. Then $f(u) = 0$ by definition. If we replace $x$ by $xu$ and $y$ by $x^{-1}$ in (3.1), we have for all $x \in G$ we find equation (3.28):
+
+$$f(xu)^2 -f(x)^2  \\
+  =f(xu)^2 - f(x^{-1})^2 \\
+  =f(xux^{-1})f(xu(\sigma(x^{-1})) = 0$$
+  
+The first equality here is by Lemma 3.2 equation (3.5). The final equality here is by the normality of $K_f(G)$. Thus $u \in N_f(G)$, so $K_f(G) \subseteq N_f(G)$.
+
+</div>
+
+## Lemma 3.5 Proof cont.
+<div class="blue2">
+
+Next let $u \in N_f(G)$. Then by definition of $N_f(G)$, we find that $$f(xu)^2 = f(x)^2$$ for all $x \in G$. If we let $x = u^{-1}$, then we find $f(e)^2 = f(u^{-1})^2$. We know from Lemma 3.2 that $f(e) = 0$, so $f(u^{-1})^2 = 0$. But again by Lemma 3.2, we know that $f(u^{-1})^2 = f(u)^2$, so we find that $f(u)^2 = 0$ which implies that $f(u) = 0$. Therefore we can conclude that $u \in K_f(G)$. This proves that $N_f(G) \subseteq K_f(G)$ so we have proven that $K_f(G) = N_f(G)$.
+
+</div>
+
+## Lemma 3.5 Proof cont.
+<div class="blue2">
+
+- Now we want to show that $K_f(G) = M_f(G)$. Let $u \in K_f(G)$. This implies that $f(u) = 0$. We know, $K_f(G) = N_f(G)$, so $f(xu)^2 = f(x)^2$ for all $x \in G$. Now, 
+
+$$f(xu^2)f(xu\sigma(u))\\
+  = f(xu)^2 - f(u)^2 \\
+  = f(xu)^2 \\
+  =f(x)^2 \\
+  = f(xu\sigma(u))^2$$
+  
+The first equality here follows directly from (3.1). The second is because $f(u) = 0$. The third follows because $N_f(G) = K_f(G)$. The last follows from equation (3.7) from Lemma 3.2.
+
+</div>
+
+## Lemma 3.5 Proof cont.
+<div class="blue2">
+
+Thus we find equation (3.29) stating $$f(xu^2)f(xu\sigma(u)) = f(xu\sigma(u))^2$$ for all $x \in G$. Suppose $f(xu\sigma(u)) \neq 0$. Then the last equality yields $f(xu^2) = f(xu\sigma(u))$. Suppose $f(xu\sigma(u)) =0$. Then $xu\sigma(u) \in K_f(G)$. By Lemma 3.2, $u\sigma(u) \in K_f(G)$, so $x \in K_f(G)$. Since $u \in K_f(G)$, $u^2 \in K_f(G)$. So, $xu^2 \in K_f(G)$, which implies $f(xu^2) = 0$ and $f(xu^2) = f(xu\sigma(u))$. So $K_f(G) \subseteq M_f(G)$.
+
+</div>
+
+## Lemma 3.5 Proof cont.
+<div class="blue2">
+
+Let $u \in M_f(G)$. Then $f(xu^2) = f(xu\sigma(u))$ for all $x \in G$. Letting $x = u^{-1}$, we have $f(u) = f(\sigma(u))$. By Lemma 3.2, $f(\sigma(u)) = -f(u)$ and thus we have 
+
+$$f(u) = f(\sigma(u)) = -f(u)$$
+
+which yields $f(u) =0$. So $u \in K_f(G)$ and $M_f(G) \subseteq K_f(G)$. Hence $M_f(G) = K_f(G)$. So we're done.
+
+- QED
 
 </div>
 
@@ -22,10 +83,67 @@ require(mosaic)
 
 
 
-## Lemma 3.2 Proof
+
+
+## Theorem 3.6
 <div class="blue2">
 
-
+Let $G$ be a 2-divisible group and $\mathbb{C}$ the field of complex numbers. Let $[G,G]$ be the 2-divisible commutator subgroup of $G$. Let $\sigma : G \rightarrow G$ be an involution. If $f : G \rightarrow \mathbb{C}$ is a solution of (3.1) satisfying $f(x) = f(xy\sigma(y))$ for all $x,y \in G$, then $f$ is a function on the quotient group $G/[G,G]$.
 
 </div>
+
+
+
+
+
+## Theorem 3.6 Proof
+<div class="blue2">
+
+Replacing $x$ by $xu$ and $y$ by $x^{-1}$ in (3.1) for $u \in [G,G]$, we obtain 
+
+$$f(xux^{-1})f(xu\sigma(x^{-1})) = f(xu)^2 - f(x^{-1})^2.$$
+
+Since $u \in [G,G]$ and the latter is a normal subgroup of $G$, this means that $xux^{-1} \in [G,G]$. Therfore $f(xux^{-1}) =0$ and hence we have 
+
+$$f(xu)^2 = f(x^{-1})^2$$
+
+for all $x \in G$ and $u \in [G,G]$. 
+
+</div>
+
+
+## Theorem 3.6 Proof cont.
+<div class="blue2">
+
+By property (3.5), the above equality can be reduced to 
+
+$$f(xu)^2 = f(x)^2$$
+
+for all $x \in G$ and $u \in [G,G]$. Using Lemma 3.5, we find that
+
+$$f(xu^2) = f(xu\sigma(u)).$$
+
+Since $f(x) = f(xy\sigma(y))$ for all $y \in G$, we get that $f(xu^2) = f(x)$. Since $[G,G]$ is 2 -divisible the previous equality can be written as $f(xu) = f(x)$. This means that $f$ is a finction of the quotient group $G/[G,G]$. 
+
+- QED
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
