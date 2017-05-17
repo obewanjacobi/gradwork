@@ -1,0 +1,69 @@
+% TEMPLATE FOR STANDARD QUIZ
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\usepackage{amsmath,amsfonts,amssymb,amstext,color,latexsym,graphics,tabulary,tabularx,graphicx,tikz}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 105-20 Summer Term II 
+
+%%%(change to appropriate quiz type and date)
+Quiz 6: 6/22 \hspace{1.9in} {Name:} {\underline {\hspace{3.5in}}}
+\vspace{2pc}
+
+%%%(modify rules, time, points as appropriate)
+To receive full credit for this 25 point quiz, you must show ALL work. You have 10 min to complete this quiz. No quizzes will be accepted after that time.
+\vspace{2pc}
+
+% problem
+\begin{problem}{25}
+Given the following linear program:
+\newline
+Let x=the number of chairs, y=number of tables made on Monday.
+\newline
+Maximize: $P=\$60x+\$50y$
+\newline
+Subject to:
+\newline
+$3x\leq 1500$ yards of fabric
+\newline
+$2x+4y\leq 3000$ board-feet of lumber
+\newline
+$30x+15y \leq 18,000$ minutes workers' time
+\newline
+$x \geq 0$, $y\geq 0$
+\newline
+Is it feasible to make 30 chairs and 10 tables? If so, what is the profit?
+
+
+
+\vfill
+\end{problem}
+
+
+
+\showpoints
+\end{document}

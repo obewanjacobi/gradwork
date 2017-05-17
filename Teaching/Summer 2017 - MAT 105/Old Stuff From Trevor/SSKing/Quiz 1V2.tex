@@ -1,0 +1,88 @@
+% TEMPLATE FOR STANDARD QUIZ
+
+
+
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 105-20 Summer Term II 
+
+%%%(change to appropriate quiz type and date)
+Quiz 2 \hspace{1.9in} {Name:} {\underline {\hspace{2.5in}}}
+\vspace{2pc}
+
+%%%(modify rules, time, points as appropriate)
+Show all work to get full credit of this 25 point quiz.
+\vspace{2pc}
+
+% problem
+\begin{problem}{5}
+Solve for P:
+\begin{equation*}
+\$ 3000=P(1+0.02)\exp()
+\end{equation*}
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{6}
+Give the Equation of the Future value of Compound Interest (with more compoundings). Define all the variables you use. 
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{3}
+The population of the world in the year 2000 was 6.0 billion. This was a 20\%
+increase over the population in 1990. What was the population of the world in 1990?
+\vfill
+\end{problem}
+
+\newpage
+
+% problem
+\begin{problem}{5}
+If you deposit \$1000 at 6\% annual compount interest for 10 years, what will the value be if the compounding is:
+\newline(a)Annual
+\newline(b)Semi-Annual
+\newline(c)Quarterly
+\newline(d)Daily
+\vfill
+\end{problem}
+
+\begin{problem}{5}
+The advertisement shown below was found on a website that advertises current
+interest rates for various certificates of deposit (CDs).
+\newline
+\centerline{\includegraphics[scale=0.6]{quiz1interest.jpg}}
+\newline
+Assuming that you invest the minimum deposit shown in the advertisement for this CD, what will be the value of this investment at the end of the five-year period based upon the APR?
+Round your final answer to the nearest dollar.
+\vfill
+\end{problem}
+
+\showpoints
+\end{document}

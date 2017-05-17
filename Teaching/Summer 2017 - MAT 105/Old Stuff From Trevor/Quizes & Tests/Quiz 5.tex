@@ -1,0 +1,53 @@
+% TEMPLATE FOR STANDARD QUIZ
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\usepackage{amsmath,amsfonts,amssymb,amstext,color,latexsym,graphics,tabulary,tabularx,graphicx,tikz}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 105-20 Summer Term II 
+
+%%%(change to appropriate quiz type and date)
+Quiz 5: 6/22 \hspace{1.9in} {Name:} {\underline {\hspace{3.5in}}}
+\vspace{2pc}
+
+%%%(modify rules, time, points as appropriate)
+To receive full credit for this 25 point quiz, you must show ALL work. You have 10 min to complete this quiz. No quizzes will be accepted after that time.
+\vspace{2pc}
+
+% problem
+\begin{problem}{25}
+\newline \underline{SET UP THE FOLLOWING OPTIMIZATION PROBLEM, BUT DO NOT SOLVE}:
+\newline\newline
+Cardinal Furniture Company produces chairs and tables. To produce a chair the company uses 3 yards of fabric, 2 board-feet of lumber and 30 minutes of assembly workers' time. To produce a table the company uses 0 yards of fabric, 4 board-feet of lumber, and 15 minutes of assembly workers time.  The company wants to plan how many chairs and tables to make so as to maximize their profit. The company knows that each chair will yield a \$60 profit and each table will yeild a \$50 profit. On monday there are 1500 yards of fabric, 3000 board-feet of lumber, and 300 hours of assembly workers' time abailable. How many chairs and tables should be produced on Monday in order to give the largest possible profit? 
+
+\vfill
+\end{problem}
+
+
+
+\showpoints
+\end{document}

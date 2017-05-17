@@ -2,11 +2,18 @@
 RESEARCH INDEPENDENT STUDY - SUMMER 2017
 MAY 30 - JULY 3
 
-- Read Chapters 1-3 of biological modelling book
+- Read Chapters 1-4 of biological modelling book
+  Currently on Page 1
 - Read paper in Notes directory
 - Start Learning MatLab
 -----------------------------------------------------
 SIDE-NOTES
 
 Study Practice Quals when you can
+-----------------------------------------------------
+TEACHING
+
+Make Syllabus
+Rewrite Exams, Quizzes, and Projects
+Make rough outline of Schedule
 -----------------------------------------------------
