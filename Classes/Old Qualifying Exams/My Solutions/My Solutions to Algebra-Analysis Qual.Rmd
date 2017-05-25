@@ -1,0 +1,62 @@
+---
+title: "My Solutions to Old Quals"
+author: "Jacob S Townson"
+date: "May-July 2017"
+output:
+  pdf_document:
+    fig_height: 4
+    fig_width: 5
+  html_document:
+    fig_height: 4
+    fig_width: 5
+  word_document:
+    fig_height: 4
+    fig_width: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# January 2016 Qual
+
+### Let $(G,·)$ be a group and $Z = Z(G)$ its center. Suppose that the group $G/Z$ is cyclic. Show that $G$ is Abelian.
+#### My Solution
+
+Let $G/Z$ be cyclic with generator $xZ$. Every element in $G/Z$ can be written as $x^k Z$ where $k \in \mathbb{Z}$ and $z \in Z$. Now let $g,h \in G$. Then
+
+$$g=x^a z$$ and $$h = x^b w$$ for $a,b \in \mathbb{Z}$ and $z,w \in Z$. 
+
+Thus 
+$$gh = x^a z x^b w = x^{a+b} zw = x^{b+a} wz = x^b w x^a z = hg$$
+because $z,w \in Z$. THus $gh = hg$ which implies that G is Abelian. QED
+
+
+
+### Prove that every prime ideal is maximal in a PID.
+#### My Solution
+
+Let $P$ be a prime ideal in the PID $R$. So $ab \in P$ iff $a$ or $b \in P$. But $R$ is a PID, so $P =(a)$ where $a \in R$. So we want to show $P$ is maximal using this information, ie. if $I$ is an ideal that contains $P$, then $I=P$ or $I=R$. So let $I$ be an ideal containing $P$ such that $P \subset I \subset R$. Let $I =(b)$ where $B \in R$ because $R$ is a PID. Now, $a \in (a) \subset (b)$ which implies that there exists $c \in R$ such that $a =bc$. Since $a = bc \in P$, we know either $b$ or $c$ is in $P$ because it's prime. 
+
+If $b \in P$, then $I = (b) \subset P$ which implies $P=I$. On the other hand, if $c \in P =(a)$, then there exists $d \in R$ such that $c = ad$. So $$a =bc =bad$$
+
+Because $R$ is an integral domain (because it'e a PID), we can reduce the above formula to $$1 = bd$$
+
+Thus $b$ is a unit which implies that $I = (b) = R$.
+
+Thus either $P=I$ or $I=R$ for all $I$ containing $P$, so $P$ is maximal in $R$.  QED
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
