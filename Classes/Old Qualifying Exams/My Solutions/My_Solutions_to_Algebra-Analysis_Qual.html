@@ -128,7 +128,7 @@ $(document).ready(function () {
 <div id="let-g-be-a-group-and-z-zg-its-center.-suppose-that-the-group-gz-is-cyclic.-show-that-g-is-abelian." class="section level3">
 <h3>Let <span class="math inline">\((G,·)\)</span> be a group and <span class="math inline">\(Z = Z(G)\)</span> its center. Suppose that the group <span class="math inline">\(G/Z\)</span> is cyclic. Show that <span class="math inline">\(G\)</span> is Abelian.</h3>
 <div id="my-solution" class="section level4">
-<h4>My Solution</h4>
+<h4>My Solution:</h4>
 <p>Let <span class="math inline">\(G/Z\)</span> be cyclic with generator <span class="math inline">\(xZ\)</span>. Every element in <span class="math inline">\(G/Z\)</span> can be written as <span class="math inline">\(x^k Z\)</span> where <span class="math inline">\(k \in \mathbb{Z}\)</span> and <span class="math inline">\(z \in Z\)</span>. Now let <span class="math inline">\(g,h \in G\)</span>. Then</p>
 <p><span class="math display">\[g=x^a z\]</span> and <span class="math display">\[h = x^b w\]</span> for <span class="math inline">\(a,b \in \mathbb{Z}\)</span> and <span class="math inline">\(z,w \in Z\)</span>.</p>
 <p>Thus <span class="math display">\[gh = x^a z x^b w = x^{a+b} zw = x^{b+a} wz = x^b w x^a z = hg\]</span> because <span class="math inline">\(z,w \in Z\)</span>. THus <span class="math inline">\(gh = hg\)</span> which implies that G is Abelian. QED</p>
@@ -137,12 +137,19 @@ $(document).ready(function () {
 <div id="prove-that-every-prime-ideal-is-maximal-in-a-pid." class="section level3">
 <h3>Prove that every prime ideal is maximal in a PID.</h3>
 <div id="my-solution-1" class="section level4">
-<h4>My Solution</h4>
+<h4>My Solution:</h4>
 <p>Let <span class="math inline">\(P\)</span> be a prime ideal in the PID <span class="math inline">\(R\)</span>. So <span class="math inline">\(ab \in P\)</span> iff <span class="math inline">\(a\)</span> or <span class="math inline">\(b \in P\)</span>. But <span class="math inline">\(R\)</span> is a PID, so <span class="math inline">\(P =(a)\)</span> where <span class="math inline">\(a \in R\)</span>. So we want to show <span class="math inline">\(P\)</span> is maximal using this information, ie. if <span class="math inline">\(I\)</span> is an ideal that contains <span class="math inline">\(P\)</span>, then <span class="math inline">\(I=P\)</span> or <span class="math inline">\(I=R\)</span>. So let <span class="math inline">\(I\)</span> be an ideal containing <span class="math inline">\(P\)</span> such that <span class="math inline">\(P \subset I \subset R\)</span>. Let <span class="math inline">\(I =(b)\)</span> where <span class="math inline">\(B \in R\)</span> because <span class="math inline">\(R\)</span> is a PID. Now, <span class="math inline">\(a \in (a) \subset (b)\)</span> which implies that there exists <span class="math inline">\(c \in R\)</span> such that <span class="math inline">\(a =bc\)</span>. Since <span class="math inline">\(a = bc \in P\)</span>, we know either <span class="math inline">\(b\)</span> or <span class="math inline">\(c\)</span> is in <span class="math inline">\(P\)</span> because it’s prime.</p>
 <p>If <span class="math inline">\(b \in P\)</span>, then <span class="math inline">\(I = (b) \subset P\)</span> which implies <span class="math inline">\(P=I\)</span>. On the other hand, if <span class="math inline">\(c \in P =(a)\)</span>, then there exists <span class="math inline">\(d \in R\)</span> such that <span class="math inline">\(c = ad\)</span>. So <span class="math display">\[a =bc =bad\]</span></p>
 <p>Because <span class="math inline">\(R\)</span> is an integral domain (because it’e a PID), we can reduce the above formula to <span class="math display">\[1 = bd\]</span></p>
 <p>Thus <span class="math inline">\(b\)</span> is a unit which implies that <span class="math inline">\(I = (b) = R\)</span>.</p>
 <p>Thus either <span class="math inline">\(P=I\)</span> or <span class="math inline">\(I=R\)</span> for all <span class="math inline">\(I\)</span> containing <span class="math inline">\(P\)</span>, so <span class="math inline">\(P\)</span> is maximal in <span class="math inline">\(R\)</span>. QED</p>
+</div>
+</div>
+<div id="prove-that-for-any-prime-p-the-eld-mathbbf_p-with-p-elements-contains-an-element-a-such-that-mathbbf_p-3-sqrta-mathbbf_p-3-if-and-only-if-3-divides-p1.-hint-you-may-use-the-fact-that-for-any-nite-eld-mathbbf-the-multiplicative-group-mathbbf-is-cyclic." class="section level3">
+<h3>Prove that for any prime <span class="math inline">\(p\)</span>, the ﬁeld <span class="math inline">\(\mathbb{F}_p\)</span> with <span class="math inline">\(p\)</span> elements contains an element a such that <span class="math inline">\([\mathbb{F}_p( 3 \sqrt{a}) : \mathbb{F}_p] = 3\)</span> if and only if <span class="math inline">\(3\)</span> divides <span class="math inline">\(p−1\)</span>. (Hint: you may use the fact that for any ﬁnite ﬁeld <span class="math inline">\(\mathbb{F}\)</span>, the multiplicative group <span class="math inline">\(\mathbb{F}\)</span> * is cyclic.)</h3>
+<div id="my-solution-2" class="section level4">
+<h4>My Solution:</h4>
+<p>Not yet solved</p>
 </div>
 </div>
 </div>
