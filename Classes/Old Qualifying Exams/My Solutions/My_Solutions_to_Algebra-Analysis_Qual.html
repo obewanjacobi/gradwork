@@ -157,9 +157,17 @@ $(document).ready(function () {
 <p>Thus we’ve proven that <span class="math inline">\(IJ = I \cap J\)</span> in this circumstance. QED</p>
 </div>
 </div>
+<div id="prove-that-any-finite-group-is-isomorphic-to-a-subgroup-of-a_n-for-some-n-where-a_n-is-the-alternating-group-on-n-elements." class="section level3">
+<h3>Prove that any finite group is isomorphic to a subgroup of <span class="math inline">\(A_n\)</span> for some <span class="math inline">\(n\)</span>, where <span class="math inline">\(A_n\)</span> is the alternating group on <span class="math inline">\(n\)</span> elements.</h3>
+<div id="my-solution-3" class="section level4">
+<h4>My Solution:</h4>
+<p>To do this proof, we will use the broader proof of Cayley’s Theorem. This theorem states that if <span class="math inline">\(G\)</span> is a group of order <span class="math inline">\(n &lt; \infty\)</span>, then <span class="math inline">\(G\)</span> is isomorphic to a subgroup of <span class="math inline">\(S_n\)</span>. Since <span class="math inline">\(A_n\)</span> is a subgroup of <span class="math inline">\(S_n\)</span>, this proof will be sufficient to show the desired result.</p>
+<p>Let <span class="math inline">\(S\)</span> be the set of all elements of <span class="math inline">\(G\)</span>. Now consider the action of <span class="math inline">\(G\)</span> on <span class="math inline">\(S\)</span>, <span class="math display">\[G \times S \rightarrow S, a*b:=ab\]</span> This action defines a homomorphism <span class="math inline">\(\gamma: G \rightarrow \mathrm{Perm}(S)\)</span>. It is fairly easy to see that this homomorphism is one-to-one and onto. Thus, it follows that <span class="math inline">\(G\)</span> is isomorphic to a subgroup of <span class="math inline">\(\mathrm{Perm}(S)\)</span>. And finally, since <span class="math inline">\(|S| = n\)</span> we have that <span class="math inline">\(\mathrm{Perm}(S) \cong S_n\)</span>. QED</p>
+</div>
+</div>
 <div id="prove-that-for-any-prime-p-the-eld-mathbbf_p-with-p-elements-contains-an-element-a-such-that-mathbbf_p-3-sqrta-mathbbf_p-3-if-and-only-if-3-divides-p1.-hint-you-may-use-the-fact-that-for-any-nite-eld-mathbbf-the-multiplicative-group-mathbbf-is-cyclic." class="section level3">
 <h3>Prove that for any prime <span class="math inline">\(p\)</span>, the ﬁeld <span class="math inline">\(\mathbb{F}_p\)</span> with <span class="math inline">\(p\)</span> elements contains an element a such that <span class="math inline">\([\mathbb{F}_p( 3 \sqrt{a}) : \mathbb{F}_p] = 3\)</span> if and only if <span class="math inline">\(3\)</span> divides <span class="math inline">\(p−1\)</span>. (Hint: you may use the fact that for any ﬁnite ﬁeld <span class="math inline">\(\mathbb{F}\)</span>, the multiplicative group <span class="math inline">\(\mathbb{F}\)</span> * is cyclic.)</h3>
-<div id="my-solution-3" class="section level4">
+<div id="my-solution-4" class="section level4">
 <h4>My Solution:</h4>
 <p>Not yet solved</p>
 </div>
@@ -172,7 +180,7 @@ $(document).ready(function () {
 <h2>Spring 2017 Qual</h2>
 <div id="prove-that-if-f-01-rightarrow-0-infty-is-absolutely-continuous-then-so-is-1f." class="section level3">
 <h3>Prove that if <span class="math inline">\(f : [0,1] \rightarrow (0, \infty)\)</span> is absolutely continuous, then so is <span class="math inline">\(1/f\)</span>.</h3>
-<div id="my-solution-4" class="section level4">
+<div id="my-solution-5" class="section level4">
 <h4>My Solution:</h4>
 <p>By the definition of absolutely continuous, we then know that on <span class="math inline">\([0,1]\)</span> for all <span class="math inline">\(\epsilon &gt; 0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that <span class="math display">\[\sum_{i=1}^{k} |f(b_i) - f(a_i)| &lt; \epsilon\]</span> where <span class="math inline">\({(a_i,b_i)}\)</span> is an infinite collection of disjoint intervals in <span class="math inline">\([0,1]\)</span> with <span class="math inline">\(\sum_{i=1}^{k} |b_i - a_i| &lt; \delta\)</span>. Since this is true for <span class="math inline">\(f\)</span>, we must shift our focus now to <span class="math inline">\(1/f\)</span>.</p>
 <p>Rest of Solution not complete.</p>

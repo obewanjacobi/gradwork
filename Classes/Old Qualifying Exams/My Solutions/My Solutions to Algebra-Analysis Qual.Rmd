@@ -70,6 +70,17 @@ Thus we've proven that $IJ = I \cap J$ in this circumstance. QED
 
 
 
+### Prove that any finite group is isomorphic to a subgroup of $A_n$ for some $n$, where $A_n$ is the alternating group on $n$ elements.
+#### My Solution:
+
+To do this proof, we will use the broader proof of Cayley's Theorem. This theorem states that if $G$ is a group of order $n < \infty$, then $G$ is isomorphic to a subgroup of $S_n$. Since $A_n$ is a subgroup of $S_n$, this proof will be sufficient to show the desired result.
+
+Let $S$ be the set of all elements of $G$. Now consider the action of $G$ on $S$,
+$$G \times S \rightarrow S, a*b:=ab$$
+This action defines a homomorphism $\gamma: G \rightarrow \mathrm{Perm}(S)$. It is fairly easy to see that this homomorphism is one-to-one and onto. Thus, it follows that $G$ is isomorphic to a subgroup of $\mathrm{Perm}(S)$. And finally, since $|S| = n$ we have that $\mathrm{Perm}(S) \cong S_n$. QED
+
+
+
 
 
 
