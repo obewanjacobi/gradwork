@@ -109,6 +109,25 @@ Not yet solved
 
 
 
+## August 2015 Qual
+
+### Prove that a group of order $300$ cannot be simple.
+#### My Solution:
+To begin, we must understand what it means for a group to be simple. A simple group is a group of whose only normal subgroups are the trivial group and the entire group itself. Thus we want to show there are no proper normal subgroups other than the trivial group.
+
+To do this we will use Sylow's Theorem and a proof by contradiction.
+
+Let $G$ be a group of order $300$ such that $G$ is simple. Well, $300 = 3 \times 2^2 \times 5^2$. We will denote the number of Sylow-p subgroups as $n_p$. Notice then that $n_5 | 12$ and $n_5 = 1 + 5k$. This implies that $n_5 = 1$ or $6$. However, because $G$ is simple there cannot only be one Sylow-5 subgroup, otherwise we would have a proper nontrivial normal subgroup. Thus $n_5 = 6$. Because of this and because $G$ is simple, we can say that $G$ embeds into $S_6$ if we let $G$ act on the Sylow-5 subgroups by conjugation. But then by Lagrange's Theorem, $300$ should divide $6!$, which it does not. Thus we have a contradiction, which implies that $G$ is not simple, thus a group of order $300$ cannot be simple. QED
+
+
+
+
+
+
+
+
+
+
 
 
 
