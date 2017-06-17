@@ -191,6 +191,13 @@ $(document).ready(function () {
 <p>Let <span class="math inline">\(G\)</span> be a group of order <span class="math inline">\(300\)</span> such that <span class="math inline">\(G\)</span> is simple. Well, <span class="math inline">\(300 = 3 \times 2^2 \times 5^2\)</span>. We will denote the number of Sylow-p subgroups as <span class="math inline">\(n_p\)</span>. Notice then that <span class="math inline">\(n_5 | 12\)</span> and <span class="math inline">\(n_5 = 1 + 5k\)</span>. This implies that <span class="math inline">\(n_5 = 1\)</span> or <span class="math inline">\(6\)</span>. However, because <span class="math inline">\(G\)</span> is simple there cannot only be one Sylow-5 subgroup, otherwise we would have a proper nontrivial normal subgroup. Thus <span class="math inline">\(n_5 = 6\)</span>. Because of this and because <span class="math inline">\(G\)</span> is simple, we can say that <span class="math inline">\(G\)</span> embeds into <span class="math inline">\(S_6\)</span> if we let <span class="math inline">\(G\)</span> act on the Sylow-5 subgroups by conjugation. But then by Lagrange’s Theorem, <span class="math inline">\(300\)</span> should divide <span class="math inline">\(6!\)</span>, which it does not. Thus we have a contradiction, which implies that <span class="math inline">\(G\)</span> is not simple, thus a group of order <span class="math inline">\(300\)</span> cannot be simple. QED</p>
 </div>
 </div>
+<div id="let-f-mathbbqisqrt3-where-i-is-imaginary.-find-the-degree-of-the-extension-fmathbbq-and-a-basis-of-f-over-mathbbq.-justify." class="section level3">
+<h3>Let <span class="math inline">\(F = \mathbb{Q}(i,\sqrt{3})\)</span> where <span class="math inline">\(i\)</span> is imaginary. Find the degree of the extension <span class="math inline">\([F:\mathbb{Q}]\)</span> and a basis of <span class="math inline">\(F\)</span> over <span class="math inline">\(\mathbb{Q}\)</span>. Justify.</h3>
+<div id="my-solution-7" class="section level4">
+<h4>My Solution</h4>
+<p>Note this extension adds the roots of the polynomial <span class="math inline">\(f(x) = x^2 - 3\)</span>, which is irreducible in <span class="math inline">\(\mathbb{Q}\)</span>. By adding the roots in <span class="math inline">\(F\)</span>, we can now reduce the polynomial <span class="math inline">\(f(x)\)</span> in <span class="math inline">\(F\)</span>, and thus we can easily see that the polynomial <span class="math inline">\(f(x)\)</span> is the minimal polynomial for the extension <span class="math inline">\(F/\mathbb{Q}\)</span>. Thus the degree of the extension is <span class="math inline">\(2\)</span>. A basis for this extension is <span class="math inline">\([1, i , \sqrt{3}, i\sqrt{3}]\)</span>. QED</p>
+</div>
+</div>
 </div>
 </div>
 <div id="analysis" class="section level1">
@@ -199,7 +206,7 @@ $(document).ready(function () {
 <h2>Spring 2017 Qual</h2>
 <div id="prove-that-if-f-01-rightarrow-0-infty-is-absolutely-continuous-then-so-is-1f." class="section level3">
 <h3>Prove that if <span class="math inline">\(f : [0,1] \rightarrow (0, \infty)\)</span> is absolutely continuous, then so is <span class="math inline">\(1/f\)</span>.</h3>
-<div id="my-solution-7" class="section level4">
+<div id="my-solution-8" class="section level4">
 <h4>My Solution:</h4>
 <p>By the definition of absolutely continuous, we then know that on <span class="math inline">\([0,1]\)</span> for all <span class="math inline">\(\epsilon &gt; 0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that <span class="math display">\[\sum_{i=1}^{k} |f(b_i) - f(a_i)| &lt; \epsilon\]</span> where <span class="math inline">\({(a_i,b_i)}\)</span> is an infinite collection of disjoint intervals in <span class="math inline">\([0,1]\)</span> with <span class="math inline">\(\sum_{i=1}^{k} |b_i - a_i| &lt; \delta\)</span>. Since this is true for <span class="math inline">\(f\)</span>, we must shift our focus now to <span class="math inline">\(1/f\)</span>.</p>
 <p>Rest of Solution not complete.</p>
