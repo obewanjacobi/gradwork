@@ -131,13 +131,13 @@ Let $G$ be a group of order $300$ such that $G$ is simple. Well, $300 = 3 \times
 
 
 ### Let $F = \mathbb{Q}(i,\sqrt{3})$ where $i$ is imaginary. Find the degree of the extension $[F:\mathbb{Q}]$ and a basis of $F$ over $\mathbb{Q}$. Justify.
-#### My Solution
+#### My Solution:
 Note this extension adds the roots of the polynomial $f(x) = x^2 - 3$, which is irreducible in $\mathbb{Q}$. By adding the roots in $F$, we can now reduce the polynomial $f(x)$ in $F$, and thus we can easily see that the polynomial $f(x)$ is the minimal polynomial for the extension $F/\mathbb{Q}$. Thus the degree of the extension is $2$. A basis for this extension is $[1, i , \sqrt{3}, i\sqrt{3}]$. QED
 
 
 
 ### Let $A$ and $B$ be ideals of a ring $R$ with $B \subseteq A$. Show that $A/B = \{ a+B|a \in A \}$ is an ideal of the ring $R/B$.
-#### My Solution
+#### My Solution:
 Recall for this problem the definition of an ideal for rings. $I$ is an ideal of the ring $R$ if for all $x \in R$ and $y \in I$, then $xy, yx \in I$. 
 
 We will use this definition to show $A/B$ is an ideal of $R/B$. Notice $R/B = \{ r + B|r \in R \}$. So let's consider two elements, $r+B \in R/B$ and $a + B \in A/B$ such that $r \in R$ and $a \in A$. We want to show that $(r+B)(a+B) \in A/B$ and $(a+B)(r+B) \in A/B$. Well, 
@@ -145,6 +145,35 @@ $$(r+B)(a+B) = ra+aB+rB+B = ra+B$$
 because $B$ is an ideal of $R$. But $A$ is also an ideal of $R$ so $ra \in A$, which implies that $ra + B \in A/B$. Looking at the other direction, we find that
 $$(a+B)(r+B) = ar+aB+rB+B = ar+B$$
 and for similar reasons, we then know that $ar+B \in A/B$. Thus $A/B$ is an ideal of $R/B$. QED
+
+
+
+### Let $A$ and $B$ be ideals of a ring $R$ with $B \subseteq A$. Show that the map $f: R/B \rightarrow R/A$ given by $f(x+B) = x+A$ for every $x \in R$, is well-defined, onto, and a homomorphism.
+#### My Solution:
+We will need to separate this problem into three parts.
+
+- First we must prove that $f$ is well-defined. So we want to show that if $x=y \in R$, then $f(x+B)=f(y+B)$. Well, if $x=y$, then 
+$$f(x+B) = x+A = y+A = f(y+B)$$
+Thus $f$ is well-defined by definition.
+
+- Next we will show that $f$ is an onto function. So we need to show that for all $x \in R$, and $x+B \in R/B$, then $f(x+B) \in R/A$. Well, by definition this is obvious, because for all $x \in R$ and $x+B \in R/B$, $f(x+B) = x+A \in R/A$. Thus the function must be onto.
+
+- Finally we must show that $f$ is a homomorphism. First note that $f(B)=A$ by definition, so the identity maps to the respective identity. Now we must prove that addition and multiplication are preserved. First, let's look at $f(x+B+y+B)$ where $x,y \in R$. So,
+$$f(x+B+y+B) = f(x+y+b) = x+y+A = (x+A) + (y+A) = f(x+B)+f(y+B)$$
+Thus addition is preserved. So now we must only prove that multiplication is preserved. Assume a similar situation as above, but let's look at $f((x+B)(y+B))$. Well,
+$$f((x+B)(y+B)) = f(xy+xB+yB+B) = f(xy+B)$$
+because $B$ is an ideal. Now we can further this manipulation using that $A$ is an ideal to see that
+$$f(xy+B)=xy+A=xy+xA+yA+A=(x+A)(y+A)=f(x+B)f(y+B)$$
+Thus because identities, addition, and multiplication are preserved, we know then that $f$ is a homomorphism.
+
+Thus $f$ is a well-defined, onto, homomorphism. QED
+
+
+
+
+
+
+
 
 
 

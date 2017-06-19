@@ -194,16 +194,29 @@ $(document).ready(function () {
 <div id="let-f-mathbbqisqrt3-where-i-is-imaginary.-find-the-degree-of-the-extension-fmathbbq-and-a-basis-of-f-over-mathbbq.-justify." class="section level3">
 <h3>Let <span class="math inline">\(F = \mathbb{Q}(i,\sqrt{3})\)</span> where <span class="math inline">\(i\)</span> is imaginary. Find the degree of the extension <span class="math inline">\([F:\mathbb{Q}]\)</span> and a basis of <span class="math inline">\(F\)</span> over <span class="math inline">\(\mathbb{Q}\)</span>. Justify.</h3>
 <div id="my-solution-7" class="section level4">
-<h4>My Solution</h4>
+<h4>My Solution:</h4>
 <p>Note this extension adds the roots of the polynomial <span class="math inline">\(f(x) = x^2 - 3\)</span>, which is irreducible in <span class="math inline">\(\mathbb{Q}\)</span>. By adding the roots in <span class="math inline">\(F\)</span>, we can now reduce the polynomial <span class="math inline">\(f(x)\)</span> in <span class="math inline">\(F\)</span>, and thus we can easily see that the polynomial <span class="math inline">\(f(x)\)</span> is the minimal polynomial for the extension <span class="math inline">\(F/\mathbb{Q}\)</span>. Thus the degree of the extension is <span class="math inline">\(2\)</span>. A basis for this extension is <span class="math inline">\([1, i , \sqrt{3}, i\sqrt{3}]\)</span>. QED</p>
 </div>
 </div>
 <div id="let-a-and-b-be-ideals-of-a-ring-r-with-b-subseteq-a.-show-that-ab-aba-in-a-is-an-ideal-of-the-ring-rb." class="section level3">
 <h3>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be ideals of a ring <span class="math inline">\(R\)</span> with <span class="math inline">\(B \subseteq A\)</span>. Show that <span class="math inline">\(A/B = \{ a+B|a \in A \}\)</span> is an ideal of the ring <span class="math inline">\(R/B\)</span>.</h3>
 <div id="my-solution-8" class="section level4">
-<h4>My Solution</h4>
+<h4>My Solution:</h4>
 <p>Recall for this problem the definition of an ideal for rings. <span class="math inline">\(I\)</span> is an ideal of the ring <span class="math inline">\(R\)</span> if for all <span class="math inline">\(x \in R\)</span> and <span class="math inline">\(y \in I\)</span>, then <span class="math inline">\(xy, yx \in I\)</span>.</p>
 <p>We will use this definition to show <span class="math inline">\(A/B\)</span> is an ideal of <span class="math inline">\(R/B\)</span>. Notice <span class="math inline">\(R/B = \{ r + B|r \in R \}\)</span>. So let’s consider two elements, <span class="math inline">\(r+B \in R/B\)</span> and <span class="math inline">\(a + B \in A/B\)</span> such that <span class="math inline">\(r \in R\)</span> and <span class="math inline">\(a \in A\)</span>. We want to show that <span class="math inline">\((r+B)(a+B) \in A/B\)</span> and <span class="math inline">\((a+B)(r+B) \in A/B\)</span>. Well, <span class="math display">\[(r+B)(a+B) = ra+aB+rB+B = ra+B\]</span> because <span class="math inline">\(B\)</span> is an ideal of <span class="math inline">\(R\)</span>. But <span class="math inline">\(A\)</span> is also an ideal of <span class="math inline">\(R\)</span> so <span class="math inline">\(ra \in A\)</span>, which implies that <span class="math inline">\(ra + B \in A/B\)</span>. Looking at the other direction, we find that <span class="math display">\[(a+B)(r+B) = ar+aB+rB+B = ar+B\]</span> and for similar reasons, we then know that <span class="math inline">\(ar+B \in A/B\)</span>. Thus <span class="math inline">\(A/B\)</span> is an ideal of <span class="math inline">\(R/B\)</span>. QED</p>
+</div>
+</div>
+<div id="let-a-and-b-be-ideals-of-a-ring-r-with-b-subseteq-a.-show-that-the-map-f-rb-rightarrow-ra-given-by-fxb-xa-for-every-x-in-r-is-well-defined-onto-and-a-homomorphism." class="section level3">
+<h3>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be ideals of a ring <span class="math inline">\(R\)</span> with <span class="math inline">\(B \subseteq A\)</span>. Show that the map <span class="math inline">\(f: R/B \rightarrow R/A\)</span> given by <span class="math inline">\(f(x+B) = x+A\)</span> for every <span class="math inline">\(x \in R\)</span>, is well-defined, onto, and a homomorphism.</h3>
+<div id="my-solution-9" class="section level4">
+<h4>My Solution:</h4>
+<p>We will need to separate this problem into three parts.</p>
+<ul>
+<li><p>First we must prove that <span class="math inline">\(f\)</span> is well-defined. So we want to show that if <span class="math inline">\(x=y \in R\)</span>, then <span class="math inline">\(f(x+B)=f(y+B)\)</span>. Well, if <span class="math inline">\(x=y\)</span>, then <span class="math display">\[f(x+B) = x+A = y+A = f(y+B)\]</span> Thus <span class="math inline">\(f\)</span> is well-defined by definition.</p></li>
+<li><p>Next we will show that <span class="math inline">\(f\)</span> is an onto function. So we need to show that for all <span class="math inline">\(x \in R\)</span>, and <span class="math inline">\(x+B \in R/B\)</span>, then <span class="math inline">\(f(x+B) \in R/A\)</span>. Well, by definition this is obvious, because for all <span class="math inline">\(x \in R\)</span> and <span class="math inline">\(x+B \in R/B\)</span>, <span class="math inline">\(f(x+B) = x+A \in R/A\)</span>. Thus the function must be onto.</p></li>
+<li><p>Finally we must show that <span class="math inline">\(f\)</span> is a homomorphism. First note that <span class="math inline">\(f(B)=A\)</span> by definition, so the identity maps to the respective identity. Now we must prove that addition and multiplication are preserved. First, let’s look at <span class="math inline">\(f(x+B+y+B)\)</span> where <span class="math inline">\(x,y \in R\)</span>. So, <span class="math display">\[f(x+B+y+B) = f(x+y+b) = x+y+A = (x+A) + (y+A) = f(x+B)+f(y+B)\]</span> Thus addition is preserved. So now we must only prove that multiplication is preserved. Assume a similar situation as above, but let’s look at <span class="math inline">\(f((x+B)(y+B))\)</span>. Well, <span class="math display">\[f((x+B)(y+B)) = f(xy+xB+yB+B) = f(xy+B)\]</span> because <span class="math inline">\(B\)</span> is an ideal. Now we can further this manipulation using that <span class="math inline">\(A\)</span> is an ideal to see that <span class="math display">\[f(xy+B)=xy+A=xy+xA+yA+A=(x+A)(y+A)=f(x+B)f(y+B)\]</span> Thus because identities, addition, and multiplication are preserved, we know then that <span class="math inline">\(f\)</span> is a homomorphism.</p></li>
+</ul>
+<p>Thus <span class="math inline">\(f\)</span> is a well-defined, onto, homomorphism. QED</p>
 </div>
 </div>
 </div>
@@ -214,7 +227,7 @@ $(document).ready(function () {
 <h2>Spring 2017 Qual</h2>
 <div id="prove-that-if-f-01-rightarrow-0-infty-is-absolutely-continuous-then-so-is-1f." class="section level3">
 <h3>Prove that if <span class="math inline">\(f : [0,1] \rightarrow (0, \infty)\)</span> is absolutely continuous, then so is <span class="math inline">\(1/f\)</span>.</h3>
-<div id="my-solution-9" class="section level4">
+<div id="my-solution-10" class="section level4">
 <h4>My Solution:</h4>
 <p>By the definition of absolutely continuous, we then know that on <span class="math inline">\([0,1]\)</span> for all <span class="math inline">\(\epsilon &gt; 0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that <span class="math display">\[\sum_{i=1}^{k} |f(b_i) - f(a_i)| &lt; \epsilon\]</span> where <span class="math inline">\({(a_i,b_i)}\)</span> is an infinite collection of disjoint intervals in <span class="math inline">\([0,1]\)</span> with <span class="math inline">\(\sum_{i=1}^{k} |b_i - a_i| &lt; \delta\)</span>. Since this is true for <span class="math inline">\(f\)</span>, we must shift our focus now to <span class="math inline">\(1/f\)</span>.</p>
 <p>Rest of Solution not complete.</p>
