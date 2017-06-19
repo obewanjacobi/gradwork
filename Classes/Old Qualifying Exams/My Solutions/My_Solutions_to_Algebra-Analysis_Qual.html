@@ -198,6 +198,14 @@ $(document).ready(function () {
 <p>Note this extension adds the roots of the polynomial <span class="math inline">\(f(x) = x^2 - 3\)</span>, which is irreducible in <span class="math inline">\(\mathbb{Q}\)</span>. By adding the roots in <span class="math inline">\(F\)</span>, we can now reduce the polynomial <span class="math inline">\(f(x)\)</span> in <span class="math inline">\(F\)</span>, and thus we can easily see that the polynomial <span class="math inline">\(f(x)\)</span> is the minimal polynomial for the extension <span class="math inline">\(F/\mathbb{Q}\)</span>. Thus the degree of the extension is <span class="math inline">\(2\)</span>. A basis for this extension is <span class="math inline">\([1, i , \sqrt{3}, i\sqrt{3}]\)</span>. QED</p>
 </div>
 </div>
+<div id="let-a-and-b-be-ideals-of-a-ring-r-with-b-subseteq-a.-show-that-ab-aba-in-a-is-an-ideal-of-the-ring-rb." class="section level3">
+<h3>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be ideals of a ring <span class="math inline">\(R\)</span> with <span class="math inline">\(B \subseteq A\)</span>. Show that <span class="math inline">\(A/B = \{ a+B|a \in A \}\)</span> is an ideal of the ring <span class="math inline">\(R/B\)</span>.</h3>
+<div id="my-solution-8" class="section level4">
+<h4>My Solution</h4>
+<p>Recall for this problem the definition of an ideal for rings. <span class="math inline">\(I\)</span> is an ideal of the ring <span class="math inline">\(R\)</span> if for all <span class="math inline">\(x \in R\)</span> and <span class="math inline">\(y \in I\)</span>, then <span class="math inline">\(xy, yx \in I\)</span>.</p>
+<p>We will use this definition to show <span class="math inline">\(A/B\)</span> is an ideal of <span class="math inline">\(R/B\)</span>. Notice <span class="math inline">\(R/B = \{ r + B|r \in R \}\)</span>. So let’s consider two elements, <span class="math inline">\(r+B \in R/B\)</span> and <span class="math inline">\(a + B \in A/B\)</span> such that <span class="math inline">\(r \in R\)</span> and <span class="math inline">\(a \in A\)</span>. We want to show that <span class="math inline">\((r+B)(a+B) \in A/B\)</span> and <span class="math inline">\((a+B)(r+B) \in A/B\)</span>. Well, <span class="math display">\[(r+B)(a+B) = ra+aB+rB+B = ra+B\]</span> because <span class="math inline">\(B\)</span> is an ideal of <span class="math inline">\(R\)</span>. But <span class="math inline">\(A\)</span> is also an ideal of <span class="math inline">\(R\)</span> so <span class="math inline">\(ra \in A\)</span>, which implies that <span class="math inline">\(ra + B \in A/B\)</span>. Looking at the other direction, we find that <span class="math display">\[(a+B)(r+B) = ar+aB+rB+B = ar+B\]</span> and for similar reasons, we then know that <span class="math inline">\(ar+B \in A/B\)</span>. Thus <span class="math inline">\(A/B\)</span> is an ideal of <span class="math inline">\(R/B\)</span>. QED</p>
+</div>
+</div>
 </div>
 </div>
 <div id="analysis" class="section level1">
@@ -206,7 +214,7 @@ $(document).ready(function () {
 <h2>Spring 2017 Qual</h2>
 <div id="prove-that-if-f-01-rightarrow-0-infty-is-absolutely-continuous-then-so-is-1f." class="section level3">
 <h3>Prove that if <span class="math inline">\(f : [0,1] \rightarrow (0, \infty)\)</span> is absolutely continuous, then so is <span class="math inline">\(1/f\)</span>.</h3>
-<div id="my-solution-8" class="section level4">
+<div id="my-solution-9" class="section level4">
 <h4>My Solution:</h4>
 <p>By the definition of absolutely continuous, we then know that on <span class="math inline">\([0,1]\)</span> for all <span class="math inline">\(\epsilon &gt; 0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that <span class="math display">\[\sum_{i=1}^{k} |f(b_i) - f(a_i)| &lt; \epsilon\]</span> where <span class="math inline">\({(a_i,b_i)}\)</span> is an infinite collection of disjoint intervals in <span class="math inline">\([0,1]\)</span> with <span class="math inline">\(\sum_{i=1}^{k} |b_i - a_i| &lt; \delta\)</span>. Since this is true for <span class="math inline">\(f\)</span>, we must shift our focus now to <span class="math inline">\(1/f\)</span>.</p>
 <p>Rest of Solution not complete.</p>

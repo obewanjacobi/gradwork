@@ -136,6 +136,18 @@ Note this extension adds the roots of the polynomial $f(x) = x^2 - 3$, which is 
 
 
 
+### Let $A$ and $B$ be ideals of a ring $R$ with $B \subseteq A$. Show that $A/B = \{ a+B|a \in A \}$ is an ideal of the ring $R/B$.
+#### My Solution
+Recall for this problem the definition of an ideal for rings. $I$ is an ideal of the ring $R$ if for all $x \in R$ and $y \in I$, then $xy, yx \in I$. 
+
+We will use this definition to show $A/B$ is an ideal of $R/B$. Notice $R/B = \{ r + B|r \in R \}$. So let's consider two elements, $r+B \in R/B$ and $a + B \in A/B$ such that $r \in R$ and $a \in A$. We want to show that $(r+B)(a+B) \in A/B$ and $(a+B)(r+B) \in A/B$. Well, 
+$$(r+B)(a+B) = ra+aB+rB+B = ra+B$$ 
+because $B$ is an ideal of $R$. But $A$ is also an ideal of $R$ so $ra \in A$, which implies that $ra + B \in A/B$. Looking at the other direction, we find that
+$$(a+B)(r+B) = ar+aB+rB+B = ar+B$$
+and for similar reasons, we then know that $ar+B \in A/B$. Thus $A/B$ is an ideal of $R/B$. QED
+
+
+
 
 
 
