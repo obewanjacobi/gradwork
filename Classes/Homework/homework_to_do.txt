@@ -2,10 +2,8 @@
 RESEARCH INDEPENDENT STUDY - SUMMER 2017
 MAY 30 - JULY 3
 
-- Read Chapters 1-4 of biological modelling book
-  Currently on Page 63 section 4.2
 - Read paper in Notes directory
-- Start Learning MatLab
+- Finish MATLAB Online Course
 -----------------------------------------------------
 SIDE-NOTES
 

@@ -146,6 +146,8 @@ because $B$ is an ideal of $R$. But $A$ is also an ideal of $R$ so $ra \in A$, w
 $$(a+B)(r+B) = ar+aB+rB+B = ar+B$$
 and for similar reasons, we then know that $ar+B \in A/B$. Thus $A/B$ is an ideal of $R/B$. QED
 
+- Note: This statement also follows directly from the third isomorphism threorem for rings.
+
 
 
 ### Let $A$ and $B$ be ideals of a ring $R$ with $B \subseteq A$. Show that the map $f: R/B \rightarrow R/A$ given by $f(x+B) = x+A$ for every $x \in R$, is well-defined, onto, and a homomorphism.
@@ -167,6 +169,15 @@ $$f(xy+B)=xy+A=xy+xA+yA+A=(x+A)(y+A)=f(x+B)f(y+B)$$
 Thus because identities, addition, and multiplication are preserved, we know then that $f$ is a homomorphism.
 
 Thus $f$ is a well-defined, onto, homomorphism. QED
+
+- Note, this could have been simplified with the first Isomorphism Theorem for Rings.
+
+
+
+### Let $A$ and $B$ be ideals of a ring $R$ with $B \subseteq A$. Show that $(R/B)/(A/B)$ is isomorphic to $R/A$.
+#### My Solution:
+This statement follows directly from the third Isomorphism Theorem for rings. QED
+
 
 
 
