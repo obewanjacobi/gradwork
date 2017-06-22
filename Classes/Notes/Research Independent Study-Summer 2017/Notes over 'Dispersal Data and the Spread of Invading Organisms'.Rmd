@@ -1,0 +1,67 @@
+---
+title: "Notes over Dispersal Data and the Spread of Invading Organisms"
+author: "Jacob Townson"
+date: "June 20, 2017"
+output: pdf_document
+---
+
+### Abstract
+- The ideas of general dispersal are familiar from the required book reading, however I don't know what a fat-tailed kernel is or an Allee effect is. More background may be needed. But must remember that the purpose of reading this paper is to see how other people do this sort of work.
+
+
+
+### Intro
+- Briefly mentions the Skellam model, then goes on to talk about the leptokurtic distribution of population density and how it is ignored often by people who make these models. What is this distribution exactly?
+
+- *Leptokurtic Distribution*: A leptokurtic distribution has excess positive kurtosis, where the kurtosis is greater than 3. “Lepto-” means slender, referring to the tall, slender peak in the distribution. The distribution looks like a normal distribution at first glance. 
+
+- *Kurtosis*: Kurtosis tells you how “peaked” your graph is, or how high the graph is around the mean. It’s also the fourth moment in statistics. A positive value means that you have too little data in your tails. A negative value means that you have too much data in your tail. This heaviness or lightness in the tails means that your data looks more peaked (or less peaked).
+
+
+
+### Model
+- Equation (2) is the logistic model from bunny app.
+
+- We keep mentioning Allee effect, what is this?
+
+- *Allee effect*: The Allee effect is a phenomenon in biology characterized by a correlation between population size or density and the mean individual fitness (often measured as per capita population growth rate) of a population or species.
+
+- Given this definition, allee effect is like how in the bunny app, the closer a population got to its carrying capacity, the higher the death rate became due to lack of food. 
+
+- The basics of the model is that they begin with equations that model the population without dispersion, then they add dispersion in to make an accurate model. 
+
+- *propagules*: a propagule is any material that is used for the purpose of propagating an organism to the next stage in their life cycle, such as by dispersal.
+
+
+
+### Analytic Results
+
+- This section is tough to follow. A lot of math is going on here that I don't recall. Review over next semester will help. If some spare time rolls along, will come back to this for further review.
+
+
+
+### Empirical Results
+
+- This section is exactly what it says. It sums up some real life examples done with previous work. 
+
+- Not too hard to follow, just a pain to change page to page to read then look at a graph. 
+
+- As in the previous section, this will be a much easier read after some review on DE.
+
+- Graphs are often very interesting and easy to read. I know plots similar to this can be made in R, but here's to hoping MATLAB is as friendly. (note these graphs are mostly dispersed through the next section)
+
+
+
+### Spread with Allee Effect
+
+- Again, some of the formulas from models look familiar to the Rabbit project. Makes me wonder if I should go back and read over the old thesis project.
+
+- The math behind things just needs some review in order to further my understanding.
+
+
+
+### Discussion
+
+- The authors conclude that a method (of which I don't fully understand) could be the solution to what they're looking at. It involves integration over the models similar to that of linearization (as far as I can tell).
+
+- Very interesting how they explain how the Allee effect shows in real life. Then the kernel things caught me off guard again.

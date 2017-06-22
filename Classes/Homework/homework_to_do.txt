@@ -2,10 +2,9 @@
 RESEARCH INDEPENDENT STUDY - SUMMER 2017
 MAY 30 - JULY 3
 
-- Read paper in Notes directory
 - Finish MATLAB Online Course
 -----------------------------------------------------
-SIDE-NOTES
+QUALS
 
 Problem a Day from Practice Quals
 -----------------------------------------------------
