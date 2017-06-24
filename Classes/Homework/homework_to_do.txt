@@ -1,9 +1,4 @@
 -----------------------------------------------------
-RESEARCH INDEPENDENT STUDY - SUMMER 2017
-MAY 30 - JULY 3
-
-- Finish MATLAB Online Course
------------------------------------------------------
 QUALS
 
 Problem a Day from Practice Quals
