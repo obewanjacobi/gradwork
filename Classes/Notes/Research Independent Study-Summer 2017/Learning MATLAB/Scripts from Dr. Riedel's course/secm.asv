@@ -1,0 +1,16 @@
+function y=secm(g,a,b,maxerr)
+c={(a*g(b)-b*g(a))/(g(b)-g(a));
+disp('Xn-1 g(Xn-1) Xn g(Xn) Xn+1 g(Xn+1)');
+disp([a g(a) b g(b) c g(c)]);
+while {abs(g(c)) > maxerr}
+    a = b;
+    b = c;
+    c = (a*g(b)-b*g(a))/(g(b)-g(a));
+    disp([a g(a) b g(b) c g(c)]);
+    flag=flag+1;
+    if(flag==100)
+        break;
+    end
+end
+disp(['root is x =' num2str(c)]);
+y=c;

@@ -1,0 +1,16 @@
+x=redx(:,:,3);
+w=zeros(768,1024,3);
+subplot(2,1,1)
+imshow(redx);
+x1=double(x);
+[s,u,z]=svd(x1);
+k=90;
+uk=u(:,1:k);
+sk=s(1:k,1:k);
+vk=v(:,1:K);
+xk=uk*sk*vk;
+xku=unit8(xk);
+xout=w;
+xout(:,:,2)=xku;
+subplot(2,1,2);
+imshow(xout)
