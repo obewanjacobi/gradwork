@@ -186,6 +186,20 @@ First note that $t(x) = x^6 -4 = (x^3 - 2)(x^3 + 2)$. The roots of this polynomi
 
 
 
+### A ring $R$ (not necessarily commutative) with identity $1_R \neq 0$ in which every nonzero element is a unit is called a *division ring* . Prove that a ring $R$ with identity $1_R$ is a division ring iff $R$ has no proper left ideal.
+#### My Solution:
+First, recall if $I \subset R$, $I$ is a left ideal if for all $r \in R$ and $a \in I$, $ra \in I$.
+
+Assume $R$ has no proper left ideal, thus the only left ideals are the trivial and the entire ring. So if $s \in R$ is nonzero and $R$ has no proper left ideals, then we can define $I := \{rs|r \in R\} =R$ and there exists $r \in R$ such that $rs = 1_R$. Also note 
+$$(rs)r=r(sr)=r \implies r(1_R -sr)=0 \implies sr =1_R$$
+Because $rs = 1_R = sr$, $R$ must be a division ring.
+
+Now we must prove the other direction. Assume $R$ is a division ring and $I \neq \{0\}$ is a left ideal of $R$. Then for all $s \in I$, 
+$$1_R = s^{-1}s \in I \implies I=R$$
+Thus $R$ has no proper left ideals. QED.
+
+
+
 
 
 
