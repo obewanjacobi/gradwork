@@ -207,6 +207,23 @@ Thus $R$ has no proper left ideals. QED.
 
 
 
+## January 2015 Qual
+
+### If $N$ is a normal subgroup of $G$ and $H$ is any subgroup of $G$, prove that $NH := \{nh|n \in N, h \in H\}$ is a subgroup of $G$.
+#### My Solution:
+Let $H \leq G$ and $N$ be a normal subgroup of $G$. Let $NH$ be defined as above. So we want to show for all $nh \in NH$, $(nh)^{-1} \in NH$. Well, $(nh)^{-1}=h^{-1}n^{-1}$. First note because $N$ is a normal subgroup of $G$ and $H \leq G$, $n^{-1} \in N$ and $h^{-1} \in H$. Also note because $N$ is normal in $G$, for all $g \in G$, $gN = Ng$, ie. for all $n \in N$, $gn = ng$. Thus in $NH$, 
+$$nh = hn \implies (nh)^{-1} = h^{-1}n^{-1} = n^{-1}h^{-1} \in NH$$
+Thus $NH$ is a subgroup of $G$. QED
+
+
+
+
+
+
+
+
+
+
 
 
 

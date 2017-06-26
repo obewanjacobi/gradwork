@@ -249,6 +249,16 @@ $(document).ready(function () {
 </div>
 </div>
 </div>
+<div id="january-2015-qual" class="section level2">
+<h2>January 2015 Qual</h2>
+<div id="if-n-is-a-normal-subgroup-of-g-and-h-is-any-subgroup-of-g-prove-that-nh-nhn-in-n-h-in-h-is-a-subgroup-of-g." class="section level3">
+<h3>If <span class="math inline">\(N\)</span> is a normal subgroup of <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> is any subgroup of <span class="math inline">\(G\)</span>, prove that <span class="math inline">\(NH := \{nh|n \in N, h \in H\}\)</span> is a subgroup of <span class="math inline">\(G\)</span>.</h3>
+<div id="my-solution-13" class="section level4">
+<h4>My Solution:</h4>
+<p>Let <span class="math inline">\(H \leq G\)</span> and <span class="math inline">\(N\)</span> be a normal subgroup of <span class="math inline">\(G\)</span>. Let <span class="math inline">\(NH\)</span> be defined as above. So we want to show for all <span class="math inline">\(nh \in NH\)</span>, <span class="math inline">\((nh)^{-1} \in NH\)</span>. Well, <span class="math inline">\((nh)^{-1}=h^{-1}n^{-1}\)</span>. First note because <span class="math inline">\(N\)</span> is a normal subgroup of <span class="math inline">\(G\)</span> and <span class="math inline">\(H \leq G\)</span>, <span class="math inline">\(n^{-1} \in N\)</span> and <span class="math inline">\(h^{-1} \in H\)</span>. Also note because <span class="math inline">\(N\)</span> is normal in <span class="math inline">\(G\)</span>, for all <span class="math inline">\(g \in G\)</span>, <span class="math inline">\(gN = Ng\)</span>, ie. for all <span class="math inline">\(n \in N\)</span>, <span class="math inline">\(gn = ng\)</span>. Thus in <span class="math inline">\(NH\)</span>, <span class="math display">\[nh = hn \implies (nh)^{-1} = h^{-1}n^{-1} = n^{-1}h^{-1} \in NH\]</span> Thus <span class="math inline">\(NH\)</span> is a subgroup of <span class="math inline">\(G\)</span>. QED</p>
+</div>
+</div>
+</div>
 </div>
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
@@ -256,7 +266,7 @@ $(document).ready(function () {
 <h2>Spring 2017 Qual</h2>
 <div id="prove-that-if-f-01-rightarrow-0-infty-is-absolutely-continuous-then-so-is-1f." class="section level3">
 <h3>Prove that if <span class="math inline">\(f : [0,1] \rightarrow (0, \infty)\)</span> is absolutely continuous, then so is <span class="math inline">\(1/f\)</span>.</h3>
-<div id="my-solution-13" class="section level4">
+<div id="my-solution-14" class="section level4">
 <h4>My Solution:</h4>
 <p>By the definition of absolutely continuous, we then know that on <span class="math inline">\([0,1]\)</span> for all <span class="math inline">\(\epsilon &gt; 0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that <span class="math display">\[\sum_{i=1}^{k} |f(b_i) - f(a_i)| &lt; \epsilon\]</span> where <span class="math inline">\({(a_i,b_i)}\)</span> is an infinite collection of disjoint intervals in <span class="math inline">\([0,1]\)</span> with <span class="math inline">\(\sum_{i=1}^{k} |b_i - a_i| &lt; \delta\)</span>. Since this is true for <span class="math inline">\(f\)</span>, we must shift our focus now to <span class="math inline">\(1/f\)</span>.</p>
 <p>Rest of Solution not complete.</p>
