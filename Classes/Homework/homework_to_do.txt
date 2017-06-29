@@ -5,7 +5,9 @@ Problem a Day from Practice Quals
 -----------------------------------------------------
 TEACHING
 
-Rewrite Exams, Quizzes, and Projects
+Rewrite Projects
+Note: Tests may need to be edited depending 
+on content successfully covered
+
 Make rough outlines of lesson plans
 -----------------------------------------------------
-kings avatar
