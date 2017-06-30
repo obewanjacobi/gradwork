@@ -225,6 +225,17 @@ Assume $n_2 = 7$ and $n_7 = 8$. Two different Sylow-7 subgroups intersect only i
 
 
 
+### A ring $R$ is *Boolean* if every element is idempotent, that is $a^2=a$ for all $a \in R$. Prove that every Boolean ring is commutative.
+#### My Solution:
+Recall that a ring is commutative if the multiplication operation in the ring is commutative. Thus we want to show that for every Boolean ring, if $a,b \in R$ then $ab = ba$. 
+
+To begin this problem, consider $a+b = (a+b)^2$. Well,
+$$(a+b)^2 = (a+b)(a+b)=a(a+b)+b(a+b)$$
+$$ = a^2 +ab+ba+b^2=a+ab+ba+b$$
+When cancelling $a$ and $b$ from both sides, we find that $0 = ab+ba \implies ab = -ba$, but because $R$ is Boolean, we can easily see that $-c = c$ for all $c \in R$. Thus we have proven that all Boolean rings are indeed commutative. QED.
+
+
+
 
 
 
