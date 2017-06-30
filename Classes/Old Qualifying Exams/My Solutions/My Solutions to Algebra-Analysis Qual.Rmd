@@ -217,6 +217,14 @@ Thus $NH$ is a subgroup of $G$. QED
 
 
 
+### Show that a group of order $56$ is not simple
+#### My Solution:
+Let $G$ be a group of order $56 = 2^3 * 7$. Then by Sylow's Theorem, $n_2 = 1$ or $7$ and $n_7 = 1$ or $8$. 
+
+Assume $n_2 = 7$ and $n_7 = 8$. Two different Sylow-7 subgroups intersect only in the identity. Also all of the Sylow-7 subgroups are conjugate by Sylow's Theorem, hence they're isomorphic. Then if $n_7 = 8$, we have that $G$ has at least $8*6=48$ elements of order $7$. The rest of the elements must be in a Sylow-2 subgroup which gives us a contradiction. Thus $n_2 =1$ or $n_7=1$, thus $G$ cannot be simple. QED
+
+
+
 
 
 
