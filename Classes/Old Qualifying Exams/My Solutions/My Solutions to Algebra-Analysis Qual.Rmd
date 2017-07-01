@@ -236,6 +236,16 @@ When cancelling $a$ and $b$ from both sides, we find that $0 = ab+ba \implies ab
 
 
 
+### Show that every prime element in an integral domain is irreducible.
+#### My Solution:
+Recall an integral domain is a commutative ring with no zero divisors. Also an element in an integral domain is irreducible if it is not equal to the product of two non-units. Also recall that if $R$ is our integral domain, $u \in R$ is a unit if for some $v \in R$, $uv = e$ where $e$ is the identity in $R$. Lastly, recall that $p \in R$ is prime if $p|ab \implies p|a$ or $p|b$. 
+
+Let $p \in R$ be a prime element where $R$ is an integral domain. Assume $p = ab$ where $a,b \in R$. Obviously $p|ab$, so because $p$ is prime, $p|a$ or $p|b$. WLOG, assume $p|a$ such that $px = a$ for some $x \in R$. If $1$ is the identity of $R$, then 
+$$1*a=a=px=(ab)x=a(bx)$$
+Because $R$ is an integral domain, $a$ can be cancelled out implying that $1=bx$, thus $b$ is a unit. This proves that $p$ is also irreducible in an integral domain. QED.
+
+
+
 
 
 

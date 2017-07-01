@@ -274,6 +274,14 @@ $(document).ready(function () {
 <p>To begin this problem, consider <span class="math inline">\(a+b = (a+b)^2\)</span>. Well, <span class="math display">\[(a+b)^2 = (a+b)(a+b)=a(a+b)+b(a+b)\]</span> <span class="math display">\[ = a^2 +ab+ba+b^2=a+ab+ba+b\]</span> When cancelling <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> from both sides, we find that <span class="math inline">\(0 = ab+ba \implies ab = -ba\)</span>, but because <span class="math inline">\(R\)</span> is Boolean, we can easily see that <span class="math inline">\(-c = c\)</span> for all <span class="math inline">\(c \in R\)</span>. Thus we have proven that all Boolean rings are indeed commutative. QED.</p>
 </div>
 </div>
+<div id="show-that-every-prime-element-in-an-integral-domain-is-irreducible." class="section level3">
+<h3>Show that every prime element in an integral domain is irreducible.</h3>
+<div id="my-solution-16" class="section level4">
+<h4>My Solution:</h4>
+<p>Recall an integral domain is a commutative ring with no zero divisors. Also an element in an integral domain is irreducible if it is not equal to the product of two non-units. Also recall that if <span class="math inline">\(R\)</span> is our integral domain, <span class="math inline">\(u \in R\)</span> is a unit if for some <span class="math inline">\(v \in R\)</span>, <span class="math inline">\(uv = e\)</span> where <span class="math inline">\(e\)</span> is the identity in <span class="math inline">\(R\)</span>. Lastly, recall that <span class="math inline">\(p \in R\)</span> is prime if <span class="math inline">\(p|ab \implies p|a\)</span> or <span class="math inline">\(p|b\)</span>.</p>
+<p>Let <span class="math inline">\(p \in R\)</span> be a prime element where <span class="math inline">\(R\)</span> is an integral domain. Assume <span class="math inline">\(p = ab\)</span> where <span class="math inline">\(a,b \in R\)</span>. Obviously <span class="math inline">\(p|ab\)</span>, so because <span class="math inline">\(p\)</span> is prime, <span class="math inline">\(p|a\)</span> or <span class="math inline">\(p|b\)</span>. WLOG, assume <span class="math inline">\(p|a\)</span> such that <span class="math inline">\(px = a\)</span> for some <span class="math inline">\(x \in R\)</span>. If <span class="math inline">\(1\)</span> is the identity of <span class="math inline">\(R\)</span>, then <span class="math display">\[1*a=a=px=(ab)x=a(bx)\]</span> Because <span class="math inline">\(R\)</span> is an integral domain, <span class="math inline">\(a\)</span> can be cancelled out implying that <span class="math inline">\(1=bx\)</span>, thus <span class="math inline">\(b\)</span> is a unit. This proves that <span class="math inline">\(p\)</span> is also irreducible in an integral domain. QED.</p>
+</div>
+</div>
 </div>
 </div>
 <div id="analysis" class="section level1">
@@ -282,7 +290,7 @@ $(document).ready(function () {
 <h2>Spring 2017 Qual</h2>
 <div id="prove-that-if-f-01-rightarrow-0-infty-is-absolutely-continuous-then-so-is-1f." class="section level3">
 <h3>Prove that if <span class="math inline">\(f : [0,1] \rightarrow (0, \infty)\)</span> is absolutely continuous, then so is <span class="math inline">\(1/f\)</span>.</h3>
-<div id="my-solution-16" class="section level4">
+<div id="my-solution-17" class="section level4">
 <h4>My Solution:</h4>
 <p>By the definition of absolutely continuous, we then know that on <span class="math inline">\([0,1]\)</span> for all <span class="math inline">\(\epsilon &gt; 0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that <span class="math display">\[\sum_{i=1}^{k} |f(b_i) - f(a_i)| &lt; \epsilon\]</span> where <span class="math inline">\({(a_i,b_i)}\)</span> is an infinite collection of disjoint intervals in <span class="math inline">\([0,1]\)</span> with <span class="math inline">\(\sum_{i=1}^{k} |b_i - a_i| &lt; \delta\)</span>. Since this is true for <span class="math inline">\(f\)</span>, we must shift our focus now to <span class="math inline">\(1/f\)</span>.</p>
 <p>Rest of Solution not complete.</p>
