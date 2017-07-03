@@ -282,6 +282,13 @@ $(document).ready(function () {
 <p>Let <span class="math inline">\(p \in R\)</span> be a prime element where <span class="math inline">\(R\)</span> is an integral domain. Assume <span class="math inline">\(p = ab\)</span> where <span class="math inline">\(a,b \in R\)</span>. Obviously <span class="math inline">\(p|ab\)</span>, so because <span class="math inline">\(p\)</span> is prime, <span class="math inline">\(p|a\)</span> or <span class="math inline">\(p|b\)</span>. WLOG, assume <span class="math inline">\(p|a\)</span> such that <span class="math inline">\(px = a\)</span> for some <span class="math inline">\(x \in R\)</span>. If <span class="math inline">\(1\)</span> is the identity of <span class="math inline">\(R\)</span>, then <span class="math display">\[1*a=a=px=(ab)x=a(bx)\]</span> Because <span class="math inline">\(R\)</span> is an integral domain, <span class="math inline">\(a\)</span> can be cancelled out implying that <span class="math inline">\(1=bx\)</span>, thus <span class="math inline">\(b\)</span> is a unit. This proves that <span class="math inline">\(p\)</span> is also irreducible in an integral domain. QED.</p>
 </div>
 </div>
+<div id="prove-or-provide-a-counterexample-galois-extensions-of-galois-extensions-are-galois-extensions.-that-is-if-kf-is-galois-and-lk-is-galois-then-lf-is-galois." class="section level3">
+<h3>Prove or provide a counterexample: Galois extensions of Galois extensions are Galois extensions. That is, if <span class="math inline">\(K/F\)</span> is Galois and <span class="math inline">\(L/K\)</span> is Galois, then <span class="math inline">\(L/F\)</span> is Galois.</h3>
+<div id="my-solution-17" class="section level4">
+<h4>My Solution:</h4>
+<p>This statement is false! Consider <span class="math inline">\(L = \mathbb{Q}(\sqrt[4]{2})\)</span>, <span class="math inline">\(K = \mathbb{Q}(\sqrt{2})\)</span>, and <span class="math inline">\(F = \mathbb{Q}\)</span>. In this case, <span class="math inline">\(K/F\)</span> is Galois because <span class="math inline">\(K\)</span> is a splitting field over <span class="math inline">\(F\)</span>, and it is similar for <span class="math inline">\(L/K\)</span>. However, <span class="math inline">\(L/F\)</span> is not Galois, as <span class="math inline">\(L\)</span> does not make a splitting field over <span class="math inline">\(F\)</span>. This can be seen from the polynomial <span class="math inline">\(f(x)=x^4-2 \in \mathbb{Q}[x]\)</span>. Not all of the roots of <span class="math inline">\(f(x)\)</span> are contained in <span class="math inline">\(L\)</span>, as <span class="math inline">\(L\)</span> does not contain any imaginary numbers. QED</p>
+</div>
+</div>
 </div>
 </div>
 <div id="analysis" class="section level1">
@@ -290,7 +297,7 @@ $(document).ready(function () {
 <h2>Spring 2017 Qual</h2>
 <div id="prove-that-if-f-01-rightarrow-0-infty-is-absolutely-continuous-then-so-is-1f." class="section level3">
 <h3>Prove that if <span class="math inline">\(f : [0,1] \rightarrow (0, \infty)\)</span> is absolutely continuous, then so is <span class="math inline">\(1/f\)</span>.</h3>
-<div id="my-solution-17" class="section level4">
+<div id="my-solution-18" class="section level4">
 <h4>My Solution:</h4>
 <p>By the definition of absolutely continuous, we then know that on <span class="math inline">\([0,1]\)</span> for all <span class="math inline">\(\epsilon &gt; 0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that <span class="math display">\[\sum_{i=1}^{k} |f(b_i) - f(a_i)| &lt; \epsilon\]</span> where <span class="math inline">\({(a_i,b_i)}\)</span> is an infinite collection of disjoint intervals in <span class="math inline">\([0,1]\)</span> with <span class="math inline">\(\sum_{i=1}^{k} |b_i - a_i| &lt; \delta\)</span>. Since this is true for <span class="math inline">\(f\)</span>, we must shift our focus now to <span class="math inline">\(1/f\)</span>.</p>
 <p>Rest of Solution not complete.</p>
