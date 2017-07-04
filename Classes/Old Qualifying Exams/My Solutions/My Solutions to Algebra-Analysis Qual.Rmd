@@ -252,9 +252,11 @@ This statement is false! Consider $L = \mathbb{Q}(\sqrt[4]{2})$, $K = \mathbb{Q}
 
 
 
-
-
-
+### Let $E$ be a finite extension of field $F$. Prove that $E$ is algebraic over $F$.
+#### My Solution:
+Assume $E/F$ is finite. Let $\beta \in E/F$. We have then that $F \subseteq F(\beta) \subseteq E$. We know
+$$[E:F] =n \in \mathbb{N} \implies [F(\beta):F] \leq n$$
+Consider $\{1,\beta,\beta ^2, ..., \beta ^n\} \subseteq E$. So there exists $c_0, ..., c_n \in F$ such that $c_0+ c_1 \beta + ... + c_n \beta ^n =0$, where at least one $c_i \neq 0$. Let $v(x) = c_n x^n +...+c_0$, so $v(\beta) =0$. Thus if $E/F$ is finite, then $E$ is algebraic over $F$. QED
 
 
 

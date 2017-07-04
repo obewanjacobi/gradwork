@@ -289,6 +289,13 @@ $(document).ready(function () {
 <p>This statement is false! Consider <span class="math inline">\(L = \mathbb{Q}(\sqrt[4]{2})\)</span>, <span class="math inline">\(K = \mathbb{Q}(\sqrt{2})\)</span>, and <span class="math inline">\(F = \mathbb{Q}\)</span>. In this case, <span class="math inline">\(K/F\)</span> is Galois because <span class="math inline">\(K\)</span> is a splitting field over <span class="math inline">\(F\)</span>, and it is similar for <span class="math inline">\(L/K\)</span>. However, <span class="math inline">\(L/F\)</span> is not Galois, as <span class="math inline">\(L\)</span> does not make a splitting field over <span class="math inline">\(F\)</span>. This can be seen from the polynomial <span class="math inline">\(f(x)=x^4-2 \in \mathbb{Q}[x]\)</span>. Not all of the roots of <span class="math inline">\(f(x)\)</span> are contained in <span class="math inline">\(L\)</span>, as <span class="math inline">\(L\)</span> does not contain any imaginary numbers. QED</p>
 </div>
 </div>
+<div id="let-e-be-a-finite-extension-of-field-f.-prove-that-e-is-algebraic-over-f." class="section level3">
+<h3>Let <span class="math inline">\(E\)</span> be a finite extension of field <span class="math inline">\(F\)</span>. Prove that <span class="math inline">\(E\)</span> is algebraic over <span class="math inline">\(F\)</span>.</h3>
+<div id="my-solution-18" class="section level4">
+<h4>My Solution:</h4>
+<p>Assume <span class="math inline">\(E/F\)</span> is finite. Let <span class="math inline">\(\beta \in E/F\)</span>. We have then that <span class="math inline">\(F \subseteq F(\beta) \subseteq E\)</span>. We know <span class="math display">\[[E:F] =n \in \mathbb{N} \implies [F(\beta):F] \leq n\]</span> Consider <span class="math inline">\(\{1,\beta,\beta ^2, ..., \beta ^n\} \subseteq E\)</span>. So there exists <span class="math inline">\(c_0, ..., c_n \in F\)</span> such that <span class="math inline">\(c_0+ c_1 \beta + ... + c_n \beta ^n =0\)</span>, where at least one <span class="math inline">\(c_i \neq 0\)</span>. Let <span class="math inline">\(v(x) = c_n x^n +...+c_0\)</span>, so <span class="math inline">\(v(\beta) =0\)</span>. Thus if <span class="math inline">\(E/F\)</span> is finite, then <span class="math inline">\(E\)</span> is algebraic over <span class="math inline">\(F\)</span>. QED</p>
+</div>
+</div>
 </div>
 </div>
 <div id="analysis" class="section level1">
@@ -297,7 +304,7 @@ $(document).ready(function () {
 <h2>Spring 2017 Qual</h2>
 <div id="prove-that-if-f-01-rightarrow-0-infty-is-absolutely-continuous-then-so-is-1f." class="section level3">
 <h3>Prove that if <span class="math inline">\(f : [0,1] \rightarrow (0, \infty)\)</span> is absolutely continuous, then so is <span class="math inline">\(1/f\)</span>.</h3>
-<div id="my-solution-18" class="section level4">
+<div id="my-solution-19" class="section level4">
 <h4>My Solution:</h4>
 <p>By the definition of absolutely continuous, we then know that on <span class="math inline">\([0,1]\)</span> for all <span class="math inline">\(\epsilon &gt; 0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that <span class="math display">\[\sum_{i=1}^{k} |f(b_i) - f(a_i)| &lt; \epsilon\]</span> where <span class="math inline">\({(a_i,b_i)}\)</span> is an infinite collection of disjoint intervals in <span class="math inline">\([0,1]\)</span> with <span class="math inline">\(\sum_{i=1}^{k} |b_i - a_i| &lt; \delta\)</span>. Since this is true for <span class="math inline">\(f\)</span>, we must shift our focus now to <span class="math inline">\(1/f\)</span>.</p>
 <p>Rest of Solution not complete.</p>
