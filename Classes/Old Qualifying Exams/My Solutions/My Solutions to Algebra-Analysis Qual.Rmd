@@ -260,6 +260,15 @@ Consider $\{1,\beta,\beta ^2, ..., \beta ^n\} \subseteq E$. So there exists $c_0
 
 
 
+### Find the degree of the extension $[F: \mathbb{Q}]$, where $F = \mathbb{Q}(\sqrt{-1},\sqrt{3})$. Is this a simple extension? Why or why not?
+#### My Solution:
+Because this extension makes a splitting field over the minimal polynomial $f(x)=x^2+3 \in \mathbb{Q}$, we know then that $[F: \mathbb{Q}] = \mathrm{deg}(f(x)) = 2$. 
+
+Recall that an extension is simple if there is only one extra element introduces in the extension. Well, first notice that $\mathbb{Q}(\sqrt{-3}) \subset \mathbb{Q}(\sqrt{-1},\sqrt{3})$. However, $\mathbb{Q}(\sqrt{-1},\sqrt{3})$ is not a subset of $\mathbb{Q}(\sqrt{-3})$ because $\sqrt{-1} \in \mathbb{Q}(\sqrt{-1},\sqrt{3})$, but $\sqrt{-1} \not \in \mathbb{Q}(\sqrt{-3})$.
+
+Thus we can see that $f/\mathbb{Q}$ is not a simple extension as $F$ cannot be written as such. QED
+
+
 
 
 
