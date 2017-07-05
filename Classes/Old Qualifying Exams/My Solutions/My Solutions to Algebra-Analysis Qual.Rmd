@@ -276,9 +276,22 @@ Thus we can see that $f/\mathbb{Q}$ is not a simple extension as $F$ cannot be w
 
 
 
-### Let $G$ be a finite group and suppose that $H$ is a normal subgroup in $G$. Prove that for any Sylow p-subgroup $P$ of $G$, $P \cap H$ is a Sylow p-subgroup of $H$.
+### Let $G$ be an arbitrary group with a center $Z(G)$. Prove that the inner automorphism group $Inn(G)$ is isomorphic to $G/Z(G)$. (Recall by definition $Inn(G)$ is the group of all automorphisms $\phi_h$ of the form $\phi_h(g)=h^{-1}gh$, for all $g \in G$.)
 #### My Solution:
+Consider the map $\theta : G \rightarrow \mathrm{Aut}(G)$ defined as $\theta(g) = \gamma_g$, where $\gamma_g$ is the automorphism of $G$ defined by $\gamma_g(h) = ghg^{-1}$. 
 
+**Lemma 1**: $\theta$ is a homomorphism.
+
+*Proof*: We have $\theta(g_1 g_2) = \gamma_{g_{1}g_{2}}$, and
+$$\gamma_{g_{1}g_{2}}(h)=(g_1 g_2)h(g_1 g_2)^{-1} =g_1(g_2 h g_2 ^{-1})g_1 ^{-1} = \gamma_{g_1}(\gamma_{g_2}(h)).$$
+
+**Lemma 2**: $\mathrm{ker}(\theta) = Z(G)$.
+
+*Proof*: We have 
+$$ker(\theta) = \{g: \theta (g) = e \} = \{g : \gamma_g = e\}$$
+$$= \{g: \gamma_g (h) = h\} = \{g: gh = hg\} = Z(G)$$
+
+Finally, by the first isomorphism theorem, we have $G/ker(\theta) = G/Z(G) \cong im (\theta) = \mathrm{Inn}(G)$, as desired. QED.
 
 
 
