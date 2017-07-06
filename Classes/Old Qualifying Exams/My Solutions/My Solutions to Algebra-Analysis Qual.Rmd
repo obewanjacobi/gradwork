@@ -299,6 +299,18 @@ Finally, by the first isomorphism theorem, we have $G/ker(\theta) = G/Z(G) \cong
 
 
 
+## August 2014 Qual
+
+### Suppose that $G$ is a ﬁnite group with even order. Prove that the number of conjugacy classes in $G$ with odd order is even. 
+#### My Solution:
+Assume $G$ is a finite group with even order. 
+
+
+
+
+
+
+
 
 
 
