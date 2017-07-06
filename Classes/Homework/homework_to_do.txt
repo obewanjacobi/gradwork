@@ -2,6 +2,8 @@
 QUALS
 
 Problem a Day from Practice Quals
+- study isomorphism theorems
+- study definitions in general
 -----------------------------------------------------
 TEACHING
 
