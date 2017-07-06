@@ -301,9 +301,21 @@ Finally, by the first isomorphism theorem, we have $G/ker(\theta) = G/Z(G) \cong
 
 ## August 2014 Qual
 
+### Let $H \leq G$. Prove that $N_G(H)/C_G(H)$ is isomorphic to a subgroup of $Aut(H)$. Recall the normalizer $N_G(H) = \{g \in G | gHg^{-1} = H\}$ and the centralizer $C_G(H) = \{g \in G | gh = hg, \forall h \in H\}$
+#### My Solution:
+For $g \in N_G(H)$, it is clear that $\sigma_g:h \rightarrow ghg^{-1}$ defines an automorphism of $H$. Define a map:
+$$ \sigma : N_G(H) \rightarrow Aut(H)$$
+where $g \rightarrow \sigma_g$. Since for all $a,b \in N_G(H), h \in H$, we have that $\sigma_a \sigma_b (h) = abhb^{-1} a^{-1} = \sigma_{ab}(h)$. Then $\sigma$ is a group homomorphism from $N_G(H)$ to $Aut(H)$. Note that
+$$\mathrm{Ker}(\sigma) = \{g \in N_G(H) | ghg^{-1} = h, \forall h \in H\}$$
+$$ = C_G(H) \cap N_G(H) = C_G(H)$$
+From the first isomorphism theorem we then have that $N_G(H)/C_G(H)$ is isomorphic to a subgroup of $Aut(H)$. QED
+
+
+
+
 ### Suppose that $G$ is a ﬁnite group with even order. Prove that the number of conjugacy classes in $G$ with odd order is even. 
 #### My Solution:
-Assume $G$ is a finite group with even order. 
+Not yet solved
 
 
 
