@@ -12,5 +12,6 @@ Rewrite Projects
 Note: Tests may need to be edited depending 
 on content successfully covered
 
-Make rough outlines of lesson plans
+Edit Quiz 1, add formulas and possibly reword last 
+problem
 -----------------------------------------------------
