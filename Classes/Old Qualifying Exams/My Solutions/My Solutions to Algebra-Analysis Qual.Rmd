@@ -312,7 +312,7 @@ From the first isomorphism theorem we then have that $N_G(H)/C_G(H)$ is isomorph
 
 
 
-### An integral domain $D$ is said to be **Artinian** if for any descending chain of ideals $$I_1 \supseteq I_2 \supseteq I_3 \supseteq ...$$ of $D$, there is an integer $n$ such that $I_i - I_n$ for all $i \geq n$. Prove that an integral domain $D$ is Artinian if and only if it is a field
+### An integral domain $D$ is said to be **Artinian** if for any descending chain of ideals $$I_1 \supseteq I_2 \supseteq I_3 \supseteq ...$$ of $D$, there is an integer $n$ such that $I_i - I_n$ for all $i \geq n$. Prove that an integral domain $D$ is Artinian if and only if it is a field.
 #### My Solution:
 
 
