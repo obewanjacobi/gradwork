@@ -11,7 +11,4 @@ TEACHING
 Rewrite Projects
 Note: Tests may need to be edited depending 
 on content successfully covered
-
-Edit Quiz 1, add formulas and possibly reword last 
-problem
 -----------------------------------------------------
