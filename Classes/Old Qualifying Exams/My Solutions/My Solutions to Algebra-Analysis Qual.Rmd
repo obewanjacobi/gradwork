@@ -107,6 +107,19 @@ Well, because $K \unlhd G$ and $G/K$ is Abelian, we know that for all $a,b \in G
 
 
 
+### Let $R$ be a commutative ring. Prove that the following are equivalent: (a) $R$ is a field; and (b) $R \neq \{0\}$ and the only ideals of $R$ are $\{0\}$ and $R$.
+#### My Solution:
+($a \implies b$)
+
+Suppose $I$ is a nonzero ideal of a field $R$. So $I$ contains some $0 \neq a$. Then since $R$ is a field, $a^{-1}$ exists and $1 = a^{-1} a \in I$, so $I$ contains $1$ and hence $I = R$. The trivial ideal also exists, and is trivial to show. 
+
+($b \implies a$)
+
+Let $R$ have only two ideals, the trivial and $R$. Suppose $R$ is not a field. Then some nonzero element $a$ does not have an inverse. If we set $aR = \{ar | r \in R \}$. This is a proper nonzero ideal, which gives us a contradiction to our original statement. Thus $R$ must be a field for $R$ to only contain 2 ideals, the trivial and $R$ itself. 
+
+Thus the two statements are equivalent, $R$ is a field and $R$ contains only two ideals, those being the trivial ideal and $R$ itself. QED
+
+
 
 
 
