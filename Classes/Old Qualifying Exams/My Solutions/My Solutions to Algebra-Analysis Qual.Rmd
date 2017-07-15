@@ -121,6 +121,14 @@ Thus the two statements are equivalent, $R$ is a field and $R$ contains only two
 
 
 
+### (a) Find the degree $[F: \mathbb{Q}]$ of the extension $F = \mathbb{Q}(i, \sqrt{3})$ over $\mathbb{Q}$. Find a basis of the vector space $F$ over $\mathbb{Q}$. (b) Find a primitive element of the extension $F$ of $\mathbb{Q}$.
+#### My Solution:
+(a) First note that this problem is identical to one later in the document. So I will give a very similar solution. Note this extension adds the roots of the polynomial $f(x) = x^2 + 3$, which is irreducible in $\mathbb{Q}$. By adding the roots in $F$, we can now reduce the polynomial $f(X)$ in $F$, and thus we can easily see that the polynomial $f(x)$ is the minimal polynomial for the extension $F/ \mathbb{Q}$. Thus the degree of the extension is $2$. A basis for this extension is $[1, i, \sqrt{3} , i \sqrt{3}]$. QED
+
+(b) Not yet solved
+
+
+
 
 
 
