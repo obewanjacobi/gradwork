@@ -1,0 +1,65 @@
+% TEMPLATE FOR STANDARD QUIZ
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\usepackage{amsmath,amsfonts,amssymb,amstext,color,latexsym,graphics,tabulary,tabularx,graphicx,tikz}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 105-30 Summer Term III 
+
+%%%(change to appropriate quiz type and date)
+Quiz 5 August 3 \hspace{1.9in} {Name:} {\underline {\hspace{3.5in}}}
+\vspace{1pc}
+
+%%%(modify rules, time, points as appropriate)
+To receive full credit for this 25 point quiz, you must show ALL work.
+\vspace{1pc}
+
+% problem
+\begin{problem}{25}
+A squad of nerds took a vote of which gaming console is best out of 3 (Xbox wasn't included because it's stupid). Given the chart below with the given number of votes, who wins the plurality method? Who wins using the Borda count? Who wins the method of pairwise comparison? Are there any violations here to be considered?
+
+\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|  }
+ \hline
+ \multicolumn{4}{|c|}{Votes} \\
+ \hline
+ Number of Voters &8&9&2\\
+ \hline
+ First   &    PC      &PS4    &  Switch\\
+ Second&  PS4    & PC      &  PC\\
+ Third &    Switch &Switch&  PS4\\
+ \hline
+\end{tabular}
+
+\vfill
+\end{problem}
+
+
+
+
+
+\showpoints
+\end{document}

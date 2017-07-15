@@ -1,0 +1,91 @@
+% TEMPLATE FOR STANDARD QUIZ
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\usepackage{amsmath,amsfonts,amssymb,amstext,color,latexsym,graphics,tabulary,tabularx,graphicx,tikz}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 105-30 Summer Term III 
+
+%%%(change to appropriate quiz type and date)
+Project 2: DUE Thursday 8/02
+\newline
+Write up your own work
+\vspace{1pc}
+
+%%%(modify rules, time, points as appropriate)
+This project is worth 70 points. You should clearly show all of your work and justify your answers where appropriate. It must be submitted no later than the beginning of class on August 2nd. \textbf{No late projects will be accepted, nor will any e-mail submissions be accepted unless otherwise specified by the instructor.} You may use scrap paper as needed, but please turn in your final project, with complete steps for all of your calculations,typed in your own document and make sure that your work is neatly organized and that your final answers are written in complete sentences for all parts (graphs may be drawn on graph paper and referenced in your typed document). Neatness of your presentation and complete sentences do count! \bigskip
+\vspace{0.5pc}
+
+
+
+
+
+
+%problem
+\begin{problem}{25}
+Farmer Townson owns a 160-acre farm in Stardew Valley, and plans to plant spicy peppers and/or the rarest tomato plant which maked the perfect spaghetti on all or part of it. Seed for peppers costs \$20 per acre, and seed for the rare tomatoes costs \$30 per acre. He can spend at most \$4440 for seeds. Peppers require 3 workdays per acre, and tomatoes require 2 workdays per acre. There are a maximum of 396 workdays available. Each acre of peppers produces 500 bushels and each acre of tomatoes produces 200 bushels of grain, and he can store at most 60,000 bushels this year. In addition, because of crop rotation he cannot plant more than 140 acres of tomatoes this year. If the farmer can make a profit of \$150 per acre on peppers and \$200 per acre on tomatoes, how many acres of each crop should he plant to maximize his profit?
+\newline
+A) Define the production variables that stand for the number of acres of each type crop to be planted.
+\newline
+B) Determine the profit equation for the total profit.
+\newline 
+C) Give a product/resource chart organizing the data about the products and the resources.
+(Note: The farmer’s land is one of his resources; he cannot plant more than 160 total acres!
+Also, he cannot plant more than 140 acres of tomatoes!)
+\newline
+D) Give a mathematical formulation of the constraints in terms of your production variables.
+\vfill
+\end{problem}
+
+%Problem
+\begin{problem}{25}
+\textbf{Carefully graph the feasible region from question \#1 on the attached graph paper (and include and reference this with your typed document). Be sure the scales on your axes start at 0 and the graph is large enough see the entire feasible region clearly.}
+\newline
+A)  Label \underline{all} the corner points \underline{and} determine their coordinates. \textbf{Show your work}.
+\newline
+B) Use the corner points to find the production policy (number of acres of each crop to be planted) that gives the maximum total profit and what that maximum profit is. Show your work and \textbf{describe your results in sentence form.}
+
+\vfill
+\end{problem}
+
+
+%Problem
+\begin{problem}{20}
+Farmer Townson is considering planting the rare starfruit too (which is a staple of Stardew Valley). An acre of starfruit requires \$35 worth of seed, 2 workdays of labor, produces 450 bushels, and makes a profit of \$240 per acre. With this data, how much of each of the three crops should he plant to maximize his profit?
+\newline
+Setup the problem as you did in \#1, BUT DO NOT SOLVE.
+
+\vfill
+\end{problem}
+
+
+
+
+
+
+\showpoints
+\end{document}

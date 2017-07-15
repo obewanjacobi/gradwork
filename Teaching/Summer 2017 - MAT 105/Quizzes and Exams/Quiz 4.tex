@@ -1,0 +1,76 @@
+% TEMPLATE FOR STANDARD QUIZ
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\usepackage{amsmath,amsfonts,amssymb,amstext,color,latexsym,graphics,tabulary,tabularx,graphicx,tikz}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 105-30 Summer Term III 
+
+%%%(change to appropriate quiz type and date)
+Quiz 4 July 26 \hspace{1.9in} {Name:} {\underline {\hspace{3.5in}}}
+\vspace{1pc}
+
+%%%(modify rules, time, points as appropriate)
+To receive full credit for this 25 point quiz, you must show ALL work.
+\vspace{1pc}
+
+% problem
+\begin{problem}{10}
+Decide if given the points $x=15$ and $y=6$ are feasible in the given system of constraints. 
+\begin{equation*}
+20x+50y \leq 600
+\end{equation*}
+
+\begin{equation*}
+40x+30y \leq 800
+\end{equation*}
+
+\begin{equation*}
+35x \leq 400
+\end{equation*}
+
+\begin{equation*}
+x,y \geq 0
+\end{equation*}
+
+\vfill
+\end{problem}
+
+
+\newpage
+
+% problem
+\begin{problem}{15}
+Jacob Townson Chili Dogs makes the best chili dogs in town! His classic dog requires 1 bun, 1 hot dog, and 1 big scoop of chili. His quadruple mega ultra dog requires 1 bun (that will do a lot of work), 3 hot dogs, and 4 big scoops of chili (talk about messy)! On a given day, the company has 200 hot dogs, 100 buns, and approximately 800 big scoops of chili. The company makes \$3 for every classic dog and \$7 on every  quadruple mega ultra dog. Formulate mathematically the problem of determining how many of each type of dog the company should make this day to maximize profit. Is it feasible to make 75 classic dogs and 20  quadruple mega ultra dogs? Is this a stupid business model (answer wisely, it could be a point on the quiz)?
+
+\vfill
+\end{problem}
+
+
+
+\showpoints
+\end{document}

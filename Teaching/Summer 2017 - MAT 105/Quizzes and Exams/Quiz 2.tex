@@ -1,0 +1,84 @@
+% TEMPLATE FOR STANDARD QUIZ
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\usepackage{amsmath,amsfonts,amssymb,amstext,color,latexsym,graphics,tabulary,tabularx,graphicx,tikz}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 105-30 Summer Term III 
+
+%%%(change to appropriate quiz type and date)
+Quiz 2 July 17 \hspace{1.9in} {Name:} {\underline {\hspace{3.5in}}}
+\vspace{2pc}
+
+%%%(modify rules, time, points as appropriate)
+Show all work to get full credit of this 25 point quiz.
+\vspace{2pc}
+
+% problem
+\begin{problem}{5}
+Solve for P:
+\begin{equation*}
+\$8000=P{(1+0.06)}^{10}
+\end{equation*}
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{5}
+Solve for r:
+\begin{equation*}
+\$79=\$45(1+r)^7
+\end{equation*}
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{5}
+Find the time that an investment of \$10,000 must be invested in years at 8\% compounded monthly to accumulate \$15,000.00 at the end of that time.
+
+\vfill
+\end{problem}
+
+\newpage
+
+% problem
+\begin{problem}{4}
+Explain the meaning of $FA$, $PMT$, $i$, and $m$ in the following formula:
+\begin{equation*}
+FA = PMT \frac{((1+i)^m -1)}{i}
+\end{equation*}
+
+\vfill
+\end{problem}
+
+\begin{problem}{6}
+An instructor, most likely named Jacob, took out a loan to buy 10 Ninentdo Switches so he could try to make friends by playing the newest Mario Kart. What is the loan principal of this loan paid off with monthly payments of \$400 for four years, assuming he borrowed money at 7.8\% compounded monthly and the first payment is due one month after the start of the loan? How much total interest would he pay with this loan? (Note: This number is not accurate to the amount of a Nintendo Switch, so if you know the price, no cheating!) Also, he did not make any friends.
+\vfill
+\end{problem}
+
+\showpoints
+\end{document}
