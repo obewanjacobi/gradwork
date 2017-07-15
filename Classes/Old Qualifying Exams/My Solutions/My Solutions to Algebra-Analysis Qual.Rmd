@@ -123,9 +123,11 @@ Thus the two statements are equivalent, $R$ is a field and $R$ contains only two
 
 ### (a) Find the degree $[F: \mathbb{Q}]$ of the extension $F = \mathbb{Q}(i, \sqrt{3})$ over $\mathbb{Q}$. Find a basis of the vector space $F$ over $\mathbb{Q}$. (b) Find a primitive element of the extension $F$ of $\mathbb{Q}$.
 #### My Solution:
-(a) First note that this problem is identical to one later in the document. So I will give a very similar solution. Note this extension adds the roots of the polynomial $f(x) = x^2 + 3$, which is irreducible in $\mathbb{Q}$. By adding the roots in $F$, we can now reduce the polynomial $f(X)$ in $F$, and thus we can easily see that the polynomial $f(x)$ is the minimal polynomial for the extension $F/ \mathbb{Q}$. Thus the degree of the extension is $2$. A basis for this extension is $[1, i, \sqrt{3} , i \sqrt{3}]$. QED
+(a) Here we can use what I like to call the *double extension lemma* to find the degree of the extension. So we know that $[F: \mathbb{Q}] = [\mathbb{Q}(i, \sqrt{3}): \mathbb{Q}(\sqrt{3})][\mathbb{Q}(\sqrt{3}): \mathbb{Q}]$. Thus because the minimum polynomials for the extensions are $x^2 +1$ and $x^2 - 3$ respectively, we know that the degree of the extension is $2*2=4$. A basis for this extension is $[1, i, \sqrt{3} , i \sqrt{3}]$. QED
 
-(b) Not yet solved
+(b) The primitive element of this extension is $i+\sqrt{3}$ as this element makes the simple extension $\mathbb{Q}(i+\sqrt{3}) = F$. This can be shown through the following containment arguments:
+
+First let $\mathbb{Q}(i+\sqrt{3}) = K$. It is obvious that $K \subset F$, so we're good there. Thus we just need to show that $F \subset K$. So we need to show that $i, \sqrt{3} \in K$. Well, let $a = i+\sqrt{3}$. We know $a, a^2 \in K$. $a^2 = -1 +2i \sqrt{3} +3$, which implies that $2i \sqrt{3} \in K$. Then we can look at $2i \sqrt{3} * (i + \sqrt{3}) \in K$ which implies that $3i - \sqrt{3} \in K$, which implies that $(3i-\sqrt{3})+(i +\sqrt{3}) \in K \implies i \in K$. Thus $i+ \sqrt{3} -i \in K \implies \sqrt{3} \in K$. So finally we have proven both directions of containment, implying that the primitive element $i+\sqrt{3}$ makes $F$ into a simple extension of $\mathbb{Q}$ which we call $K$. QED
 
 
 
@@ -172,7 +174,11 @@ Let $G$ be a group of order $300$ such that $G$ is simple. Well, $300 = 3 \times
 
 ### Let $F = \mathbb{Q}(i,\sqrt{3})$ where $i$ is imaginary. Find the degree of the extension $[F:\mathbb{Q}]$ and a basis of $F$ over $\mathbb{Q}$. Justify.
 #### My Solution:
-Note this extension adds the roots of the polynomial $f(x) = x^2 - 3$, which is irreducible in $\mathbb{Q}$. By adding the roots in $F$, we can now reduce the polynomial $f(x)$ in $F$, and thus we can easily see that the polynomial $f(x)$ is the minimal polynomial for the extension $F/\mathbb{Q}$. Thus the degree of the extension is $2$. A basis for this extension is $[1, i , \sqrt{3}, i\sqrt{3}]$. QED
+(a) Here we can use what I like to call the *double extension lemma* to find the degree of the extension. So we know that $[F: \mathbb{Q}] = [\mathbb{Q}(i, \sqrt{3}): \mathbb{Q}(\sqrt{3})][\mathbb{Q}(\sqrt{3}): \mathbb{Q}]$. Thus because the minimum polynomials for the extensions are $x^2 +1$ and $x^2 - 3$ respectively, we know that the degree of the extension is $2*2=4$. A basis for this extension is $[1, i, \sqrt{3} , i \sqrt{3}]$. QED
+
+(b) The primitive element of this extension is $i+\sqrt{3}$ as this element makes the simple extension $\mathbb{Q}(i+\sqrt{3}) = F$. This can be shown through the following containment arguments:
+
+First let $\mathbb{Q}(i+\sqrt{3}) = K$. It is obvious that $K \subset F$, so we're good there. Thus we just need to show that $F \subset K$. So we need to show that $i, \sqrt{3} \in K$. Well, let $a = i+\sqrt{3}$. We know $a, a^2 \in K$. $a^2 = -1 +2i \sqrt{3} +3$, which implies that $2i \sqrt{3} \in K$. Then we can look at $2i \sqrt{3} * (i + \sqrt{3}) \in K$ which implies that $3i - \sqrt{3} \in K$, which implies that $(3i-\sqrt{3})+(i +\sqrt{3}) \in K \implies i \in K$. Thus $i+ \sqrt{3} -i \in K \implies \sqrt{3} \in K$. So finally we have proven both directions of containment, implying that the primitive element $i+\sqrt{3}$ makes $F$ into a simple extension of $\mathbb{Q}$ which we call $K$. QED
 
 
 
@@ -302,11 +308,11 @@ Consider $\{1,\beta,\beta ^2, ..., \beta ^n\} \subseteq E$. So there exists $c_0
 
 ### Find the degree of the extension $[F: \mathbb{Q}]$, where $F = \mathbb{Q}(\sqrt{-1},\sqrt{3})$. Is this a simple extension? Why or why not?
 #### My Solution:
-Because this extension makes a splitting field over the minimal polynomial $f(x)=x^2+3 \in \mathbb{Q}$, we know then that $[F: \mathbb{Q}] = \mathrm{deg}(f(x)) = 2$. 
+(a) Here we can use what I like to call the *double extension lemma* to find the degree of the extension. So we know that $[F: \mathbb{Q}] = [\mathbb{Q}(i, \sqrt{3}): \mathbb{Q}(\sqrt{3})][\mathbb{Q}(\sqrt{3}): \mathbb{Q}]$. Thus because the minimum polynomials for the extensions are $x^2 +1$ and $x^2 - 3$ respectively, we know that the degree of the extension is $2*2=4$. A basis for this extension is $[1, i, \sqrt{3} , i \sqrt{3}]$. QED
 
-Recall that an extension is simple if there is only one extra element introduces in the extension. Well, first notice that $\mathbb{Q}(\sqrt{-3}) \subset \mathbb{Q}(\sqrt{-1},\sqrt{3})$. However, $\mathbb{Q}(\sqrt{-1},\sqrt{3})$ is not a subset of $\mathbb{Q}(\sqrt{-3})$ because $\sqrt{-1} \in \mathbb{Q}(\sqrt{-1},\sqrt{3})$, but $\sqrt{-1} \not \in \mathbb{Q}(\sqrt{-3})$.
+(b) The primitive element of this extension is $i+\sqrt{3}$ as this element makes the simple extension $\mathbb{Q}(i+\sqrt{3}) = F$. This can be shown through the following containment arguments:
 
-Thus we can see that $f/\mathbb{Q}$ is not a simple extension as $F$ cannot be written as such. QED
+First let $\mathbb{Q}(i+\sqrt{3}) = K$. It is obvious that $K \subset F$, so we're good there. Thus we just need to show that $F \subset K$. So we need to show that $i, \sqrt{3} \in K$. Well, let $a = i+\sqrt{3}$. We know $a, a^2 \in K$. $a^2 = -1 +2i \sqrt{3} +3$, which implies that $2i \sqrt{3} \in K$. Then we can look at $2i \sqrt{3} * (i + \sqrt{3}) \in K$ which implies that $3i - \sqrt{3} \in K$, which implies that $(3i-\sqrt{3})+(i +\sqrt{3}) \in K \implies i \in K$. Thus $i+ \sqrt{3} -i \in K \implies \sqrt{3} \in K$. So finally we have proven both directions of containment, implying that the primitive element $i+\sqrt{3}$ makes $F$ into a simple extension of $\mathbb{Q}$ which we call $K$. QED
 
 
 
