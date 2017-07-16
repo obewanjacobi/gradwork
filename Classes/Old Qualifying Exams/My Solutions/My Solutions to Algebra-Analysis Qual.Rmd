@@ -31,7 +31,9 @@ Jacob Townson
 ### Let $(G,·)$ be a group and $Z = Z(G)$ its center. Suppose that the group $G/Z$ is cyclic. Show that $G$ is Abelian.
 #### My Solution:
 
-Let $G/Z$ be cyclic with generator $xZ$. Every element in $G/Z$ can be written as $x^k Z$ where $k \in \mathbb{Z}$ and $z \in Z$. Now let $g,h \in G$. Then
+Let $G/Z$ be cyclic with generator $xZ$. Every element in $G/Z$ can be written as $x^k Z$ where $k \in \mathbb{Z}$ and $z \in Z$. We want to show first for all $g \in G$ that $g$ can be written in the form $x^k z$ for some $k \in \mathbb{Z}$ and $z \in Z$. We know that $G/Z$ is cyclic, so there exists some $g \in G$ such that $gZ = (xZ)^m = x^m Z$ for some $m$. Well, this is true iff $(x^m)^{-1} g \in Z$. So there exists a $z \in Z$ such that $(x^m)^{-1} g = z \implies g = x^m z$.
+
+Now let $g,h \in G$. Then
 
 $$g=x^a z$$ and $$h = x^b w$$ for $a,b \in \mathbb{Z}$ and $z,w \in Z$. 
 
@@ -83,7 +85,17 @@ To do this proof, we will use the broader proof of Cayley's Theorem. This theore
 
 Let $S$ be the set of all elements of $G$. Now consider the action of $G$ on $S$,
 $$G \times S \rightarrow S, a*b:=ab$$
-This action defines a homomorphism $\gamma: G \rightarrow \mathrm{Perm}(S)$. It is fairly easy to see that this homomorphism is one-to-one and onto. Thus, it follows that $G$ is isomorphic to a subgroup of $\mathrm{Perm}(S)$. And finally, since $|S| = n$ we have that $\mathrm{Perm}(S) \cong S_n$. QED
+This action defines a homomorphism $\gamma: G \rightarrow \mathrm{Perm}(S)$. It is fairly easy to see that this homomorphism is one-to-one and onto. Thus, it follows that $G$ is isomorphic to a subgroup of $\mathrm{Perm}(S)$. And finally, since $|S| = n$ we have that $\mathrm{Perm}(S) \cong S_n$ This tells us that $G \cong S_n$.
+
+Thus we just need to show that $S_n \cong A_m$. Let $\Gamma : S_n \rightarrow A_{n+2}$ such that $\Gamma : \sigma \mapsto \sigma$ if $\sigma$ is even, or $\Gamma : \sigma \mapsto (n+1 \ n+2) \sigma$ if $\sigma$ is odd where $\sigma \in S_n$. We just need to show that $\Gamma$ is an isomorphism. Let $\sigma_1, \sigma_2 \in S_n$. If $\sigma_1, \sigma_2$ are even, then 
+$$\Gamma (\sigma_1 \sigma_2) = \sigma_1 \sigma_2 = \Gamma (\sigma_1) \Gamma (\sigma_2)$$
+If $\sigma_1, \sigma_2$ are both odd, then 
+$$\Gamma (\sigma_1 \sigma_2) = \sigma_1 \sigma_2 = \Gamma (\sigma_1) \Gamma (\sigma_2)$$ This is true because $(n+1 \ n+2)^2$ is the identity permutation, and $\sigma_1 \sigma_2$ is even.
+Finally WLOG let $\sigma_1$ be even and $\sigma_2$ be odd. Then
+$$\Gamma(\sigma_1) \Gamma(\sigma_2) = \sigma_1 (n+1 \ n+2) \sigma_2 = (n+1 \ n+2) \sigma_1 \sigma_2 = \Gamma (\sigma_1 \sigma_2)$$
+Thus $\Gamma$ is a homomorphism. It is also obvious that for all $\sigma$ there exists a $\Gamma(\sigma)$, so we know that $\Gamma$ is onto. And finally, it is obvious that if $\Gamma(\sigma_1) = \Gamma(\sigma_2)$, then $\sigma_1 = \sigma_2$. Thus $\Gamma$ is an isomorphism.
+
+Using this fact and Cayley's Theorem, we then know that $G \cong S_n \cong A_{n+2}$ which proves that any finite group is isomorphic to a subgroup of $A_n$. QED
 
 
 
