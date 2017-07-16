@@ -8,7 +8,6 @@ Problem a Day from Practice Quals
 -----------------------------------------------------
 TEACHING
 
-Rewrite Projects
 Note: Tests may need to be edited depending 
 on content successfully covered
 -----------------------------------------------------
