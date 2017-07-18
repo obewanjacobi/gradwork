@@ -292,19 +292,31 @@ $(document).ready(function () {
 <p>Now we must prove the other direction. Assume <span class="math inline">\(R\)</span> is a division ring and <span class="math inline">\(I \neq \{0\}\)</span> is a left ideal of <span class="math inline">\(R\)</span>. Then for all <span class="math inline">\(s \in I\)</span>, <span class="math display">\[1_R = s^{-1}s \in I \implies I=R\]</span> Thus <span class="math inline">\(R\)</span> has no proper left ideals. QED.</p>
 </div>
 </div>
+<div id="let-g-be-an-arbitrary-group.-for-any-two-subgroups-h-and-k-of-g-define-hk-hk-h-in-h-k-in-k.-assume-h-unlhd-g-and-k-leq-g.-a-prove-that-hk-leq-g.-b-prove-that-h-unlhd-hk-and-h-cap-k-unlhd-k.-c-prove-that-frachkh-cong-frackh-cap-k." class="section level3">
+<h3>Let <span class="math inline">\(G\)</span> be an arbitrary group. For any two subgroups <span class="math inline">\(H\)</span> and <span class="math inline">\(K\)</span> of <span class="math inline">\(G\)</span>, define <span class="math inline">\(HK = \{ hk | h \in H, k \in K\}\)</span>. Assume <span class="math inline">\(H \unlhd G\)</span> and <span class="math inline">\(K \leq G\)</span>. (a) Prove that <span class="math inline">\(HK \leq G\)</span>. (b) Prove that <span class="math inline">\(H \unlhd HK\)</span> and <span class="math inline">\((H \cap K) \unlhd K\)</span>. (c) Prove that <span class="math inline">\(\frac{HK}{H} \cong \frac{K}{H \cap K}\)</span>.</h3>
+<div id="my-solution-16" class="section level4">
+<h4>My Solution:</h4>
+<p><strong>Note: This is the proof of the 2nd Isomorphism Theorem for Groups</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Recall that <span class="math inline">\(HK\)</span> can only be a subgroup if <span class="math inline">\(HK = KH\)</span>. Thus if <span class="math inline">\(H \unlhd G\)</span>, and we let <span class="math inline">\(h \in H\)</span> and <span class="math inline">\(k \in K\)</span>, by assumption <span class="math inline">\(khk^{-1} \in H\)</span>. Thus <span class="math display">\[kh = (khk^{-1})k \in HK\]</span> This proves that <span class="math inline">\(KH \subseteq HK\)</span>. Similarly, <span class="math inline">\(hk = k(k^{-1}hk) \in KH\)</span> which proves the reverse containment. Thus <span class="math inline">\(HK \leq G\)</span>. QED</p></li>
+<li><p>Since <span class="math inline">\(K\)</span> normalizes <span class="math inline">\(H\)</span> and <span class="math inline">\(H\)</span> normalizes itself trivially, this implies that <span class="math inline">\(HK\)</span> normalizes <span class="math inline">\(H\)</span>. Thus <span class="math inline">\(H \unlhd HK\)</span>. Since <span class="math inline">\(H \unlhd HK\)</span>, the quotient group <span class="math inline">\(\frac{HK}{H}\)</span> is well defined. Define the map <span class="math inline">\(\Gamma : K \rightarrow \frac{HK}{H}\)</span> by <span class="math inline">\(\Gamma (k) = kH\)</span>. Since the group operation in <span class="math inline">\(\frac{HK}{H}\)</span> is well defined, it’s easy to see that <span class="math inline">\(\Gamma\)</span> is a homomorphism: <span class="math display">\[\Gamma(k_1 k_2) = (k_1 k_2)H = k_1 H *k_2 H = \Gamma(k_1) \Gamma(k_2)\]</span> Alternatively, the map <span class="math inline">\(\Gamma\)</span> is just the restriction to the subgroup <span class="math inline">\(K\)</span> of the natural progression homomorphism <span class="math inline">\(\pi : HK \rightarrow \frac{HK}{H}\)</span>, so it’s also a homomorphism. It is clear then from the definition of <span class="math inline">\(HK\)</span> that <span class="math inline">\(\Gamma\)</span> is onto. The identity of <span class="math inline">\(\frac{HK}{H}\)</span> is simply <span class="math inline">\(H\)</span>, so the kernel of <span class="math inline">\(\Gamma\)</span> consists of the elements <span class="math inline">\(k \in K\)</span> with <span class="math inline">\(kH = H\)</span>, or where <span class="math inline">\(k \in H\)</span>. Thus <span class="math inline">\(\mathrm{ker}\Gamma = H \cap K\)</span>. So by the first isomorphism theorem, <span class="math inline">\(H \cap K \unlhd K\)</span>. QED</p></li>
+<li><p>Following the proof of part (b), by the First Isomorphism Theorem, <span class="math inline">\(\frac{HK}{H} \cong \frac{K}{H \cap K}\)</span> QED</p></li>
+</ol>
+</div>
+</div>
 </div>
 <div id="january-2015-qual" class="section level2">
 <h2>January 2015 Qual</h2>
 <div id="if-n-is-a-normal-subgroup-of-g-and-h-is-any-subgroup-of-g-prove-that-nh-nhn-in-n-h-in-h-is-a-subgroup-of-g." class="section level3">
 <h3>If <span class="math inline">\(N\)</span> is a normal subgroup of <span class="math inline">\(G\)</span> and <span class="math inline">\(H\)</span> is any subgroup of <span class="math inline">\(G\)</span>, prove that <span class="math inline">\(NH := \{nh|n \in N, h \in H\}\)</span> is a subgroup of <span class="math inline">\(G\)</span>.</h3>
-<div id="my-solution-16" class="section level4">
+<div id="my-solution-17" class="section level4">
 <h4>My Solution:</h4>
 <p>Let <span class="math inline">\(H \leq G\)</span> and <span class="math inline">\(N\)</span> be a normal subgroup of <span class="math inline">\(G\)</span>. Let <span class="math inline">\(NH\)</span> be defined as above. So we want to show for all <span class="math inline">\(nh \in NH\)</span>, <span class="math inline">\((nh)^{-1} \in NH\)</span>. Well, <span class="math inline">\((nh)^{-1}=h^{-1}n^{-1}\)</span>. First note because <span class="math inline">\(N\)</span> is a normal subgroup of <span class="math inline">\(G\)</span> and <span class="math inline">\(H \leq G\)</span>, <span class="math inline">\(n^{-1} \in N\)</span> and <span class="math inline">\(h^{-1} \in H\)</span>. Also note because <span class="math inline">\(N\)</span> is normal in <span class="math inline">\(G\)</span>, for all <span class="math inline">\(g \in G\)</span>, <span class="math inline">\(gN = Ng\)</span>, ie. for all <span class="math inline">\(n \in N\)</span>, <span class="math inline">\(gn = ng\)</span>. Thus in <span class="math inline">\(NH\)</span>, <span class="math display">\[nh = hn \implies (nh)^{-1} = h^{-1}n^{-1} = n^{-1}h^{-1} \in NH\]</span> Thus <span class="math inline">\(NH\)</span> is a subgroup of <span class="math inline">\(G\)</span>. QED</p>
 </div>
 </div>
 <div id="show-that-a-group-of-order-56-is-not-simple" class="section level3">
 <h3>Show that a group of order <span class="math inline">\(56\)</span> is not simple</h3>
-<div id="my-solution-17" class="section level4">
+<div id="my-solution-18" class="section level4">
 <h4>My Solution:</h4>
 <p>Let <span class="math inline">\(G\)</span> be a group of order <span class="math inline">\(56 = 2^3 * 7\)</span>. Then by Sylow’s Theorem, <span class="math inline">\(n_2 = 1\)</span> or <span class="math inline">\(7\)</span> and <span class="math inline">\(n_7 = 1\)</span> or <span class="math inline">\(8\)</span>.</p>
 <p>Assume <span class="math inline">\(n_2 = 7\)</span> and <span class="math inline">\(n_7 = 8\)</span>. Two different Sylow-7 subgroups intersect only in the identity. Also all of the Sylow-7 subgroups are conjugate by Sylow’s Theorem, hence they’re isomorphic. Then if <span class="math inline">\(n_7 = 8\)</span>, we have that <span class="math inline">\(G\)</span> has at least <span class="math inline">\(8*6=48\)</span> elements of order <span class="math inline">\(7\)</span>. The rest of the elements must be in a Sylow-2 subgroup which gives us a contradiction. Thus <span class="math inline">\(n_2 =1\)</span> or <span class="math inline">\(n_7=1\)</span>, thus <span class="math inline">\(G\)</span> cannot be simple. QED</p>
@@ -312,7 +324,7 @@ $(document).ready(function () {
 </div>
 <div id="a-ring-r-is-boolean-if-every-element-is-idempotent-that-is-a2a-for-all-a-in-r.-prove-that-every-boolean-ring-is-commutative." class="section level3">
 <h3>A ring <span class="math inline">\(R\)</span> is <em>Boolean</em> if every element is idempotent, that is <span class="math inline">\(a^2=a\)</span> for all <span class="math inline">\(a \in R\)</span>. Prove that every Boolean ring is commutative.</h3>
-<div id="my-solution-18" class="section level4">
+<div id="my-solution-19" class="section level4">
 <h4>My Solution:</h4>
 <p>Recall that a ring is commutative if the multiplication operation in the ring is commutative. Thus we want to show that for every Boolean ring, if <span class="math inline">\(a,b \in R\)</span> then <span class="math inline">\(ab = ba\)</span>.</p>
 <p>To begin this problem, consider <span class="math inline">\(a+b = (a+b)^2\)</span>. Well, <span class="math display">\[(a+b)^2 = (a+b)(a+b)=a(a+b)+b(a+b)\]</span> <span class="math display">\[ = a^2 +ab+ba+b^2=a+ab+ba+b\]</span> When cancelling <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> from both sides, we find that <span class="math inline">\(0 = ab+ba \implies ab = -ba\)</span>, but because <span class="math inline">\(R\)</span> is Boolean, we can easily see that <span class="math inline">\(-c = c\)</span> for all <span class="math inline">\(c \in R\)</span>. Thus we have proven that all Boolean rings are indeed commutative. QED.</p>
@@ -320,7 +332,7 @@ $(document).ready(function () {
 </div>
 <div id="show-that-every-prime-element-in-an-integral-domain-is-irreducible." class="section level3">
 <h3>Show that every prime element in an integral domain is irreducible.</h3>
-<div id="my-solution-19" class="section level4">
+<div id="my-solution-20" class="section level4">
 <h4>My Solution:</h4>
 <p>Recall an integral domain is a commutative ring with no zero divisors. Also an element in an integral domain is irreducible if it is not equal to the product of two non-units. Also recall that if <span class="math inline">\(R\)</span> is our integral domain, <span class="math inline">\(u \in R\)</span> is a unit if for some <span class="math inline">\(v \in R\)</span>, <span class="math inline">\(uv = e\)</span> where <span class="math inline">\(e\)</span> is the identity in <span class="math inline">\(R\)</span>. Lastly, recall that <span class="math inline">\(p \in R\)</span> is prime if <span class="math inline">\(p|ab \implies p|a\)</span> or <span class="math inline">\(p|b\)</span>.</p>
 <p>Let <span class="math inline">\(p \in R\)</span> be a prime element where <span class="math inline">\(R\)</span> is an integral domain. Assume <span class="math inline">\(p = ab\)</span> where <span class="math inline">\(a,b \in R\)</span>. Obviously <span class="math inline">\(p|ab\)</span>, so because <span class="math inline">\(p\)</span> is prime, <span class="math inline">\(p|a\)</span> or <span class="math inline">\(p|b\)</span>. WLOG, assume <span class="math inline">\(p|a\)</span> such that <span class="math inline">\(px = a\)</span> for some <span class="math inline">\(x \in R\)</span>. If <span class="math inline">\(1\)</span> is the identity of <span class="math inline">\(R\)</span>, then <span class="math display">\[1*a=a=px=(ab)x=a(bx)\]</span> Because <span class="math inline">\(R\)</span> is an integral domain, <span class="math inline">\(a\)</span> can be cancelled out implying that <span class="math inline">\(1=bx\)</span>, thus <span class="math inline">\(b\)</span> is a unit. This proves that <span class="math inline">\(p\)</span> is also irreducible in an integral domain. QED.</p>
@@ -328,21 +340,21 @@ $(document).ready(function () {
 </div>
 <div id="prove-or-provide-a-counterexample-galois-extensions-of-galois-extensions-are-galois-extensions.-that-is-if-kf-is-galois-and-lk-is-galois-then-lf-is-galois." class="section level3">
 <h3>Prove or provide a counterexample: Galois extensions of Galois extensions are Galois extensions. That is, if <span class="math inline">\(K/F\)</span> is Galois and <span class="math inline">\(L/K\)</span> is Galois, then <span class="math inline">\(L/F\)</span> is Galois.</h3>
-<div id="my-solution-20" class="section level4">
+<div id="my-solution-21" class="section level4">
 <h4>My Solution:</h4>
 <p>This statement is false! Consider <span class="math inline">\(L = \mathbb{Q}(\sqrt[4]{2})\)</span>, <span class="math inline">\(K = \mathbb{Q}(\sqrt{2})\)</span>, and <span class="math inline">\(F = \mathbb{Q}\)</span>. In this case, <span class="math inline">\(K/F\)</span> is Galois because <span class="math inline">\(K\)</span> is a splitting field over <span class="math inline">\(F\)</span>, and it is similar for <span class="math inline">\(L/K\)</span>. However, <span class="math inline">\(L/F\)</span> is not Galois, as <span class="math inline">\(L\)</span> does not make a splitting field over <span class="math inline">\(F\)</span>. This can be seen from the polynomial <span class="math inline">\(f(x)=x^4-2 \in \mathbb{Q}[x]\)</span>. Not all of the roots of <span class="math inline">\(f(x)\)</span> are contained in <span class="math inline">\(L\)</span>, as <span class="math inline">\(L\)</span> does not contain any imaginary numbers. QED</p>
 </div>
 </div>
 <div id="let-e-be-a-finite-extension-of-field-f.-prove-that-e-is-algebraic-over-f." class="section level3">
 <h3>Let <span class="math inline">\(E\)</span> be a finite extension of field <span class="math inline">\(F\)</span>. Prove that <span class="math inline">\(E\)</span> is algebraic over <span class="math inline">\(F\)</span>.</h3>
-<div id="my-solution-21" class="section level4">
+<div id="my-solution-22" class="section level4">
 <h4>My Solution:</h4>
 <p>Assume <span class="math inline">\(E/F\)</span> is finite. Let <span class="math inline">\(\beta \in E/F\)</span>. We have then that <span class="math inline">\(F \subseteq F(\beta) \subseteq E\)</span>. We know <span class="math display">\[[E:F] =n \in \mathbb{N} \implies [F(\beta):F] \leq n\]</span> Consider <span class="math inline">\(\{1,\beta,\beta ^2, ..., \beta ^n\} \subseteq E\)</span>. So there exists <span class="math inline">\(c_0, ..., c_n \in F\)</span> such that <span class="math inline">\(c_0+ c_1 \beta + ... + c_n \beta ^n =0\)</span>, where at least one <span class="math inline">\(c_i \neq 0\)</span>. Let <span class="math inline">\(v(x) = c_n x^n +...+c_0\)</span>, so <span class="math inline">\(v(\beta) =0\)</span>. Thus if <span class="math inline">\(E/F\)</span> is finite, then <span class="math inline">\(E\)</span> is algebraic over <span class="math inline">\(F\)</span>. QED</p>
 </div>
 </div>
 <div id="find-the-degree-of-the-extension-f-mathbbq-where-f-mathbbqsqrt-1sqrt3.-is-this-a-simple-extension-why-or-why-not" class="section level3">
 <h3>Find the degree of the extension <span class="math inline">\([F: \mathbb{Q}]\)</span>, where <span class="math inline">\(F = \mathbb{Q}(\sqrt{-1},\sqrt{3})\)</span>. Is this a simple extension? Why or why not?</h3>
-<div id="my-solution-22" class="section level4">
+<div id="my-solution-23" class="section level4">
 <h4>My Solution:</h4>
 <ol style="list-style-type: lower-alpha">
 <li><p>Here we can use what I like to call the <em>double extension lemma</em> to find the degree of the extension. So we know that <span class="math inline">\([F: \mathbb{Q}] = [\mathbb{Q}(i, \sqrt{3}): \mathbb{Q}(\sqrt{3})][\mathbb{Q}(\sqrt{3}): \mathbb{Q}]\)</span>. Thus because the minimum polynomials for the extensions are <span class="math inline">\(x^2 +1\)</span> and <span class="math inline">\(x^2 - 3\)</span> respectively, we know that the degree of the extension is <span class="math inline">\(2*2=4\)</span>. A basis for this extension is <span class="math inline">\([1, i, \sqrt{3} , i \sqrt{3}]\)</span>. QED</p></li>
@@ -353,7 +365,7 @@ $(document).ready(function () {
 </div>
 <div id="let-g-be-an-arbitrary-group-with-a-center-zg.-prove-that-the-inner-automorphism-group-inng-is-isomorphic-to-gzg.-recall-by-definition-inng-is-the-group-of-all-automorphisms-phi_h-of-the-form-phi_hgh-1gh-for-all-g-in-g." class="section level3">
 <h3>Let <span class="math inline">\(G\)</span> be an arbitrary group with a center <span class="math inline">\(Z(G)\)</span>. Prove that the inner automorphism group <span class="math inline">\(Inn(G)\)</span> is isomorphic to <span class="math inline">\(G/Z(G)\)</span>. (Recall by definition <span class="math inline">\(Inn(G)\)</span> is the group of all automorphisms <span class="math inline">\(\phi_h\)</span> of the form <span class="math inline">\(\phi_h(g)=h^{-1}gh\)</span>, for all <span class="math inline">\(g \in G\)</span>.)</h3>
-<div id="my-solution-23" class="section level4">
+<div id="my-solution-24" class="section level4">
 <h4>My Solution:</h4>
 <p>Consider the map <span class="math inline">\(\theta : G \rightarrow \mathrm{Aut}(G)\)</span> defined as <span class="math inline">\(\theta(g) = \gamma_g\)</span>, where <span class="math inline">\(\gamma_g\)</span> is the automorphism of <span class="math inline">\(G\)</span> defined by <span class="math inline">\(\gamma_g(h) = ghg^{-1}\)</span>.</p>
 <p><strong>Lemma 1</strong>: <span class="math inline">\(\theta\)</span> is a homomorphism.</p>
@@ -368,14 +380,14 @@ $(document).ready(function () {
 <h2>August 2014 Qual</h2>
 <div id="let-h-leq-g.-prove-that-n_ghc_gh-is-isomorphic-to-a-subgroup-of-auth.-recall-the-normalizer-n_gh-g-in-g-ghg-1-h-and-the-centralizer-c_gh-g-in-g-gh-hg-forall-h-in-h" class="section level3">
 <h3>Let <span class="math inline">\(H \leq G\)</span>. Prove that <span class="math inline">\(N_G(H)/C_G(H)\)</span> is isomorphic to a subgroup of <span class="math inline">\(Aut(H)\)</span>. Recall the normalizer <span class="math inline">\(N_G(H) = \{g \in G | gHg^{-1} = H\}\)</span> and the centralizer <span class="math inline">\(C_G(H) = \{g \in G | gh = hg, \forall h \in H\}\)</span></h3>
-<div id="my-solution-24" class="section level4">
+<div id="my-solution-25" class="section level4">
 <h4>My Solution:</h4>
 <p>For <span class="math inline">\(g \in N_G(H)\)</span>, it is clear that <span class="math inline">\(\sigma_g:h \rightarrow ghg^{-1}\)</span> defines an automorphism of <span class="math inline">\(H\)</span>. Define a map: <span class="math display">\[ \sigma : N_G(H) \rightarrow Aut(H)\]</span> where <span class="math inline">\(g \rightarrow \sigma_g\)</span>. Since for all <span class="math inline">\(a,b \in N_G(H), h \in H\)</span>, we have that <span class="math inline">\(\sigma_a \sigma_b (h) = abhb^{-1} a^{-1} = \sigma_{ab}(h)\)</span>. Then <span class="math inline">\(\sigma\)</span> is a group homomorphism from <span class="math inline">\(N_G(H)\)</span> to <span class="math inline">\(Aut(H)\)</span>. Note that <span class="math display">\[\mathrm{Ker}(\sigma) = \{g \in N_G(H) | ghg^{-1} = h, \forall h \in H\}\]</span> <span class="math display">\[ = C_G(H) \cap N_G(H) = C_G(H)\]</span> From the first isomorphism theorem we then have that <span class="math inline">\(N_G(H)/C_G(H)\)</span> is isomorphic to a subgroup of <span class="math inline">\(Aut(H)\)</span>. QED</p>
 </div>
 </div>
 <div id="an-integral-domain-d-is-said-to-be-artinian-if-for-any-descending-chain-of-ideals-i_1-supseteq-i_2-supseteq-i_3-supseteq-...-of-d-there-is-an-integer-n-such-that-i_i---i_n-for-all-i-geq-n.-prove-that-an-integral-domain-d-is-artinian-if-and-only-if-it-is-a-field." class="section level3">
 <h3>An integral domain <span class="math inline">\(D\)</span> is said to be <strong>Artinian</strong> if for any descending chain of ideals <span class="math display">\[I_1 \supseteq I_2 \supseteq I_3 \supseteq ...\]</span> of <span class="math inline">\(D\)</span>, there is an integer <span class="math inline">\(n\)</span> such that <span class="math inline">\(I_i - I_n\)</span> for all <span class="math inline">\(i \geq n\)</span>. Prove that an integral domain <span class="math inline">\(D\)</span> is Artinian if and only if it is a field.</h3>
-<div id="my-solution-25" class="section level4">
+<div id="my-solution-26" class="section level4">
 <h4>My Solution:</h4>
 <p>Assume <span class="math inline">\(D\)</span> is Artinian, and has a unit <span class="math inline">\(1_D\)</span> that is a multiplicative identity element. For any <span class="math inline">\(0 \neq a \in D\)</span>, consider the principle ideal generated by <span class="math inline">\(a^i\)</span>, <span class="math inline">\((a^i)\)</span>. Since <span class="math inline">\(a^{n+1}d=a^n (ad)\)</span> for any <span class="math inline">\(d \in D\)</span>, we have that <span class="math inline">\((a^{n+1}) \subseteq (a^n)\)</span>. Thus we have our descending chain of ideals <span class="math display">\[(a) \supseteq (a^2) \supseteq ... \supseteq (a^n) \supseteq ...\]</span> which will stabilize because <span class="math inline">\(D\)</span> is Artinian. Thus for some positive integer <span class="math inline">\(m\)</span>, <span class="math display">\[(a^m)=(a^{m+1})\]</span> Then since <span class="math inline">\(a^m = a^m 1_D \in (a^m)\)</span>, there exists <span class="math inline">\(s \in D\)</span> such that <span class="math inline">\(a^{m+1} s = a^m\)</span> or <span class="math inline">\(a^m (1_D - a s)=0\)</span>. Using the properties of an integral domain, this implies that <span class="math inline">\(as=1_D\)</span>. Thus we have shown that every <span class="math inline">\(0 \neq a \in D\)</span> has a multiplicative inverse thus <span class="math inline">\(D\)</span> is also a field.</p>
 <p>Assume <span class="math inline">\(D\)</span> is an integral domain and a field. Then <span class="math inline">\(D\)</span> has only two ideals, the trivial and <span class="math inline">\(D\)</span> itself. Thus every strictly descending chain of ideals is of finite length, implying that <span class="math inline">\(D\)</span> is Artinian. QED</p>
@@ -383,7 +395,7 @@ $(document).ready(function () {
 </div>
 <div id="suppose-that-g-is-a-nite-group-with-even-order.-prove-that-the-number-of-conjugacy-classes-in-g-with-odd-order-is-even." class="section level3">
 <h3>Suppose that <span class="math inline">\(G\)</span> is a ﬁnite group with even order. Prove that the number of conjugacy classes in <span class="math inline">\(G\)</span> with odd order is even.</h3>
-<div id="my-solution-26" class="section level4">
+<div id="my-solution-27" class="section level4">
 <h4>My Solution:</h4>
 <p>Not yet solved</p>
 </div>

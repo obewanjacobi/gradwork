@@ -259,6 +259,30 @@ Thus $R$ has no proper left ideals. QED.
 
 
 
+### Let $G$ be an arbitrary group. For any two subgroups $H$ and $K$ of $G$, define $HK = \{ hk | h \in H, k \in K\}$. Assume $H \unlhd G$ and $K \leq G$. (a) Prove that $HK \leq G$. (b) Prove that $H \unlhd HK$ and $(H \cap K) \unlhd K$. (c) Prove that $\frac{HK}{H} \cong \frac{K}{H \cap K}$.
+#### My Solution:
+**Note: This is the proof of the 2nd Isomorphism Theorem for Groups**
+
+(a) Recall that $HK$ can only be a subgroup if $HK = KH$. Thus if $H \unlhd G$, and we let $h \in H$ and $k \in K$, by assumption $khk^{-1} \in H$. Thus
+$$kh = (khk^{-1})k \in HK$$ 
+This proves that $KH \subseteq HK$. Similarly, $hk = k(k^{-1}hk) \in KH$ which proves the reverse containment. Thus $HK \leq G$. QED
+
+(b) Since $K$ normalizes $H$ and $H$ normalizes itself trivially, this implies that $HK$ normalizes $H$. Thus $H \unlhd HK$. Since $H \unlhd HK$, the quotient group $\frac{HK}{H}$ is well defined. Define the map $\Gamma : K \rightarrow \frac{HK}{H}$ by $\Gamma (k) = kH$. Since the group operation in $\frac{HK}{H}$ is well defined, it's easy to see that $\Gamma$ is a homomorphism:
+$$\Gamma(k_1 k_2) = (k_1 k_2)H = k_1 H *k_2 H = \Gamma(k_1) \Gamma(k_2)$$
+Alternatively, the map $\Gamma$ is just the restriction to the subgroup $K$ of the natural progression homomorphism $\pi : HK \rightarrow \frac{HK}{H}$, so it's also a homomorphism. It is clear then from the definition of $HK$ that $\Gamma$ is onto. The identity of $\frac{HK}{H}$ is simply $H$, so the kernel of $\Gamma$ consists of the elements $k \in K$ with $kH = H$, or where $k \in H$. Thus $\mathrm{ker}\Gamma = H \cap K$. So by the first isomorphism theorem, $H \cap K \unlhd K$. QED
+
+(c) Following the proof of part (b), by the First Isomorphism Theorem, $\frac{HK}{H} \cong \frac{K}{H \cap K}$ QED
+
+
+
+
+
+
+
+
+
+
+
 
 
 
