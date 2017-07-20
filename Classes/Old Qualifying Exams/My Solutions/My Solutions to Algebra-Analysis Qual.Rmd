@@ -414,6 +414,108 @@ Not yet solved
 
 
 
+## Important proofs (not specific to Qualifiers)
+
+
+
+
+### Prove the First Isomorphism Theorem for Groups
+#### My Solution
+First we will state the theorem itself:
+
+Let $\phi : G \rightarrow H$ be a homomorphism of groups, then $\mathrm{ker} \phi \unlhd G$ and $\frac{G}{\mathrm{ker}\phi} \cong \phi(G)$.
+
+To shorten things, let $K = \mathrm{ker}\phi$. Define the homomorphism $\psi : G/K \rightarrow \phi(G)$ by $\psi(Kg) = \phi(g)$. We claim that $\psi$ is an isomorphism. So we need to check that it's a well-defined homomorphism, and a bijection. First, to check that it's well-defined, we will check to see that if $a \in Kg$, then $\phi(a) = \phi(g)$. If we let $a = kg$ then for some $k \in K$, then 
+$$\phi(a) = \phi(kg) = \phi(k)\phi(g) = \phi(g)$$
+Now we will show that $\psi$ is a homomorphism. Consider $Kg, Kh \in G/K$. Then for any $a,b \in K$ we have that
+$$\psi(Kg*Kh) = \psi(Kgh) =\phi(gh) = \phi(g) \phi(h) = \psi(Kg) \psi(Kh)$$
+This proves that $\psi$ is a well-defined homomorphism. To prove that $\psi$ is one-to-one, we must prove that $\mathrm{ker}(\psi) = K$. Well, observe that 
+$$\psi(Kg) = 1 \iff \phi(g) = 1 \iff g \in \mathrm{ker}(\phi) \iff g \in K \iff Kg = K$$
+So $\mathrm{ker}(\psi) = K$. Finally we just need that $\psi$ is onto, which is somewhat obvious from the fact that $\phi(g) \in \phi(G)$ so that $\phi(g)$ has preimage $Kg$. Thus we have proven the First Isomorphism Theorem for Groups. QED
+
+
+
+### Prove the 2nd Isomorphism Theorem for Groups
+#### My Solution:
+
+First we must state it. Let $G$ be an arbitrary group. For any two subgroups $H$ and $K$ of $G$, define $HK = \{ hk | h \in H, k \in K\}$. Assume $H \unlhd G$ and $K \leq G$. Then: (a) $HK \leq G$. (b) $H \unlhd HK$ and $(H \cap K) \unlhd K$. (c) $\frac{HK}{H} \cong \frac{K}{H \cap K}$.
+
+(a) Recall that $HK$ can only be a subgroup if $HK = KH$. Thus if $H \unlhd G$, and we let $h \in H$ and $k \in K$, by assumption $khk^{-1} \in H$. Thus
+$$kh = (khk^{-1})k \in HK$$ 
+This proves that $KH \subseteq HK$. Similarly, $hk = k(k^{-1}hk) \in KH$ which proves the reverse containment. Thus $HK \leq G$. QED
+
+(b) Since $K$ normalizes $H$ and $H$ normalizes itself trivially, this implies that $HK$ normalizes $H$. Thus $H \unlhd HK$. Since $H \unlhd HK$, the quotient group $\frac{HK}{H}$ is well defined. Define the map $\Gamma : K \rightarrow \frac{HK}{H}$ by $\Gamma (k) = kH$. Since the group operation in $\frac{HK}{H}$ is well defined, it's easy to see that $\Gamma$ is a homomorphism:
+$$\Gamma(k_1 k_2) = (k_1 k_2)H = k_1 H *k_2 H = \Gamma(k_1) \Gamma(k_2)$$
+Alternatively, the map $\Gamma$ is just the restriction to the subgroup $K$ of the natural progression homomorphism $\pi : HK \rightarrow \frac{HK}{H}$, so it's also a homomorphism. It is clear then from the definition of $HK$ that $\Gamma$ is onto. The identity of $\frac{HK}{H}$ is simply $H$, so the kernel of $\Gamma$ consists of the elements $k \in K$ with $kH = H$, or where $k \in H$. Thus $\mathrm{ker}\Gamma = H \cap K$. So by the first isomorphism theorem, $H \cap K \unlhd K$. QED
+
+(c) Following the proof of part (b), by the First Isomorphism Theorem, $\frac{HK}{H} \cong \frac{K}{H \cap K}$ QED
+
+
+
+### State and Prove the 3rd Isomorphism Theorem for Groups
+#### My Solution:
+First (once again) we must state it first. Let $K,N \unlhd G$ with $N \leq K$. Then $K/N \unlhd G/N$ and $(G/N)/(K/N) \cong G/K$.
+
+The proof that $K/N \unlhd G/N$ is easy and follows from the 4th Isomorphism Theorem for Groups, so we will leave this aside. Now, define
+$$\phi: G/N \rightarrow G/K$$
+by $\phi(Ng) = Kg$. By the First Isomorphism Theroem, $(G/N)/\mathrm{ker}(\phi) \cong \phi(G)$. It is clear that $\phi$ is onto, so $\phi(G) = G/K$. Now
+$$\mathrm{ker}(\phi) = \{Ng \in G/N | Kg = K\} = \{Ng \in G/N | g \in K\} = K/N$$
+Thus by the First Isomorphism Theorem, $(G/N)/(K/N) \cong G/K$. QED
+
+
+
+### State and Prove the 1st Isomorphism Theorem for Rings
+#### My Solution:
+If $\phi: R \rightarrow S$ is a homomorphism of rings, then the kernel of $\phi$ is an ideal of $R$, the image of $\phi$ is a subring of $S$, and $R/\mathrm{ker}(\phi) \cong \phi(R)$
+
+Proof: 
+
+If $I$ is the kernel of $\phi$, then the cosets of $I$ are precisely the fibers of $\phi$. In particular, the cosets $r+I,s+I,$ and $rs+I$ are the fibers of $\phi$ over $\phi(r), \phi(s),$ and $\phi(rs)$ respectively. Since $\phi$ is a ring homomorphism, $\phi(r) \phi(s) = \phi(rs)$, hence $(r+I)(s+I) = rs+I$. Multiplication of cosets is well defined and so $I$ is an ideal and $R/I$ is a ring. The correspondence $R+I \rightarrow \phi(r)$ is a bijection between rings $R/I$ and $\phi(R)$ which respects addition and multiplication, hence is a ring isomorphism. Proving that the image of $\phi$ is a subring of $S$ is trivial. QED 
+
+
+
+### State and Prove the 2nd Isomorphism Theorem for Rings
+#### My Solution:
+Let $A$ be a subgring and let $B$ be an ideal of $R$. Then $A+B = \{a+b| a \in A, b \in B\}$ is a subring of $R$, $A \cap B$ is an ideal of $A$ and $\frac{(A+B)}{B} \cong \frac{A}{(A \cap B)}$
+
+Proof:
+
+(a)
+$A$ is a subring and $B$ is an ideal, so $1+0 \in A+B$. Let $a_1 + b_1$ and $a_2 + b_2$ be elements of $A+B$. Then
+$$(a_1+b_1) - (a_2+b_2) = (a_1-a_2)+(b_1-b_2)$$
+and
+$$(a_1+b_1)(a_2+b_2) = a_1a_2+a_1b_2+b_1a_2+b_1b_2$$
+Hence $A+B$ is a subring of $R$.
+
+(b)
+The intersection $A \cap B$ is nonempty since $0$ is contained in $A$ and $B$. Let $b_1,b_2 \in A \cap B$ and let $a \in A$. Then $b_1+b_2 \in A \cap B$ sinc $A$ and $B$ are both closed under addition. Furthermore $ab_1$ and $ab_2$ are in $A \cap B$ since $B$ is closed under multiplication from $R \supset A$ and $A$ is closed under multiplication. Thus $A \cap B$ is an ideal of $A$.
+
+(c)
+Consider the map $\phi: A \rightarrow (A+B)/B$ which sends an element $a$ to $a+B$. THis is a ring homomorphism by definition of addition and multiplication in quotient rings (easy to prove). We claim that it is onto with kernel $A \cap B$ whcih would complete the proof by the first isomorphism theorem for rings. Consider the elements $a \in A$ and $b \in B$. Then $a + b + B = a +B$ since $b \in B$, so $a+b+B \in \mathrm{im} \phi$ and hence $\phi$ is onto. Let $a \in A$ be an element of $\mathrm{ker}(\phi)$. THen $a+B =B$ which holds iff $a \in B$ or equivalently if $a \in A \cap B$. Thus $\mathrm{ker}(\phi) = A \cap B$ and by the first isomorphism theorem we have our result. QED
+
+
+
+### State and Prove the 3rd Isomorphism Theroem for Rings
+#### My Solution:
+Let $I$ and $J$ be ideals of $R$ with $J \subseteq I$. Then $\frac{I}{J}$ is an ideal of $\frac{R}{J}$ and $\frac{(R/J)}{(I/J)} \cong \frac{R}{I}$.
+
+Proof:
+
+Since $I$ and $J$ are ideals, they are nonempty and so $I/J = \{a+J|a \in I\}$ is also nonempty. Let $a_1,a_2 \in I$ and let $r \in R$. By definition of addition and multiplication of cosets, we have
+$$(a_1+J)+(a_2+J)=(a_1+a_2)+J$$
+$$(r+J)(a_1+J)=ra_1+J$$
+and
+$$(a_1+J)(r+J)=a_1r+J$$
+Since $I$ is an ideal, $a_1+a_2,ra_1,$ and $a_1r$ are contained in$I$ so $I/J$ is an ideal of $R/J$. Consider the map $\phi:R/J \rightarrow R/I$ that sends $r+J$ to $r+I$. We claim that this is a well-defined onto homomorphism with kernel equal to $I/J$. This is fairly obvious to see as every input has an image in $R/I$. As for the kernel, take any $a+J \in I/J$ where $a \in I$. Well, $a+J \in R/J$ as well, and maps to $a+I = I$ because $a \in I$. Thus $I/J$ is the kernel. Thus we have proven the desired result by the first isomorphism theorem for rings. QED
+
+
+
+
+
+
+
+
+
 
 
 
