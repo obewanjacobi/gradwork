@@ -1,5 +1,5 @@
 ---
-title: "My Solutions to Old Quals"
+title: "My Solutions to Old Algebra Quals"
 author: "Jacob S Townson"
 date: "May-July 2017"
 output:
@@ -23,8 +23,6 @@ This document is written in reference to qualifying exams given at the Universit
 
 Jacob Townson
 
-
-# Algebra
 
 ## January 2016 Qual
 
