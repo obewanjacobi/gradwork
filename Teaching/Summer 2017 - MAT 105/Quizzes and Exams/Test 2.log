@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.24)  19 JUL 2017 11:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.24)  20 JUL 2017 11:52
 entering extended mode
 **"C:/Users/obewa_000/Documents/My real documents/University of Louisville/publ
 ic_work/Teaching/Summer 2017 - MAT 105/Quizzes and Exams/Test 2.tex"
@@ -503,11 +503,11 @@ Overfull \hbox (32.35057pt too wide) in paragraph at lines 34--36
 [1
 
 {C:/Users/obewa_000/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-[2] [3]
+[2] [3] [4]
 
 ====> A TOTAL OF 120 POINTS WERE READ.
 
-[4] ("Test 2.aux") ) 
+[5] ("Test 2.aux") ) 
 Here is how much of TeX's memory you used:
  12053 strings out of 493673
  237540 string characters out of 3143948
@@ -521,9 +521,9 @@ Here is how much of TeX's memory you used:
 pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/
 Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "Test 2.pdf" (4 pages, 64764 bytes).
+Output written on "Test 2.pdf" (5 pages, 65400 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
+ 41 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
