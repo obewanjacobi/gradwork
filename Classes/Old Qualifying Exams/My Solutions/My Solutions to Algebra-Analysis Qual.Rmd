@@ -273,6 +273,16 @@ Alternatively, the map $\Gamma$ is just the restriction to the subgroup $K$ of t
 
 
 
+### Let $F$ be a field and let $f(x) \in F[x]$. (a) What is the definition of the *splitting field* of the polynomial $f(x)$ over the field $F$. (b) Let $a \in F$. Show that $f(x)$ and $f(x+a)$ have the same splitting field over $F$.
+#### My Solution:
+(a)
+The extension field $K$ of $F$ is a splitting field for the polynomial $f(x) \in F[x]$ if $f(x)$ factors completely into linear factors in $K[x]$ and $f(x)$ does not factor completely into linear factors over any proper subfield of $K$ containing $F$.
+
+(b)
+
+
+
+
 
 
 
