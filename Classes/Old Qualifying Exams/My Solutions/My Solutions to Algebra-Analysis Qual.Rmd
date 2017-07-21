@@ -279,7 +279,7 @@ Alternatively, the map $\Gamma$ is just the restriction to the subgroup $K$ of t
 The extension field $K$ of $F$ is a splitting field for the polynomial $f(x) \in F[x]$ if $f(x)$ factors completely into linear factors in $K[x]$ and $f(x)$ does not factor completely into linear factors over any proper subfield of $K$ containing $F$.
 
 (b)
-
+Let $f(x) = c_1x^n+c_{n-1}x^{n-1}+...+c_1x_c_0$. Let $K$ be the splitting field of $f(x)$ over $F$. And finally, this all means that $f(x+a) = c_1(x+a)^n+c_{n-1}(x+a)^{n-1}+...+c_1(x+a)+c_0$. Since $K$ is the splitting field of $f(x)$ over $F$, we then know that $f(x)$ has roots $r_1,r_2,...,r_n \in K$. Also note that some of these $r_i$ values could be duplicates or even zeroes. So by definition, in $K$, $f(x) = (x+r_1)(x+r_2)...(x+r_n)$. This means that in $K$, $f(x+a) = (x+a+r_1)(x+a+r_2)...(x+a+r_n)$. From here it is easy to see that the roots of $f(x+a)$ are simply $r_1-a,r_2-a,...,r_n-a$. All of these values are in $K$ as well because for all $i$, $r_i \in K$ and $a \in F \subset K$. So because we can factor $f(x+a)$ into linear factors in $K$, $K$ must also be the splitting field of $f(x+a)$. Note, the situation in which we switch assumptions such that $K$ is the splitting field over $f(x+a)$ to prove that $K$ must also be the splitting field of $f(x)$ over $F$ is similar, so we leave this out. QED
 
 
 
