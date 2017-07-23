@@ -379,6 +379,31 @@ Finally, by the first isomorphism theorem, we have $G/ker(\theta) = G/Z(G) \cong
 
 
 
+### Let $G$ be a finite group and let $H \unlhd G$. Prove that for any Sylow $p$-subgroup $P$ of $G$, $P \cap H$ is a Sylow $p$-subgroup of $H$.
+#### My Solution:
+Since $P \cap H$ is a $p$-group, as it is contained $P$, we only need to show that $P \cap H$ has maximal $p$-power order in $N$. By the Sylow Theorem, $P \cap H$ is contained in a conjugate of $P$, which we'll call $K$ such that $K \subset gPg^{-1}$. Thus $g^{-1}Kg \subset P$. Also $g^{-1}Kg \subset g^{-1}Hg = H$, so $g^{-1}Kg \subset P \cap H \subset K$. Since $|K| = |g^{-1}Kg|$, we get that $|P \cap H| = |K|$, so $P \cap H = K$ is a $p$-Sylow subgroup of $H$. QED
+
+
+
+### Let $R$ be a commutative ring with unity and let $P \neq R$ be an ideal of $R$. Prove that the following are equivalent: (i) $P$ is prime, and (ii) For any ideals $I,J \in R$, if $IJ \subseteq P$ then $I \subseteq P$ or $J \subseteq P$.
+#### My Solution:
+(i) $\implies$ (ii)
+
+Let $IJ \subseteq P$ and suppose WLOG that $J \nsubseteq P$. Then there is some $b \in J$ such that $b \notin P$. But then $aRb \subseteq P$ for all $a \in I$, so by (i), $a \in P$ for all $a \in I$.
+
+(ii) $\implies$ (i)
+
+Let $IJ \subseteq P$ so that $I \subseteq P$ or $J \subseteq P$. Then if we let $a \in I$ and $b \in J$, if $aRb \subseteq P$, then $RaRb \subseteq P$, so by (ii), $a \in P$ or $b \in P$ which implies by definition that $P$ is prime.
+
+
+
+
+
+
+
+
+
+
 
 
 
