@@ -550,9 +550,7 @@ Since $I$ is an ideal, $a_1+a_2,ra_1,$ and $a_1r$ are contained in$I$ so $I/J$ i
 
 
 ## Definitions and Important Theorems (without proofs)
-
-- Let $F \subseteq K \subseteq L$ be fields. Then
-$$[L:F] = [L:K][K:F]$$
+### Group Theory
 
 - Hard to define in words, but remember what the dihedral group is ($D_2n$, where $n$ is the number of sides of the geometric representation).
 
@@ -585,8 +583,147 @@ $$\Gamma(gh)=\Gamma(g)\Gamma(h)$$
 
 - If $G$ is a group and $H \leq G$, the number of left cosets of $H$ in $G$ is called the *index* of $H$ in $G$, denoted $[G:H]$.
 
+- If $G$ is a group of prime order $p$, then $G$ is cyclic, hence $G \cong Z_p$.
+
+- If $G$ is a finite group and $x \in G$, then the order of $x$ divides the order of $G$. In particular $x^{|G|} = 1$ for all $x \in G$. 
+
+- (Cauchy's Theorem) If $G$ is a finite group and $p$ is a prime dividing $|G|$, then $G$ has an element of order $p$.
+
+- If $H$ and $K$ are finite subgroupd of a group then $|HK| = \frac{|H||K|}{|H \cap K|}$
+
+- If $H$ and $K$ are subgroups of a group, $HK$ is a subgroup iff $HK=KH$.
+
+- IF $G$ is a finite abelian group and $p$ is a prime dividing $|G|$, then $G$ contains an element of order $p$.
+
+- A group $G$ is called *simple* if $|G| > 1$ and the only normal subgroups of $G$ are $1$ and $G$. 
+
+- In a group $G$ a sequence of subgroups $1 = N_0 \leq N_1 \leq N_2 \leq ... \leq N_{k-1} \leq N_k = G$ is called a *composition series* if $N_i \unlhd N_{i+1}$ and $N_{i+1}/N_i$ is a simple group. 
+
+- If $G$ is a simple group of odd order, then $G \cong Z_p$ for some prime $p$.
+
+- A group $G$ is *solvable* if there is a chain of subgroups $1 = G_0 \unlhd G_1 \unlhd G_2 \unlhd ... \unlhd G_s = G$ such that $G_{i+1}/G_i$ is abelian for all $i$.
+
+- The permutation $\sigma$ is odd iff the number of cycles of even length in its cycle decomposition is odd. 
+
+- A group action is *faithful* if its kernel is the identity.
+
+- (Cayley's Theorem) Every group is isomorphic to a subgroup of some symmetric group. If $G$ is a group of order $n$, then $g$ is isomorphic to a subgroup of $S_n$.
+
+- If $G$ is a finite group of order $N$ and $p$ is the smallest prime dividing $|G|$, then any subgroup of index $p$ is normal.
+
+- Two elements $a$ and $b$ of $G$ are said to be *conjugate* in $G$ is there is some $g \in G$ such that $b = gag^{-1}$. The orbits of $G$ acting on itself by conjugation are called the *conjugacy classes* of $G$.
+
+- (The Class Equation) $|G| = |Z(G)| + \sum_{i=1}^{r}|G:C_G(g_i)|$.
+
+- Let $G$ be a group. An isomorphism from $G$ onto itself is called an *automorphism* of $G$.
+
+- Let $G$ be a group and let $g \in G$. Conjugation by $g$ is called an *inner automorphism* of $G$ and the subgroup of $Aut(G)$ consisting of all inner automorphisms is denoted by $Inn(G)$.
+
+- A subgroup $H$ of a group $G$ is called *characteristic* in $G$ if every automorphism of $G$ maps $H$ to itself.
+
+- (Sylow's Theorem) Let $G$ be a group of order $p^\alpha m$ where $p$ is a prime not dividing $m$. Then: (i) Sylow $p$-subgroups of $G$ exist, (ii) If $P$ is a Sylow $p$-subgroup of $G$ and $Q$ is any $p$-subgroup of $G$, then there exists $g \in G$ such that $Q \leq gPg^{-1}$, in particular two Sylow $p$-subgroups of $G$ are conjugate in $G$, and (iii) The number of Sylow $p$-subgroups of $G$ is of the form $1+kp$, or $n_p \equiv 1(mod (p))$.
+
+- If $P$ is a Sylow $p$-subgroup of $G$, then the following are equivalent: $P$ is characteristic in $G$; $P$ is the unique Sylow $p$-subgroup of $G$ ($n_p =1$); $P$ is normal in $G$.
+
+- A *maximal subgroup* of a group $G$ is a proper subgroup $M$ of $G$ such that there are no subgroups $H$ of $G$ with $M \leq H \leq G$.
 
 
+
+### Ring Theory
+
+- A *ring* $R$ is a set together with two binary operations $+$ and $\times$ satisfying the following properties:
+
+-- $(R, +)$ is an abelian group
+
+-- $\times$ is associative
+
+-- The distributive law holds for $R$
+
+- A ring $R$ is commutative if multiplication is commutative.
+
+- The ring $R$ is said to have an *identity* if there is an element $1 \in R$ such that $1a = a1 = a$ for all $a \in R$.
+
+- A ring $R$ with $1$ is called a *division ring* if every nonzero element $a \in R$ has a multiplicative inverse. A commutative division ring is called a *field*.
+
+- Let $R$ be a ring. A nonzero element of $a \in R$ is called a *zero divisor* if there is a nonzero element $b \in R$ such that either $ab =0$ or $ba=0$. 
+
+- Assume $R$ has an identity $1 \neq 0$. An element $u$ of $R$ is called a *unit* in $R$ if there is some $v$ in $R$ such that $uv = vu = 1$.
+
+- A commutative ring with identity $1 \neq 0$ is called an *integral domain* if it has no zero divisors. 
+
+- A subring of the ring $R$ is a subgroup of $R$ that is closed under multiplication.
+
+- Let $R$ and $S$ be rings. A *ring homomorphism* is a map $\phi : R \rightarrow S$ satisfying:
+
+(a) $\phi(a+b) = \phi(a) + \phi(b)$ for all $a,b \in R$
+
+(b) $\phi(ab) = \phi(a) \phi(b)$ for all $a,b \in R$.
+
+- The *kernel* of the ring homomorphism $\phi$ is the set of elements of $R$ that map to $0$ in $S$. 
+
+- A bijective ring homomorphism is a *ring isomorphism*.
+
+- Let $R$ and $S$ be rings and let $\phi: R \rightarrow S$ be a homomorphism. Then the image of $\phi$ is a subgring of $S$. Also, the kernel of $\phi$ is a subring of $R$.
+
+- Let $R$ be a ring and let $I$ be a subset of $R$, and let $ r \in R$. $rI = \{ra | a \in I\}$ and $Ir = \{ar | a \in I\}$. A subset $I$ of $R$ is a *left ideal* of $R$ if $I$ is a subring and $I$ is closed under left multiplication by elements from $R$, ie. $rI \subseteq I$ for all $r \in R$. A right ideal is identical to this, just replace left with right. Then an *ideal* is a subset $I$ of $R$ that is both a left and a right ideal. 
+
+- Let $a \in R$. $(a)$ is the ideal generated by $a$.
+
+- Let $I$ be an ideal of $R$. $I = R$ iff $I$ contains a unit. Assume $R$ is commutative. Then $R$ is a field iff its only ideals are $0$ and $R$.
+
+- An ideal $M$ in a ring $R$ is a *maximal ideal* if $M \neq R$ and the only ideals containing $M$ are $M$ and $R$.
+
+- Assume $R$ is commutative. The ideal $M$ is a maximal ideal iff the quotient ring $R/M$ is a field. 
+
+- Assume $R$ is commutative. An ideal $P$ is called a *prime ideal* if $P \neq R$ and whenever the product $ab$ of two elements $a,b \in R$ is an element of $P$, then at least one of $a$ and $B$ is an element of $P$.
+
+- Any function $N: R \rightarrow \mathbb{Z}^{+} \cup \{0\}$ with $N(0) =0$ is called a *norm* on the integral domain $R$. If $N(a) >0$ for $a \neq 0$ define $N$ to be a *positive norm*.
+
+- The integral domain $R$ is said to be a *Euclidean Domain* if there is a norm $N$ on $R$ such that for any two elements $a$ and $b$ of $R$ with $b \neq 0$ there exists elements $q$ and $r$ in $R$ such that 
+$$a = qb+r | r = 0 \lor N(r) < N(b)$$
+
+- A *Principle Ideal Domain* or *PID* is an integral domain in which every ideal is principal.
+
+- Every nonzero prime ideal in a PID is a maximal ideal.
+
+- If $R$ is any commutative ring such that the polynomial ring $R[x]$ is a PID (or a Euclidean Domain), then $R$ is necessarily a field.
+
+- Let $R$ be an integral domain. Suppose $r \in R$ is nonzero and is not a unit. Then $r$ is called *irreducible* in $R$ if whenever $r=ab$ with $a,b \in R$, at least one of $a$ or $b$ must be a unit in $R$. Otherwise $r$ is *reducible.
+
+- Let $R$ be an integral domain. The nonzero element $p \in R$ is called *prime* in $R$ if the ideal $(p)$ generated by $p$ is a prime ideal. In other words, a nonzero element $p$ isa prime if it is not a unit and whenever $p | ab$ for any $a,b \in R$, then either $p|a$ or $p|b$.
+
+- Let $R$ be an integral domain. Two elements $a$ and $b$ of $R$ differing by a unit are said to be *associate* in $R$.
+
+- In an integral domain a prime element is always irreducible.
+
+- In a PID a nonzero element is a prime iff it is irreducible.
+
+- A *Unique Factorization Domain* or *UFD* is an integral domain $R$ in which every nonzero element $r \in R$ which is not a unit has the following two proporties: (i) $r$ can be written as a finite product of irreducibles $p_i$ of $R$ (not necessarily distinct), so $r = p_1p_2...p_n$; and (ii) the decomposition in (i) is *unique up to associates*, namely, if $r = q_1q_2...q_m$ is another factorization of $r$ into irreducibles, then $m =n$ and there is some renumbering of the factors so that $p_i$ is associate to $q_i$ for all $i$.
+
+- In a UFD a nonzero element is a prime iff it's irreducible.
+
+- The integers $\mathbb{Z}$ are a UFD
+
+- finite fields $\subset$ fields $\subset$ Euclidean domains $\subset$ PIDs $\subset$ UFDs $\subset$ integral domains $\subset$ commutative rings
+
+- If $F$ is a field, then $F[x]$ is a PID and a UFD.
+
+- (Gauss' Lemma) Let $R$ be a UFD with field of fractions $F$ and let $p(x) \in R[x]$. If $p(x)$ is reducible in $F[x]$ then $p(x)$ is reducible in $R[x]$. 
+
+- $R$ is a UFD iff $R[x]$ is a UFD.
+
+- Let $F$ be a field and let $p(x) \in F[x]$. Then $p(x)$ has a factor of degree one iff $p(x)$ has a root in $F$.
+
+- (Eisenstein's Criterion) Let $P$ be a prime ideal of the integral domain $R$ and let $f(x) = x^n + a_{n-1}x^{n-1}+...+a_1x+a_0$ be a polynomial in $R[x]$. Suppose $a_{n-1},...,a_1,a_0$ are all elements of $P$ and suppose $a_0$ is not an element of $P^2$. Then $f(x)$ is irreducible in $R[x]$.
+
+
+
+### Galois Theory
+
+- Let $F \subseteq K \subseteq L$ be fields. Then
+$$[L:F] = [L:K][K:F]$$
+
+- 
 
 
 

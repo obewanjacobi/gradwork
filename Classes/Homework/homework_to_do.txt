@@ -2,7 +2,7 @@
 QUALS
 
 -Problem a Day from Practice Quals
-add definitions section to notes (on page 90)
+ch 13 starts field theory (p. 510)
 
 -Read the Problems
 -----------------------------------------------------
