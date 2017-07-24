@@ -2,7 +2,7 @@
 QUALS
 
 -Problem a Day from Practice Quals
-add definitions section to notes
+add definitions section to notes (on page 90)
 
 -Read the Problems
 -----------------------------------------------------
