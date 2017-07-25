@@ -1,10 +1,10 @@
 -----------------------------------------------------
 QUALS
 
--Problem a Day from Practice Quals
-ch 13 starts field theory (p. 510)
-
--Read the Problems
+Begin Final round of studying. Focus on 
+understanding how to recreate proofs for problems 
+done and understanding the proof methods, as well 
+as understand the new definitions added.
 -----------------------------------------------------
 TEACHING
 
