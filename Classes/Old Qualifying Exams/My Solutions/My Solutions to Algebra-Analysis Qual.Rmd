@@ -387,13 +387,21 @@ Since $P \cap H$ is a $p$-group, as it is contained $P$, we only need to show th
 
 ### Let $R$ be a commutative ring with unity and let $P \neq R$ be an ideal of $R$. Prove that the following are equivalent: (i) $P$ is prime, and (ii) For any ideals $I,J \in R$, if $IJ \subseteq P$ then $I \subseteq P$ or $J \subseteq P$.
 #### My Solution:
-(i) $\implies$ (ii)
+(i) $\implies$ ii
 
 Let $IJ \subseteq P$ and suppose WLOG that $J \nsubseteq P$. Then there is some $b \in J$ such that $b \notin P$. But then $aRb \subseteq P$ for all $a \in I$, so by (i), $a \in P$ for all $a \in I$.
 
-(ii) $\implies$ (i)
+(ii) $\implies$ i
 
 Let $IJ \subseteq P$ so that $I \subseteq P$ or $J \subseteq P$. Then if we let $a \in I$ and $b \in J$, if $aRb \subseteq P$, then $RaRb \subseteq P$, so by (ii), $a \in P$ or $b \in P$ which implies by definition that $P$ is prime.
+
+
+
+### Determine the Galois group of $f(x) = x^4 - 5x^2 +6$ over $\mathbb{Q}$. 
+#### My Solution:
+Recall that the Galois group of a separable polynomial $f(x) \in F[x]$ is defined to be the Galois group of the splitting field of $f(x)$ over $F$.
+
+Well, $f(x) = x^4 - 5x^2 +6 = (x^2-2)(x^2-3)$. We cannot factor $f(x)$ any futher in $\mathbb{Q}$ but in $\mathbb{Q}(\sqrt{2}, \sqrt{3}, i)$, $f(x)$ can be factored into linear factors. So the plitting field over $\mathbb{Q}$ is $\mathbb{Q}(\sqrt{2}, \sqrt{3}, i)$. So the Galois group is $\mathrm{Aut} (\frac{\mathbb{Q}(\sqrt{2}, \sqrt{3}, i)}{\mathbb{Q}})$. QED
 
 
 
@@ -433,10 +441,19 @@ Assume $D$ is an integral domain and a field. Then $D$ has only two ideals, the 
 
 
 
-
-### Suppose that $G$ is a ﬁnite group with even order. Prove that the number of conjugacy classes in $G$ with odd order is even. 
+### A *principal ideal ring* is a ring in which every ideal has a single generator. (a) Prove that an element of a principal ideal domain is prime iff it is irreducible. (b) Provide an example of a principal ideal ring containing an element which is prime but not irreducible.
 #### My Solution:
-Not yet solved
+(a)
+Recall that a PID is also an integral domain. Also recall that an integral domain is a commutative ring with no zero divisors. Also an element in an integral domain is irreducible if it is not equal to the product of two non-units. Also recall that if $R$ is our integral domain, $u \in R$ is a unit if for some $v \in R$, $uv = e$ where $e$ is the identity in $R$. Lastly, recall that $p \in R$ is prime if $p|ab \implies p|a$ or $p|b$. 
+
+Let $p \in R$ be a prime element where $R$ is an integral domain. Assume $p = ab$ where $a,b \in R$. Obviously $p|ab$, so because $p$ is prime, $p|a$ or $p|b$. WLOG, assume $p|a$ such that $px = a$ for some $x \in R$. If $1$ is the identity of $R$, then 
+$$1*a=a=px=(ab)x=a(bx)$$
+Because $R$ is an integral domain, $a$ can be cancelled out implying that $1=bx$, thus $b$ is a unit. This proves that $p$ is also irreducible in an integral domain. 
+
+Now assume that $p$ is irrecucible. To complete the proof, we want to show that $p$ is prime. If $p$ is irreducible, then $(p)$ is maximal in the set of all proper principal ideals of $R$. Since $R$ is a principal ideal domain then every ideal is principal, so in fact $(p)$ is maximal in $R$ itself. Since $R$ is an integral domain (because it's a PID), then $R$ has an identity. So then $(p)$ must be prime which implies $p$ must then be prime. QED
+
+(b)
+TO DO TONIGHT
 
 
 
