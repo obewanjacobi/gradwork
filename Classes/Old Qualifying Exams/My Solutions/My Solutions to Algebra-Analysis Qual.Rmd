@@ -401,7 +401,7 @@ Let $IJ \subseteq P$ so that $I \subseteq P$ or $J \subseteq P$. Then if we let 
 #### My Solution:
 Recall that the Galois group of a separable polynomial $f(x) \in F[x]$ is defined to be the Galois group of the splitting field of $f(x)$ over $F$.
 
-Well, $f(x) = x^4 - 5x^2 +6 = (x^2-2)(x^2-3)$. We cannot factor $f(x)$ any futher in $\mathbb{Q}$ but in $\mathbb{Q}(\sqrt{2}, \sqrt{3})$, $f(x)$ can be factored into linear factors. So the plitting field over $\mathbb{Q}$ is $\mathbb{Q}(\sqrt{2}, \sqrt{3})$. So the automorphisms in the Galois group map $\sqrt{2} \rightarrow -\sqrt{2}$, $\sqrt{3} \rightarrow -\sqrt{3}$, the identity map, and interchanging the $\sqrt{2}$ and $\sqrt{3}$. Thus the Galois group has order $4$, implying that the Galois group must be $(\mathbb{Z}/2\mathbb{Z})^2$. QED
+Well, $f(x) = x^4 - 5x^2 +6 = (x^2-2)(x^2-3)$. We cannot factor $f(x)$ any futher in $\mathbb{Q}$ but in $\mathbb{Q}(\sqrt{2}, \sqrt{3})$, $f(x)$ can be factored into linear factors. So the plitting field over $\mathbb{Q}$ is $\mathbb{Q}(\sqrt{2}, \sqrt{3})$. So the automorphisms in the Galois group map $\sqrt{2} \rightarrow -\sqrt{2}$, $\sqrt{3} \rightarrow -\sqrt{3}$, the identity map, and interchanging the $\sqrt{2}$ and $\sqrt{3}$. Thus the Galois group has order $4$ and is not cyclic, implying that the Galois group must be $\mathbb{Z}_2 \times \mathbb{Z}_2$. QED
 
 
 
@@ -473,7 +473,7 @@ Consider $\{1,\beta,\beta ^2, ..., \beta ^n\} \subseteq E$. So there exists $c_0
 
 
 
-### Let $a = \sqrt{1+\sqrt{2}}$ and put $E = \mathbb{Q}(a)$. (a) Find the minimal polynomial of $a$ over $\mathbb{Q}$. (b) Find $[E;\mathbb{Q}]$. (c) Identify the group $Gal(e/\mathbb{Q})$, the set of all automorphisms of $E$ which fix $\mathbb{Q}$.
+### Let $a = \sqrt{1+\sqrt{2}}$ and put $E = \mathbb{Q}(a)$. (a) Find the minimal polynomial of $a$ over $\mathbb{Q}$. (b) Find $[E;\mathbb{Q}]$. (c) Identify the group $Gal(E/\mathbb{Q})$, the set of all automorphisms of $E$ which fix $\mathbb{Q}$.
 #### My Solution:
 (a)
 We will denote the minimal polynomial here as $m(x)$. Consider $m(x) = x^4 - 2x^2 -1$. First we can see that $m(a)=0$. We can also see from Eisenstein's Criteria that $m(x)$ is irreducible in $\mathbb{Q}$. Thus $m(x)$ is indeed the minimal polynomial of $a$ over $\mathbb{Q}$. 
@@ -482,7 +482,12 @@ We will denote the minimal polynomial here as $m(x)$. Consider $m(x) = x^4 - 2x^
 We know that $[E:\mathbb{Q}] = \mathrm{deg}(m(x))$. Thus $[E:\mathbb{Q}]=4$.
 
 (c)
-Not yet Solved.
+Well, $Gal(E/\mathbb{Q})$ fixes all $q \in \mathbb{Q}$, so to find the automorphisms we just need to observe the roots. Well, there are $4$ possible automorphism maps for the roots:
+$$\sqrt{1+\sqrt{2}} \rightarrow \sqrt{1+\sqrt{2}}$$
+$$\sqrt{1+\sqrt{2}} \rightarrow -\sqrt{1+\sqrt{2}}$$
+$$\sqrt{1+\sqrt{2}} \rightarrow \sqrt{1-\sqrt{2}}$$
+$$\sqrt{1+\sqrt{2}} \rightarrow -\sqrt{1-\sqrt{2}}$$
+Notice first off that these automorphisms do not make a cyclic group, so our Galois group is not $\mathbb{Z}_4$, and our Galois group turns out to be $\mathbb{Z}_2 \times \mathbb{Z}_2$. QED
 
 
 
