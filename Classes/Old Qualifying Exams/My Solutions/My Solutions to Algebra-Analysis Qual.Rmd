@@ -3,13 +3,13 @@ title: "My Solutions to Old Algebra Quals"
 author: "Jacob S Townson"
 date: "May-July 2017"
 output:
-  html_document:
+  word_document:
     fig_height: 4
     fig_width: 5
   pdf_document:
     fig_height: 4
     fig_width: 5
-  word_document:
+  html_document:
     fig_height: 4
     fig_width: 5
 ---
@@ -147,14 +147,6 @@ First let $\mathbb{Q}(i+\sqrt{3}) = K$. It is obvious that $K \subset F$, so we'
 
 
 
-
-
-
-
-### Prove that for any prime $p$, the ﬁeld $\mathbb{F}_p$ with $p$ elements contains an element a such that $[\mathbb{F}_p( 3 \sqrt{a}) : \mathbb{F}_p] = 3$ if and only if $3$ divides $p−1$. (Hint: you may use the fact that for any ﬁnite ﬁeld $\mathbb{F}$, the multiplicative group $\mathbb{F}$ * is cyclic.)
-#### My Solution:
-
-Not yet solved
 
 
 
