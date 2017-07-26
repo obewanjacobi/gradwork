@@ -401,7 +401,7 @@ Let $IJ \subseteq P$ so that $I \subseteq P$ or $J \subseteq P$. Then if we let 
 #### My Solution:
 Recall that the Galois group of a separable polynomial $f(x) \in F[x]$ is defined to be the Galois group of the splitting field of $f(x)$ over $F$.
 
-Well, $f(x) = x^4 - 5x^2 +6 = (x^2-2)(x^2-3)$. We cannot factor $f(x)$ any futher in $\mathbb{Q}$ but in $\mathbb{Q}(\sqrt{2}, \sqrt{3})$, $f(x)$ can be factored into linear factors. So the plitting field over $\mathbb{Q}$ is $\mathbb{Q}(\sqrt{2}, \sqrt{3})$. So the automorphisms in the Galois group map $\sqrt{2} \rightarrow -\sqrt{2}$, $\sqrt{3} \rightarrow -\sqrt{3}$, the identity map, and interchanging the $\sqrt{2}$ and $\sqrt{3}$. Thus the Galois group has order $4$, implying that the Galois group must be $\mathbb{Z}_4$. QED
+Well, $f(x) = x^4 - 5x^2 +6 = (x^2-2)(x^2-3)$. We cannot factor $f(x)$ any futher in $\mathbb{Q}$ but in $\mathbb{Q}(\sqrt{2}, \sqrt{3})$, $f(x)$ can be factored into linear factors. So the plitting field over $\mathbb{Q}$ is $\mathbb{Q}(\sqrt{2}, \sqrt{3})$. So the automorphisms in the Galois group map $\sqrt{2} \rightarrow -\sqrt{2}$, $\sqrt{3} \rightarrow -\sqrt{3}$, the identity map, and interchanging the $\sqrt{2}$ and $\sqrt{3}$. Thus the Galois group has order $4$, implying that the Galois group must be $(\mathbb{Z}/2\mathbb{Z})^2$. QED
 
 
 
