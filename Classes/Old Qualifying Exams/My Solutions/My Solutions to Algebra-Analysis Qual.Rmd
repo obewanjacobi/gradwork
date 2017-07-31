@@ -3,13 +3,13 @@ title: "My Solutions to Old Algebra Quals"
 author: "Jacob S Townson"
 date: "May-July 2017"
 output:
+  word_document:
+    fig_height: 4
+    fig_width: 5
   pdf_document:
     fig_height: 4
     fig_width: 5
   html_document:
-    fig_height: 4
-    fig_width: 5
-  word_document:
     fig_height: 4
     fig_width: 5
 ---
@@ -480,6 +480,71 @@ $$\sqrt{1+\sqrt{2}} \rightarrow -\sqrt{1+\sqrt{2}}$$
 $$\sqrt{1+\sqrt{2}} \rightarrow \sqrt{1-\sqrt{2}}$$
 $$\sqrt{1+\sqrt{2}} \rightarrow -\sqrt{1-\sqrt{2}}$$
 Notice first off that these automorphisms do not make a cyclic group, so our Galois group is not $\mathbb{Z}_4$, and our Galois group turns out to be $\mathbb{Z}_2 \times \mathbb{Z}_2$. QED
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## August 2011
+### Let $R$ be an Artinian ring. (a) For every ideal $I$ in $R$ show that $R/I$ is Artinian. (b) Show that every prime ideal in $R$ is also a maximal ideal.
+#### My Solution:
+We will skip part (b) as it is a repeat of an earlier problem because if $R$ is Artinian, then it is an integral domain.
+
+(a)
+So for all descending chains of ideals in $R$
+$$I_1 \supseteq I_2 \supseteq ... \supseteq I_n \supseteq ...$$
+the descending chain stabilizes such that for some $I_i$, $I_i = I_{i+1}$. Well, note that $R/I = \{rI| \forall r \in R\}$. We will now prove a lemma stating that $J/I$ is an ideal of $R/I$ if $I$ and $J$ are ideals of $R$. 
+
+For all $r /in R$, $rJ = Jr = J$. So then for all $rI \in R/I$, $rI(J/I) = r(J/I) = J/I$. So $J/I$ is an ideal of $R$. 
+
+Now consider a descending chain of ideals 
+$$J_1 \supseteq J_2 \supseteq ... \supseteq J_n \supseteq ...$$
+where all $J_i$'s are ideals in $R$. Then 
+$$J_1/I \supseteq J_2/I \supseteq ... \supseteq J_n/I \supseteq ...$$
+is a descending chain of ideals in $R/I$. Let $J_m = J_{m+1}$ because $R$ is Artinian. Then $J_m/I = J_{m+1}/I$ because $J_m = J_{m+1}$. So $R/I$ is Artinian. QED
+
+
+
+
+
+
+
+
+
+
+
+
+
+## August 2008
+### Let $R = C[0,1]$ be the set of all continuous real-valued functions on $[0,1]$. Define addition and multiplication on $R$ as follows. For $f,g \in R$ and $x \in [0,1]$, $(f+g)(x) = f(x)+g(x)$ and $(fg)(x) = f(x)g(x)$. (a) Show that $R$ with these operations is a commutative ring with identity. (b) Find the units of $R$. (c) If $f \in R$ and $f^2 = f$, then show that $f=0_R$ or $f = 1_R$.
+#### My Solution:
+(a)
+The identity function here is obvious, it is $f(x) = 1$. 
+
+Let $f$ and $g$ be in $R$. Then $(f+g)(x) = f(x)+g(x) = g(x)+f(x) = (g+f)(x)$. So $(R, +)$ is Abelian.
+Also for all $f(x)$ there exists a $g(x)=-f(x)$ such that $f(x)+(-f(x)) = 0_R$. Hence because of this and because $g(x)-f(x)$ is a continuous function from $0$ to $1$, so $(R,+)$ is an Abelian group.
+
+Let $f,g,h \in R$. Consider $$((fg)h)(x) = (fg)h(x) = (fg)(x)h(x) = f(x)g(x)h(x) = f(x)((gh)(x)) = (f(gh))(x)$$ Thus multiplication is associative. 
+
+Let $f,g,h \in R$. Consider $$(f(g+h))(x) = f((h+h)(x))= f(g(x) + h(x)) = f(x)g(x) + f(x)h(x) = (fg)(x)+(fh)(x)$$ Thus $R$ follows the distributive property. Thus $R$ is a ring. It is also easy to see that $(fg)(x) = (gf)(x)$ because all of the functions are continuous on $[0,1]$. Thus $R$ is a commutative ring with identity $f(x) = 1$.
+
+(b)
+The units of $R$ are just the inverse functions of $f(x)$. ie. $(fg)(x) = 1$ iff $g(x) = f^{-1}(x)$. 
+
+(c)
+Let $f^2 = f$. Then $f^2(x) = f(x)f(x)$. Then by cancellation, $f(x) = 1_R$ or $f(x) = 0$. QED
+
+
 
 
 
