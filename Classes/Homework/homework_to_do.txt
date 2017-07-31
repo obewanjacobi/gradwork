@@ -1,10 +1,7 @@
 -----------------------------------------------------
 QUALS
 
-Begin Final round of studying. Focus on 
-understanding how to recreate proofs for problems 
-done and understanding the proof methods, as well 
-as understand the new definitions added.
+-Read Sylow proofs
 -----------------------------------------------------
 TEACHING
 
