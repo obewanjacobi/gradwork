@@ -3,13 +3,13 @@ title: "My Solutions to Old Algebra Quals"
 author: "Jacob S Townson"
 date: "May-July 2017"
 output:
-  word_document:
+  html_document:
     fig_height: 4
     fig_width: 5
   pdf_document:
     fig_height: 4
     fig_width: 5
-  html_document:
+  word_document:
     fig_height: 4
     fig_width: 5
 ---
