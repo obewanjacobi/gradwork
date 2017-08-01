@@ -3,13 +3,13 @@ title: "My Solutions to Old Algebra Quals"
 author: "Jacob S Townson"
 date: "May-July 2017"
 output:
-  html_document:
+  word_document:
     fig_height: 4
     fig_width: 5
   pdf_document:
     fig_height: 4
     fig_width: 5
-  word_document:
+  html_document:
     fig_height: 4
     fig_width: 5
 ---
@@ -170,7 +170,7 @@ To begin, we must understand what it means for a group to be simple. A simple gr
 
 To do this we will use Sylow's Theorem and a proof by contradiction.
 
-Let $G$ be a group of order $300$ such that $G$ is simple. Well, $300 = 3 \times 2^2 \times 5^2$. We will denote the number of Sylow-p subgroups as $n_p$. Notice then that $n_5 | 12$ and $n_5 = 1 + 5k$. This implies that $n_5 = 1$ or $6$. However, because $G$ is simple there cannot only be one Sylow-5 subgroup, otherwise we would have a proper nontrivial normal subgroup. Thus $n_5 = 6$. Because of this and because $G$ is simple, we can say that $G$ embeds into $S_6$ if we let $G$ act on the Sylow-5 subgroups by conjugation. But then by Lagrange's Theorem, $300$ should divide $6!$, which it does not. Thus we have a contradiction, which implies that $G$ is not simple, thus a group of order $300$ cannot be simple. QED
+Let $G$ be a group of order $300$ such that $G$ is simple. Well, $300 = 3 \times 2^2 \times 5^2$. We will denote the number of Sylow-p subgroups as $n_p$. Notice then that $n_5 | 12$ and $n_5 = 1 + 5k$. This implies that $n_5 = 1$ or $6$. However, because $G$ is simple there cannot only be one Sylow-5 subgroup, otherwise we would have a proper nontrivial normal subgroup. Thus $n_5 = 6$. Because of this, and because $G$ is simple, we can say that $G$ embeds into $S_6$ if we let $G$ act on the Sylow-5 subgroups by conjugation. But then by Lagrange's Theorem, $300$ should divide $6!$, which it does not. Thus we have a contradiction, which implies that $G$ is not simple, thus a group of order $300$ cannot be simple. QED
 
 
 
@@ -301,9 +301,9 @@ Thus $NH$ is a subgroup of $G$. QED
 
 ### Show that a group of order $56$ is not simple
 #### My Solution:
-Let $G$ be a group of order $56 = 2^3 * 7$. Then by Sylow's Theorem, $n_2 = 1$ or $7$ and $n_7 = 1$ or $8$. 
+Let $G$ be a group of order $56 = 2^3 * 7$. We will denote the number of Sylow-$p$ subgroups by $n_p$. So $n_2 = 2k + 1$ where $k \in \mathbb{Z^+}$ and $n_2 | 7$. Also $n_7 = 7j+1$ where $j \in \mathbb{Z^+}$ and $n_7 | 2^3 = 8$. So $n_2 \in \{1,7\}$ and $n_7 \in \{1,8\}$.
 
-Assume $n_2 = 7$ and $n_7 = 8$. Two different Sylow-7 subgroups intersect only in the identity. Also all of the Sylow-7 subgroups are conjugate by Sylow's Theorem, hence they're isomorphic. Then if $n_7 = 8$, we have that $G$ has at least $8*6=48$ elements of order $7$. The rest of the elements must be in a Sylow-2 subgroup which gives us a contradiction. Thus $n_2 =1$ or $n_7=1$, thus $G$ cannot be simple. QED
+If either $n_7$ or $n_2$ are $1$, then we're done as this means that there exists a normal proper nontrivial Sylow-$p$ subgroup in our group $G$. Consider $n_7 = 8$. Because $&$ is prime and the subgroups are cyclic, and because we know the subgroups intersect trivially, $n_7 = 8 \implies$ there exists $8*6 = 48$ non identity elements in all of the Sylow $7$-subgroups. Notice, $56=48+8$. But if $n_2 = 7$, then there are $8$ distinct elements in each of the Sylow-$2$ subgroups. But we run into a problem, because $56=48+8$, so then there must be only 1 Sylow-$2$ subgroup in order to have $56$ elements. Thus either $n_2 =1$ or $n_7 = 1$, thus $G$ could not be simple as it has a normal proper nontrivial subgroup. QED
 
 
 
@@ -451,9 +451,9 @@ In $\mathbb{Z}_6$ $2$ is prime but not irreducible because $2*4 = 2$ and neither
 
 ### Prove that $G$ is a simple group if it's order is $56$. 
 #### My Solution:
-Let $G$ be a group of order $56 = 2^3 * 7$. Then by Sylow's Theorem, $n_2 = 1$ or $7$ and $n_7 = 1$ or $8$. 
+Let $G$ be a group of order $56 = 2^3 * 7$. We will denote the number of Sylow-$p$ subgroups by $n_p$. So $n_2 = 2k + 1$ where $k \in \mathbb{Z^+}$ and $n_2 | 7$. Also $n_7 = 7j+1$ where $j \in \mathbb{Z^+}$ and $n_7 | 2^3 = 8$. So $n_2 \in \{1,7\}$ and $n_7 \in \{1,8\}$.
 
-Assume $n_2 = 7$ and $n_7 = 8$. Two different Sylow-7 subgroups intersect only in the identity. Also all of the Sylow-7 subgroups are conjugate by Sylow's Theorem, hence they're isomorphic. Then if $n_7 = 8$, we have that $G$ has at least $8*6=48$ elements of order $7$. The rest of the elements must be in a Sylow-2 subgroup which gives us a contradiction. Thus $n_2 =1$ or $n_7=1$, thus $G$ cannot be simple. QED
+If either $n_7$ or $n_2$ are $1$, then we're done as this means that there exists a normal proper nontrivial Sylow-$p$ subgroup in our group $G$. Consider $n_7 = 8$. Because $&$ is prime and the subgroups are cyclic, and because we know the subgroups intersect trivially, $n_7 = 8 \implies$ there exists $8*6 = 48$ non identity elements in all of the Sylow $7$-subgroups. Notice, $56=48+8$. But if $n_2 = 7$, then there are $8$ distinct elements in each of the Sylow-$2$ subgroups. But we run into a problem, because $56=48+8$, so then there must be only 1 Sylow-$2$ subgroup in order to have $56$ elements. Thus either $n_2 =1$ or $n_7 = 1$, thus $G$ could not be simple as it has a normal proper nontrivial subgroup. QED
 
 
 
@@ -543,6 +543,14 @@ The units of $R$ are just the inverse functions of $f(x)$. ie. $(fg)(x) = 1$ iff
 
 (c)
 Let $f^2 = f$. Then $f^2(x) = f(x)f(x)$. Then by cancellation, $f(x) = 1_R$ or $f(x) = 0$. QED
+
+
+
+### Prove that a group $G$ of order $10000=2^4 * 5^4$ cannot be simple.
+#### My Solution:
+Assume $G$ is simple and denote the number of Sylow-$p$ subgroups as $n_p$. Then $n_2 = 2k+1$ where $k \in \mathbb{Z^+}+\{0\}$ and $n_2 | 5^4 = 625$. Also, $n_5 = 5k+1$ where $k \in \mathbb{Z^+}+\{0\}$ and $n_5 | 2^4 = 16$. So $n_5 \in \{1,16\}$. Since $G$ is not simple by assumption, then $n_5 = 16$. 
+
+Thus because $G$ is smple and $n_5 = 16$, there exists $N \leq G$ such that $[G:N] = 16$. This implies that $G$ can be embedded in $S_{16}$ if we let $G$ act on $N$ by conjugation. But then by Lagrange's theorem $10,000$ should divide $16!$ which it does not. Thus we have a contradiction, so $G$ cannot be simple. QED
 
 
 
