@@ -1,10 +1,19 @@
 -----------------------------------------------------
+STATISTICS
+
+-----------------------------------------------------
+MODELING
+
+-----------------------------------------------------
+INDEPENDENT STUDY - BINGTUAN
+
+-----------------------------------------------------
 QUALS
 
-Practice
------------------------------------------------------
-TEACHING
+proofs of isomorphism theorems
 
-Note: Tests may need to be edited depending 
-on content successfully covered
+january 2015 NH \leq G
+
+august 2014 first question
+
 -----------------------------------------------------
