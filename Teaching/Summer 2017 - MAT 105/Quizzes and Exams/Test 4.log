@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.24)  3 AUG 2017 11:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.24)  3 AUG 2017 12:10
 entering extended mode
 **"C:/Users/obewa_000/Documents/My real documents/University of Louisville/publ
-ic_work/Teaching/Summer 2017 - MAT 105/Quizzes and Exams/Quiz 5.tex"
+ic_work/Teaching/Summer 2017 - MAT 105/Quizzes and Exams/Test 4.tex"
 
 ("C:/Users/obewa_000/Documents/My real documents/University of Louisville/publi
-c_work/Teaching/Summer 2017 - MAT 105/Quizzes and Exams/Quiz 5.tex"
+c_work/Teaching/Summer 2017 - MAT 105/Quizzes and Exams/Test 4.tex"
 LaTeX2e <2015/01/01> patch level 2
 Babel <3.9m> and hyphenation patterns for 69 languages loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -454,7 +454,7 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 LaTeX Warning: Unused global option(s):
     [epsfig].
 
-("Quiz 5.aux")
+("Test 4.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
@@ -496,32 +496,51 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 34.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Overfull \hbox (49.99231pt too wide) in paragraph at lines 34--36
-[]\OT1/cmr/m/n/10.95 Quiz 5 Au-gust 2   Name: $[]$
+Overfull \hbox (47.92393pt too wide) in paragraph at lines 34--36
+[]\OT1/cmr/m/n/10.95 Test 4 Au-gust 8   Name: $[]$
  []
 
-
-====> A TOTAL OF 25 POINTS WERE READ.
-
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
 [1
 
 {C:/Users/obewa_000/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-("Quiz 5.aux") ) 
+[2] [3]
+Overfull \hbox (36.34969pt too wide) in paragraph at lines 148--157
+ [] 
+ []
+
+
+Overfull \hbox (33.46008pt too wide) in paragraph at lines 167--176
+ [] 
+ []
+
+
+====> A TOTAL OF 100 POINTS WERE READ.
+
+[4] ("Test 4.aux") ) 
 Here is how much of TeX's memory you used:
  12053 strings out of 493673
  237540 string characters out of 3143948
- 269629 words of memory out of 3000000
+ 271629 words of memory out of 3000000
  15174 multiletter control sequences out of 15000+200000
  9865 words of font info for 39 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 55i,8n,54p,523b,117s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmb
-x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "Quiz 5.pdf" (1 page, 49246 bytes).
+ 55i,6n,54p,523b,152s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on "Test 4.pdf" (4 pages, 59699 bytes).
 PDF statistics:
- 25 PDF objects out of 1000 (max. 8388607)
+ 34 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
