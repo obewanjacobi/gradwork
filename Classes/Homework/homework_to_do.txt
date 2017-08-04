@@ -12,8 +12,4 @@ QUALS
 
 proofs of isomorphism theorems
 
-january 2015 NH \leq G
-
-august 2014 first question
-
 -----------------------------------------------------

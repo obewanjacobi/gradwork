@@ -491,6 +491,36 @@ Notice first off that these automorphisms do not make a cyclic group, so our Gal
 
 
 
+## January 2014
+### Let $q(x) = x^4 +1$. (a) Show that $q(x)$ is irreducible over $\mathbb{Q}$. (b) Determine the four roots of $q(x)$. (c) Let $S$ be the splitting field of $q(x)$ over $\mathbb{Q}$. Determine $[S: \mathbb{Q}]$. Justify. (d) Determine the Galois group of $q(x)$ over $\mathbb{Q}$. Justify.
+#### My Solution:
+(a)
+This is obviously irreducible by Eisenstein's Criteria. 
+
+(b)
+Let $\psi$ be the primitive $8^{th}$ root of unity. Then $\psi, \psi^2, \psi^3, \psi^4$ are the roots of $q(x)$.
+
+(c)
+Let $S = \mathbb{Q}(\psi)$. Since $q(x)$ is irreducible in $\mathbb{Q}$, and $q(x)$ can be reduced into linear factors in $\mathbb{Q}(\psi)$, $S$ must be the splitting field of $q(x)$ over $\mathbb{Q}$. Thus, with $q(x)$ as the minimal polynomial, $[S:\mathbb{Q}] = \mathrm{deg}(q(x))=4$.
+
+(d)
+We know by the fundamental theorem of Galois Theory that $|\mathrm{Gal}(S/\mathbb{Q})| = 4 = [S:\mathbb{Q}]$. Thus $\mathrm{Gal}(S/\mathbb{Q}) = \mathbb{Z}_4$ where $\psi$ maps to all possible powers of $\psi$. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
