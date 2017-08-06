@@ -300,7 +300,7 @@ $(document).ready(function () {
 <h4>My Solution:</h4>
 <ol style="list-style-type: lower-alpha">
 <li><p>The extension field <span class="math inline">\(K\)</span> of <span class="math inline">\(F\)</span> is a splitting field for the polynomial <span class="math inline">\(f(x) \in F[x]\)</span> if <span class="math inline">\(f(x)\)</span> factors completely into linear factors in <span class="math inline">\(K[x]\)</span> and <span class="math inline">\(f(x)\)</span> does not factor completely into linear factors over any proper subfield of <span class="math inline">\(K\)</span> containing <span class="math inline">\(F\)</span>.</p></li>
-<li><p>Let <span class="math inline">\(f(x) = c_1x^n+c_{n-1}x^{n-1}+...+c_1x_c_0\)</span>. Let <span class="math inline">\(K\)</span> be the splitting field of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\(F\)</span>. And finally, this all means that <span class="math inline">\(f(x+a) = c_1(x+a)^n+c_{n-1}(x+a)^{n-1}+...+c_1(x+a)+c_0\)</span>. Since <span class="math inline">\(K\)</span> is the splitting field of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\(F\)</span>, we then know that <span class="math inline">\(f(x)\)</span> has roots <span class="math inline">\(r_1,r_2,...,r_n \in K\)</span>. Also note that some of these <span class="math inline">\(r_i\)</span> values could be duplicates or even zeroes. So by definition, in <span class="math inline">\(K\)</span>, <span class="math inline">\(f(x) = (x-r_1)(x-r_2)...(x-r_n)\)</span>. This means that in <span class="math inline">\(K\)</span>, <span class="math inline">\(f(x+a) = (x+a-r_1)(x+a-r_2)...(x+a-r_n)\)</span>. From here it is easy to see that the roots of <span class="math inline">\(f(x+a)\)</span> are simply <span class="math inline">\(r_1-a,r_2-a,...,r_n-a\)</span>. All of these values are in <span class="math inline">\(K\)</span> as well because for all <span class="math inline">\(i\)</span>, <span class="math inline">\(r_i \in K\)</span> and <span class="math inline">\(a \in F \subset K\)</span>. So because we can factor <span class="math inline">\(f(x+a)\)</span> into linear factors in <span class="math inline">\(K\)</span>, <span class="math inline">\(K\)</span> must also be the splitting field of <span class="math inline">\(f(x+a)\)</span>. Note, the situation in which we switch assumptions such that <span class="math inline">\(K\)</span> is the splitting field over <span class="math inline">\(f(x+a)\)</span> to prove that <span class="math inline">\(K\)</span> must also be the splitting field of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\(F\)</span> is similar, so we leave this out. QED</p></li>
+<li><p>Let <span class="math inline">\(f(x) = c_1x^n+c_{n-1}x^{n-1}+...+c_1x+c_0\)</span>. Let <span class="math inline">\(K\)</span> be the splitting field of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\(F\)</span>. And finally, this all means that <span class="math inline">\(f(x+a) = c_1(x+a)^n+c_{n-1}(x+a)^{n-1}+...+c_1(x+a)+c_0\)</span>. Since <span class="math inline">\(K\)</span> is the splitting field of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\(F\)</span>, we then know that <span class="math inline">\(f(x)\)</span> has roots <span class="math inline">\(r_1,r_2,...,r_n \in K\)</span>. Also note that some of these <span class="math inline">\(r_i\)</span> values could be duplicates or even zeroes. So by definition, in <span class="math inline">\(K\)</span>, <span class="math inline">\(f(x) = (x-r_1)(x-r_2)...(x-r_n)\)</span>. This means that in <span class="math inline">\(K\)</span>, <span class="math inline">\(f(x+a) = (x+a-r_1)(x+a-r_2)...(x+a-r_n)\)</span>. From here it is easy to see that the roots of <span class="math inline">\(f(x+a)\)</span> are simply <span class="math inline">\(r_1-a,r_2-a,...,r_n-a\)</span>. All of these values are in <span class="math inline">\(K\)</span> as well because for all <span class="math inline">\(i\)</span>, <span class="math inline">\(r_i \in K\)</span> and <span class="math inline">\(a \in F \subset K\)</span>. So because we can factor <span class="math inline">\(f(x+a)\)</span> into linear factors in <span class="math inline">\(K\)</span>, <span class="math inline">\(K\)</span> must also be the splitting field of <span class="math inline">\(f(x+a)\)</span>. Note, the situation in which we switch assumptions such that <span class="math inline">\(K\)</span> is the splitting field over <span class="math inline">\(f(x+a)\)</span> to prove that <span class="math inline">\(K\)</span> must also be the splitting field of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\(F\)</span> is similar, so we leave this out. QED</p></li>
 </ol>
 </div>
 </div>
@@ -569,12 +569,67 @@ $(document).ready(function () {
 <p>Now consider a descending chain of ideals <span class="math display">\[J_1 \supseteq J_2 \supseteq ... \supseteq J_n \supseteq ...\]</span> where all <span class="math inline">\(J_i\)</span>’s are ideals in <span class="math inline">\(R\)</span>. Then <span class="math display">\[J_1/I \supseteq J_2/I \supseteq ... \supseteq J_n/I \supseteq ...\]</span> is a descending chain of ideals in <span class="math inline">\(R/I\)</span>. Let <span class="math inline">\(J_m = J_{m+1}\)</span> because <span class="math inline">\(R\)</span> is Artinian. Then <span class="math inline">\(J_m/I = J_{m+1}/I\)</span> because <span class="math inline">\(J_m = J_{m+1}\)</span>. So <span class="math inline">\(R/I\)</span> is Artinian. QED</p>
 </div>
 </div>
+<div id="let-h-be-the-set-of-all-3-times-3-upper-right-triangular-matrices-with-1-in-the-diagonal.-prove-that-h-is-a-noncommutative-group-under-matrix-multiplication." class="section level3">
+<h3>Let <span class="math inline">\(H\)</span> be the set of all <span class="math inline">\(3 \times 3\)</span> upper right triangular matrices with <span class="math inline">\(1\)</span> in the diagonal. Prove that <span class="math inline">\(H\)</span> is a noncommutative group under matrix multiplication.</h3>
+<div id="my-solution-44" class="section level4">
+<h4>My Solution:</h4>
+<p>First off, in order to be a group all elements must be closed under the operation, the operation must be associative, and ther must be an identity and an inverse. Also, for the sake of simplicity, let <span class="math display">\[A = \bigl( \begin{smallmatrix}1 &amp; a &amp; b\\ 0 &amp; 1 &amp; c\\ 0 &amp; 0 &amp; 1 \end{smallmatrix}\bigr) \in H\]</span> <span class="math display">\[B = \bigl( \begin{smallmatrix}1 &amp; x &amp; y\\ 0 &amp; 1 &amp; z\\ 0 &amp; 0 &amp; 1 \end{smallmatrix}\bigr) \in H\]</span> <span class="math display">\[C = \bigl( \begin{smallmatrix}1 &amp; 1-a &amp; c-b\\ 0 &amp; 1 &amp; -c\\ 0 &amp; 0 &amp; 1 \end{smallmatrix}\bigr) \in H\]</span></p>
+<p>Well, the identity is obviously the identity matrix <span class="math inline">\(I = \bigl( \begin{smallmatrix}1 &amp; 0 &amp; 0\\ 0 &amp; 1 &amp; 0\\ 0 &amp; 0 &amp; 1 \end{smallmatrix}\bigr)\)</span>. Also, <span class="math display">\[A \times B = \bigl( \begin{smallmatrix}1 &amp; x+a &amp; y+az+b\\ 0 &amp; 1 &amp; z+c\\ 0 &amp; 0 &amp; 1 \end{smallmatrix}\bigr) \in H\]</span> So <span class="math inline">\(H\)</span> is closed under the operation. We can also check that <span class="math inline">\(A \times C = C \times A = I\)</span>, thus we have an inverse. And finally, we know from experience that matrix multiplication is associative, thus <span class="math inline">\(H\)</span> is indeed a group. So the last thing here to show is just that <span class="math inline">\(H\)</span> is not an Abelian group. Well, using <span class="math inline">\(A \times B\)</span> that we found above, we can check <span class="math display">\[B \times A = \bigl( \begin{smallmatrix}1 &amp; x+a &amp; cx+y+b\\ 0 &amp; 1 &amp; z+c\\ 0 &amp; 0 &amp; 1 \end{smallmatrix}\bigr) \neq A \times B\]</span> Thus <span class="math inline">\(H\)</span> is a noncommutative group. QED</p>
+</div>
+</div>
+<div id="let-h-and-k-be-normal-subgroups-of-a-group-g.-assume-that-hk-g-and-h-cap-k-1.-a-prove-that-hk-kh-for-all-h-in-h-and-k-in-k.-b-prove-that-g-is-isomorphic-to-h-times-k." class="section level3">
+<h3>Let <span class="math inline">\(H\)</span> and <span class="math inline">\(K\)</span> be normal subgroups of a group <span class="math inline">\(G\)</span>. Assume that <span class="math inline">\(HK = G\)</span> and <span class="math inline">\(H \cap K = \{1\}\)</span>. (a) Prove that <span class="math inline">\(hk = kh\)</span> for all <span class="math inline">\(h \in H\)</span> and <span class="math inline">\(k \in K\)</span>. (b) Prove that <span class="math inline">\(G\)</span> is isomorphic to <span class="math inline">\(H \times K\)</span>.</h3>
+<div id="my-solution-45" class="section level4">
+<h4>My Solution:</h4>
+<ol style="list-style-type: lower-alpha">
+<li><p>For all <span class="math inline">\(h \in H\)</span> and <span class="math inline">\(k \in K\)</span> we have <span class="math display">\[hkh^{-1}k^{-1} = (hkh^{-1})k^{-1} = h(kh^{-1}k^{-1}) \in H \cap K\]</span> so <span class="math inline">\(hkh^{-1}k^{-1} = e\)</span> if <span class="math inline">\(e =1\)</span> is the identity. This implies that <span class="math inline">\(hk = kh\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(f : H \times K \rightarrow G\)</span> such that <span class="math inline">\(f(h,k) = hk\)</span>. For any <span class="math inline">\(h, h' \in H\)</span> and <span class="math inline">\(k, k' \in K\)</span>, <span class="math display">\[f(h,k)f(h',k') = (hk)(h'k') = hh'kk'=(hh')(kk') = f(hh',kk') = f((h,k)(h',k'))\]</span> Thus <span class="math inline">\(f\)</span> is a homomorphism. Since <span class="math inline">\(HK = G\)</span>, any element <span class="math inline">\(g \in G\)</span> is simply <span class="math inline">\(g = hk\)</span> for some <span class="math inline">\(h \in H\)</span> and <span class="math inline">\(k \in K\)</span>, and <span class="math inline">\(f(h,k) = hk = g\)</span> so <span class="math inline">\(f\)</span> is obviously onto. Finally if <span class="math inline">\((h,k) \in \mathrm{ker}(f)\)</span>, then <span class="math inline">\(hk = e\)</span>. So <span class="math inline">\(h = k^{-1} \in H \cap K = \{1\}\)</span> so <span class="math inline">\((h,k) = (e,e)\)</span> which implies that <span class="math inline">\(f\)</span> is one-to-one. Thus <span class="math inline">\(f\)</span> must be an isomorphism. QED</p></li>
+</ol>
+</div>
+</div>
+<div id="show-that-every-prime-element-in-an-integral-domain-is-irreducible.-1" class="section level3">
+<h3>Show that every prime element in an integral domain is irreducible.</h3>
+<div id="my-solution-46" class="section level4">
+<h4>My Solution:</h4>
+<p>Let <span class="math inline">\(R\)</span> be an integral domain. Let <span class="math inline">\(p \in R\)</span> be a prime element in <span class="math inline">\(R\)</span>. Assume <span class="math inline">\(p=ab\)</span>. This implies that <span class="math inline">\(p|a\)</span> or <span class="math inline">\(p|b\)</span>. WLOG, assume that <span class="math inline">\(p|a\)</span>. Then <span class="math inline">\(pq = a\)</span> for some <span class="math inline">\(q \in R\)</span>. Thus <span class="math display">\[1*a = a = pq = abq \implies 1 = bq\]</span> Thus <span class="math inline">\(b\)</span> is a unit and <span class="math inline">\(p\)</span> must be irreducible. QED</p>
+</div>
+</div>
+<div id="consider-the-set-mathbbzi-the-gaussian-integers.-a-show-that-mathbbzi-is-an-integral-domain.-b-find-all-units-of-mathbbzi.-c-it-is-known-that-mathbbzi-is-a-ufd.-does-13-23i2-3i32i3-2i-contradict-this-fact-d-express-5-as-a-product-of-irreducible-elements-in-mathbbzi." class="section level3">
+<h3>Consider the set <span class="math inline">\(\mathbb{Z}[i]\)</span>, the <em>Gaussian integers</em>. (a) Show that <span class="math inline">\(\mathbb{Z}[i]\)</span> is an integral domain. (b) Find all units of <span class="math inline">\(\mathbb{Z}[i]\)</span>. (c) It is known that <span class="math inline">\(\mathbb{Z}[i]\)</span> is a UFD. Does <span class="math inline">\(13 = (2+3i)(2-3i)=(3+2i)(3-2i)\)</span> contradict this fact? (d) Express <span class="math inline">\(5\)</span> as a product of irreducible elements in <span class="math inline">\(\mathbb{Z}[i]\)</span>.</h3>
+<div id="my-solution-47" class="section level4">
+<h4>My Solution:</h4>
+<ol style="list-style-type: lower-alpha">
+<li><p>In order for <span class="math inline">\(\mathbb{Z}[i]\)</span> to be an integral domain, it must contain no zero divisors. Let <span class="math inline">\(a,b \in \mathbb{Z}[i]\)</span> such that <span class="math inline">\(ab = 0\)</span>. Well, if <span class="math inline">\(a = x+yi\)</span> and <span class="math inline">\(b = w+zi\)</span> then <span class="math display">\[ab = (x+yi)(w+zi) = xw+yi+xzi+yizi\]</span> <span class="math display">\[= (xw-yz)+i(yw+xz) = 0\]</span> This implies that <span class="math inline">\(xw = yz\)</span> and <span class="math inline">\(yw = -xz\)</span>, but this is only the case if either <span class="math inline">\(x,y = 0\)</span> or <span class="math inline">\(w,z = 0\)</span>. Thus <span class="math inline">\(\mathbb{Z}[i]\)</span> is an integral domain.</p></li>
+<li><p>The units of <span class="math inline">\(\mathbb{Z}[i]\)</span> are <span class="math inline">\(\{1,-1,i,-i\}\)</span> because <span class="math inline">\((a+bi)(c+di)=xy = 1\)</span> is only true for these values.</p></li>
+<li><p>No, because <span class="math inline">\((2+3i)\)</span> is an associate of <span class="math inline">\(3-2i\)</span> because <span class="math inline">\((2+3i)*-i = 3-2i\)</span>. Similarly, <span class="math inline">\(2-3i\)</span> is an associate of <span class="math inline">\(3+2i\)</span> because <span class="math inline">\((2-3i)*i = 3+2i\)</span>. Thus this does not make a contradiction.</p></li>
+<li><p><span class="math inline">\(5=(1+2i)(1-2i)\)</span></p></li>
+</ol>
+</div>
+</div>
+<div id="prove-that-every-finite-integral-domain-is-a-field." class="section level3">
+<h3>Prove that every finite integral domain is a field.</h3>
+<div id="my-solution-48" class="section level4">
+<h4>My Solution:</h4>
+<p>Let <span class="math inline">\(R\)</span> be a finite integral domain with <span class="math inline">\(0 \neq a \in R\)</span>. Consider <span class="math inline">\(a,a^2,a^3,...\)</span>, since there are only finitely many elements, we must have <span class="math inline">\(a^m = a^n\)</span> where <span class="math inline">\(m &lt; n\)</span>. Then <span class="math display">\[0 = a^m - a^n = a^m(1-a^{n-m})\]</span> Since there are no zero divisors, we must have <span class="math inline">\(a^m \neq 0\)</span> and hence <span class="math inline">\(1-a^{n-m} = 0\)</span> which implies that <span class="math inline">\(1 = a(a^{n-m-1})\)</span>. Thus <span class="math inline">\(a \in R\)</span> has a multiplicative inverse, thus <span class="math inline">\(R\)</span> is a field. QED</p>
+</div>
+</div>
+<div id="a-show-that-the-polynomial-fx-x4--2-is-irreducible-over-mathbbq.-b-find-a-factorization-of-fx-into-linear-factors-over-mathbbc.-find-the-splitting-field-f-of-fx-over-mathbbq.-c-find-the-degree-of-f-over-mathbbq.-justify." class="section level3">
+<h3>(a) Show that the polynomial <span class="math inline">\(f(x) = x^4 -2\)</span> is irreducible over <span class="math inline">\(\mathbb{Q}\)</span>. (b) Find a factorization of <span class="math inline">\(f(x)\)</span> into linear factors over <span class="math inline">\(\mathbb{C}\)</span>. Find the splitting field <span class="math inline">\(F\)</span> of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\(\mathbb{Q}\)</span>. (c) Find the degree of <span class="math inline">\(F\)</span> over <span class="math inline">\(\mathbb{Q}\)</span>. Justify.</h3>
+<div id="my-solution-49" class="section level4">
+<h4>My Solution:</h4>
+<ol style="list-style-type: lower-alpha">
+<li><p>It is easy to see by Eisenstein’s Criteria that <span class="math inline">\(f(x)\)</span> is irreducible over <span class="math inline">\(\mathbb{Q}\)</span>.</p></li>
+<li><p><span class="math display">\[f(x) = x^4 - 2 = (x^2 + \sqrt{2})(x^2 - \sqrt{2})\]</span> <span class="math display">\[= (x+i \sqrt[4]{2})(x-i \sqrt[4]{2})(x- \sqrt[4]{2})(x+ \sqrt[4]{2})\]</span> Thus we can easily see that the splitting field of <span class="math inline">\(f(x)\)</span> over <span class="math inline">\(\mathbb{Q}\)</span> will be <span class="math inline">\(F = \mathbb{Q}(\sqrt[4]{2},i)\)</span> as <span class="math inline">\(f(x)\)</span> can be factored into linear factors in <span class="math inline">\(F\)</span>.</p></li>
+<li><p>Here we will use what I like to call the <em>double extension lemma</em>. Using it, we find that <span class="math display">\[[\mathbb{Q}(\sqrt[4]{2},i):\mathbb{Q}]=[\mathbb{Q}(\sqrt[4]{2},i):\mathbb{Q}(i)][\mathbb{Q}(i):\mathbb{Q}]\]</span> Using this we can find that <span class="math display">\[[\mathbb{Q}(\sqrt[4]{2},i):\mathbb{Q}] = \mathrm{deg}(x^4 - 2) \times \mathrm{deg}(x^2+1) = 4 \times 2 = 8\]</span> Thus the degree of the extension is <span class="math inline">\(8\)</span>. QED</p></li>
+</ol>
+</div>
+</div>
 </div>
 <div id="august-2008" class="section level2">
 <h2>August 2008</h2>
 <div id="let-r-c01-be-the-set-of-all-continuous-real-valued-functions-on-01.-define-addition-and-multiplication-on-r-as-follows.-for-fg-in-r-and-x-in-01-fgx-fxgx-and-fgx-fxgx.-a-show-that-r-with-these-operations-is-a-commutative-ring-with-identity.-b-find-the-units-of-r.-c-if-f-in-r-and-f2-f-then-show-that-f0_r-or-f-1_r." class="section level3">
 <h3>Let <span class="math inline">\(R = C[0,1]\)</span> be the set of all continuous real-valued functions on <span class="math inline">\([0,1]\)</span>. Define addition and multiplication on <span class="math inline">\(R\)</span> as follows. For <span class="math inline">\(f,g \in R\)</span> and <span class="math inline">\(x \in [0,1]\)</span>, <span class="math inline">\((f+g)(x) = f(x)+g(x)\)</span> and <span class="math inline">\((fg)(x) = f(x)g(x)\)</span>. (a) Show that <span class="math inline">\(R\)</span> with these operations is a commutative ring with identity. (b) Find the units of <span class="math inline">\(R\)</span>. (c) If <span class="math inline">\(f \in R\)</span> and <span class="math inline">\(f^2 = f\)</span>, then show that <span class="math inline">\(f=0_R\)</span> or <span class="math inline">\(f = 1_R\)</span>.</h3>
-<div id="my-solution-44" class="section level4">
+<div id="my-solution-50" class="section level4">
 <h4>My Solution:</h4>
 <ol style="list-style-type: lower-alpha">
 <li>The identity function here is obvious, it is <span class="math inline">\(f(x) = 1\)</span>.</li>
@@ -590,7 +645,7 @@ $(document).ready(function () {
 </div>
 <div id="prove-that-a-group-g-of-order-1000024-54-cannot-be-simple." class="section level3">
 <h3>Prove that a group <span class="math inline">\(G\)</span> of order <span class="math inline">\(10000=2^4 * 5^4\)</span> cannot be simple.</h3>
-<div id="my-solution-45" class="section level4">
+<div id="my-solution-51" class="section level4">
 <h4>My Solution:</h4>
 <p>Assume <span class="math inline">\(G\)</span> is simple and denote the number of Sylow-<span class="math inline">\(p\)</span> subgroups as <span class="math inline">\(n_p\)</span>. Then <span class="math inline">\(n_2 = 2k+1\)</span> where <span class="math inline">\(k \in \mathbb{Z^+}+\{0\}\)</span> and <span class="math inline">\(n_2 | 5^4 = 625\)</span>. Also, <span class="math inline">\(n_5 = 5k+1\)</span> where <span class="math inline">\(k \in \mathbb{Z^+}+\{0\}\)</span> and <span class="math inline">\(n_5 | 2^4 = 16\)</span>. So <span class="math inline">\(n_5 \in \{1,16\}\)</span>. Since <span class="math inline">\(G\)</span> is not simple by assumption, then <span class="math inline">\(n_5 = 16\)</span>.</p>
 <p>Thus because <span class="math inline">\(G\)</span> is smple and <span class="math inline">\(n_5 = 16\)</span>, there exists <span class="math inline">\(N \leq G\)</span> such that <span class="math inline">\([G:N] = 16\)</span>. This implies that <span class="math inline">\(G\)</span> can be embedded in <span class="math inline">\(S_{16}\)</span> if we let <span class="math inline">\(G\)</span> act on <span class="math inline">\(N\)</span> by conjugation. But then by Lagrange’s theorem <span class="math inline">\(10,000\)</span> should divide <span class="math inline">\(16!\)</span> which it does not. Thus we have a contradiction, so <span class="math inline">\(G\)</span> cannot be simple. QED</p>
@@ -601,7 +656,7 @@ $(document).ready(function () {
 <h2>Important proofs (not specific to Qualifiers)</h2>
 <div id="prove-the-first-isomorphism-theorem-for-groups" class="section level3">
 <h3>Prove the First Isomorphism Theorem for Groups</h3>
-<div id="my-solution-46" class="section level4">
+<div id="my-solution-52" class="section level4">
 <h4>My Solution</h4>
 <p>First we will state the theorem itself:</p>
 <p>Let <span class="math inline">\(\phi : G \rightarrow H\)</span> be a homomorphism of groups, then <span class="math inline">\(\mathrm{ker} \phi \unlhd G\)</span> and <span class="math inline">\(\frac{G}{\mathrm{ker}\phi} \cong \phi(G)\)</span>.</p>
@@ -610,7 +665,7 @@ $(document).ready(function () {
 </div>
 <div id="prove-the-2nd-isomorphism-theorem-for-groups" class="section level3">
 <h3>Prove the 2nd Isomorphism Theorem for Groups</h3>
-<div id="my-solution-47" class="section level4">
+<div id="my-solution-53" class="section level4">
 <h4>My Solution:</h4>
 <p>First we must state it. Let <span class="math inline">\(G\)</span> be an arbitrary group. For any two subgroups <span class="math inline">\(H\)</span> and <span class="math inline">\(K\)</span> of <span class="math inline">\(G\)</span>, define <span class="math inline">\(HK = \{ hk | h \in H, k \in K\}\)</span>. Assume <span class="math inline">\(H \unlhd G\)</span> and <span class="math inline">\(K \leq G\)</span>. Then: (a) <span class="math inline">\(HK \leq G\)</span>. (b) <span class="math inline">\(H \unlhd HK\)</span> and <span class="math inline">\((H \cap K) \unlhd K\)</span>. (c) <span class="math inline">\(\frac{HK}{H} \cong \frac{K}{H \cap K}\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
@@ -622,7 +677,7 @@ $(document).ready(function () {
 </div>
 <div id="state-and-prove-the-3rd-isomorphism-theorem-for-groups" class="section level3">
 <h3>State and Prove the 3rd Isomorphism Theorem for Groups</h3>
-<div id="my-solution-48" class="section level4">
+<div id="my-solution-54" class="section level4">
 <h4>My Solution:</h4>
 <p>First (once again) we must state it first. Let <span class="math inline">\(K,N \unlhd G\)</span> with <span class="math inline">\(N \leq K\)</span>. Then <span class="math inline">\(K/N \unlhd G/N\)</span> and <span class="math inline">\((G/N)/(K/N) \cong G/K\)</span>.</p>
 <p>The proof that <span class="math inline">\(K/N \unlhd G/N\)</span> is easy and follows from the 4th Isomorphism Theorem for Groups, so we will leave this aside. Now, define <span class="math display">\[\phi: G/N \rightarrow G/K\]</span> by <span class="math inline">\(\phi(Ng) = Kg\)</span>. By the First Isomorphism Theroem, <span class="math inline">\((G/N)/\mathrm{ker}(\phi) \cong \phi(G)\)</span>. It is clear that <span class="math inline">\(\phi\)</span> is onto, so <span class="math inline">\(\phi(G) = G/K\)</span>. Now <span class="math display">\[\mathrm{ker}(\phi) = \{Ng \in G/N | Kg = K\} = \{Ng \in G/N | g \in K\} = K/N\]</span> Thus by the First Isomorphism Theorem, <span class="math inline">\((G/N)/(K/N) \cong G/K\)</span>. QED</p>
@@ -630,7 +685,7 @@ $(document).ready(function () {
 </div>
 <div id="state-and-prove-the-1st-isomorphism-theorem-for-rings" class="section level3">
 <h3>State and Prove the 1st Isomorphism Theorem for Rings</h3>
-<div id="my-solution-49" class="section level4">
+<div id="my-solution-55" class="section level4">
 <h4>My Solution:</h4>
 <p>If <span class="math inline">\(\phi: R \rightarrow S\)</span> is a homomorphism of rings, then the kernel of <span class="math inline">\(\phi\)</span> is an ideal of <span class="math inline">\(R\)</span>, the image of <span class="math inline">\(\phi\)</span> is a subring of <span class="math inline">\(S\)</span>, and <span class="math inline">\(R/\mathrm{ker}(\phi) \cong \phi(R)\)</span></p>
 <p>Proof:</p>
@@ -639,7 +694,7 @@ $(document).ready(function () {
 </div>
 <div id="state-and-prove-the-2nd-isomorphism-theorem-for-rings" class="section level3">
 <h3>State and Prove the 2nd Isomorphism Theorem for Rings</h3>
-<div id="my-solution-50" class="section level4">
+<div id="my-solution-56" class="section level4">
 <h4>My Solution:</h4>
 <p>Let <span class="math inline">\(A\)</span> be a subgring and let <span class="math inline">\(B\)</span> be an ideal of <span class="math inline">\(R\)</span>. Then <span class="math inline">\(A+B = \{a+b| a \in A, b \in B\}\)</span> is a subring of <span class="math inline">\(R\)</span>, <span class="math inline">\(A \cap B\)</span> is an ideal of <span class="math inline">\(A\)</span> and <span class="math inline">\(\frac{(A+B)}{B} \cong \frac{A}{(A \cap B)}\)</span></p>
 <p>Proof:</p>
@@ -652,7 +707,7 @@ $(document).ready(function () {
 </div>
 <div id="state-and-prove-the-3rd-isomorphism-theroem-for-rings" class="section level3">
 <h3>State and Prove the 3rd Isomorphism Theroem for Rings</h3>
-<div id="my-solution-51" class="section level4">
+<div id="my-solution-57" class="section level4">
 <h4>My Solution:</h4>
 <p>Let <span class="math inline">\(I\)</span> and <span class="math inline">\(J\)</span> be ideals of <span class="math inline">\(R\)</span> with <span class="math inline">\(J \subseteq I\)</span>. Then <span class="math inline">\(\frac{I}{J}\)</span> is an ideal of <span class="math inline">\(\frac{R}{J}\)</span> and <span class="math inline">\(\frac{(R/J)}{(I/J)} \cong \frac{R}{I}\)</span>.</p>
 <p>Proof:</p>

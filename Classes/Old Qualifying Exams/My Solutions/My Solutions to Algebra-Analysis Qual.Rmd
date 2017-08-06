@@ -3,13 +3,13 @@ title: "My Solutions to Old Algebra Quals"
 author: "Jacob S Townson"
 date: "May-July 2017"
 output:
-  word_document:
+  html_document:
     fig_height: 4
     fig_width: 5
   pdf_document:
     fig_height: 4
     fig_width: 5
-  html_document:
+  word_document:
     fig_height: 4
     fig_width: 5
 ---
@@ -271,7 +271,7 @@ Alternatively, the map $\Gamma$ is just the restriction to the subgroup $K$ of t
 The extension field $K$ of $F$ is a splitting field for the polynomial $f(x) \in F[x]$ if $f(x)$ factors completely into linear factors in $K[x]$ and $f(x)$ does not factor completely into linear factors over any proper subfield of $K$ containing $F$.
 
 (b)
-Let $f(x) = c_1x^n+c_{n-1}x^{n-1}+...+c_1x_c_0$. Let $K$ be the splitting field of $f(x)$ over $F$. And finally, this all means that $f(x+a) = c_1(x+a)^n+c_{n-1}(x+a)^{n-1}+...+c_1(x+a)+c_0$. Since $K$ is the splitting field of $f(x)$ over $F$, we then know that $f(x)$ has roots $r_1,r_2,...,r_n \in K$. Also note that some of these $r_i$ values could be duplicates or even zeroes. So by definition, in $K$, $f(x) = (x-r_1)(x-r_2)...(x-r_n)$. This means that in $K$, $f(x+a) = (x+a-r_1)(x+a-r_2)...(x+a-r_n)$. From here it is easy to see that the roots of $f(x+a)$ are simply $r_1-a,r_2-a,...,r_n-a$. All of these values are in $K$ as well because for all $i$, $r_i \in K$ and $a \in F \subset K$. So because we can factor $f(x+a)$ into linear factors in $K$, $K$ must also be the splitting field of $f(x+a)$. Note, the situation in which we switch assumptions such that $K$ is the splitting field over $f(x+a)$ to prove that $K$ must also be the splitting field of $f(x)$ over $F$ is similar, so we leave this out. QED
+Let $f(x) = c_1x^n+c_{n-1}x^{n-1}+...+c_1x+c_0$. Let $K$ be the splitting field of $f(x)$ over $F$. And finally, this all means that $f(x+a) = c_1(x+a)^n+c_{n-1}(x+a)^{n-1}+...+c_1(x+a)+c_0$. Since $K$ is the splitting field of $f(x)$ over $F$, we then know that $f(x)$ has roots $r_1,r_2,...,r_n \in K$. Also note that some of these $r_i$ values could be duplicates or even zeroes. So by definition, in $K$, $f(x) = (x-r_1)(x-r_2)...(x-r_n)$. This means that in $K$, $f(x+a) = (x+a-r_1)(x+a-r_2)...(x+a-r_n)$. From here it is easy to see that the roots of $f(x+a)$ are simply $r_1-a,r_2-a,...,r_n-a$. All of these values are in $K$ as well because for all $i$, $r_i \in K$ and $a \in F \subset K$. So because we can factor $f(x+a)$ into linear factors in $K$, $K$ must also be the splitting field of $f(x+a)$. Note, the situation in which we switch assumptions such that $K$ is the splitting field over $f(x+a)$ to prove that $K$ must also be the splitting field of $f(x)$ over $F$ is similar, so we leave this out. QED
 
 
 
@@ -641,6 +641,93 @@ $$J_1 \supseteq J_2 \supseteq ... \supseteq J_n \supseteq ...$$
 where all $J_i$'s are ideals in $R$. Then 
 $$J_1/I \supseteq J_2/I \supseteq ... \supseteq J_n/I \supseteq ...$$
 is a descending chain of ideals in $R/I$. Let $J_m = J_{m+1}$ because $R$ is Artinian. Then $J_m/I = J_{m+1}/I$ because $J_m = J_{m+1}$. So $R/I$ is Artinian. QED
+
+
+
+### Let $H$ be the set of all $3 \times 3$ upper right triangular matrices with $1$ in the diagonal. Prove that $H$ is a noncommutative group under matrix multiplication.
+#### My Solution:
+First off, in order to be a group all elements must be closed under the operation, the operation must be associative, and ther must be an identity and an inverse. Also, for the sake of simplicity, let
+$$A = \bigl( \begin{smallmatrix}1 & a & b\\ 0 & 1 & c\\ 0 & 0 & 1 \end{smallmatrix}\bigr) \in H$$
+$$B = \bigl( \begin{smallmatrix}1 & x & y\\ 0 & 1 & z\\ 0 & 0 & 1 \end{smallmatrix}\bigr) \in H$$
+$$C = \bigl( \begin{smallmatrix}1 & 1-a & c-b\\ 0 & 1 & -c\\ 0 & 0 & 1 \end{smallmatrix}\bigr) \in H$$
+
+Well, the identity is obviously the identity matrix $I = \bigl( \begin{smallmatrix}1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1 \end{smallmatrix}\bigr)$. Also, 
+$$A \times B = \bigl( \begin{smallmatrix}1 & x+a & y+az+b\\ 0 & 1 & z+c\\ 0 & 0 & 1 \end{smallmatrix}\bigr) \in H$$
+So $H$ is closed under the operation. We can also check that $A \times C = C \times A = I$, thus we have an inverse. And finally, we know from experience that matrix multiplication is associative, thus $H$ is indeed a group. So the last thing here to show is just that $H$ is not an Abelian group. Well, using $A \times B$ that we found above, we can check 
+$$B \times A = \bigl( \begin{smallmatrix}1 & x+a & cx+y+b\\ 0 & 1 & z+c\\ 0 & 0 & 1 \end{smallmatrix}\bigr) \neq A \times B$$
+Thus $H$ is a noncommutative group. QED
+
+
+
+### Let $H$ and $K$ be normal subgroups of a group $G$. Assume that $HK = G$ and $H \cap K = \{1\}$. (a) Prove that $hk = kh$ for all $h \in H$ and $k \in K$. (b) Prove that $G$ is isomorphic to $H \times K$.
+#### My Solution:
+(a)
+For all $h \in H$ and $k \in K$ we have 
+$$hkh^{-1}k^{-1} = (hkh^{-1})k^{-1} = h(kh^{-1}k^{-1}) \in H \cap K$$
+so $hkh^{-1}k^{-1} = e$ if $e =1$ is the identity. This implies that $hk = kh$.
+
+(b)
+Let $f : H \times K \rightarrow G$ such that $f(h,k) = hk$. For any $h, h' \in H$ and $k, k' \in K$, 
+$$f(h,k)f(h',k') = (hk)(h'k') = hh'kk'=(hh')(kk') = f(hh',kk') = f((h,k)(h',k'))$$
+Thus $f$ is a homomorphism. Since $HK = G$, any element $g \in G$ is simply $g = hk$ for some $h \in H$ and $k \in K$, and $f(h,k) = hk = g$ so $f$ is obviously onto. Finally if $(h,k) \in \mathrm{ker}(f)$, then $hk = e$. So $h = k^{-1} \in H \cap K = \{1\}$ so $(h,k) = (e,e)$ which implies that $f$ is one-to-one. Thus $f$ must be an isomorphism. QED
+
+
+
+### Show that every prime element in an integral domain is irreducible.
+#### My Solution:
+Let $R$ be an integral domain. Let $p \in R$ be a prime element in $R$. Assume $p=ab$. This implies that $p|a$ or $p|b$. WLOG, assume that $p|a$. Then $pq = a$ for some $q \in R$. Thus
+$$1*a = a = pq = abq \implies 1 = bq$$
+Thus $b$ is a unit and $p$ must be irreducible. QED
+
+
+
+### Consider the set $\mathbb{Z}[i]$, the *Gaussian integers*. (a) Show that $\mathbb{Z}[i]$ is an integral domain. (b) Find all units of $\mathbb{Z}[i]$. (c) It is known that $\mathbb{Z}[i]$ is a UFD. Does $13 = (2+3i)(2-3i)=(3+2i)(3-2i)$ contradict this fact? (d) Express $5$ as a product of irreducible elements in $\mathbb{Z}[i]$.
+#### My Solution:
+(a)
+In order for $\mathbb{Z}[i]$ to be an integral domain, it must contain no zero divisors. Let $a,b \in \mathbb{Z}[i]$ such that $ab = 0$. Well, if $a = x+yi$ and $b = w+zi$ then 
+$$ab = (x+yi)(w+zi) = xw+yi+xzi+yizi$$
+$$= (xw-yz)+i(yw+xz) = 0$$
+This implies that $xw = yz$ and $yw = -xz$, but this is only the case if either $x,y = 0$ or $w,z = 0$. Thus $\mathbb{Z}[i]$ is an integral domain.
+
+(b)
+The units of $\mathbb{Z}[i]$ are $\{1,-1,i,-i\}$ because $(a+bi)(c+di)=xy = 1$ is only true for these values.
+
+(c)
+No, because $(2+3i)$ is an associate of $3-2i$ because $(2+3i)*-i = 3-2i$. Similarly, $2-3i$ is an associate of $3+2i$ because $(2-3i)*i = 3+2i$. Thus this does not make a contradiction.
+
+(d)
+$5=(1+2i)(1-2i)$ 
+
+
+
+### Prove that every finite integral domain is a field.
+#### My Solution:
+Let $R$ be a finite integral domain with $0 \neq a \in R$. Consider $a,a^2,a^3,...$, since there are only finitely many elements, we must have $a^m = a^n$ where $m < n$. Then 
+$$0 = a^m - a^n = a^m(1-a^{n-m})$$
+Since there are no zero divisors, we must have $a^m \neq 0$ and hence $1-a^{n-m} = 0$ which implies that $1 = a(a^{n-m-1})$. Thus $a \in R$ has a multiplicative inverse, thus $R$ is a field. QED
+
+
+
+### (a) Show that the polynomial $f(x) = x^4 -2$ is irreducible over $\mathbb{Q}$. (b) Find a factorization of $f(x)$ into linear factors over $\mathbb{C}$. Find the splitting field $F$ of $f(x)$ over $\mathbb{Q}$. (c) Find the degree of $F$ over $\mathbb{Q}$. Justify.
+#### My Solution:
+(a)
+It is easy to see by Eisenstein's Criteria that $f(x)$ is irreducible over $\mathbb{Q}$.
+
+(b)
+$$f(x) = x^4 - 2 = (x^2 + \sqrt{2})(x^2 - \sqrt{2})$$
+$$= (x+i \sqrt[4]{2})(x-i \sqrt[4]{2})(x- \sqrt[4]{2})(x+ \sqrt[4]{2})$$
+Thus we can easily see that the splitting field of $f(x)$ over $\mathbb{Q}$ will be $F = \mathbb{Q}(\sqrt[4]{2},i)$ as $f(x)$ can be factored into linear factors in $F$.
+
+(c)
+Here we will use what I like to call the *double extension lemma*. Using it, we find that
+$$[\mathbb{Q}(\sqrt[4]{2},i):\mathbb{Q}]=[\mathbb{Q}(\sqrt[4]{2},i):\mathbb{Q}(i)][\mathbb{Q}(i):\mathbb{Q}]$$
+Using this we can find that $$[\mathbb{Q}(\sqrt[4]{2},i):\mathbb{Q}] = \mathrm{deg}(x^4 - 2) \times \mathrm{deg}(x^2+1) = 4 \times 2 = 8$$
+Thus the degree of the extension is $8$. QED
+
+
+
+
+
 
 
 
