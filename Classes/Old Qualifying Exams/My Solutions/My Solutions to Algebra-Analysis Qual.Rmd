@@ -24,7 +24,7 @@ This document is written in reference to qualifying exams given at the Universit
 Jacob Townson
 
 
-## January 2016 Qual
+## January 2016
 
 ### Let $(G,·)$ be a group and $Z = Z(G)$ its center. Suppose that the group $G/Z$ is cyclic. Show that $G$ is Abelian.
 #### My Solution:
@@ -162,7 +162,7 @@ First let $\mathbb{Q}(i+\sqrt{3}) = K$. It is obvious that $K \subset F$, so we'
 
 
 
-## August 2015 Qual
+## August 2015
 
 ### Prove that a group of order $300$ cannot be simple.
 #### My Solution:
@@ -218,19 +218,17 @@ Thus because identities, addition, and multiplication are preserved, we know the
 
 Thus $f$ is a well-defined, onto, homomorphism. QED
 
-- Note, this could have been simplified with the first Isomorphism Theorem for Rings.
-
 
 
 ### Let $A$ and $B$ be ideals of a ring $R$ with $B \subseteq A$. Show that $(R/B)/(A/B)$ is isomorphic to $R/A$.
 #### My Solution:
-This statement follows directly from the third Isomorphism Theorem for rings. QED
+This statement is easily shown by the first isomorphism theorem for rings, where the kernel of $f$ is simply $A/B$. More formal proof is given later in the document.
 
 
 
 ### Determine the splitting field and its degree over $\mathbb{Q}$ for the polynomial $t(x) = x^6 - 4$. Justify.
 #### My Solution:
-First note that $t(x) = x^6 -4 = (x^3 - 2)(x^3 + 2)$. The roots of this polynomial are $\sqrt[3]{2}, -\sqrt[3]{2}, \omega_1\sqrt[3]{2},\omega_2\sqrt[3]{2},\alpha_1\sqrt[3]{2},\alpha_2\sqrt[3]{2}$. We can then see that the splitting field of $t(x)$ over $\mathbb{Q}$ is $\mathbb{Q}(\sqrt[3]{2},i)$. This is the splitting field because in this extension $t(x)$ can be factored into linear factors. QED
+First note that $t(x) = x^6 -4 = (x^3 - 2)(x^3 + 2)$. The roots of this polynomial are $\sqrt[3]{2}, -\sqrt[3]{2}, \omega_1\sqrt[3]{2},\omega_2\sqrt[3]{2},\alpha_1\sqrt[3]{2},\alpha_2\sqrt[3]{2}$ where $\omega_1, \omega_2, \alpha_1, \alpha_2 \in \mathbb{C}$. We can then see that the splitting field of $t(x)$ over $\mathbb{Q}$ is $\mathbb{Q}(\sqrt[3]{2},i)$. This is the splitting field because in this extension $t(x)$ can be factored into linear factors. QED
 
 
 
@@ -289,7 +287,7 @@ Let $f(x) = c_1x^n+c_{n-1}x^{n-1}+...+c_1x+c_0$. Let $K$ be the splitting field 
 
 
 
-## January 2015 Qual
+## January 2015
 
 ### If $N$ is a normal subgroup of $G$ and $H$ is any subgroup of $G$, prove that $NH := \{nh|n \in N, h \in H\}$ is a subgroup of $G$.
 #### My Solution:
@@ -303,7 +301,7 @@ Thus $NH$ is a subgroup of $G$. QED
 #### My Solution:
 Let $G$ be a group of order $56 = 2^3 * 7$. We will denote the number of Sylow-$p$ subgroups by $n_p$. So $n_2 = 2k + 1$ where $k \in \mathbb{Z^+}$ and $n_2 | 7$. Also $n_7 = 7j+1$ where $j \in \mathbb{Z^+}$ and $n_7 | 2^3 = 8$. So $n_2 \in \{1,7\}$ and $n_7 \in \{1,8\}$.
 
-If either $n_7$ or $n_2$ are $1$, then we're done as this means that there exists a normal proper nontrivial Sylow-$p$ subgroup in our group $G$. Consider $n_7 = 8$. Because $&$ is prime and the subgroups are cyclic, and because we know the subgroups intersect trivially, $n_7 = 8 \implies$ there exists $8*6 = 48$ non identity elements in all of the Sylow $7$-subgroups. Notice, $56=48+8$. But if $n_2 = 7$, then there are $8$ distinct elements in each of the Sylow-$2$ subgroups. But we run into a problem, because $56=48+8$, so then there must be only 1 Sylow-$2$ subgroup in order to have $56$ elements. Thus either $n_2 =1$ or $n_7 = 1$, thus $G$ could not be simple as it has a normal proper nontrivial subgroup. QED
+If either $n_7$ or $n_2$ are $1$, then we're done as this means that there exists a normal proper nontrivial Sylow-$p$ subgroup in our group $G$. Consider $n_7 = 8$. Because $7$ is prime and the subgroups are cyclic, and because we know the subgroups intersect trivially, $n_7 = 8 \implies$ there exists $8*6 = 48$ non identity elements in all of the Sylow $7$-subgroups. Notice, $56=48+8$. But if $n_2 = 7$, then there are $8$ distinct elements in each of the Sylow-$2$ subgroups. But we run into a problem, because $56=48+8$, so then there must be only 1 Sylow-$2$ subgroup in order to have $56$ elements. Thus either $n_2 =1$ or $n_7 = 1$, thus $G$ could not be simple as it has a normal proper nontrivial subgroup. QED
 
 
 
@@ -408,7 +406,7 @@ Well, $f(x) = x^4 - 5x^2 +6 = (x^2-2)(x^2-3)$. We cannot factor $f(x)$ any futhe
 
 
 
-## August 2014 Qual
+## August 2014
 
 ### Let $H \leq G$. Prove that $N_G(H)/C_G(H)$ is isomorphic to a subgroup of $Aut(H)$. Recall the normalizer $N_G(H) = \{g \in G | gHg^{-1} = H\}$ and the centralizer $C_G(H) = \{g \in G | gh = hg, \forall h \in H\}$
 #### My Solution:
@@ -723,6 +721,53 @@ Here we will use what I like to call the *double extension lemma*. Using it, we 
 $$[\mathbb{Q}(\sqrt[4]{2},i):\mathbb{Q}]=[\mathbb{Q}(\sqrt[4]{2},i):\mathbb{Q}(i)][\mathbb{Q}(i):\mathbb{Q}]$$
 Using this we can find that $$[\mathbb{Q}(\sqrt[4]{2},i):\mathbb{Q}] = \mathrm{deg}(x^4 - 2) \times \mathrm{deg}(x^2+1) = 4 \times 2 = 8$$
 Thus the degree of the extension is $8$. QED
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## August 2009
+### Let $G$ be a group under the operation $*$. Let $u \in G$. Define a new binary operation $\times$ on $G$ as follows: $a \times b = a * u * b$ for all $a,b \in G$. (a) Prove that $\times$ is associative. (b) Show that $G$ contains an identity element under $\times$ and identify it. (c) Show that every element of $G$ contains an inverse under $\times$. (d) True or False: The groups $(G,*)$ and $(G, \times)$ are isomorphic. Justify.
+#### My Solution:
+(a)
+Well, let $a,b,c \in G$. Then
+$$(a \times b) \times c = (a*u*b)*u*c = a*u*(b*u*c) = a \times (b \times c)$$
+because $*$ is associative. Thus $\times$ is associative as well. 
+
+(b)
+Well, 
+$$a \times u^{-1} = a*u*u^{-1} = a = u^{-1}*u*a = u^{-1} \times a$$
+This implies that $G$ has an identity under $\times$ and it's $u^{-1}$.
+
+(c)
+Let $a \in G$. Then $u^{-1}*a*u^{-1} \in G$ as well. Thus 
+$$a \times (u^{-1}*a*u^{-1}) = a*u*u^{-1}*a*u^{-1} = u^{-1} $$
+$$u^{-1}= u^{-1}*a*u^{-1}*u*a = (u^{-1}*a*u^{-1}) \times a$$
+So for all $a \in G$ there exists an inverse $u^{-1}*a*u^{-1} \in G$ under $\times$. 
+
+(d)
+Let $\Gamma : (G, \times) \rightarrow (G,*)$. Then for all $a \in G$, $\Gamma(a) = a$, but $\Gamma(a \times b) = a*u*b$. Observe though that $\Gamma(a) \Gamma(b) = a*b \neq a*u*b$. Thus these groups couldn't be isomorphic because $\Gamma$ isn't even a homomorphism. QED
+
+
+
+### Show that if $f: G \rightarrow H$ is a surjective group homomorphism and $K$ is a normal subgroup of $G$, then $f(K)$ is a normal subgroup of $H$ and $H/f(K) \cong G/K$.
+#### My Solution:
+To be solved later.
+
+
+
+
+
 
 
 
