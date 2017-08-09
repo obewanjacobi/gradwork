@@ -112,8 +112,7 @@ $$abC = aCbC = bCaC = baC$$
 Well, $aba^{-1} b^{-1}$ generates $C$. So, $C = aba^{-1} b^{-1}C$, which implies that $abC = baC$ through cancellation. Thus $G/C$ is Abelian. QED
 
 b)
-So here we want to show that for all $k \in K$ and $aba^{-1} b^{-1} \in C$, $kaba^{-1} b^{-1}k^{-1} \in C$. 
-Well, because $K \unlhd G$ and $G/K$ is Abelian, we know that for all $a,b \in G$ that $abK = baK = Kab = Kba$. Using this, we know that $kab = abk$. Thus we can say that $kaba^{-1} b^{-1} k^{-1} = abka^{-1} b^{-1} k^{-1} \in C$ because $abka^{-1} b^{-1} k^{-1}$ is a cummutator. Thus $C \unlhd K$. QED
+To be done soon.
 
 
 
@@ -506,6 +505,38 @@ We know by the fundamental theorem of Galois Theory that $|\mathrm{Gal}(S/\mathb
 
 
 
+### Show that $A_8$ has no subgroup of index $7$.
+#### My Solution:
+Assume that $A_8$ does in fact have a subgroup of index $7$. We'll call this subgroup $H$. Then $[A_8:H] = 7$. Then there exists a group action of $A_8$ on the cosets of $H$ by conjugation. Define $f$ to be a homomorphism such that $f$ embeds $A_8$ into $S_7$. Thus by Lagrange's Theorem, $7!$ should divide the order of $A_8$, $8!/2$, which is not true. Thus we have a contradiction, so $A_8$ has no subgroup with index $7$. QED
+
+
+
+### Suppose $G$ is a group acting on a set $X$. We define everything the user needs to know before answering the problem. (a) Suppose $a \in X$. Prove that $G_a \leq G$. (b) Explicitly define a bijection $\phi$ from $G/G_a$ to $O(a)$. You need to justify that $\phi$ is well-defined, and is indeed a bijection. (c) Let $G$ act on itself by conjugation. Suppose $p$ is a prime number and $G$ is a finite $p$-group, then $G$ has a non-trivial center.
+#### Needed Definitions:
+For $a \in X$, let $O(a) = \{g(a)| g\in G\}$. This is the *orbit* of $a$ under the action of $G$ on $X$. Also for $a \in X$, let $G_a = \{g \in G | g(a) = a\}$. This is the *stablilizer* of $a$ in $G$. Let $\mathbb{O} = \{O(a)|a \in X\}$ be the set of orbits, and let $G/G_a = \{hG_a | h \in G\}$ be the set of all left cosets of $G_a$ in $G$.
+
+#### My Solution:
+(a)
+Let $a \in X$. We want to show that for all $g,h \in G_a$, $gh^{-1} \in G_a$. Well, let $g,h \in G_a$. Then
+$$gh(a) = g(h(a)) = g(a) = a$$ 
+by associativity, so $gh \in G_a$. Also note that $e \in G_a$ where $e$ is the identity element of $G$, so,
+$$e(a) = a = h^{-1}h(a) = h^{-1}(a)$$
+which implies that $h^{-1} \in G_a$. Thus from here we can tell that $gh^{-1} \in G_a$ which implies that $G_a \leq G$. QED
+
+(b)
+Define $\phi : G/G_a \rightarrow O(a)$. So for any $gG_a \in G/G_a$, $\phi(gG_a) = g(a)$ where if $h \in G_a$, $$h(a) = \phi(hG_a) = \phi(G_a) = a$$
+To show that $\phi$ is well-defined, let $g = h \in G$. Then 
+$$\phi(gG_a) = g(a) = h(a) = \phi(hG_a)$$
+So $\phi$ is indeed well-defined.
+In order to show $\phi$ is onto, notice that for all $g(a) \in O(a)$, there exists sone $gG_a \in G/G_a$ such that $\phi(gG_a) = g(a)$. Thus $\phi$ is indeed onto. Finally, to show that $\phi$ is one-to-one, let
+$$\phi(gG_a) = g(a) = h(a) = \phi(hG_a)$$
+Because $g(a) = h(a)$, we can easily see that either $g = h$ or $g,h \in G_a$, which implies that $gG_a = hG_a$. Thus $\phi$ is one-to-one. QED
+
+(c)
+The orbits are the conjugacy classes of $G$. $x$ belongs to an orbit of size $1$ iff $x \in Z(G)$ since $gxg^{-1} = x$ for all $g \in G$ iff $gx = xg$ for all $g \in G$ iff $x \in Z(G)$. By the orbit stabilizer theorem, an orbit size that is greater than $1$ must divide $|G|$ and therefore must be a positive power of $p$. If $Z(G) = \{1\}$, then we have one orbit of size $1$ with all other orbit sizes being defined as $0 \mathrm{mod}p$. Thus $|G| = 1 \mathrm{mod} p$, contradicting the assumption that $G$ is a non-trivial $p$-group. QED
+
+
+
 
 
 
@@ -762,7 +793,12 @@ Let $\Gamma : (G, \times) \rightarrow (G,*)$. Then for all $a \in G$, $\Gamma(a)
 
 ### Show that if $f: G \rightarrow H$ is a surjective group homomorphism and $K$ is a normal subgroup of $G$, then $f(K)$ is a normal subgroup of $H$ and $H/f(K) \cong G/K$.
 #### My Solution:
-To be solved later.
+First, let $K \unlhd G$ and $f(g) = h$ for all $g \in G$ and some $h \in H$. Let $k \in K$. This implies that $gkg^{-1} = k' \in K$. So $f(gkg^{-1}) = f(k') \in f(K)$. Also note then that $f(gkg^{-1}) = hf(k)h^{-1}$ because $f$ is a homomorphism. This implies that $f(K) \unlhd H$ thus we have proven the first part. 
+
+Let $\Gamma :H \rightarrow G/K$. If we can show that $\Gamma$ is a homomorphism with a kernel of $f(K)$, then by the first isomorphism theorem, we're done. First off, define $f(g) = h$ and $f(g') = h'$ for some $g,g' \in G$ and $h,h' \in H$. If $h \in H$ and $gK \in G/K$, we can define $\Gamma$ by $\Gamma(h) = gK$. Then,
+$$\Gamma(hh') = gg'K = gKg'K = \Gamma(h) \Gamma(h')$$
+Thus $\Gamma$ is a homomorphism. Finally, $\mathrm{ker}(\Gamma) = \{a \in H| \Gamma(a) = K\}$. Well, $\Gamma(a) = K$ iff $f(a) \in f(K)$. This implies that $\mathrm{ker}(\Gamma) = f(K)$. Thus by the first isomorphism theorem, 
+$$\frac{H}{f(K)} \cong \frac{G}{K}$$ QED
 
 
 
