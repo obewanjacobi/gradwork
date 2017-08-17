@@ -1,0 +1,44 @@
+---
+title: "My Solutions to Old Analysis Quals"
+author: "Jacob S Townson"
+date: "August-December 2017"
+output:
+  html_document:
+    fig_height: 4
+    fig_width: 5
+  pdf_document:
+    fig_height: 4
+    fig_width: 5
+  word_document:
+    fig_height: 4
+    fig_width: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Prelude
+This document is written in reference to qualifying exams given at the University of Louisville in past years. These solutions are not given from the University, but of my work alone as a way to study for my own qualifying exam. If any tips or recommendations come up and you feel you should share, feel free to raise an issue on GitHub where I have this document saved and open to the public [here](). To see the qualifying exams for yourself, [visit this link](http://www.math.louisville.edu/GraduateFAQ/qualifiers/QualifierStudyGuides/). Thank you.
+
+Jacob Townson
+
+
+# Important Notes
+
+
+
+
+# My Solutions from Quals
+
+
+
+
+# Extra Problems
+
+
+
+
+
+
+
