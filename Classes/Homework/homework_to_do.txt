@@ -1,7 +1,7 @@
 -----------------------------------------------------
 STATISTICS
 
-Worksheet in Directory
+Worksheet in Directory due 8/31
 -----------------------------------------------------
 MODELING
 
@@ -13,6 +13,7 @@ More is coming.
 -----------------------------------------------------
 INDEPENDENT STUDY - BINGTUAN
 
+NA
 -----------------------------------------------------
 TEACHING-MATH 108
 08
@@ -25,5 +26,6 @@ TEACHING-MATH 108
 -----------------------------------------------------
 ANALYSIS QUAL STUDY STUFF
 
-
+Every Monday, work on studying
+First thing, gather good notes
 -----------------------------------------------------
