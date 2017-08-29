@@ -19,13 +19,135 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #Prelude
-This document is written in reference to qualifying exams given at the University of Louisville in past years. These solutions are not given from the University, but of my work alone as a way to study for my own qualifying exam. If any tips or recommendations come up and you feel you should share, feel free to raise an issue on GitHub where I have this document saved and open to the public [here](). To see the qualifying exams for yourself, [visit this link](http://www.math.louisville.edu/GraduateFAQ/qualifiers/QualifierStudyGuides/). Thank you.
+This document is written in reference to qualifying exams given at the University of Louisville in past years. These solutions are not given from the University, but of my work alone as a way to study for my own qualifying exam. If any tips or recommendations come up and you feel you should share, feel free to raise an issue on GitHub where I have this document saved and open to the public [here](). To see the qualifying exams for yourself, [visit this link](http://www.math.louisville.edu/GraduateFAQ/qualifiers/QualifierStudyGuides/). When referencing the Royden book, this is in reference to the *Real Analysis; 4th Edition*. Thank you.
 
 Jacob Townson
 
 
-# Important Notes
+# What to Expect:
+- differentiation and Riemann integration of functions of one real variable, sequences of
+functions, uniform convergence, Lebesgue's characterization of Riemann integrability
 
+- topology of the line, countable and uncountable sets, Borel sets, Cantor sets and Cantor
+functions, Baire category theorem
+
+- Lebesgue measure and integration on the line, measurable functions, convergence theorems
+
+- AC and BV functions, fundamental theorem of calculus, Lebesgue differentiation theorem
+
+- 
+Hilbert spaces, Lp spaces, lp spaces, Hölder and Minkowski inequalities, completeness
+
+# Important Notes
+## Undergrad
+
+
+
+
+
+
+## Graduate Notes/Royden Book
+
+### Royden Chapter 1
+- A nonepmty set $E$ of real numbers is said to be **bounded above** provided that there is a real number $b$ such that $x \leq b$ for all $x \in E$. $b$ is known as an upper bound for $E$. We define bounded below similarly.
+
+- **The Completeness Axiom**: Let $E$ be a nonempty set of real numbers that is bounded above. Then among the set of upper bounds for $E$ there is a smallest, or least, upper bound.
+
+- The least upper bound of $E$ is called the **supremum** of $E$ and denoted by $\mathrm{sup}E$. We define the **infimum** similarly as the greatest lower bound and denote it by $\mathrm{inf}E$.
+
+- **Triangle Inequality**: 
+$$|a+b| \leq |a| + |b|$$
+
+- A set $E$ of real numbers is said to be **inductive** provided it contains $1$ and if the number $x \in E$, the number $x+1 \in E$ as well.
+
+- Every nonempty set of natural numbers has a smallest member.
+
+- **Archimedean Property**: For each pair of positive real numbers $a$ and $b$, there is a natural number $n$ for which $na > b$.
+
+- A set $E$ of real numbers is said to be **dense** in $\mathbb{R}$ provided between any two real numbers there lies a member of $E$.
+
+- The rational numbers are dense in $\mathbb{R}$.
+
+- A set $E$ is said to be **finite** provided either it is empty or there is a natural number $n$ such that $E$ is equipotent to $\{1,2,3,...,n\}$. 
+
+- We say that $E$ is **countably infinite** provided $E$ is equipotent to the set $\mathbb{N}$ (the natural numbers). A set that is either finite or countably finite is said to be **countable**. A set that is not countable is **uncountable**.
+
+- A subset of a countable set is countable.
+
+- A nonempty set is countable iff it is the image of a function whose domain is a nonempty countable set.
+
+- The union of countable sets is countable.
+
+- A set $\mathcal{O}$ of real numbers is called **open** provided for each $x \in \mathcal{O}$, there is a $r > 0$ for which the interval $(x-r, x+r)$ is contained in $\mathcal{O}$.
+
+- The set of real numbers and the empty set are open; the intersection of any finite collection of open sets is open; and the union of any collection of open sets is open.
+
+- Every nonempty open set is the disjoint union of a countable collection of open intervals.
+
+- For a set $E$ of real numbers, a real number $x$ is called a **point of closure** of $E$ provided every open interval that contains $x$ also contains a point in $E$. The collection of points of closure of $E$ is called the **closure** of $E$.
+
+- A set of real numbers is open iff its complement in $\mathbb{R}$ is closed.
+
+- A collection of sets $\{E_{\lambda}\}_{\lambda \in \Lambda}$ is said to be a **cover** of a set $E$ provided $E \subseteq \cup_{\lambda \in \Lambda} E_{\lambda}$. By a subcover of a cover of $E$ we mean a subcollection of the cover that itself also is a cover of $E$. If each set $E_{\lambda}$ in a cover is open, then we call $\{E_{\lambda}\}_{\lambda \in \Lambda}$ an **open cover** of $E$. If the cover $\{E_{\lambda}\}_{\lambda \in \Lambda}$ contains only a finite number of sets, we call it a **finite cover**. 
+
+- Let $F$ be a closed and bounded set of real numbers. THen every open cover of $F$ has a finite subcover.
+
+- We say that a countable collection of sets $\{E_n\}^{\infty}_{n=1}$ is **descending** or **nested** provided that $E_{n+1} \subseteq E_n$ for every natural number $n$. It is said to be **ascending** provided $E_n \subseteq E_{n+1}$ for every natural number $n$.
+
+- **$\sigma$-algebra**: Given a set $x$, a collection $\mathcal{A}$ of subsets of $X$ is called a $\sigma$-algebra provided
+
+-- the empty set belongs to $\mathcal{A}$
+
+-- the complement in $X$ of a set in $\mathcal{A}$ also belongs to $\mathcal{A}$
+
+-- the union of a countable collection of sets in $\mathcal{A}$ also belongs to $\mathcal{A}$.
+
+- Let $\mathcal{F}$ be a collection of subsets of a set $X$. Then the intersection $\mathcal{A}$ of all $\sigma$-algebras of subsets of $X$ that contain $\mathcal{F}$ is a $\sigma$-algebra that contains $\mathcal{F}$. Moreover, it is the smallest $\sigma$-algebra of subsets $X$ that contains $\mathcal{F}$ in the sense that any $\sigma$-algebra that contains $\mathcal{F}$ also contains $\mathcal{A}$.
+
+- The collection $\mathcal{B}$ of Borel sets of real numbers is the smallest $\sigma$-algebra of sets of real numbers that contains all of the open sets of real numbers. (every open set is a Borel set)
+
+
+### Royden Chapter 2
+
+- **The measure of an interval is its length**. Each nonempty interval $I$ is Lebesgue measurable and $$m(I) = l(I)$$
+
+- **Measure is translation invariant**. If $E$ is Lebesgue measurable and $y$ is any number, then the translate of $E$ by $y$, $E+y = \{x+y|x \in E\}$, also is Lebesgue measurable and $$m(E+y) = m(E)$$
+
+- **Measure is countably additive over countable disjoint unions of sets**. If $\{E_k\}^{\infty}_{k=1}$ is a countable disjoint collection of Lebesgue measurable sets, then 
+$$m \left(\bigcup_{k=1}^{\infty}E_k \right) = \sum_{k=1}^{\infty} m(E_k)$$
+
+- The **outer measure** of an interval is its length, it is translation invariant, however the outer measure is not finitely additive. Instead:
+$$m^* \left(\bigcup_{k=1}^{\infty}E_k \right) \leq \sum_{k=1}^{\infty} m^*(E_k)$$
+
+- Let $I$ be a nonempty interval of real numbers. For a set $A$ of real numbers, consider the countable collections $\{I_k\}^{\infty}_{k=1}$ of nonempty open, bounded intervals that cover $A$, that is, collections for which $A \subseteq \bigcup_{k=1}^{\infty}I_k$. We define the **outer measure** of $A$, $m^*(A)$, to be
+$$m^*(A) = \mathrm{inf}\{\sum_{k=1}^{\infty}l(I_k) | A \subseteq \bigcup_{k=1}^{\infty}I_k\}$$
+
+- A measure is **monotone** if for all $A \subseteq B$, then $m^*(A) \leq m^*(B)$.
+
+- A set $E$ is said to be **measurable** provided for any set $A$ that
+$$m^*(A) = m^*(A \cap E) + m^*(A \cap E^C)$$
+
+- Any set of outer measure zero is measurable. In particular, any countable set is measurable.
+
+- The union of a finite collection of measurable sets is measurable.
+
+- The union of a countable collection of measurable sets is measurable.
+
+- Every interval is measurable.
+
+- The collection $\mathcal{M}$ of measurable sets is a $\sigma$-algebra that contains the $\sigma$-algebra $\mathcal{B}$ of Borel sets. Each interval, each open set, each closed set, and each clopen set is measurable.
+
+- The translate of a measurable set is measurable.
+
+- If $A$ is a measurable set of finite outer measure that is contained in $B$, then
+$$m^*(B/A) = m^*(B) - m^*(A)$$ and $$m^*(B) = m^*(A) + m^*(B/A)$$ 
+
+- The restriction of the set function outer measure to the class of measurable sets is called **Lebesgue Measure**. It is denoted by $m$, so that if $E$ is a measurable set, its Lebesgue measure will be $m(E)$, defined by
+$$m(E) = m^*(E)$$
+
+- The Lebesgue measure defined on the $\sigma$-algebra of Lebesgue measurable sets assigns length to any interval, is translation invariant, and is countably additive.
+
+- Return to p.44 Theorem 15 to continue notes.
 
 
 
