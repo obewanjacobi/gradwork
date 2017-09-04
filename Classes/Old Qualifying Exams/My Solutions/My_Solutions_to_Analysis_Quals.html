@@ -188,12 +188,44 @@ $(document).ready(function () {
 <li><p><strong>Measure is countably additive over countable disjoint unions of sets</strong>. If <span class="math inline">\(\{E_k\}^{\infty}_{k=1}\)</span> is a countable disjoint collection of Lebesgue measurable sets, then <span class="math display">\[m \left(\bigcup_{k=1}^{\infty}E_k \right) = \sum_{k=1}^{\infty} m(E_k)\]</span></p></li>
 <li><p>The <strong>outer measure</strong> of an interval is its length, it is translation invariant, however the outer measure is not finitely additive. Instead: <span class="math display">\[m^* \left(\bigcup_{k=1}^{\infty}E_k \right) \leq \sum_{k=1}^{\infty} m^*(E_k)\]</span></p></li>
 <li><p>Let <span class="math inline">\(I\)</span> be a nonempty interval of real numbers. For a set <span class="math inline">\(A\)</span> of real numbers, consider the countable collections <span class="math inline">\(\{I_k\}^{\infty}_{k=1}\)</span> of nonempty open, bounded intervals that cover <span class="math inline">\(A\)</span>, that is, collections for which <span class="math inline">\(A \subseteq \bigcup_{k=1}^{\infty}I_k\)</span>. We define the <strong>outer measure</strong> of <span class="math inline">\(A\)</span>, <span class="math inline">\(m^*(A)\)</span>, to be <span class="math display">\[m^*(A) = \mathrm{inf}\{\sum_{k=1}^{\infty}l(I_k) | A \subseteq \bigcup_{k=1}^{\infty}I_k\}\]</span></p></li>
+<li><p>A measure is <strong>monotone</strong> if for all <span class="math inline">\(A \subseteq B\)</span>, then <span class="math inline">\(m^*(A) \leq m^*(B)\)</span>.</p></li>
+<li><p>A set <span class="math inline">\(E\)</span> is said to be <strong>measurable</strong> provided for any set <span class="math inline">\(A\)</span> that <span class="math display">\[m^*(A) = m^*(A \cap E) + m^*(A \cap E^C)\]</span></p></li>
+<li><p>Any set of outer measure zero is measurable. In particular, any countable set is measurable.</p></li>
+<li><p>The union of a finite collection of measurable sets is measurable.</p></li>
+<li><p>The union of a countable collection of measurable sets is measurable.</p></li>
+<li><p>Every interval is measurable.</p></li>
+<li><p>The collection <span class="math inline">\(\mathcal{M}\)</span> of measurable sets is a <span class="math inline">\(\sigma\)</span>-algebra that contains the <span class="math inline">\(\sigma\)</span>-algebra <span class="math inline">\(\mathcal{B}\)</span> of Borel sets. Each interval, each open set, each closed set, and each clopen set is measurable.</p></li>
+<li><p>The translate of a measurable set is measurable.</p></li>
+<li><p>If <span class="math inline">\(A\)</span> is a measurable set of finite outer measure that is contained in <span class="math inline">\(B\)</span>, then <span class="math display">\[m^*(B/A) = m^*(B) - m^*(A)\]</span> and <span class="math display">\[m^*(B) = m^*(A) + m^*(B/A)\]</span></p></li>
+<li><p>The restriction of the set function outer measure to the class of measurable sets is called <strong>Lebesgue Measure</strong>. It is denoted by <span class="math inline">\(m\)</span>, so that if <span class="math inline">\(E\)</span> is a measurable set, its Lebesgue measure will be <span class="math inline">\(m(E)\)</span>, defined by <span class="math display">\[m(E) = m^*(E)\]</span></p></li>
+<li><p>The Lebesgue measure defined on the <span class="math inline">\(\sigma\)</span>-algebra of Lebesgue measurable sets assigns length to any interval, is translation invariant, and is countably additive.</p></li>
+<li><p><strong>The Continuity of Measure</strong>: Lebesgue measure possesses the following continuity properties:</p></li>
+</ul>
+<ol style="list-style-type: lower-alpha">
+<li><p>If <span class="math inline">\(\{A_k\}^{\infty}_{k=1}\)</span> is an ascending collection of measurable sets, then, <span class="math display">\[m \left( \bigcup_{k=1}^{\infty}A_k \right) = \lim_{k\to\infty} m(A_k)\]</span></p></li>
+<li><p>If <span class="math inline">\(\{B_k\}^{\infty}_{k=1}\)</span> is a descending collection of measurable sets and <span class="math inline">\(m(B_1) &lt; \infty\)</span>, then <span class="math display">\[m \left( \bigcap_{k=1}^{\infty}B_k \right) = \lim_{k\to\infty} m(B_k)\]</span></p></li>
+</ol>
+<ul>
+<li><p>For a measurable set <span class="math inline">\(E\)</span>, we say that a property holds <strong>almost everywhere</strong> on <span class="math inline">\(E\)</span>, or it holds for almost all <span class="math inline">\(x \in E\)</span>, provided there is a subset <span class="math inline">\(E_0\)</span> of <span class="math inline">\(E\)</span> for which <span class="math inline">\(m(E_0) = 0\)</span> and the property holds for all <span class="math inline">\(x \in E\)</span> ~ <span class="math inline">\(E_0\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\{E_k\}^{\infty}_{k=1}\)</span> be a countable collection of measurable sets for which <span class="math inline">\(\sum_{k=1}^{\infty} m(E_k) &lt; \infty\)</span>. Then almost all <span class="math inline">\(x \in \mathbb{R}\)</span> belong to at most finitely many of the <span class="math inline">\(E_k\)</span>’s.</p></li>
+<li><p>continue notes at section 2.6</p></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="my-solutions-from-quals" class="section level1">
 <h1>My Solutions from Quals</h1>
+<div id="spring-2017" class="section level2">
+<h2>Spring 2017</h2>
+<div id="prove-that-if-a-subset-mathbbr-has-lebesgue-measure-0-then-mex-x-in-a-0." class="section level3">
+<h3>Prove that if <span class="math inline">\(A \subset \mathbb{R}\)</span> has Lebesgue measure <span class="math inline">\(0\)</span>, then <span class="math inline">\(m(\{e^x | x \in A\}) = 0\)</span>.</h3>
+<div id="my-solution" class="section level4">
+<h4>My Solution:</h4>
+<p>Let <span class="math inline">\(m(A) = 0\)</span> and <span class="math inline">\(E = \{\mathrm{e}^x|x \in A\}\)</span>. First note that we know <span class="math inline">\(f(x) = \mathrm{e}^x\)</span> is continuous on <span class="math inline">\(\mathbb{R}\)</span>. Let <span class="math inline">\(A_N = [-N,N] \cap A\)</span>, then <span class="math display">\[A = \bigcup_{N=1}^{\infty} A_N\]</span> Also, <span class="math inline">\(m(A) = 0 \implies m(A_N) = 0\)</span> for all <span class="math inline">\(N \in \mathbb{N}\)</span>. By definition of Lebesgue measure, for all <span class="math inline">\(\epsilon &gt; 0\)</span>, there exists a sequence of intervals <span class="math inline">\(\{I_n\}^{\infty}_{n=1}\)</span> such that <span class="math inline">\(I_i \cap I_j\)</span> is the empty set for all <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. Also, <span class="math inline">\(A_N \subset \cup I_n\)</span> such that <span class="math inline">\(\sum_n l(I_n) &lt; \epsilon\)</span> since <span class="math inline">\(m(A_N) = 0\)</span>. Let <span class="math inline">\(I_n = (a_n,b_n)\)</span>, <span class="math inline">\(I_n^* = [a_n,b_n]\)</span>, then <span class="math inline">\(m(I_n) = m(I_n^*)\)</span>. Then <span class="math display">\[m(f(A_N)) &lt; \sum_n m(f(I_n)) = \sum_n m(f(I_n^*))\]</span> Since <span class="math inline">\(f\)</span> is continuous, we know that <span class="math inline">\(m(f(I_n^*)) = \max_{x \in I_n^*} f(x) - \min_{x \in I_n^*} f(x)\)</span>. Since <span class="math inline">\(I_n^*\)</span> is a closed interval and <span class="math inline">\(f\)</span> is continuous, we can find <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2 \in I_n^*\)</span> such that <span class="math inline">\(f(x_1) = \max_{x \in I_n^*} f(x)\)</span> and <span class="math inline">\(f(x_2) = \min_{x \in I_n^*} f(x)\)</span>. WLOG we can assume that <span class="math inline">\(x_1 \leq x_2\)</span>. Then, <span class="math display">\[m(f(I_n^*)) = f(x_1) - f(x_2) \leq |f'(\alpha)|(x_1-x_2) \]</span> <span class="math display">\[\leq \max_{x \in I_n^*} f'(x) \times l(I_n) \leq \max_{x \in I_n^*} f'(x) \epsilon\]</span> where <span class="math inline">\(\alpha \in (x_1,x_2)\)</span></p>
+<p>Since <span class="math inline">\(\max_{x \in I_n^*} f'(x) &lt; \infty\)</span> and <span class="math inline">\(\epsilon \rightarrow 0\)</span>, we find that <span class="math inline">\(m(f(I_n)) = 0\)</span>. This implies <span class="math inline">\(m(f(A_N)) = 0\)</span> which implies <span class="math display">\[m(f(A)) = m(f(\cup^{\infty}_N A_N)) \leq \sum_{N}^{\infty} m(f(A_N)) = 0\]</span> Thus, <span class="math inline">\(m(f(A)) = m(E) = 0\)</span>. QED</p>
+</div>
+</div>
+</div>
 </div>
 <div id="extra-problems" class="section level1">
 <h1>Extra Problems</h1>

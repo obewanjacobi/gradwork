@@ -147,12 +147,39 @@ $$m(E) = m^*(E)$$
 
 - The Lebesgue measure defined on the $\sigma$-algebra of Lebesgue measurable sets assigns length to any interval, is translation invariant, and is countably additive.
 
-- Return to p.44 Theorem 15 to continue notes.
+- **The Continuity of Measure**: Lebesgue measure possesses the following continuity properties:
+
+(a) If $\{A_k\}^{\infty}_{k=1}$ is an ascending collection of measurable sets, then,
+$$m \left( \bigcup_{k=1}^{\infty}A_k \right) = \lim_{k\to\infty} m(A_k)$$
+
+(b) If $\{B_k\}^{\infty}_{k=1}$ is a descending collection of measurable sets and $m(B_1) < \infty$, then $$m \left( \bigcap_{k=1}^{\infty}B_k \right) = \lim_{k\to\infty} m(B_k)$$
+
+- For a measurable set $E$, we say that a property holds **almost everywhere** on $E$, or it holds for almost all $x \in E$, provided there is a subset $E_0$ of $E$ for which $m(E_0) = 0$ and the property holds for all $x \in E$ ~ $E_0$.
+
+- Let $\{E_k\}^{\infty}_{k=1}$ be a countable collection of measurable sets for which $\sum_{k=1}^{\infty} m(E_k) < \infty$. Then almost all $x \in \mathbb{R}$ belong to at most finitely many of the $E_k$'s.
+
+- continue notes at section 2.6
 
 
 
 # My Solutions from Quals
 
+## Spring 2017
+
+### Prove that if $A \subset \mathbb{R}$ has Lebesgue measure $0$, then $m(\{e^x | x \in A\}) = 0$.
+#### My Solution:
+Let $m(A) = 0$ and $E = \{\mathrm{e}^x|x \in A\}$. First note that we know $f(x) = \mathrm{e}^x$ is continuous on $\mathbb{R}$. Let $A_N = [-N,N] \cap A$, then 
+$$A = \bigcup_{N=1}^{\infty} A_N$$
+Also, $m(A) = 0 \implies m(A_N) = 0$ for all $N \in \mathbb{N}$. By definition of Lebesgue measure, for all $\epsilon > 0$, there exists a sequence of intervals $\{I_n\}^{\infty}_{n=1}$ such that $I_i \cap I_j$ is the empty set for all $i$ and $j$. Also, $A_N \subset \cup I_n$ such that $\sum_n l(I_n) < \epsilon$ since $m(A_N) = 0$. Let $I_n = (a_n,b_n)$, $I_n^* = [a_n,b_n]$, then $m(I_n) = m(I_n^*)$. Then 
+$$m(f(A_N)) < \sum_n m(f(I_n)) = \sum_n m(f(I_n^*))$$
+Since $f$ is continuous, we know that $m(f(I_n^*)) = \max_{x \in I_n^*} f(x) - \min_{x \in I_n^*} f(x)$. Since $I_n^*$ is a closed interval and $f$ is continuous, we can find $x_1$ and $x_2 \in I_n^*$ such that $f(x_1) = \max_{x \in I_n^*} f(x)$ and $f(x_2) = \min_{x \in I_n^*} f(x)$. WLOG we can assume that $x_1 \leq x_2$. Then, 
+$$m(f(I_n^*)) = f(x_1) - f(x_2) \leq |f'(\alpha)|(x_1-x_2) $$
+$$\leq \max_{x \in I_n^*} f'(x) \times l(I_n) \leq \max_{x \in I_n^*} f'(x) \epsilon$$
+where $\alpha \in (x_1,x_2)$
+
+Since $\max_{x \in I_n^*} f'(x) < \infty$ and $\epsilon \rightarrow 0$, we find that $m(f(I_n)) = 0$. This implies $m(f(A_N)) = 0$ which implies 
+$$m(f(A)) = m(f(\cup^{\infty}_N A_N)) \leq \sum_{N}^{\infty} m(f(A_N)) = 0$$
+Thus, $m(f(A)) = m(E) = 0$. QED
 
 
 
