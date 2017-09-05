@@ -1,0 +1,60 @@
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 180-08;10;11 Fall
+
+%%%(change to appropriate quiz type and date)
+Quiz 2 September 6th \hspace{1.9in} {Name:} {\underline {\hspace{2.5in}}}
+\vspace{2pc}
+
+%%%(modify rules, time, points as appropriate)
+Show all work to get full credit of this 10 point quiz. All calculators are allowed, except for phones.
+\vspace{2pc}
+
+% problem
+\begin{problem}{5}
+Rewrite the following equation in equivalent exponential form:
+\begin{equation}
+\mathrm{log}_4 8 = \frac{3}{2}
+\end{equation}
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{5}
+Let $f(x) = \frac{x-3}{|x-3|}$. Find $f(3)$ and:
+\begin{equation}
+\lim_{x\to 3} f(x)
+\end{equation}
+\vfill
+\end{problem}
+
+
+
+
+\showpoints
+\end{document}
