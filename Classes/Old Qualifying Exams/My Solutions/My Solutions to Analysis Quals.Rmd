@@ -158,7 +158,74 @@ $$m \left( \bigcup_{k=1}^{\infty}A_k \right) = \lim_{k\to\infty} m(A_k)$$
 
 - Let $\{E_k\}^{\infty}_{k=1}$ be a countable collection of measurable sets for which $\sum_{k=1}^{\infty} m(E_k) < \infty$. Then almost all $x \in \mathbb{R}$ belong to at most finitely many of the $E_k$'s.
 
-- continue notes at section 2.6
+- Let $E$ be a bounded measurable set of real numbers. Suppose there is a bounded, countably infinite set of real numbers $\Lambda$ for which the collection of translates of $E$, $\{\lambda + E\}_{\lambda \in \Lambda}$, is disjoint. Then $m(E) = 0$
+
+- Any set $E$ of real numbers with positive outer measure contains a subset that fails to be measurable.
+
+- There are disjoint sets of real numbers $A$ and $B$ for which
+$$m^*(A \cup B) < m^* (A) + m^*(B)$$
+
+- The Cantor set $C$ is a closed, uncountable set of measure zero
+
+- The Cantor-Lebesgue function $\phi$ is an increasing continuous function that maps $[0,1]$ onto $[0,1]$. Its derivative exists on the open set $\mathcal{O}$, the complement in $[0,1]$ of the Cantor set $\phi '=0$ on $\mathcal{O}$ while $m(\mathcal{O}) = 1$
+
+- There is a measurable set, a subset of the Cantor set, that is not a Borel set.
+
+### Royden Chapter 3
+
+- Let the function $f$ have a measurable domain $E$. Then the following statements are equivalent:
+
+(i) For all $c \in \mathbb{R}$, the set $\{x \in E|f(x)  > c\}$ is measurable
+
+(ii) For all $c \in \mathbb{R}$, the set $\{x \in E|f(x)  \geq c\}$ is measurable
+
+(iii) For all $c \in \mathbb{R}$, the set $\{x \in E|f(x)  < c\}$ is measurable
+
+(iv) For all $c \in \mathbb{R}$, the set $\{x \in E|f(x)  \leq c\}$ is measurable
+
+- An extended real-valued function $f$ defined on $E$ is said to be **Lebesgue measurable**, or simply **measurable**, provided its domain $E$ is measurable and it satisfies one of the four above statements.
+
+- Let the function $f$ be defined on a measurable set $E$. Then $f$ is measurable iff for all open sets $\mathcal{O}$, the inverse image of $\mathcal{O}$ under $f$, $f^{-1}(\mathcal{O}) = \{x \in E| f(x) \in \mathcal{O}\}$, is measurable
+
+- A real valued function that is continuous on its measurable domain is measurable
+
+- A monotone function that is defined on an interval is measurable
+
+- Let $f$ be an extended real-valued function $E$. Then if $f$ is measurable on $E$ and $f=g$ a.e. on $E$, then $g$ is measurable on $E$. For a measurable subset $D$ of $E$, $f$ is measurable on $E$ iff the restrictions of $f$ to $D$ and $E$~$D$ are measurable.
+
+- Let $f$ and $g$ be measurable functions on $E$ that are finite a.e. on $E$. For any $\alpha$ and $\beta$, $\alpha f + \beta g$ is measurable on $E$ and $fg$ is measurable on $E$.
+
+- Let $g$ be a measurable real-valued function defined on $E$ and $f$ a continuous real-valued function on all of $\mathbb{R}$. Then the composition $f \circ g$ is a measurable function on $E$
+
+- For a sequence $\{f_n\}$ of functions with common domain $E$, a function $f$ on $E$ and a subset $A$ of $E$, we say that the sequence $\{f_n\}$ converges to $f$ pointwise on $A$ provided $\lim_{n \to \infty} f_n(x) = f(x)$ for all $x \in A$; and the sequence $\{f_n\}$ converges to $f$ pointwise a.e. on $A$ provided it converges to $f$ pointwise on $A$~$B$ where $m(B) =0$; and the sequence $\{f_n\}$ converges to $f$ uniformly on $A$ provided for each $\epsilon >0$, there is an index $N$ for which $|f-f_n| < \epsilon$ on $A$ for all $n \geq N$.
+
+- Let $\{f_n\}$ be a sequence of measurable functions on $E$ that converges pointwise a.e. on $E$ to the function $f$. Then $f$ is measurable.
+
+- If $A$ is any set, the **characteristic function** of $A$, $\chi_A$, is the function on $\mathbb{R}$ defined by 
+$$\chi_A = \{1|x \in A \& 0 |x \notin A \}$$
+
+- A real-valued function $\phi$ defined on a measurable set $E$ is called **simple** provided it is measurable and takes only a finite number of values
+
+- Let $f$ be a measurable real-valued function on $E$. Assume $f$ is bounded on $E$, that is there exists an $M \geq 0$ for which $|f| \leq M$ on $E$. Then for all $\epsilon > 0$, there are simple functions $\phi_{\epsilon}$ and $\psi_{\epsilon}$ defined on $E$ which have the following approximation properties on $E$:
+$$\phi_{\epsilon} \leq f \leq \psi_{\epsilon}; 0 \leq \psi_{\epsilon} - \phi_{\epsilon} < \epsilon$$
+
+- An extended real-valued function $f$ on a measurable set $E$ is measurable iff there is a sequence $\{\phi_n\}$ of simple functions on $E$ which converges pointwise on $E$ to $f$ and has the property that $|\phi_n| \leq |f|$ on $E$ for all $n$. If $f$ is nonnegative, we may choose $\{\phi_n\}$ to be increasing
+
+- **Egoroff's Theorem**: Assume $E$ has finite measure. Let $\{f_n\}$ be a sequence of measurable functions on $E$ that converges pointiwse on $E$ to the real-valued function $f$. THen for all $\epsilon > 0$, there is a closed set $F$ contained in $E$ for which $\{f_n\} \rightarrow f$ uniformly on $F$ and $m(E$~$F) < \epsilon$
+
+- Under the assumptions of Egoroff's Thm, for all $\nu > 0$ and $\delta > 0$, there is a measurable subset $A$ of $E$ and an index $N$ for which $|f_n - f| < \nu$ on $A$ for all $n \geq N$ and $m(E$~$A) < \delta$.
+
+- Let $f$ be a simple function defined on $E$. Then for each $\epsilon > 0$, there is a continuous function $g$ on $\mathbb{R}$ and a closed set $F$ contained in $E$ for which $f=g$ on $F$ and $m(E$~$F) < \epsilon$
+
+- Let $f$ be a real-valued measurable function on $E$. Then for all $\epsilon > 0$, there is a continuous function $g$ on $\mathbb{R}$ amd a closed set $F$ contained in $E$ for which $f=g$ on $F$ and $m(E$~$F) < \epsilon$
+
+### Royden Chapter 4
+
+
+
+
+
+
 
 
 
@@ -180,6 +247,14 @@ where $\alpha \in (x_1,x_2)$
 Since $\max_{x \in I_n^*} f'(x) < \infty$ and $\epsilon \rightarrow 0$, we find that $m(f(I_n)) = 0$. This implies $m(f(A_N)) = 0$ which implies 
 $$m(f(A)) = m(f(\cup^{\infty}_N A_N)) \leq \sum_{N}^{\infty} m(f(A_N)) = 0$$
 Thus, $m(f(A)) = m(E) = 0$. QED
+
+
+
+### Prove that if $f:[0,1] \rightarrow (0,\infty)$ is absolutely continuous, then so is $1/f$.
+#### My Solution:
+
+
+
 
 
 
