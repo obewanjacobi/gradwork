@@ -221,6 +221,69 @@ $$\phi_{\epsilon} \leq f \leq \psi_{\epsilon}; 0 \leq \psi_{\epsilon} - \phi_{\e
 
 ### Royden Chapter 4
 
+- The **upper and lower sums** for $f$ with respect to a partition $P$ are
+$$L(f,P) = \sum_{i=1}^{n}m_i \times (x_i-x_{i-1})$$
+$$U(f,P) = \sum_{i=1}^{n}M_i \times (x_i-x_{i-1})$$
+where $m_i$ is the infimum on the given partition, and $M_i$ is the supremum
+
+- The **lower and upper Riemann integrals** of $f$ over $[a,b]$ are defined by (respectively)
+$$\int_a^b f = \mathrm{sup}\{L(f,P)\}$$
+$$\int_a^b f = \mathrm{inf}\{U(f,P)\}$$
+where $P$ is a partition of $[a,b]$.
+
+- If the two above mentioned integrals are equal, then we say that $f$ is **Riemann integrable** over $[a,b]^2$.
+
+- For a simple function $\psi$ defined on a set og finite measure $E$, we define the integral of $\psi$ over $E$ by
+$$\int_E \psi = \sum_{i=1}^n a_i \times m(E_i)$$
+where $\psi = \sum_{i=1}^n a_i \times \chi_{E_i}$ and each $E_i = \{x \in E| \psi(x) = a_i\}$
+
+- Let $\{E_i\}_{i=1}^n$ be a finite disjoint collection of measurable subsets of a set of finite meausre $E$. For $1 \leq i \leq n$, let $a_i$ be a real number. If $\phi = \sum_{i=1}^n a_i \times \chi_{E_i}$ on $E$, then 
+$$\int_E \phi = \sum_{i=1}^n a_i \times m(E_i)$$
+
+- **Linearity and Monotonicity of Integration**: Let $\phi$ and $\psi$ be simple functions defined on a set of finite measure $E$. Then for any $\alpha$ and $\beta$,
+$$\int_E (\alpha \phi + \beta \psi) = \alpha \int_E \phi + \beta \int_E \psi$$
+Moreover, if $\phi \leq \psi$ on $E$, then
+$$\int_E \phi \leq \int_E \psi$$
+
+- A bounded function $f$ ona domain $E$ of finite measure is said to be **Lebesgue integrable** over $E$ provided its upper and lower Lebesgue integrals over $E$ are equal. The common value of the upper and lower integrals is called the **Lebesgue integral**.
+
+- Let $f$ be a bounded function defined on the closed, bounded interval $[a,b]$. If $f$ is Riemann integrable over $[a,b]$, then it is Lebesgue integrable over $[a,b]$ and the two integrals are equal.
+
+- Let $f$ be a bounded measurable function on a set of finite meausre $E$. Then $f$ is integrable over $E$.
+
+- Let $f$ and $g$ be bounded measurable functions on a set of finite measure $E$. Then for any $\alpha$ and $\beta$,
+$$\int_E (\alpha f + \beta g) = \alpha \int_E f + \beta \int_E g$$
+Moreover, if $f \leq g$ on $E$, then
+$$\int_E f \leq \int_E g$$
+
+- Let $f$ be a bounded measurable function on a set of finite measure $E$. Suppose $A$ and $B$ are disjoint meausrable subsets of $E$. Then
+$$\int_{A \cup B} f = \int_A f + \int_B f$$
+
+- Let $f$ be a bounded measurable function on a set of finite measure $E$. Then,
+$$\left| \int_E f \right| \leq \int_E |f|$$
+
+- Let $\{f_n\}$ be a sequence of bounded measurable functions on a set of finite measure $E$. If $\{f_n\} \rightarrow f$ uniformly on $E$, then $\lim_{n \to \infty} \int_E f_n = \int_E f$
+
+- **The Bounded Convergence Theorem**: Let $\{f_n\}$ be a sequence of measurable functions on a set of finite measure $E$. Suppose $\{f_n\}$ is uniformly pointwise bounded on $E$, that is, there exists a number $M \geq 0$ for which $|f_n| \leq M$ on $E$ for all $n$. If $\{f_n\} \rightarrow f$ pointwise on $E$, then $\lim_{n \to \infty} \int_E f_n = \int_E f$
+
+- **Chebychev's Inequality**: Let $f$ be a nonnegative measurable function on $E$. Then for any $\lambda > 0$, 
+$$m(\{x \in E| f(x) \geq \lambda\}) \leq \frac{1}{\lambda} \int_E f$$
+
+- Let $f$ be a nonnegative measurable function on $E$. Then $\int_E f = 0$ iff $f=0$ a.e. on $E$.
+
+- **Linearity and Monotonicity** follow for nonnegative measurable functions.
+
+- **Fatou's Lemma**: Let $\{f_n\}$ be a sequence of nonnegative measurable functions on $E$. If $\{f_n\} \rightarrow f$ pointwise a.e. on $E$, then $\int_E f \leq \mathrm{liminf} \int_E f_n$
+
+- **Monotone Convergence Theorem**: Let $\{f_n\}$ be an increasing sequence of nonnegative measurable functions on $E$. If $\{f_n\} \rightarrow f$ pointwise a.e. on $E$, then 
+$$\lim_{n \to \infty} \int_E f_n = \int_E f$$
+
+- A nonnegative measurable function $f$ on a measurable set $E$ is said to be **integrable** over $E$ provided $\int_E f < \infty$
+
+- Let the nonnegative function $f$ be integrable over $E$. Then $f$ is finite a.e. on $E$.
+
+- SECTION 4.4
+
 
 
 
