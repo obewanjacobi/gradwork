@@ -48,7 +48,7 @@ Hilbert spaces, Lp spaces, lp spaces, Hölder and Minkowski inequalities, comple
 
 ## Graduate Notes/Royden Book
 
-### Royden Chapter 1
+### Royden Chapter 1 (Sets, Sequences, and Functions)
 - A nonepmty set $E$ of real numbers is said to be **bounded above** provided that there is a real number $b$ such that $x \leq b$ for all $x \in E$. $b$ is known as an upper bound for $E$. We define bounded below similarly.
 
 - **The Completeness Axiom**: Let $E$ be a nonempty set of real numbers that is bounded above. Then among the set of upper bounds for $E$ there is a smallest, or least, upper bound.
@@ -107,7 +107,7 @@ $$|a+b| \leq |a| + |b|$$
 - The collection $\mathcal{B}$ of Borel sets of real numbers is the smallest $\sigma$-algebra of sets of real numbers that contains all of the open sets of real numbers. (every open set is a Borel set)
 
 
-### Royden Chapter 2
+### Royden Chapter 2 (Lebesgue Measure)
 
 - **The measure of an interval is its length**. Each nonempty interval $I$ is Lebesgue measurable and $$m(I) = l(I)$$
 
@@ -171,7 +171,7 @@ $$m^*(A \cup B) < m^* (A) + m^*(B)$$
 
 - There is a measurable set, a subset of the Cantor set, that is not a Borel set.
 
-### Royden Chapter 3
+### Royden Chapter 3 (Lebesgue Measurable Functions)
 
 - Let the function $f$ have a measurable domain $E$. Then the following statements are equivalent:
 
@@ -219,7 +219,7 @@ $$\phi_{\epsilon} \leq f \leq \psi_{\epsilon}; 0 \leq \psi_{\epsilon} - \phi_{\e
 
 - Let $f$ be a real-valued measurable function on $E$. Then for all $\epsilon > 0$, there is a continuous function $g$ on $\mathbb{R}$ amd a closed set $F$ contained in $E$ for which $f=g$ on $F$ and $m(E$~$F) < \epsilon$
 
-### Royden Chapter 4
+### Royden Chapter 4 (Integration)
 
 - The **upper and lower sums** for $f$ with respect to a partition $P$ are
 $$L(f,P) = \sum_{i=1}^{n}m_i \times (x_i-x_{i-1})$$
@@ -282,7 +282,46 @@ $$\lim_{n \to \infty} \int_E f_n = \int_E f$$
 
 - Let the nonnegative function $f$ be integrable over $E$. Then $f$ is finite a.e. on $E$.
 
-- SECTION 4.4
+- Let $f$ be a measurable function on $E$. Then $f^+$ and $f^-$ are integrable over $E$ iff $|f|$ is integrable over $E$.
+
+- A measurable function $f$ on $E$ is said to be **integrable** over $E$ provided $\int_E |f| < \infty$. When this is so, we define the integral by 
+$$\int_E f = \int_E f^+ - \int_E f^-$$
+
+- Let $f$ be integrable over $E$. THen $f$ is finite a.e. on $E$ and $\int_E f = \int_{E/E_0} f$ if $E_0 \subseteq E$ such that $m(E_0) = 0$.
+
+- **The Integral Comparison Test**: Let $f$ be a measurable function on $E$. Suppose there is a nonnegative function $g$ that is integrable over $E$ and dominates $f$ in the sense that $|f| \leq g$ on $E$. Then $f$ is integrable over $E$ and
+$$\left| \int_E f \right| \leq \int_E |f|$$
+
+- If $f$ and $g$ are integrable functions on $E$, then **linearity** and **monotonicity** follow.
+
+- Let $f$ be integrable over $E$. Assume $A$ and $B$ are disjoint measurable subsets of $E$. Then 
+$$\int_{A \cup B} f = \int_A f + \int_B f$$
+
+- **Dominated Convergence Theorem**: Let $\{f_n\}$ be a sequence of measurable functions on $E$. Suppose there is an integrable function $g$ on $E$ and dominates $\{f_n\}$ on $E$ in the sense that $|f_n| \leq g$ on $E$ for all $n$. If $\{f_n\} \rightarrow f$ pointwise a.e. on $E$, then $f$ is integrable over $E$ and $\lim_{n \to \infty} \int_E f_n = \int_E f$.
+
+- **General Dominated Convergence Theorem**: Let $\{f_n\}$ be a sequence of measurable functions on $E$ that converges pointwise a.e. on $E$ to $f$. Suppose there is a sequence $\{g_n\}$ of nonnegative measurable functions on $E$ that converges pointwise a.e. on $E$ to $g$ and dominates $\{f_n\}$ on $E$ in the sense that $|f_n| \leq g_n$ on $E$ for all $n$. If
+$$\lim_{n \to \infty} \int_E g_n = \int_E g < \infty$$
+then,
+$$\lim_{n \to \infty} \int_E f_n = \int_E f$$
+
+- Let $E$ be a set of finite measure and $\delta > 0$. Then $E$ is the disjoint union of a finite collection of sets, each of which has measure less than $\delta$.
+
+- A family $\mathcal{F}$ of measuable functions on $E$ is said to be **uniformly integrable** over $E$ provided for each $\epsilon > 0$, there is a $\delta > 0$ such that for each $f \in \mathcal{F}$, if $A \subseteq E$ is measurable and $m(A) < \delta$, then $\int_A |f| < \epsilon$.
+
+- Let $\{f_n\}_{k=1} ^n$ be a finite collection of functions, each of which is integrable over $E$. Then $\{f_n\}_{k=1} ^n$ is uniformly integrable.
+
+- **Vitali COnvergence Theorem**: Let $E$ be of finite measure. Suppose the sequence of functions $\{f_n\}$ is uniformly integrable over $E$. If $\{f_n\} \rightarrow f$ a.e. on $E$, then $f$ is integrable over $E$ and 
+$$\lim_{n \to \infty} \int_E f_n = \int_E f$$
+
+- Let $f$ be a bounded function on a set of finite measure $E$. Then $f$ is Lebesgue integrable over $E$ iff it is measurable.
+
+- Let $f$ be a bounded function on the closed, bounded interval of $[a,b]$. THen $f$ is Riemann integrable over $[a,b]$ iff the set of points in $[a,b]$ at which $f$ fails to be continuous has measure zero.
+
+### Royden Chapter 6 (Differentiation)
+
+- Let $f$ be a monotone function on the open interval $(a,b)$. Then $f$ is continuous except possibly at a countable number of points in $(a,b)$.
+
+- Section 6.2
 
 
 
