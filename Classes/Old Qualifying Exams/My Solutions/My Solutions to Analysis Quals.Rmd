@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #Prelude
-This document is written in reference to qualifying exams given at the University of Louisville in past years. These solutions are not given from the University, but of my work alone as a way to study for my own qualifying exam. If any tips or recommendations come up and you feel you should share, feel free to raise an issue on GitHub where I have this document saved and open to the public [here](). To see the qualifying exams for yourself, [visit this link](http://www.math.louisville.edu/GraduateFAQ/qualifiers/QualifierStudyGuides/). When referencing the Royden book, this is in reference to the *Real Analysis; 4th Edition*. Thank you.
+This document is written in reference to qualifying exams given at the University of Louisville in past years. These solutions are not given from the University, but of my work alone as a way to study for my own qualifying exam. If any tips or recommendations come up and you feel you should share, feel free to raise an issue on GitHub where I have this document saved and open to the public [here](https://github.com/obewanjacobi/gradwork/tree/master/Classes/Old%20Qualifying%20Exams/My%20Solutions). To see the qualifying exams for yourself, [visit this link](http://www.math.louisville.edu/GraduateFAQ/qualifiers/QualifierStudyGuides/). When referencing the Royden book, this is in reference to the *Real Analysis; 4th Edition*. Thank you.
 
 Jacob Townson
 
@@ -321,7 +321,41 @@ $$\lim_{n \to \infty} \int_E f_n = \int_E f$$
 
 - Let $f$ be a monotone function on the open interval $(a,b)$. Then $f$ is continuous except possibly at a countable number of points in $(a,b)$.
 
-- Section 6.2
+- If the function $f$ is monotone on the open interval $(a,b)$, then it is differentiable almost everywhere on $(a,b)$
+
+- Define the **variation** of $f$ with respect to $P$ (a partition) by $V(f,P) = \sum_{i=1}^k |f(x_i) - f(x_{i-1})|$, and the **total variation** of $f$ on $[a,b]$ by $TV(f) = \mathrm{sup} \{V(f,P)\}$ where $P$ is a partition on $[a,b]$
+
+- A real valued function $f$ on the closed and bounded interval $[a,b]$ is said to be of **bounded variation** on $[a,b]$ provided $TV(f) < \infty$
+
+- **Jordan's Thm**: A function $f$ is of bounded variation on the closed, bounded interval $[a,b]$ iff it is the difference of two increasing functions on $[a,b]$
+
+- If the function $f$ is of bounded variation on the closed and bounded interval $[a,b]$ then it is differentiable almost everywhere on the open interval $(a,b)$ and $f'$ is integrable over $[a,b]$
+
+- A real valued function $f$ on a closed and bounded interval $[a,b]$ is said to be **absolutely continuous** on $[a,b]$ provided for each $\epsilon > 0$ there is a $\delta > 0$ such that for every finite disjoint collection $\{(a_k,b_k)\}_{k=1}^n$ of open intervals in $(a,b)$, if $\sum_{k=1}^n [b_k - a_k] < \delta$, then 
+$$\sum_{k=1}^n |f(b_k) - f(a_k)| < \epsilon$$
+
+- If the function $f$ is Lipschitz on a closed, bounded interval $[a,b]$, then it is absolutely continuous on $[a,b]$
+
+- Let the function $f$ be absolutely continuous on the closed, bounded interval $[a,b]$. Then $f$ is the difference of increasing absolutely continuous functions and, in particular, is of bounded variation
+
+- Let the function $f$ be absolutely continuous on the closed, bounded interval $[a,b]$. Then $f$ is differentiable almost everywhere on $(a,b)$, its derivative $f'$ is integrable over $[a,b]$ and
+$$\int_b ^a f' = f(b) - f(a)$$
+
+- We call a function $f$ on a closed, bounded interval $[a,b]$ the **indefinite integral** of $g$ over $[a,b]$ provided that $g$ is Lebesgue integrable over $[a,b]$ and for all $x \in [a,b]$
+$$f(x) = f(a) + \int_a ^x g$$
+
+- A function $f$ on a closed, bounded interval $[a,b]$ is absolutely continuous on $[a,b]$ iff it is an indefinite integral over $[a,b]$
+
+- Let the function $f$ be monotone on the closed, bounded interval $[a,b]$. Then $f$ is absolutely continuous on $[a,b]$ iff $\int_a ^b f' = f(b) - f(a)$
+
+- Let $f$ be integrable over the closed, bounded interval $[a,b]$. Then $f(x) = 0$ for almost all $x \in [a,b]$ iff $\int_{x_1} ^{x_2} f = 0$ for all $(x_1, x_2) \subseteq [a,b]$
+
+- Let $f$ be integrable over the closed, bounded interval $[a,b]$. Then for almost all $x \in (a,b)$
+$$\frac{d}{dx} \left[ \int_a ^x f \right] = f(x)$$
+
+### Royden Chapter 7 ($L^p$ Spaces)
+
+- 
 
 
 
