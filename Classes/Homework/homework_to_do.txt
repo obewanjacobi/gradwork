@@ -2,6 +2,8 @@
 STATISTICS
 
 Exam 9/28
+lectures 1-7
+more info in notes directory and notebook
 -----------------------------------------------------
 MODELING
 
@@ -9,7 +11,7 @@ NA
 -----------------------------------------------------
 INDEPENDENT STUDY - BINGTUAN
 
-read chapters 1,2,13
+read chapters 2,13
 -----------------------------------------------------
 TEACHING-MATH 108
 08:
