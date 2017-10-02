@@ -38,8 +38,73 @@ functions, Baire category theorem
 - 
 Hilbert spaces, Lp spaces, lp spaces, Hölder and Minkowski inequalities, completeness
 
+
+
+# My Solutions from Quals
+
+## Spring 2017
+
+### Prove that if $A \subset \mathbb{R}$ has Lebesgue measure $0$, then $m(\{e^x | x \in A\}) = 0$.
+#### My Solution:
+Let $m(A) = 0$ and $E = \{\mathrm{e}^x|x \in A\}$. First note that we know $f(x) = \mathrm{e}^x$ is continuous on $\mathbb{R}$. Let $A_N = [-N,N] \cap A$, then 
+$$A = \bigcup_{N=1}^{\infty} A_N$$
+Also, $m(A) = 0 \implies m(A_N) = 0$ for all $N \in \mathbb{N}$. By definition of Lebesgue measure, for all $\epsilon > 0$, there exists a sequence of intervals $\{I_n\}^{\infty}_{n=1}$ such that $I_i \cap I_j$ is the empty set for all $i$ and $j$. Also, $A_N \subset \cup I_n$ such that $\sum_n l(I_n) < \epsilon$ since $m(A_N) = 0$. Let $I_n = (a_n,b_n)$, $I_n^* = [a_n,b_n]$, then $m(I_n) = m(I_n^*)$. Then 
+$$m(f(A_N)) < \sum_n m(f(I_n)) = \sum_n m(f(I_n^*))$$
+Since $f$ is continuous, we know that $m(f(I_n^*)) = \max_{x \in I_n^*} f(x) - \min_{x \in I_n^*} f(x)$. Since $I_n^*$ is a closed interval and $f$ is continuous, we can find $x_1$ and $x_2 \in I_n^*$ such that $f(x_1) = \max_{x \in I_n^*} f(x)$ and $f(x_2) = \min_{x \in I_n^*} f(x)$. WLOG we can assume that $x_1 \leq x_2$. Then, 
+$$m(f(I_n^*)) = f(x_1) - f(x_2) \leq |f'(\alpha)|(x_1-x_2) $$
+$$\leq \max_{x \in I_n^*} f'(x) \times l(I_n) \leq \max_{x \in I_n^*} f'(x) \epsilon$$
+where $\alpha \in (x_1,x_2)$
+
+Since $\max_{x \in I_n^*} f'(x) < \infty$ and $\epsilon \rightarrow 0$, we find that $m(f(I_n)) = 0$. This implies $m(f(A_N)) = 0$ which implies 
+$$m(f(A)) = m(f(\cup^{\infty}_N A_N)) \leq \sum_{N}^{\infty} m(f(A_N)) = 0$$
+Thus, $m(f(A)) = m(E) = 0$. QED
+
+
+
+### Prove that if $f:[0,1] \rightarrow (0,\infty)$ is absolutely continuous, then so is $1/f$.
+#### My Solution:
+
+
+
+
+
+
+# Extra Problems
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Important Notes
 ## Undergrad
+
+For reference, these notes are gathered from the book *Real Analysis; A First Course* by Russell A. Gordon. These notes consist of basic real analysis ideas based off of my past undergraduate class taught by Dr. Christine Leverenz at Georgetown College.
+
+### Gordon Chapter 1 (Real Numbers)
+
+### Gordon Chapter 2 (Sequences)
+
+### Gordon Chapter 3 (Limits and Continuity)
+
+### Gordon Chapter 4 (Differentiation)
+
+### Gordon Chapter 5 (Integration)
+
+### Gordon Chapter 6 (Infinite Series)
+
+### Gordon Chapter 7 (Sequences and Series of Functions)
+
+### Gordon Chapter 8 (Point-Set Topology)
+
+
 
 
 
@@ -355,46 +420,120 @@ $$\frac{d}{dx} \left[ \int_a ^x f \right] = f(x)$$
 
 ### Royden Chapter 7 ($L^p$ Spaces)
 
-- 
+- For most of this section, unless otherwise stated, define $E$ to be a measurable set of real numbers, and $\mathcal{F}$ to be the collection of all measurable extended real-valued functions on $E$ that are finite a.e. on $E$. Define $f$ and $g \in \mathcal{F}$ to be equivalent and $f \cong g$ iff $f(x) = g(x)$ for almost all $x \in E$.
+
+- We call a function $f \in \mathcal{F}$ **essentially bounded** provided there is some $M \geq 0$ called an **essential upper bound** for $f$ for which $|f(x)| \leq M$ for almost all $x \in E$
+
+- **functionals** are real-valued functions that have as their domain linear spaces of functions
+
+- Let $X$ be a linear space. A real-valued functional $|| \cdot ||$ on $X$ is called a **norm** provided for each $f$ and $g$ in $X$, and each real number $c$, $||f|| \geq 0$ and $||f|| = 0$ iff $f =0$,
+$$||f+g|| \leq ||f||+||g||$$
+$$||cf|| = |c|||f||$$
+
+- By a **normed linear space** we mean a linear space together with a norm. If $X$ is a linear space normed by $|| \cdot ||$ we say that a function in $X$ is a **unit function** provided $||f|| = 1$
+
+- For any $f \in X$, $f \neq 0$, the function $\frac{f}{||f||}$ is a unit function: it is a scalar multiple of $f$ which we call the **normalization** of $f$
+
+- **The Normed Linear Space $L^1(E)$**
+$$||f||_1 = \int_E |f|$$
+
+- **The Normed Linear Space $L^{\infty}(E)$**: For a function $f \in L^{\infty}(E)$, define $||f||_{\infty}$ to be the infimum of the essential upper bounds for $f$. We call $||f||_{\infty}$ the **essential supremum** of $f$ and claim that $|| \cdot ||$ is a norm on $L^{\infty}(E)$
+
+- $||f||_{\mathrm{max}} = \mathrm{max}_{x \in [a,b]} |f(x)|$ is a norm and is called the **maximum norm**
+
+- For a measurable set $E$ where $1<p< \infty$ and a function $f$ in $L^p(E)$, define 
+$$||f||_p = \left[ \int_E |f|^p \right]^{1/p}$$
+
+- The conjugate of a number $p \in (1, \infty)$ is the number $q = \frac{p}{p-1}$, which is the unique number $q \in (1, \infty)$ for which 
+$$\frac{1}{p} + \frac{1}{q} = 1$$
+Note, the conjugate of $1$ is defined to be $\infty$ and vice versa.
+
+- **Young's Inequality**: For $1<p< \infty$, $q$ is the conjugate of $p$ and any two positive numbers $a$ and $b$,
+$$ab \leq \frac{a^p}{p}+\frac{b^q}{q}$$
+
+- Let $E$ be a measurable set $1 \leq p < \infty$, and $q$ be the conjugate of $p$. If $f$ belongs to $L^p(E)$ and $g$ belongs to $L^q(E)$, then their product $f \cdot g$ is integrable over $E$ and 
+$$\int_E |f \cdot g| \leq ||f||_p \cdot ||g||_q$$
+This is known as **Holder's Inequality**. 
+
+- Let $E$ be a measurable set and $1 \leq p < \infty$. If the functions $f$ and $g$ belong to $L^p(E)$, then so does their sum $f+g$ and moreover,
+$$||f+g||_p \leq ||f||_p + ||g||_p$$
+
+- **Cauchy-Schwarz Inequality**: Let $E$ be a maeasurable set and $f$ and $g$ measurable functions on $E$ for which $f^2$ and $g^2$ are integrable over $E$. Then their product $f \cdot g$ is also integrable over $E$ and 
+$$\int_E |fg| \leq \sqrt{\int_E f^2} \cdot \sqrt{\int_E g^2}$$
+
+- Let $E$ be a measurable set and $1 < p < \infty$. Suppose $\mathcal{F}$ is a family of functions in $L^p(E)$ that is bounded in $L^p(E)$ in the sense that there is a constant $M$ for which $||f||_p \leq M$ for all $f$ in $\mathcal{F}$. Then the family $\mathcal{F}$ is uniformly integrable over $E$.
+
+- Let $E$ be a measurable set of finite measure and $1 \leq p_1 < p_2 \leq \infty$. Then $L^{p_2}(E) \subseteq L^{p_1}(E)$. Furthermore $||f||_{p_1} \leq c||f||_{p_2}$ for all $f$ in $L^{p_2}(E)$ where $c = [m(E)]^{\frac{p_2 - p_1}{p_1p_2}}$ if $p_2 < \infty$ and $c = [m(E)]^{\frac{1}{p_1}}$ if $p_2 = \infty$
+
+- A sequence $\{f_n\}$ in a linear space $X$ that is normed by $|| \cdot ||$ is said to **converge to $f$ in $X$** provided $\lim_{n \to \infty} ||f - f_n|| = 0$. This can also be written as $\{f_n\} \to f$ in $X$ or $\lim_{n \to \infty} f_n = f$ in $X$. 
+
+- A sequence $\{f_n\}$ in a linear space $X$ that is normed by $|| \cdot ||$ is said to be **Cauchy** in $X$ provided for each $\epsilon > 0$, there is a natural number $N$ such that $||f_n - f_m|| < \epsilon$ for all $m,n \geq N$. 
+
+- A normed linear space $X$ is said to be **complete** provided every Cauchy sequence in $X$ converges to a function in $X$. A complete normed linear space is called a **Banach space**
+
+- Let $X$ be a normed linear space. Then every convergent sequence in $X$ is Cauchy. Moreover, a Cauchy sequence in $X$ converges if it has a convergent subsequence.
+
+- Let $X$ be a linear space normed by $|| \cdot ||$. A sequence $\{f_n\}$ in $X$ is said to be **rapidly Cauchy** provided there is a convergent series of positive numbers $\sum_{k=1}^{\infty} \epsilon_k$ for which $||f_{k+1} - f_k|| \leq \epsilon_k ^2$ for all $k$
+
+- Let $X$ be a normed linear space. Then every rapidly Cauchy sequence in $X$ is Cauchy. Furthermore, every Cauchy sequence has a rapidly Cauchy subsequence.
+
+- Let $E$ be a measurable set and $1 \leq p \leq \infty$. Then every rapidly Cauchy sequence in $L^p(E)$ converges both wrt the $L^p(E)$ norm and pointwise a.e. on $E$ to a function in $L^p(E)$.
+
+- Let $E$ be a measurable set and $1 \leq p \leq \infty$. Then $L^p(E)$ is a Banach space. Moreover, if $\{f_n\} \rightarrow f$ in $L^p(E)$, a subsequence of $\{f_n\}$ converges pointwise a.e. on $E$ to $f$
+
+- Let $E$ be a measurable set and $1 \leq p < \infty$. Suppose $\{f_n\}$ is a sequence in $L^p(E)$ that converges pointwise a.e. on $E$ to the function $f$ which belongs to $L^p(E)$. Then $\{f_n\} \rightarrow f$ in $L^p(E)$ iff $\lim_{n \to \infty} \int_E |f_n|^p = \int_E |f|^p$
+
+- Let $E$ be a measurable set and $1 \leq p < \infty$. Suppose $\{f_n\}$ is a sequence in $L^p(E)$ that converges pointwise a.e. on $E$ to the function $f$ which belongs to $L^p(E)$. Then $\{f_n\} \to f$ in $L^p(E)$ iff $\{|f|^p\}$ is uniformly integrable and tight over $E$.
+
+- Let $X$ be a normed linear space with norm $|| \cdot ||$. Given two subsets $\mathcal{F}$ and $\mathcal{G}$ of $X$ with $\mathcal{F} \subseteq \mathcal{G}$, we say that $\mathcal{F}$ is **dense** in $\mathcal{G}$, provided for each function $g \in \mathcal{G}$ and $\epsilon > 0$, there is a function $f \in \mathcal{F}$ for which $||f-g|| < \epsilon$
+
+- Let $E$ be a measurable set and $1 \leq p \leq \infty$. Then the subspace of simple functions in $L^p(E)$ is dense in $L^p(E)$
+
+- Let $[a,b]$ be a closed, bounded interval and $1 \leq p < \infty$. Then the subspace of step functions on $[a,b]$ is dense in $L^p[a,b]$
+
+- A normed linear space $X$ is said to be **separable** provided there is a countable subset that is dense in $X$.
+
+- Let $E$ be a measurable set and $1 \leq p < \infty$. Then the normed linear space $L^p(E)$ is separable.
 
 
+### Royden Chapter 8 ($L^p$ Spaces Continued)
 
+- A **linear functional** on a linear space $X$ is a real-valued function $T$ on $X$ suxh that for $g$ and $h$ in $X$ and $\alpha$ and $\beta$ real numbers,
+$$T(\alpha \cdot g + \beta \cdot h) = \alpha \cdot T(g) + \beta \cdot T(h)$$
 
+- For a normed linear space $X$, a linear functional $T$ on $X$ is said to be **bounded** provided there is an $M \geq 0$ for which $|T(f)| \leq M \cdot ||f||$ for all $f \in X$. The infimum of all such $M$ is called the **norm** of $T$ and denoted by $||T||_*$
 
+- Let $X$ be a normed linear space. Then the collection of bounded linear functionals on $X$ is a linear space on which $|| \cdot ||_*$ is a norm. This normed linear space is called the **dual space** of $X$ and denoted by $X^*$
 
+- Let $E$ be a measurable set, $1 \leq p < \infty$, $q$ be the conjugate of $p$, and $g$ belong to $L^q(E)$. Define the functional $T$ on $L^p(E)$ by $T(f) = \int_E g \cdot f$ for all $f \in L^p(E)$. Then $T$ is a bounded linear functional on $L^p(E)$ and $||T||_* = ||g||_q$
 
+- Let $T$ and $S$ be bounded linear functionals on a normed linear space $X$. If $T=S$ on a dense subset $X_0$ of $X$, then $T = S$
 
+- Let $I = [a,b]$ be a closed, bounded interval and $1 \leq p < \infty$. Suppose $T$ us a bounded linear functional on $L^p[a,b]$. Then there is a function $g$ in $L^q[a,b]$, where $q$ is the conjugate of $p$ for which $T(f) = \int_I g \cdot f$ for all $f \in L^p[a,b]$
 
-# My Solutions from Quals
+- Let $E$ be a measurable set, $1 \leq p < \infty$ and $q$ the conjugate of $p$. For each $g \in L^q(E)$, define the bounded linear functional $\mathcal{R}_g$ on $L^p(E)$ by $\mathcal{R}_g(f) = \int_E g \cdot f$ for all $f$ in $L^p(E)$. Then for each bounded linear functional $T$ on $L^p(E)$, there is a unique function $g \in L^q(E)$ for which $\mathcal{R}_g = T$ and $||T||_* = ||g||_q$
 
-## Spring 2017
+- Let $X$ be a normed linear space. A sequence $\{f_n\}$ in $X$ is said to **converge weakly** in $X$ to $f$ in $X$ provided $\lim_{n \to \infty} T(f_n) = T(f)$ for all $T \in X^*$
 
-### Prove that if $A \subset \mathbb{R}$ has Lebesgue measure $0$, then $m(\{e^x | x \in A\}) = 0$.
-#### My Solution:
-Let $m(A) = 0$ and $E = \{\mathrm{e}^x|x \in A\}$. First note that we know $f(x) = \mathrm{e}^x$ is continuous on $\mathbb{R}$. Let $A_N = [-N,N] \cap A$, then 
-$$A = \bigcup_{N=1}^{\infty} A_N$$
-Also, $m(A) = 0 \implies m(A_N) = 0$ for all $N \in \mathbb{N}$. By definition of Lebesgue measure, for all $\epsilon > 0$, there exists a sequence of intervals $\{I_n\}^{\infty}_{n=1}$ such that $I_i \cap I_j$ is the empty set for all $i$ and $j$. Also, $A_N \subset \cup I_n$ such that $\sum_n l(I_n) < \epsilon$ since $m(A_N) = 0$. Let $I_n = (a_n,b_n)$, $I_n^* = [a_n,b_n]$, then $m(I_n) = m(I_n^*)$. Then 
-$$m(f(A_N)) < \sum_n m(f(I_n)) = \sum_n m(f(I_n^*))$$
-Since $f$ is continuous, we know that $m(f(I_n^*)) = \max_{x \in I_n^*} f(x) - \min_{x \in I_n^*} f(x)$. Since $I_n^*$ is a closed interval and $f$ is continuous, we can find $x_1$ and $x_2 \in I_n^*$ such that $f(x_1) = \max_{x \in I_n^*} f(x)$ and $f(x_2) = \min_{x \in I_n^*} f(x)$. WLOG we can assume that $x_1 \leq x_2$. Then, 
-$$m(f(I_n^*)) = f(x_1) - f(x_2) \leq |f'(\alpha)|(x_1-x_2) $$
-$$\leq \max_{x \in I_n^*} f'(x) \times l(I_n) \leq \max_{x \in I_n^*} f'(x) \epsilon$$
-where $\alpha \in (x_1,x_2)$
+- Let $E$ be a measurable set, $1 \leq p < \infty$, and $q$ the conjugate of $p$. Then $\{f_n\}$ converges weakly in $X$ to $f$ in $L^p(E)$ iff $\lim_{n \to \infty} \int_E g \cdot f_n = \int_E g \cdot f$ for all $g \in L^q(E)$
 
-Since $\max_{x \in I_n^*} f'(x) < \infty$ and $\epsilon \rightarrow 0$, we find that $m(f(I_n)) = 0$. This implies $m(f(A_N)) = 0$ which implies 
-$$m(f(A)) = m(f(\cup^{\infty}_N A_N)) \leq \sum_{N}^{\infty} m(f(A_N)) = 0$$
-Thus, $m(f(A)) = m(E) = 0$. QED
+- Let $E$ be a measurable set and $1 \leq p < \infty$. Suppose $\{f_n\}$ converges weakly in $L^p(E)$ to $f$. Then $\{f_n\}$ is bounded in $L^p(E)$ and $||f||_p \leq \mathrm{liminf}||f_n||_p$
 
+- Let $E$ be a measurable set, $1 \leq p < \infty$, and $q$ the conjugate of $p$. Suppose $\{f_n\}$ converges weakly to $f$ in $L^p(E)$ and $\{g_n\}$ converges strongly to $g$ in $L^q(E)$. Then $\lim_{n \to \infty} \int_E g_n \cdot f_n = \int_E g \cdot f$
 
+- The **linear span** of a subset $\mathcal{S}$ of a linear space $X$ is the linear space consisting of all linear combinations of functions in $\mathcal{S}$, that is, the linear space of functions of the form $f = \sum^n _{k=1} \alpha_k \cdot f_k$ where each $\alpha_k$ is a real number and each $f_k$ belongs to $\mathcal{S}$
 
-### Prove that if $f:[0,1] \rightarrow (0,\infty)$ is absolutely continuous, then so is $1/f$.
-#### My Solution:
+- Let $E$ be a measurable set and $1 \leq p < \infty$. Suppose $\{f_n\}$ is a bounded sequence in $L^p(E)$ and $f$ belongs to $L^p(E)$. Then $\{f_n\}$ converges weakly to $f$ in $L^p(E)$ iff for every measurable subset $A$ of $E$, $\lim_{n \to \infty} \int_A f_n = \int_A f$. If $p > 1$, it is sufficient to consider sets $A$ of finite measure.
 
+- Let $[a,b]$ be a closed and bounded interval and $1 < p < \infty$. Suppose $\{f_n\}$ is a bounded sequence in $L^p[a,b]$ and $f$ belongs to $L^p[a,b]$. Then $\{f_n\}$ converges weakly to $f$ in $L^p[a,b]$ iff 
+$$\lim_{n \to \infty} \left[ \int_a ^x f_n\right] = \int^x _a f$$
+for all $x \in [a,b]$. This theorem is false for $p =1$
 
+- Let $E$ be a measurable set and $1 < p < \infty$. Suppose $\{f_n\}$ converges weakly to $f$ in $L^p(E)$. Then $\{f_n\} \to f$ in $L^p(E)$ iff $\lim_{n \to \infty} ||f_n||_p = ||f||_p$
 
+- Let $E$ be a measurable set and $1 < p < \infty$. Suppose $\{f_n\}$ converges weakly $f$ in $L^p(E)$. Then a subsequence of $\{f_n\}$ converges strongly in $L^p(E)$ to $f$ iff $||f||_p = \mathrm{liminf}||f_n||_p$
 
-
-
-# Extra Problems
+- Let $E$ be a measurable set and $1 < p < \infty$. Then every bounded sequence in $L^p(E)$ has a subsequence that converges weakly in $L^p(E)$ to a function in $L^p(E)$
 
 
 
