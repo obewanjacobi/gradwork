@@ -1,13 +1,15 @@
 syms x(t);
-x_0 = sym('x_0');
-c_1 = sym('c_1');
-c_2 = sym('c_2');
+syms x_0;
+syms c_1;
+syms c_2;
+syms c_3;
+c = [c_1;c_2;c_3];
 
 %%Input the 1st order DE here
-ode = diff(x,t) == 2*x;
+ode = diff(x,t) == -x+(c_1*exp(-t))^2;
 
 %%Input initial condition here
-cond = x(0) == 0;
+cond = x(0) == c_3;
 
 xSol(t) = dsolve(ode,cond);
 xSol = simplify(xSol)
