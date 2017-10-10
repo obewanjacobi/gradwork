@@ -67,6 +67,19 @@ Thus, $m(f(A)) = m(E) = 0$. QED
 
 
 
+### Prove that if $f$ is absolutely continuous on $[0,1]$ and there is a $g \in C([0,1])$ such that $f' = g$ a.e., then $f$ is differentiable on $[0,1]$ and $f'=g$.
+#### My Solution:
+Using Lebesgue's fundamental theorem of calculus, we know that 
+$$f(x) = f(0) + \int_0 ^x f'$$
+Then, because $f' = g$ a.e.;
+$$f(x) = f(0) + \int_0 ^x g$$
+This implies that $\int_0 ^x f' = \int_0 ^x g$, thus by the fundamental theorem of calculus, if we take the derivative of both sides, we can see that $f'(x) = g(x)$ for all $x$. QED
+
+
+
+
+
+
 
 
 # Extra Problems
@@ -90,19 +103,125 @@ For reference, these notes are gathered from the book *Real Analysis; A First Co
 
 ### Gordon Chapter 1 (Real Numbers)
 
+- A **field** is a nonempty set $F$ of objects that has two operations defined on it. These operations are usually defined as addition and multiplication. These operations follow a set of properties which will not be listed here as you should know them.
+
+- **Triangle Inequality**: $|a+b| \leq |a|+|b|$. It follows from this that $||a|-|b|| \leq |a-b|$
+
+- If $a \neq 0$ and $r \neq 1$ are real numbers, then 
+$$a+ar+ar^2+ar^3+...+ar^n = a \cdot \frac{1-r^{n+1}}{1-r}$$
+
+- **Cauchy-Schwarz Inequality**: Let $n$ be a positive integer. If $a_1,a_2,...,a_n$ and $b_1,b_2,...,b_n$ are real numbers, then
+$$\left( \sum^n_{k=1} a_k b_k \right)^2 \leq \left(\sum^n_{k=1} a_k^2 \right) \left( \sum^n_{k=1} b_k^2 \right)$$
+Equality occurs iff there is a constant $c$ such that $a_k = cb_k$ for all integers $k$
+
+- The set $S$ is **bounded** if there is a number $M$ such that $|x| \leq M$ for all $x \in S$. The number $M$ is called a **bound** for S.
+
+- Suppose that $S$ is bounded above. A number $\beta$ is the **supremum** of $S$ if $\beta$ is an upper bound of $S$ and any number less than $\beta$ is not an upper bound of $S$. We write $\beta = \sup (S)$
+
+- Suppose that $S$ is bounded below. A number $\alpha$ is the **infimum** of $S$ if $\alpha$ is an lower bound of $S$ and any number greater than $\alpha$ is not an lower bound of $S$. We write $\alpha = \inf (S)$
+
+- **Archimedean Property of the Real Numbers**: If $a$ and $b$ are positive real numbers, then there exists a positive integer $n$ such that $na > b$.
+
+- Between any two distinct real numbers, there exists a rational and an irrational number.
+
+- A countable union of countable sets is countable. 
+
+- Let $I$ be an interval and $f$ be a function such that $f:I \to \mathbb{R}$, and let $J$ be a subinterval of $I$. The function $f$ is **increasing** on $J$ if $f(x) \leq f(y)$ for all $x,y \in J$ such that $x<y$; and **strictly increasing** on $J$ if $f(x) < f(y)$ for all $x,y \in J$ such that $x < y$. The function $f$ is **decreasing** on $J$ if $f(x) \geq f(y)$ for all $x,y \in J$ that satisfy $x<y$; and **strictly decreasing** on $J$ if $f(x) > f(y)$ for all $x,y \in J$ such that $x<y$. The function $f$ is **monotone** on $J$ if it is either increasing or decreasing on $J$ and **strictly monotone** on $J$ if it is either strictly increasing or decreasing on $J$.
+
+
 ### Gordon Chapter 2 (Sequences)
+
+- A **sequence** is a function whose domain is the set of positive integers. A **sequence of real numbers** is a sequence whose codomain is the set $\mathbb{R}$. Although a sequence is a function, the standard notation for a sequence of real numbers is $\{x_n\}$ where the subscript $n$ denotes the **index** of the sequence.
+
+- A sequence $\{x_n\}$ **converges to a number** $L$ if for all $\epsilon>0$ there exists a positive integer $N$ such that $|x_n - L| < \epsilon$ for all $n \geq N$. The sequence is **convergent** if there exists a number $L$ that the sequence converges to, otherwise it is **divergent**.
+
+- The limit of a convergent sequence is unique.
+
+- Suppose that $\{a_n\}$ converges to $a$ and $\{b_n\}$ converges to $b$. Then:
+
+--- $\{ca_n\} \to ca$
+
+--- $\{a_n \pm b_n\} \to a \pm b$
+
+--- $\{a_n b_n\} \to ab$
+
+- A monotone sequence converges iff it is bounded
+
+- A sequence $\{x_n\}$ is a **Cauchy Sequence** if for all $\epsilon > 0$ there exists a positive integer $N$ such that $|x_m - x_n| < \epsilon$ for all $m,n \geq N$.
+
+- A sequence of real numbers converges iff it is a Cauchy sequence
+
+- Let $\{x_n\}$ be a sequence and let $\{p_n\}$ be a strictly increasing sequence of positive integers. The sequence $\{x_{p_n}\}$ is called a **subsequence** of $\{x_n\}$
+
+- If a sequence $\{x_n\}$ converges to $L$, then every subsequence must converge to $L$ as well. 
+
+- **Bolzano-Weierstrass Theorem**: Every bounded sequence has a convergent subsequence. 
+
 
 ### Gordon Chapter 3 (Limits and Continuity)
 
+- Let $I$ be an open interval that contains the point $c$ and suppose that $f$ is a function that is defined on $I$ except possibly at $c$. The function $f$ has **limit** $L$ at point $c$ if for all $\epsilon > 0$ there exists $\delta > 0$ such that $|f(x)-L| < \epsilon$ for all $x \in I$ such that $|x-c| < \delta$. We then write $\lim_{x \to c} f(x) = L$.
+
+- We have linearity for limits.
+
+- Let $I$ be an interval and $f:I \to \mathbb{R}$, and let $c \in I$. The function $f$ is **continuous** at $c$ if for each $\epsilon > 0$ there exists a $\delta > 0$ such that $|f(x) - f(c)| < \epsilon$ for all $x \in I$ such that $|x-c| < \delta$. The function is continuous on $I$ if $f$ is continuous on every point of $I$.
+
+- **Intermediate Value Theorem**: Suppose that $f:[a,b] \to \mathbb{R}$ is continuous on $[a,b]$. If $v$ is a number between $f(a)$ and $f(b)$, then there is a point $c \in (a,b)$ such that $f(c) = v$.
+
+- **Extreme Value Theorem**: If $f:[a,b] \to \mathbb{R}$ is continuous on $[a,b]$, then there exist points $c$ and $d$ in $[a,b]$ such that $f(c) \leq f(x) \leq f(d)$ for all $x \in [a,b]$.
+
+- Let $I$ be an interval. A function $f:I \to \mathbb{R}$ is **uniformly continuous** on $I$ if for each $\epsilon > 0$ there exists a $\delta > 0$ such that $|f(y) - f(x)| < \epsilon$ for all $x,y \in I$ such that $|y-x| < \delta$.
+
+- If $f:[a,b] \to \mathbb{R}$ is continuous on $[a,b]$, then $f$ is uniformly continuous on $[a,b]$.
+
+- A **partition** $P$ of an interval $[c,d]$ is a finite set of points $\{x_i|0 \leq i \leq n\}$ such that 
+$$c=x_0 < x_1 < x_2 < ... < x_{n-1} < x_n = d$$
+
+- Let $f: [a,b] \to \mathbb{R}$ be a function and let $[c,d]$ be any closed subinterval of $[a,b]$. The **variation** of $f$ on $[c,d]$ is defined by $V(f,[c,d]) = \sup \{\sum^n _{i=1}|f(x_i)-f(x_{i-1})|\}$. Note that the integer $n$ is not fixed; the supremum is over all possible partitions of $[c,d]$. The function $f$ is of **bounded variation** on $[c,d]$ if $V(f,[c,d])$ is finite.
+
+
 ### Gordon Chapter 4 (Differentiation)
+
+- Let $I$ be an interval, let $f: I \to \mathbb{R}$, and let $c \in I$. The function $f$ id **differentiable** at $c$ provided that the limit 
+$$\lim_{v \to c} \frac{f(v) - f(c)}{v-c}$$ exists. The **derivative** of $f$ at $c$ is the value of the prementioned limit denoted by $f'(c)$.
+
+- **Rolle's Theorem**: Let $f:[a,b] \to \mathbb{R}$ be continuous on $[a,b]$ and differentiable on $(a,b)$. If $f(a) = f(b)$, then there exists a point $c \in (a,b)$ such that $f'(c) = 0$.
+
+- **Mean Value Theorem**: If $f:[a,b] \to \mathbb{R}$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then there exists a point $c \in (a,b)$ such that 
+$$f'(c) = \frac{f(b)-f(a)}{b-a}$$
+
 
 ### Gordon Chapter 5 (Integration)
 
+- A **tagged partition** $^t P$ of an interval $[a,b]$ consists of a partition $P = \{x_i | 0 \leq i \leq n\}$ of $[a,b]$ along with a set $\{t_i | 1 \leq i \leq n\}$ of points, known as **tags**, that satisfy $x_{i-1} \leq t_i \leq x_i$ for $1 \leq i \leq n$.
+
+- Let $f:[a,b] \to \mathbb{R}$ and let $^t P = \{(t_i, [x_{i-1},x_i])|1 \leq i \leq n \}$ be a tagged partition of $[a,b]$. The **Riemann sum** $S(f, ^t P)$ of $f$ associated with $^t P$ is defined by 
+$$S(f, ^t P) = \sum_{i=1} ^n f(t_i)(x_i - x_{i-1})$$
+
+- A function $f:[a,b] \to \mathbb{R}$ is **Riemann integrable** on $[a,b]$ if there exists a number $L$ with the following property: for all $\epsilon >0$ there exists $\delta > 0$ such that $|S(f, ^t P) - L| < \epsilon$ for all tagged partitions $^t P$ of $[a,b]$ that satisfy $||^t P|| < \delta$. The number $L$ is called the **Riemann integral** of $f$ on $[a,b]$.
+
+- **Cauchy Criterion for Riemann Integrability**: A bounded function $f$ is Riemann integrable on $[a,b]$ iff for each $\epsilon > 0$ there exists $\delta > 0$ such that $|S(f,^t P_1)-S(f, ^t P_2)| < \epsilon$ for all tagged partitions $^t P_1$ and $^t P_2$ of $[a,b]$ with norms less than $\delta$.
+
+- Fundamental Theorem of Calculus is a thing
+
+- **Integration by Parts**: 
+$$\int_a ^b f'g = f(b)g(b) - f(a)g(a) - \int_a ^b g'f$$
+
+
 ### Gordon Chapter 6 (Infinite Series)
+
+- 
+
 
 ### Gordon Chapter 7 (Sequences and Series of Functions)
 
+- 
+
+
 ### Gordon Chapter 8 (Point-Set Topology)
+
+- 
+
 
 
 

@@ -156,6 +156,13 @@ $(document).ready(function () {
 <h4>My Solution:</h4>
 </div>
 </div>
+<div id="prove-that-if-f-is-absolutely-continuous-on-01-and-there-is-a-g-in-c01-such-that-f-g-a.e.-then-f-is-differentiable-on-01-and-fg." class="section level3">
+<h3>Prove that if <span class="math inline">\(f\)</span> is absolutely continuous on <span class="math inline">\([0,1]\)</span> and there is a <span class="math inline">\(g \in C([0,1])\)</span> such that <span class="math inline">\(f' = g\)</span> a.e., then <span class="math inline">\(f\)</span> is differentiable on <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(f'=g\)</span>.</h3>
+<div id="my-solution-2" class="section level4">
+<h4>My Solution:</h4>
+<p>Using Lebesgue’s fundamental theorem of calculus, we know that <span class="math display">\[f(x) = f(0) + \int_0 ^x f'\]</span> Then, because <span class="math inline">\(f' = g\)</span> a.e.; <span class="math display">\[f(x) = f(0) + \int_0 ^x g\]</span> This implies that <span class="math inline">\(\int_0 ^x f' = \int_0 ^x g\)</span>, thus by the fundamental theorem of calculus, if we take the derivative of both sides, we can see that <span class="math inline">\(f'(x) = g(x)\)</span> for all <span class="math inline">\(x\)</span>. QED</p>
+</div>
+</div>
 </div>
 </div>
 <div id="extra-problems" class="section level1">
@@ -168,27 +175,90 @@ $(document).ready(function () {
 <p>For reference, these notes are gathered from the book <em>Real Analysis; A First Course</em> by Russell A. Gordon. These notes consist of basic real analysis ideas based off of my past undergraduate class taught by Dr. Christine Leverenz at Georgetown College.</p>
 <div id="gordon-chapter-1-real-numbers" class="section level3">
 <h3>Gordon Chapter 1 (Real Numbers)</h3>
+<ul>
+<li><p>A <strong>field</strong> is a nonempty set <span class="math inline">\(F\)</span> of objects that has two operations defined on it. These operations are usually defined as addition and multiplication. These operations follow a set of properties which will not be listed here as you should know them.</p></li>
+<li><p><strong>Triangle Inequality</strong>: <span class="math inline">\(|a+b| \leq |a|+|b|\)</span>. It follows from this that <span class="math inline">\(||a|-|b|| \leq |a-b|\)</span></p></li>
+<li><p>If <span class="math inline">\(a \neq 0\)</span> and <span class="math inline">\(r \neq 1\)</span> are real numbers, then <span class="math display">\[a+ar+ar^2+ar^3+...+ar^n = a \cdot \frac{1-r^{n+1}}{1-r}\]</span></p></li>
+<li><p><strong>Cauchy-Schwarz Inequality</strong>: Let <span class="math inline">\(n\)</span> be a positive integer. If <span class="math inline">\(a_1,a_2,...,a_n\)</span> and <span class="math inline">\(b_1,b_2,...,b_n\)</span> are real numbers, then <span class="math display">\[\left( \sum^n_{k=1} a_k b_k \right)^2 \leq \left(\sum^n_{k=1} a_k^2 \right) \left( \sum^n_{k=1} b_k^2 \right)\]</span> Equality occurs iff there is a constant <span class="math inline">\(c\)</span> such that <span class="math inline">\(a_k = cb_k\)</span> for all integers <span class="math inline">\(k\)</span></p></li>
+<li><p>The set <span class="math inline">\(S\)</span> is <strong>bounded</strong> if there is a number <span class="math inline">\(M\)</span> such that <span class="math inline">\(|x| \leq M\)</span> for all <span class="math inline">\(x \in S\)</span>. The number <span class="math inline">\(M\)</span> is called a <strong>bound</strong> for S.</p></li>
+<li><p>Suppose that <span class="math inline">\(S\)</span> is bounded above. A number <span class="math inline">\(\beta\)</span> is the <strong>supremum</strong> of <span class="math inline">\(S\)</span> if <span class="math inline">\(\beta\)</span> is an upper bound of <span class="math inline">\(S\)</span> and any number less than <span class="math inline">\(\beta\)</span> is not an upper bound of <span class="math inline">\(S\)</span>. We write <span class="math inline">\(\beta = \sup (S)\)</span></p></li>
+<li><p>Suppose that <span class="math inline">\(S\)</span> is bounded below. A number <span class="math inline">\(\alpha\)</span> is the <strong>infimum</strong> of <span class="math inline">\(S\)</span> if <span class="math inline">\(\alpha\)</span> is an lower bound of <span class="math inline">\(S\)</span> and any number greater than <span class="math inline">\(\alpha\)</span> is not an lower bound of <span class="math inline">\(S\)</span>. We write <span class="math inline">\(\alpha = \inf (S)\)</span></p></li>
+<li><p><strong>Archimedean Property of the Real Numbers</strong>: If <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are positive real numbers, then there exists a positive integer <span class="math inline">\(n\)</span> such that <span class="math inline">\(na &gt; b\)</span>.</p></li>
+<li><p>Between any two distinct real numbers, there exists a rational and an irrational number.</p></li>
+<li><p>A countable union of countable sets is countable.</p></li>
+<li><p>Let <span class="math inline">\(I\)</span> be an interval and <span class="math inline">\(f\)</span> be a function such that <span class="math inline">\(f:I \to \mathbb{R}\)</span>, and let <span class="math inline">\(J\)</span> be a subinterval of <span class="math inline">\(I\)</span>. The function <span class="math inline">\(f\)</span> is <strong>increasing</strong> on <span class="math inline">\(J\)</span> if <span class="math inline">\(f(x) \leq f(y)\)</span> for all <span class="math inline">\(x,y \in J\)</span> such that <span class="math inline">\(x&lt;y\)</span>; and <strong>strictly increasing</strong> on <span class="math inline">\(J\)</span> if <span class="math inline">\(f(x) &lt; f(y)\)</span> for all <span class="math inline">\(x,y \in J\)</span> such that <span class="math inline">\(x &lt; y\)</span>. The function <span class="math inline">\(f\)</span> is <strong>decreasing</strong> on <span class="math inline">\(J\)</span> if <span class="math inline">\(f(x) \geq f(y)\)</span> for all <span class="math inline">\(x,y \in J\)</span> that satisfy <span class="math inline">\(x&lt;y\)</span>; and <strong>strictly decreasing</strong> on <span class="math inline">\(J\)</span> if <span class="math inline">\(f(x) &gt; f(y)\)</span> for all <span class="math inline">\(x,y \in J\)</span> such that <span class="math inline">\(x&lt;y\)</span>. The function <span class="math inline">\(f\)</span> is <strong>monotone</strong> on <span class="math inline">\(J\)</span> if it is either increasing or decreasing on <span class="math inline">\(J\)</span> and <strong>strictly monotone</strong> on <span class="math inline">\(J\)</span> if it is either strictly increasing or decreasing on <span class="math inline">\(J\)</span>.</p></li>
+</ul>
 </div>
 <div id="gordon-chapter-2-sequences" class="section level3">
 <h3>Gordon Chapter 2 (Sequences)</h3>
+<ul>
+<li><p>A <strong>sequence</strong> is a function whose domain is the set of positive integers. A <strong>sequence of real numbers</strong> is a sequence whose codomain is the set <span class="math inline">\(\mathbb{R}\)</span>. Although a sequence is a function, the standard notation for a sequence of real numbers is <span class="math inline">\(\{x_n\}\)</span> where the subscript <span class="math inline">\(n\)</span> denotes the <strong>index</strong> of the sequence.</p></li>
+<li><p>A sequence <span class="math inline">\(\{x_n\}\)</span> <strong>converges to a number</strong> <span class="math inline">\(L\)</span> if for all <span class="math inline">\(\epsilon&gt;0\)</span> there exists a positive integer <span class="math inline">\(N\)</span> such that <span class="math inline">\(|x_n - L| &lt; \epsilon\)</span> for all <span class="math inline">\(n \geq N\)</span>. The sequence is <strong>convergent</strong> if there exists a number <span class="math inline">\(L\)</span> that the sequence converges to, otherwise it is <strong>divergent</strong>.</p></li>
+<li><p>The limit of a convergent sequence is unique.</p></li>
+<li><p>Suppose that <span class="math inline">\(\{a_n\}\)</span> converges to <span class="math inline">\(a\)</span> and <span class="math inline">\(\{b_n\}\)</span> converges to <span class="math inline">\(b\)</span>. Then:</p></li>
+</ul>
+<p>— <span class="math inline">\(\{ca_n\} \to ca\)</span></p>
+<p>— <span class="math inline">\(\{a_n \pm b_n\} \to a \pm b\)</span></p>
+<p>— <span class="math inline">\(\{a_n b_n\} \to ab\)</span></p>
+<ul>
+<li><p>A monotone sequence converges iff it is bounded</p></li>
+<li><p>A sequence <span class="math inline">\(\{x_n\}\)</span> is a <strong>Cauchy Sequence</strong> if for all <span class="math inline">\(\epsilon &gt; 0\)</span> there exists a positive integer <span class="math inline">\(N\)</span> such that <span class="math inline">\(|x_m - x_n| &lt; \epsilon\)</span> for all <span class="math inline">\(m,n \geq N\)</span>.</p></li>
+<li><p>A sequence of real numbers converges iff it is a Cauchy sequence</p></li>
+<li><p>Let <span class="math inline">\(\{x_n\}\)</span> be a sequence and let <span class="math inline">\(\{p_n\}\)</span> be a strictly increasing sequence of positive integers. The sequence <span class="math inline">\(\{x_{p_n}\}\)</span> is called a <strong>subsequence</strong> of <span class="math inline">\(\{x_n\}\)</span></p></li>
+<li><p>If a sequence <span class="math inline">\(\{x_n\}\)</span> converges to <span class="math inline">\(L\)</span>, then every subsequence must converge to <span class="math inline">\(L\)</span> as well.</p></li>
+<li><p><strong>Bolzano-Weierstrass Theorem</strong>: Every bounded sequence has a convergent subsequence.</p></li>
+</ul>
 </div>
 <div id="gordon-chapter-3-limits-and-continuity" class="section level3">
 <h3>Gordon Chapter 3 (Limits and Continuity)</h3>
+<ul>
+<li><p>Let <span class="math inline">\(I\)</span> be an open interval that contains the point <span class="math inline">\(c\)</span> and suppose that <span class="math inline">\(f\)</span> is a function that is defined on <span class="math inline">\(I\)</span> except possibly at <span class="math inline">\(c\)</span>. The function <span class="math inline">\(f\)</span> has <strong>limit</strong> <span class="math inline">\(L\)</span> at point <span class="math inline">\(c\)</span> if for all <span class="math inline">\(\epsilon &gt; 0\)</span> there exists <span class="math inline">\(\delta &gt; 0\)</span> such that <span class="math inline">\(|f(x)-L| &lt; \epsilon\)</span> for all <span class="math inline">\(x \in I\)</span> such that <span class="math inline">\(|x-c| &lt; \delta\)</span>. We then write <span class="math inline">\(\lim_{x \to c} f(x) = L\)</span>.</p></li>
+<li><p>We have linearity for limits.</p></li>
+<li><p>Let <span class="math inline">\(I\)</span> be an interval and <span class="math inline">\(f:I \to \mathbb{R}\)</span>, and let <span class="math inline">\(c \in I\)</span>. The function <span class="math inline">\(f\)</span> is <strong>continuous</strong> at <span class="math inline">\(c\)</span> if for each <span class="math inline">\(\epsilon &gt; 0\)</span> there exists a <span class="math inline">\(\delta &gt; 0\)</span> such that <span class="math inline">\(|f(x) - f(c)| &lt; \epsilon\)</span> for all <span class="math inline">\(x \in I\)</span> such that <span class="math inline">\(|x-c| &lt; \delta\)</span>. The function is continuous on <span class="math inline">\(I\)</span> if <span class="math inline">\(f\)</span> is continuous on every point of <span class="math inline">\(I\)</span>.</p></li>
+<li><p><strong>Intermediate Value Theorem</strong>: Suppose that <span class="math inline">\(f:[a,b] \to \mathbb{R}\)</span> is continuous on <span class="math inline">\([a,b]\)</span>. If <span class="math inline">\(v\)</span> is a number between <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span>, then there is a point <span class="math inline">\(c \in (a,b)\)</span> such that <span class="math inline">\(f(c) = v\)</span>.</p></li>
+<li><p><strong>Extreme Value Theorem</strong>: If <span class="math inline">\(f:[a,b] \to \mathbb{R}\)</span> is continuous on <span class="math inline">\([a,b]\)</span>, then there exist points <span class="math inline">\(c\)</span> and <span class="math inline">\(d\)</span> in <span class="math inline">\([a,b]\)</span> such that <span class="math inline">\(f(c) \leq f(x) \leq f(d)\)</span> for all <span class="math inline">\(x \in [a,b]\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(I\)</span> be an interval. A function <span class="math inline">\(f:I \to \mathbb{R}\)</span> is <strong>uniformly continuous</strong> on <span class="math inline">\(I\)</span> if for each <span class="math inline">\(\epsilon &gt; 0\)</span> there exists a <span class="math inline">\(\delta &gt; 0\)</span> such that <span class="math inline">\(|f(y) - f(x)| &lt; \epsilon\)</span> for all <span class="math inline">\(x,y \in I\)</span> such that <span class="math inline">\(|y-x| &lt; \delta\)</span>.</p></li>
+<li><p>If <span class="math inline">\(f:[a,b] \to \mathbb{R}\)</span> is continuous on <span class="math inline">\([a,b]\)</span>, then <span class="math inline">\(f\)</span> is uniformly continuous on <span class="math inline">\([a,b]\)</span>.</p></li>
+<li><p>A <strong>partition</strong> <span class="math inline">\(P\)</span> of an interval <span class="math inline">\([c,d]\)</span> is a finite set of points <span class="math inline">\(\{x_i|0 \leq i \leq n\}\)</span> such that <span class="math display">\[c=x_0 &lt; x_1 &lt; x_2 &lt; ... &lt; x_{n-1} &lt; x_n = d\]</span></p></li>
+<li><p>Let <span class="math inline">\(f: [a,b] \to \mathbb{R}\)</span> be a function and let <span class="math inline">\([c,d]\)</span> be any closed subinterval of <span class="math inline">\([a,b]\)</span>. The <strong>variation</strong> of <span class="math inline">\(f\)</span> on <span class="math inline">\([c,d]\)</span> is defined by <span class="math inline">\(V(f,[c,d]) = \sup \{\sum^n _{i=1}|f(x_i)-f(x_{i-1})|\}\)</span>. Note that the integer <span class="math inline">\(n\)</span> is not fixed; the supremum is over all possible partitions of <span class="math inline">\([c,d]\)</span>. The function <span class="math inline">\(f\)</span> is of <strong>bounded variation</strong> on <span class="math inline">\([c,d]\)</span> if <span class="math inline">\(V(f,[c,d])\)</span> is finite.</p></li>
+</ul>
 </div>
 <div id="gordon-chapter-4-differentiation" class="section level3">
 <h3>Gordon Chapter 4 (Differentiation)</h3>
+<ul>
+<li><p>Let <span class="math inline">\(I\)</span> be an interval, let <span class="math inline">\(f: I \to \mathbb{R}\)</span>, and let <span class="math inline">\(c \in I\)</span>. The function <span class="math inline">\(f\)</span> id <strong>differentiable</strong> at <span class="math inline">\(c\)</span> provided that the limit <span class="math display">\[\lim_{v \to c} \frac{f(v) - f(c)}{v-c}\]</span> exists. The <strong>derivative</strong> of <span class="math inline">\(f\)</span> at <span class="math inline">\(c\)</span> is the value of the prementioned limit denoted by <span class="math inline">\(f'(c)\)</span>.</p></li>
+<li><p><strong>Rolle’s Theorem</strong>: Let <span class="math inline">\(f:[a,b] \to \mathbb{R}\)</span> be continuous on <span class="math inline">\([a,b]\)</span> and differentiable on <span class="math inline">\((a,b)\)</span>. If <span class="math inline">\(f(a) = f(b)\)</span>, then there exists a point <span class="math inline">\(c \in (a,b)\)</span> such that <span class="math inline">\(f'(c) = 0\)</span>.</p></li>
+<li><p><strong>Mean Value Theorem</strong>: If <span class="math inline">\(f:[a,b] \to \mathbb{R}\)</span> is continuous on <span class="math inline">\([a,b]\)</span> and differentiable on <span class="math inline">\((a,b)\)</span>, then there exists a point <span class="math inline">\(c \in (a,b)\)</span> such that <span class="math display">\[f'(c) = \frac{f(b)-f(a)}{b-a}\]</span></p></li>
+</ul>
 </div>
 <div id="gordon-chapter-5-integration" class="section level3">
 <h3>Gordon Chapter 5 (Integration)</h3>
+<ul>
+<li><p>A <strong>tagged partition</strong> <span class="math inline">\(^t P\)</span> of an interval <span class="math inline">\([a,b]\)</span> consists of a partition <span class="math inline">\(P = \{x_i | 0 \leq i \leq n\}\)</span> of <span class="math inline">\([a,b]\)</span> along with a set <span class="math inline">\(\{t_i | 1 \leq i \leq n\}\)</span> of points, known as <strong>tags</strong>, that satisfy <span class="math inline">\(x_{i-1} \leq t_i \leq x_i\)</span> for <span class="math inline">\(1 \leq i \leq n\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(f:[a,b] \to \mathbb{R}\)</span> and let <span class="math inline">\(^t P = \{(t_i, [x_{i-1},x_i])|1 \leq i \leq n \}\)</span> be a tagged partition of <span class="math inline">\([a,b]\)</span>. The <strong>Riemann sum</strong> <span class="math inline">\(S(f, ^t P)\)</span> of <span class="math inline">\(f\)</span> associated with <span class="math inline">\(^t P\)</span> is defined by <span class="math display">\[S(f, ^t P) = \sum_{i=1} ^n f(t_i)(x_i - x_{i-1})\]</span></p></li>
+<li><p>A function <span class="math inline">\(f:[a,b] \to \mathbb{R}\)</span> is <strong>Riemann integrable</strong> on <span class="math inline">\([a,b]\)</span> if there exists a number <span class="math inline">\(L\)</span> with the following property: for all <span class="math inline">\(\epsilon &gt;0\)</span> there exists <span class="math inline">\(\delta &gt; 0\)</span> such that <span class="math inline">\(|S(f, ^t P) - L| &lt; \epsilon\)</span> for all tagged partitions <span class="math inline">\(^t P\)</span> of <span class="math inline">\([a,b]\)</span> that satisfy <span class="math inline">\(||^t P|| &lt; \delta\)</span>. The number <span class="math inline">\(L\)</span> is called the <strong>Riemann integral</strong> of <span class="math inline">\(f\)</span> on <span class="math inline">\([a,b]\)</span>.</p></li>
+<li><p><strong>Cauchy Criterion for Riemann Integrability</strong>: A bounded function <span class="math inline">\(f\)</span> is Riemann integrable on <span class="math inline">\([a,b]\)</span> iff for each <span class="math inline">\(\epsilon &gt; 0\)</span> there exists <span class="math inline">\(\delta &gt; 0\)</span> such that <span class="math inline">\(|S(f,^t P_1)-S(f, ^t P_2)| &lt; \epsilon\)</span> for all tagged partitions <span class="math inline">\(^t P_1\)</span> and <span class="math inline">\(^t P_2\)</span> of <span class="math inline">\([a,b]\)</span> with norms less than <span class="math inline">\(\delta\)</span>.</p></li>
+<li><p>Fundamental Theorem of Calculus is a thing</p></li>
+<li><p><strong>Integration by Parts</strong>: <span class="math display">\[\int_a ^b f'g = f(b)g(b) - f(a)g(a) - \int_a ^b g'f\]</span></p></li>
+</ul>
 </div>
 <div id="gordon-chapter-6-infinite-series" class="section level3">
 <h3>Gordon Chapter 6 (Infinite Series)</h3>
+<ul>
+<li></li>
+</ul>
 </div>
 <div id="gordon-chapter-7-sequences-and-series-of-functions" class="section level3">
 <h3>Gordon Chapter 7 (Sequences and Series of Functions)</h3>
+<ul>
+<li></li>
+</ul>
 </div>
 <div id="gordon-chapter-8-point-set-topology" class="section level3">
 <h3>Gordon Chapter 8 (Point-Set Topology)</h3>
+<ul>
+<li></li>
+</ul>
 </div>
 </div>
 <div id="graduate-notesroyden-book" class="section level2">

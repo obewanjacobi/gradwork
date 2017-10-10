@@ -3,10 +3,17 @@ Websites for my solutions:
 -----------------------------------------------------
 ALGEBRA
 GitHub
-https://obewanjacobi.github.io/gradwork/Classes/Old%20Qualifying%20Exams/My%20Solutions/My_Solutions_to_Algebra-Analysis_Qual.html
+https://obewanjacobi.github.io/gradwork/Classes/Old%20Qualifying%20Exams/My%20Solutions/My_Solutions_to_Algebra_Qual.html
 
 RPubs
 http://rpubs.com/obewanjacobi/algebraquals
+-----------------------------------------------------
+ANALYSIS
+GitHub
+https://obewanjacobi.github.io/gradwork/Classes/Old%20Qualifying%20Exams/My%20Solutions/My_Solutions_to_Analysis_Quals.html
+
+RPubs
+http://rpubs.com/obewanjacobi/analysisquals
 -----------------------------------------------------
 
 Note the GitHub version will always be the most 
