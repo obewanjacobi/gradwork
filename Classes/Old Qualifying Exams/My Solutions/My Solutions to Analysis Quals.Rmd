@@ -63,7 +63,12 @@ Thus, $m(f(A)) = m(E) = 0$. QED
 
 ### Prove that if $f:[0,1] \rightarrow (0,\infty)$ is absolutely continuous, then so is $1/f$.
 #### My Solution:
-
+Given that $f$ is absolutely continuous, we know then that for all $\epsilon > 0$, there exists a $\delta > 0$ such that if $\{(a_i,b_i)\}^n _{i=1}$ is a finite collection of disjoint intervals of $[0,1]$ with $\sum ^n _{i=1} |b_i - a_i| < \delta$ implies that $\sum ^n _{i=1} |f(b_i) - f(a_i)| < \epsilon$. Also, because $f$ is absolutely continuous, we know then that it must also be continuous. Hence, $f$  must be bounded on $[0,1]$. Let $m = \min(f)$ on $[0,1]$ and choose $\delta$ such that $\sum ^n _{i=1} |b_i - a_i| < \delta$ that implies that 
+$$\sum ^n _{i=1} |b_i - a_i| < m^2\epsilon$$
+Then note that 
+$$\sum ^n _{i=1} \left|\frac{1}{f(b_i)} - \frac{1}{f(a_i)} \right| =  \sum ^n _{i=1} \left|\frac{f(b_i) - f(a_i)}{f(a_i)f(b_i)} \right|$$
+$$ \leq \frac{1}{m^2} \sum ^n _{i=1} |f(b_i)-f(a_i)| < \frac{m^2 \epsilon}{m^2} = \epsilon$$
+Hence, $\frac{1}{f}$ is absolutely continuous as well. QED
 
 
 
@@ -210,17 +215,75 @@ $$\int_a ^b f'g = f(b)g(b) - f(a)g(a) - \int_a ^b g'f$$
 
 ### Gordon Chapter 6 (Infinite Series)
 
-- 
+- A **power series** is an expression of the form 
+$$a_0 + a_1 x + a_2 x^2 + a_3 x^3 + ...$$
+where the $a_k$'s are constants
+
+- A **Fourier series** is an expression of the form
+$$a_0 + a_1 \cos (x) + b_1 \sin (x) + a_2 \cos (2x) + b_2 \sin (2x) + ...$$
+where the $a_k$'s and $b_k$'s are constants
+
+- An **infinite series** of real numbers is an expression of the form
+$$ \sum^{\infty} _{k=1} a_k = a_1 + a_2 + ...$$
+
+- A **partial sum** of an infinite series is represented by $\sum_{k=1} ^n a_k$
+
+- An infinite series **converges** if its corresponding sequence $\{s_n\}$ of partial sums converges. If $S$ is the limit of the previous sequence, then we say the series converges to $S$. If the sequence does not converge, we say that the series **diverges**.
+
+- If the series $\sum^{\infty}_{k=1} a_k$ converges, then the sequence $\{a_k\}$ converges to zero.
+
+- The series $\sum^{\infty}_{k=1} a_k$ converges iff for all $\epsilon > 0$ there exists a positive integer $N$ such that $|\sum^n_{k=m+1} a_k| < \epsilon$ for all positive integers $m$ and $n$ that satisfy $n > m \geq N$
+
+- A series with nonnegative terms converges iff its sequence of partial sums is bounded
+
+- Linearity is preserved
+
+- **Geometric Series**: Suppose that $a \neq 0$. The geometric series $\sum^{\infty}_{k=0} ar^k$ converges if $|r| < 1$ and diverges if $|r| \geq 1$. If $|r| < 1$, 
+$$\sum^{\infty}_{k=0} ar^k = \frac{a}{1-r}$$
+
+- The $p$-series $\sum^{\infty}_{k=1} \frac{1}{k^p}$ converges if $p > 1$ and diverges if $p \leq 1$.
+
+- Let $\sum^{\infty}_{k=1} a_k$ be a series of real numbers. If ther series $\sum^{\infty}_{k=1} |a_k|$ converges, then so does $\sum^{\infty}_{k=1} a_k$.
+
+- Rearrangement stuff is cool, but unnecessary for this study guide.
 
 
 ### Gordon Chapter 7 (Sequences and Series of Functions)
 
-- 
+- Let $\{f_n\}$ be a sequence of functions defined on an interval $I$ and let $f$ be a function defined on $I$. The sequence $\{f_n\}$ **converges pointwise** to $f$ on $I$ if the sequence $\{f_n(x)\}$ converges to $f(x)$ for each $x \in I$. In other words, $f(x) = \lim_{n \to \infty} f_n(x)$ for all $x \in I$.
+
+- Let $\{f_k\}$ be a sequence of functions defined on an interval $I$ and let $f$ be a function defined on $I$. The series $\sum^{\infty}_{k=1} f_k$ **converges pointwise** to $f$ on $I$ if the sequence $\{s_n\} = \{\sum^n_{k=1} f_k\}$ of partial sums converges pointwise to $f$ on $I$.
+
+- Let $\{f_n\}$ be a sequence of functions defined on an interval $I$ and let $f$ be a function defined on $I$. The sequence $\{f_n\}$ **converges uniformly** to $f$ on $I$ if for all $\epsilon > 0$ there exists a positive integer $N$ such that $|f_n(x) - f(x)| < \epsilon$ for all $x \in I$ and for all $n \geq N$. 
+
+- A lot more information is here, may add later. I just don't think it will help much for the Qual
 
 
 ### Gordon Chapter 8 (Point-Set Topology)
 
-- 
+- A point $x$ is an **interior point** of $E$ if there exists a positive number $r$ such that $(x-r,x+r) \subseteq E$
+
+- A point $x$ is an **isolated point** of $E$ if there exists a positive number $r$ such that $(x-r,x+r) \cap E = \{x\}$
+
+- A point $x$ is a **limit point** of $E$ if for each positive number $r$, the set $(x-r,x+r) \cap E$ contains a point of $E$ other than $x$
+
+- The set $E$ is **open** if all of its points are interior points
+
+- The set $E$ is **closed** if it contains all of its limit points
+
+- Every open interval is an open set and every closed interval is a closed set
+
+- Let $E$ be a set of real numbers. A collection $\mathcal{G}$ of sets is an **open cover** of $E$ if each set in $\mathcal{G}$ is open and $E$ is contained in the union of all the sets in $\mathcal{G}$. The open cover $\mathcal{G}$ has a **finite subcover** if $E$ is contained in the union of a finite number of sets in $\mathcal{G}$
+
+- A set $E$ is **compact** if every open cover of $E$ has a finite subcover
+
+- A compact set is closed and bounded
+
+- A closed subset of a compact set is compact
+
+- A set of real numbers is compact iff it is closed and bounded
+
+- More is in this section. Possibly going to add more, but I don't find it necessary for the Qual.
 
 
 
