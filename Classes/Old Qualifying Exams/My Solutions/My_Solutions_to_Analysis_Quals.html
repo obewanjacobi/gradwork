@@ -164,6 +164,28 @@ $(document).ready(function () {
 <p>Using Lebesgue’s fundamental theorem of calculus, we know that <span class="math display">\[f(x) = f(0) + \int_0 ^x f'\]</span> Then, because <span class="math inline">\(f' = g\)</span> a.e.; <span class="math display">\[f(x) = f(0) + \int_0 ^x g\]</span> This implies that <span class="math inline">\(\int_0 ^x f' = \int_0 ^x g\)</span>, thus by the fundamental theorem of calculus, if we take the derivative of both sides, we can see that <span class="math inline">\(f'(x) = g(x)\)</span> for all <span class="math inline">\(x\)</span>. QED</p>
 </div>
 </div>
+<div id="prove-that-the-series-suminfty-_k0-sin-k-t-converges-uniformly-for-t-in--pi4-pi4-and-then-evaluate-the-following-series" class="section level3">
+<h3>Prove that the series <span class="math inline">\(\sum^{\infty} _{k=0} \sin ^k t\)</span> converges uniformly for <span class="math inline">\(t \in [-\pi/4, \pi/4]\)</span> and then evaluate the following series:</h3>
+<p><span class="math display">\[\sum^{\infty} _{k=0} \int ^{\pi / 4} _{-\pi / 4} \sin ^k (t)dt\]</span></p>
+<div id="my-solution-3" class="section level4">
+<h4>My Solution:</h4>
+<p>Recall the <strong>Weierstrass M Test</strong>: Let <span class="math inline">\(\sum^{\infty} _{n=1} f_n\)</span> be a series of real valued functions on a subset <span class="math inline">\(A \subset \mathbb{R}\)</span>. Suppose there exists a convergent series <span class="math inline">\(\sum ^{\infty} _{n=1} M_n\)</span> where <span class="math inline">\(M_n \geq 0\)</span> such that for all <span class="math inline">\(n \in \mathbb{N}\)</span> and <span class="math inline">\(x \in A\)</span>, <span class="math inline">\(|f_n(x)| \leq M_n\)</span>. Then <span class="math inline">\(\sum^{\infty} _{n=1} f_n\)</span> converges uniformly.</p>
+<p>Now, for <span class="math inline">\(t \in [-\pi/4, \pi/4]\)</span>, <span class="math inline">\(\sin ^k (t) \leq \left(\frac{1}{\sqrt{2}}\right)^k\)</span> for all <span class="math inline">\(k\)</span>. Note, <span class="math inline">\(\sum^{\infty} _ {k=1} \left(\frac{1}{\sqrt{2}}\right)^k\)</span> converges because it is a geometric series. Thus by the Weierstrass M test, the series converges uniformly for <span class="math inline">\(t \in [-\pi/4, \pi/4]\)</span>. QED</p>
+<p>Because the series converges uniformly on a compact set, <span class="math display">\[\sum^{\infty} _{k=1} \int^{\pi/4} _{-\pi/4} \sin ^k (t) dt = \int^{\pi/4} _{-\pi/4} \sum^{\infty} _{k=1}\sin ^k (t) dt = \int^{\pi/4} _{-\pi/4} \frac{1}{1-\sin(t)}dt\]</span> <span class="math display">\[= \int^{\pi/4} _{-\pi/4} \frac{1 + \sin(t)}{\cos ^2 (t)}dt = \int^{\pi/4} _{-\pi/4} \sec ^2 (t) dt + \int^{\pi/4} _{-\pi/4} \tan(t) \sec(t) dt\]</span> <span class="math display">\[=\tan(t)|^{\pi/4}_{-\pi/4} +\sec(t)|^{\pi/4}_{-\pi/4}= 1-(-1)+\sqrt{2}-\sqrt{2} = 2\]</span></p>
+</div>
+</div>
+<div id="let-e_n-be-a-sequence-of-lebesgue-measurable-subsets-of-01.-prove-a-if-sum-me_n-infty-then-mlim-sup-e_n-0-and-b-if-me_n-to-0-it-may-not-be-true-that-mlim-sup-e_n-0" class="section level3">
+<h3>Let <span class="math inline">\(\{E_n\}\)</span> $ be a sequence of Lebesgue measurable subsets of <span class="math inline">\([0,1]\)</span>. Prove: (a) If <span class="math inline">\(\sum m(E_n) &lt; \infty\)</span> then <span class="math inline">\(m(\lim \sup E_n) = 0\)</span>; and (b) If <span class="math inline">\(m(E_n) \to 0\)</span> it may not be true that <span class="math inline">\(m(\lim \sup E_n) = 0\)</span></h3>
+<div id="my-solution-4" class="section level4">
+<h4>My Solution:</h4>
+</div>
+</div>
+<div id="prove-that-if-f-in-lp0infty-1-leq-p-leq-infty-then-lim_n-to-infty-int_0-infty-fx-mathrme-nxdx-0" class="section level3">
+<h3>Prove that if <span class="math inline">\(f \in L^p([0,\infty))\)</span>, <span class="math inline">\(1 \leq p \leq \infty\)</span>, then <span class="math inline">\(\lim_{n \to \infty} \int_0 ^{\infty} f(x) \mathrm{e}^{-nx}dx = 0\)</span></h3>
+<div id="my-solution-5" class="section level4">
+<h4>My Solution:</h4>
+</div>
+</div>
 </div>
 </div>
 <div id="extra-problems" class="section level1">

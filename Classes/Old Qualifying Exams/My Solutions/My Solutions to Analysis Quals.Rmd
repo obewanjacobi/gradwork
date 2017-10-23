@@ -82,6 +82,42 @@ This implies that $\int_0 ^x f' = \int_0 ^x g$, thus by the fundamental theorem 
 
 
 
+### Prove that the series $\sum^{\infty} _{k=0} \sin ^k t$ converges uniformly for $t \in [-\pi/4, \pi/4]$ and then evaluate the following series:
+$$\sum^{\infty} _{k=0} \int ^{\pi / 4} _{-\pi / 4} \sin ^k (t)dt$$ 
+
+#### My Solution:
+Recall the **Weierstrass M Test**: Let $\sum^{\infty} _{n=1} f_n$ be a series of real valued functions on a subset $A \subset \mathbb{R}$. Suppose there exists a convergent series $\sum ^{\infty} _{n=1} M_n$ where $M_n \geq 0$ such that for all $n \in \mathbb{N}$ and $x \in A$, $|f_n(x)| \leq M_n$. Then $\sum^{\infty} _{n=1} f_n$ converges uniformly.
+
+Now, for $t \in [-\pi/4, \pi/4]$, $\sin ^k (t) \leq \left(\frac{1}{\sqrt{2}}\right)^k$ for all $k$. Note, $\sum^{\infty} _ {k=1} \left(\frac{1}{\sqrt{2}}\right)^k$ converges because it is a geometric series. Thus by the Weierstrass M test, the series converges uniformly for $t \in [-\pi/4, \pi/4]$. QED
+
+Because the series converges uniformly on a compact set, 
+$$\sum^{\infty} _{k=1} \int^{\pi/4} _{-\pi/4} \sin ^k (t) dt = \int^{\pi/4} _{-\pi/4} \sum^{\infty} _{k=1}\sin ^k (t) dt = \int^{\pi/4} _{-\pi/4} \frac{1}{1-\sin(t)}dt$$
+$$= \int^{\pi/4} _{-\pi/4} \frac{1 + \sin(t)}{\cos ^2 (t)}dt = \int^{\pi/4} _{-\pi/4} \sec ^2 (t) dt + \int^{\pi/4} _{-\pi/4} \tan(t) \sec(t) dt$$
+$$=\tan(t)|^{\pi/4}_{-\pi/4} +\sec(t)|^{\pi/4}_{-\pi/4}= 1-(-1)+\sqrt{2}-\sqrt{2} = 2$$
+
+
+
+### Let $\{E_n\}$ \subset \mathcal{M}$ be a sequence of Lebesgue measurable subsets of $[0,1]$. Prove: (a) If $\sum m(E_n) < \infty$ then $m(\lim \sup E_n) = 0$; and (b) If $m(E_n) \to 0$ it may not be true that $m(\lim \sup E_n) = 0$
+#### My Solution:
+
+
+
+
+### Prove that if $f \in L^p([0,\infty))$, $1 \leq p \leq \infty$, then $\lim_{n \to \infty} \int_0 ^{\infty} f(x) \mathrm{e}^{-nx}dx = 0$
+#### My Solution:
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
