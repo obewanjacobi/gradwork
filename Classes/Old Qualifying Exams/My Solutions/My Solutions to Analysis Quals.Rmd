@@ -3,10 +3,10 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
-  html_document:
+  pdf_document:
     fig_height: 4
     fig_width: 5
-  pdf_document:
+  html_document:
     fig_height: 4
     fig_width: 5
   word_document:
@@ -97,13 +97,51 @@ $$=\tan(t)|^{\pi/4}_{-\pi/4} +\sec(t)|^{\pi/4}_{-\pi/4}= 1-(-1)+\sqrt{2}-\sqrt{2
 
 
 
-### Let $\{E_n\}$ \subset \mathcal{M}$ be a sequence of Lebesgue measurable subsets of $[0,1]$. Prove: (a) If $\sum m(E_n) < \infty$ then $m(\lim \sup E_n) = 0$; and (b) If $m(E_n) \to 0$ it may not be true that $m(\lim \sup E_n) = 0$
+### Let $\{E_n\} \subset \mathcal{M}$ be a sequence of Lebesgue measurable subsets of $[0,1]$. Prove: (a) If $\sum m(E_n) < \infty$ then $m(\lim \sup E_n) = 0$; and (b) If $m(E_n) \to 0$ it may not be true that $m(\lim \sup E_n) = 0$
+#### My Solution:
+a) Let $\epsilon > 0$, since $\sum m(E_n) < \infty$, there exists an $N$ such that $\sum m(E_N) < \epsilon$. So, 
+$$\lim \sup (E_n) = \bigcap^{\infty} _{n=1} \bigcup^{\infty} _{k=n} E_k \subset \bigcup^{\infty} _{k=n} E_k$$
+Hence,
+$$m(\lim \sup (E_n)) \leq m(\bigcup^{\infty} _{k=N} E_k) \leq \sum^{\infty} _{k=n} m(E_k) < \epsilon$$
+This implies that $m(\lim \sup E_n) = 0$.
+
+b) Let $E_1 = [0,1]$, $E_2 = [0,\frac{1}{2}]$, $E_3 = [\frac{1}{2},1]$, $E_4 = [0, \frac{1}{4}]$, $E_5 = [\frac{1}{4},\frac{1}{2}]$, $E_6 = [\frac{1}{2}, \frac{3}{4}]$, $E_7 = [\frac{3}{4}, 1]$, $E_8 = [0, \frac{1}{8}]$,...
+We repeat these definitions in this pattern, giving us that $\lim_{n \to \infty} m(E_n) = 0$. But for all $n \in \mathbb{N}$, $\bigcup^{\infty} _{k=n} E_k = [0,1]$ implying that $\lim \sup (E_n) = [0,1]$ giving us the desired result. QED
+
+
+
+### Prove that if $f \in L^p([0,\infty))$, $1 \leq p \leq \infty$, then $\lim_{n \to \infty} \int_0 ^{\infty} f(x) \mathrm{e}^{-nx}dx = 0$
+#### My Solution:
+Let $A = \{x| f(x) < 1\}$ and $B = \{x|f(x) \geq 1\}$. Note, since $f \in L^p$, $m(B) < \infty$. So,
+$$\int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int (f(x) \mathrm{e}^{-nx} \chi_A + f(x) \mathrm{e}^{-nx} \chi_B) dx$$
+where
+$$\int^{\infty} _0 f(x) \mathrm{e}^{-nx} \chi_A dx < \int^{\infty} _0 \mathrm{e}^{-x} = 1$$
+and
+$$\int f(x) \mathrm{e}^{-nx} \chi_B dx \leq \int |f|^p \chi_B < \infty$$
+since $f \in L^p$. Thus by the Lebesgue Dominated Convergence Theorem,
+$$\lim_{n \to \infty} \int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int^{\infty} _0 \lim_{n \to \infty} f(x) \mathrm{e}^{-nx} dx = \int 0 dx = 0$$ QED
+
+
+
+### Define the function $f:[0,1] \to \mathbb{R}$ by $f(x) = 0$ if $x$ is irrational, and by $f(x) = \frac{1}{q}$ if $x$ is rational and $x = \frac{p}{q}$ when written in least terms. Decide whether or not $f$ is Riemann integrable on $[0,1]$ and if so, evaluate its integral.
+#### My Solution:
+Let $A = \{x|\lim_{x \to a} f(x) \neq f(a)\}$, then $A = \{x| x\in \mathbb{Q}\}$. Thus $m(A) = 0$. Also $f$ is clearly measurable as $\{x|f(x) \geq a\} = \{(0, \infty)\}$. Hence $f$ is Lebesgue measurable and $\int f = R f$ with $\int f =0$ since $f=0$ a.e. QED
+
+
+
+### Let $\{p_n\}$ be a sequence of polynomials. Suppose that for every point $x \in [0,1]$ there exists an index $n$ satisfying $p_n(x) = 0$. Prove at least one of the polynomials is identically zero.
+#### My Solution:
+Suppose there does not exist an $n$ such that $P_n = 0$ for all $n \in \mathbb{N}$. Let's define $S_n = \{x \in [0,1]|P_n(x) = 0\}$. Note, $S_n$ has to be finite since each polynomial can only have a finite number of zeros. Now consider $\bigcup^{\infty} _{n=1} S_n \supseteq [0,1]$ since for each $x \in [0,1]$ there exists a polynomial such that $p_n(x) = 0$. But a countable collection of finite sets is countable. But $[0,1]$ is uncountable, thus giving us a contradiction. This implies that one of the polynomials must indeed be identically zero. QED
+
+
+
+### Let $A \subset \mathbb{R}$. Prove that the following are equivalent to each other: (a) $A$ is not Lebesgue measurable; and (b) There is an $\epsilon > 0$ such that whenever $B$ is measurable and $A \subset B$, then $m^*(B/A) \geq \epsilon$.
 #### My Solution:
 
 
 
 
-### Prove that if $f \in L^p([0,\infty))$, $1 \leq p \leq \infty$, then $\lim_{n \to \infty} \int_0 ^{\infty} f(x) \mathrm{e}^{-nx}dx = 0$
+### Let $h \in L^{\infty} (\mathbb{R})$. Define a functional $T: L^1 (\mathbb{R}) \to \mathbb{R}$ by $Tf = \int_{\mathbb{R}} (fh) dm$. Prove that $\sup_{||f||_1 \leq 1} Tf = ||h||_{\infty}$
 #### My Solution:
 
 

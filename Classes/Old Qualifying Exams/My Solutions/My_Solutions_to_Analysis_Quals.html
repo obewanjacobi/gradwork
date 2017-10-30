@@ -174,15 +174,46 @@ $(document).ready(function () {
 <p>Because the series converges uniformly on a compact set, <span class="math display">\[\sum^{\infty} _{k=1} \int^{\pi/4} _{-\pi/4} \sin ^k (t) dt = \int^{\pi/4} _{-\pi/4} \sum^{\infty} _{k=1}\sin ^k (t) dt = \int^{\pi/4} _{-\pi/4} \frac{1}{1-\sin(t)}dt\]</span> <span class="math display">\[= \int^{\pi/4} _{-\pi/4} \frac{1 + \sin(t)}{\cos ^2 (t)}dt = \int^{\pi/4} _{-\pi/4} \sec ^2 (t) dt + \int^{\pi/4} _{-\pi/4} \tan(t) \sec(t) dt\]</span> <span class="math display">\[=\tan(t)|^{\pi/4}_{-\pi/4} +\sec(t)|^{\pi/4}_{-\pi/4}= 1-(-1)+\sqrt{2}-\sqrt{2} = 2\]</span></p>
 </div>
 </div>
-<div id="let-e_n-be-a-sequence-of-lebesgue-measurable-subsets-of-01.-prove-a-if-sum-me_n-infty-then-mlim-sup-e_n-0-and-b-if-me_n-to-0-it-may-not-be-true-that-mlim-sup-e_n-0" class="section level3">
-<h3>Let <span class="math inline">\(\{E_n\}\)</span> $ be a sequence of Lebesgue measurable subsets of <span class="math inline">\([0,1]\)</span>. Prove: (a) If <span class="math inline">\(\sum m(E_n) &lt; \infty\)</span> then <span class="math inline">\(m(\lim \sup E_n) = 0\)</span>; and (b) If <span class="math inline">\(m(E_n) \to 0\)</span> it may not be true that <span class="math inline">\(m(\lim \sup E_n) = 0\)</span></h3>
+<div id="let-e_n-subset-mathcalm-be-a-sequence-of-lebesgue-measurable-subsets-of-01.-prove-a-if-sum-me_n-infty-then-mlim-sup-e_n-0-and-b-if-me_n-to-0-it-may-not-be-true-that-mlim-sup-e_n-0" class="section level3">
+<h3>Let <span class="math inline">\(\{E_n\} \subset \mathcal{M}\)</span> be a sequence of Lebesgue measurable subsets of <span class="math inline">\([0,1]\)</span>. Prove: (a) If <span class="math inline">\(\sum m(E_n) &lt; \infty\)</span> then <span class="math inline">\(m(\lim \sup E_n) = 0\)</span>; and (b) If <span class="math inline">\(m(E_n) \to 0\)</span> it may not be true that <span class="math inline">\(m(\lim \sup E_n) = 0\)</span></h3>
 <div id="my-solution-4" class="section level4">
 <h4>My Solution:</h4>
+<ol style="list-style-type: lower-alpha">
+<li><p>Let <span class="math inline">\(\epsilon &gt; 0\)</span>, since <span class="math inline">\(\sum m(E_n) &lt; \infty\)</span>, there exists an <span class="math inline">\(N\)</span> such that <span class="math inline">\(\sum m(E_N) &lt; \epsilon\)</span>. So, <span class="math display">\[\lim \sup (E_n) = \bigcap^{\infty} _{n=1} \bigcup^{\infty} _{k=n} E_k \subset \bigcup^{\infty} _{k=n} E_k\]</span> Hence, <span class="math display">\[m(\lim \sup (E_n)) \leq m(\bigcup^{\infty} _{k=N} E_k) \leq \sum^{\infty} _{k=n} m(E_k) &lt; \epsilon\]</span> This implies that <span class="math inline">\(m(\lim \sup E_n) = 0\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(E_1 = [0,1]\)</span>, <span class="math inline">\(E_2 = [0,\frac{1}{2}]\)</span>, <span class="math inline">\(E_3 = [\frac{1}{2},1]\)</span>, <span class="math inline">\(E_4 = [0, \frac{1}{4}]\)</span>, <span class="math inline">\(E_5 = [\frac{1}{4},\frac{1}{2}]\)</span>, <span class="math inline">\(E_6 = [\frac{1}{2}, \frac{3}{4}]\)</span>, <span class="math inline">\(E_7 = [\frac{3}{4}, 1]\)</span>, <span class="math inline">\(E_8 = [0, \frac{1}{8}]\)</span>,… We repeat these definitions in this pattern, giving us that <span class="math inline">\(\lim_{n \to \infty} m(E_n) = 0\)</span>. But for all <span class="math inline">\(n \in \mathbb{N}\)</span>, <span class="math inline">\(\bigcup^{\infty} _{k=n} E_k = [0,1]\)</span> implying that <span class="math inline">\(\lim \sup (E_n) = [0,1]\)</span> giving us the desired result. QED</p></li>
+</ol>
 </div>
 </div>
 <div id="prove-that-if-f-in-lp0infty-1-leq-p-leq-infty-then-lim_n-to-infty-int_0-infty-fx-mathrme-nxdx-0" class="section level3">
 <h3>Prove that if <span class="math inline">\(f \in L^p([0,\infty))\)</span>, <span class="math inline">\(1 \leq p \leq \infty\)</span>, then <span class="math inline">\(\lim_{n \to \infty} \int_0 ^{\infty} f(x) \mathrm{e}^{-nx}dx = 0\)</span></h3>
 <div id="my-solution-5" class="section level4">
+<h4>My Solution:</h4>
+<p>Let <span class="math inline">\(A = \{x| f(x) &lt; 1\}\)</span> and <span class="math inline">\(B = \{x|f(x) \geq 1\}\)</span>. Note, since <span class="math inline">\(f \in L^p\)</span>, <span class="math inline">\(m(B) &lt; \infty\)</span>. So, <span class="math display">\[\int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int (f(x) \mathrm{e}^{-nx} \chi_A + f(x) \mathrm{e}^{-nx} \chi_B) dx\]</span> where <span class="math display">\[\int^{\infty} _0 f(x) \mathrm{e}^{-nx} \chi_A dx &lt; \int^{\infty} _0 \mathrm{e}^{-x} = 1\]</span> and <span class="math display">\[\int f(x) \mathrm{e}^{-nx} \chi_B dx \leq \int |f|^p \chi_B &lt; \infty\]</span> since <span class="math inline">\(f \in L^p\)</span>. Thus by the Lebesgue Dominated Convergence Theorem, <span class="math display">\[\lim_{n \to \infty} \int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int^{\infty} _0 \lim_{n \to \infty} f(x) \mathrm{e}^{-nx} dx = \int 0 dx = 0\]</span> QED</p>
+</div>
+</div>
+<div id="define-the-function-f01-to-mathbbr-by-fx-0-if-x-is-irrational-and-by-fx-frac1q-if-x-is-rational-and-x-fracpq-when-written-in-least-terms.-decide-whether-or-not-f-is-riemann-integrable-on-01-and-if-so-evaluate-its-integral." class="section level3">
+<h3>Define the function <span class="math inline">\(f:[0,1] \to \mathbb{R}\)</span> by <span class="math inline">\(f(x) = 0\)</span> if <span class="math inline">\(x\)</span> is irrational, and by <span class="math inline">\(f(x) = \frac{1}{q}\)</span> if <span class="math inline">\(x\)</span> is rational and <span class="math inline">\(x = \frac{p}{q}\)</span> when written in least terms. Decide whether or not <span class="math inline">\(f\)</span> is Riemann integrable on <span class="math inline">\([0,1]\)</span> and if so, evaluate its integral.</h3>
+<div id="my-solution-6" class="section level4">
+<h4>My Solution:</h4>
+<p>Let <span class="math inline">\(A = \{x|\lim_{x \to a} f(x) \neq f(a)\}\)</span>, then <span class="math inline">\(A = \{x| x\in \mathbb{Q}\}\)</span>. Thus <span class="math inline">\(m(A) = 0\)</span>. Also <span class="math inline">\(f\)</span> is clearly measurable as <span class="math inline">\(\{x|f(x) \geq a\} = \{(0, \infty)\}\)</span>. Hence <span class="math inline">\(f\)</span> is Lebesgue measurable and <span class="math inline">\(\int f = R f\)</span> with <span class="math inline">\(\int f =0\)</span> since <span class="math inline">\(f=0\)</span> a.e. QED</p>
+</div>
+</div>
+<div id="let-p_n-be-a-sequence-of-polynomials.-suppose-that-for-every-point-x-in-01-there-exists-an-index-n-satisfying-p_nx-0.-prove-at-least-one-of-the-polynomials-is-identically-zero." class="section level3">
+<h3>Let <span class="math inline">\(\{p_n\}\)</span> be a sequence of polynomials. Suppose that for every point <span class="math inline">\(x \in [0,1]\)</span> there exists an index <span class="math inline">\(n\)</span> satisfying <span class="math inline">\(p_n(x) = 0\)</span>. Prove at least one of the polynomials is identically zero.</h3>
+<div id="my-solution-7" class="section level4">
+<h4>My Solution:</h4>
+<p>Suppose there does not exist an <span class="math inline">\(n\)</span> such that <span class="math inline">\(P_n = 0\)</span> for all <span class="math inline">\(n \in \mathbb{N}\)</span>. Let’s define <span class="math inline">\(S_n = \{x \in [0,1]|P_n(x) = 0\}\)</span>. Note, <span class="math inline">\(S_n\)</span> has to be finite since each polynomial can only have a finite number of zeros. Now consider <span class="math inline">\(\bigcup^{\infty} _{n=1} S_n \supseteq [0,1]\)</span> since for each <span class="math inline">\(x \in [0,1]\)</span> there exists a polynomial such that <span class="math inline">\(p_n(x) = 0\)</span>. But a countable collection of finite sets is countable. But <span class="math inline">\([0,1]\)</span> is uncountable, thus giving us a contradiction. This implies that one of the polynomials must indeed be identically zero. QED</p>
+</div>
+</div>
+<div id="let-a-subset-mathbbr.-prove-that-the-following-are-equivalent-to-each-other-a-a-is-not-lebesgue-measurable-and-b-there-is-an-epsilon-0-such-that-whenever-b-is-measurable-and-a-subset-b-then-mba-geq-epsilon." class="section level3">
+<h3>Let <span class="math inline">\(A \subset \mathbb{R}\)</span>. Prove that the following are equivalent to each other: (a) <span class="math inline">\(A\)</span> is not Lebesgue measurable; and (b) There is an <span class="math inline">\(\epsilon &gt; 0\)</span> such that whenever <span class="math inline">\(B\)</span> is measurable and <span class="math inline">\(A \subset B\)</span>, then <span class="math inline">\(m^*(B/A) \geq \epsilon\)</span>.</h3>
+<div id="my-solution-8" class="section level4">
+<h4>My Solution:</h4>
+</div>
+</div>
+<div id="let-h-in-linfty-mathbbr.-define-a-functional-t-l1-mathbbr-to-mathbbr-by-tf-int_mathbbr-fh-dm.-prove-that-sup_f_1-leq-1-tf-h_infty" class="section level3">
+<h3>Let <span class="math inline">\(h \in L^{\infty} (\mathbb{R})\)</span>. Define a functional <span class="math inline">\(T: L^1 (\mathbb{R}) \to \mathbb{R}\)</span> by <span class="math inline">\(Tf = \int_{\mathbb{R}} (fh) dm\)</span>. Prove that <span class="math inline">\(\sup_{||f||_1 \leq 1} Tf = ||h||_{\infty}\)</span></h3>
+<div id="my-solution-9" class="section level4">
 <h4>My Solution:</h4>
 </div>
 </div>
