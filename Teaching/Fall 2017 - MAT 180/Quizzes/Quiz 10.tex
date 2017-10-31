@@ -1,0 +1,55 @@
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\usepackage{amsmath}
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 180-08;10;11 Fall
+
+%%%(change to appropriate quiz type and date)
+Quiz 10 November 1st \hspace{1.9in} {Name:} {\underline {\hspace{2.5in}}}
+\vspace{2pc}
+
+%%%(modify rules, time, points as appropriate)
+Show all work to get full credit of this 10 point quiz. Please circle the section that you are in. All calculators are allowed, except for phones.
+\vspace{2pc}
+
+% problem
+\begin{problem}{10}
+Find the absolute extrema (max and mins) of 
+\begin{equation*}
+f(x) = x^2
+\end{equation*}
+on the closed interval of $[-5,3]$.
+\vfill
+\end{problem}
+
+
+
+
+
+
+\showpoints
+\end{document}
