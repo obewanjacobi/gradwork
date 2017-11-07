@@ -3,10 +3,10 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
-  pdf_document:
+  html_document:
     fig_height: 4
     fig_width: 5
-  html_document:
+  pdf_document:
     fig_height: 4
     fig_width: 5
   word_document:
@@ -137,11 +137,29 @@ Suppose there does not exist an $n$ such that $P_n = 0$ for all $n \in \mathbb{N
 
 ### Let $A \subset \mathbb{R}$. Prove that the following are equivalent to each other: (a) $A$ is not Lebesgue measurable; and (b) There is an $\epsilon > 0$ such that whenever $B$ is measurable and $A \subset B$, then $m^*(B/A) \geq \epsilon$.
 #### My Solution:
-
+Let $A$ not be Lebesgue measurable and suppose that for all $\epsilon > 0$ there exists $B$ such that $A \subset B$ and $m^* (B-A) < \epsilon$. So for every $\frac{1}{n}$, let $B_n \supset A$ and $m^* (B_n - A) < \frac{1}{n}$. Then $A \subset \cap B_n$ and $m^*((\cap B_n) - A) = 0$. Since $m^*((\cap B_n) -A) = 0$ which implies $(\cap B_n) - A$ is measurable (because Lebesgue measure is complete). Hence, $A = [(\cup (B_n ^c)) \cup (\cap (B_n) - A)]^c$ is measurable. This is a contradiction, thus we have proven the desired result. QED
 
 
 
 ### Let $h \in L^{\infty} (\mathbb{R})$. Define a functional $T: L^1 (\mathbb{R}) \to \mathbb{R}$ by $Tf = \int_{\mathbb{R}} (fh) dm$. Prove that $\sup_{||f||_1 \leq 1} Tf = ||h||_{\infty}$
+#### My Solution:
+- Will show $\leq$:
+
+$$\sup_{||f||_1 \leq 1} Tf = \sup_{||f||_1 \leq 1} \int fh \leq \sup_{||f||_1 \leq 1} ||f||_1 ||h||_{\infty}$$ Note, by Holder's since we have $1, \infty$, 
+$$\leq 1 \cdot ||h||_{\infty} = ||_{\infty}$$
+
+- Will show $\geq$:
+
+We may assume $||h||_{\infty} = M > 0$. $\mathbb{R}$ is $\sigma$-finite, so there exists $F_n$ increasing towards $x$ such that $m(F_n) < a$. Define $A_n = \{x \in F_n| |h(x)| > a\}$ for $0<a<M$, to be fixed. Hence $m(A_n) > 0$. Define $g_n(x) = \frac{\mathrm{sgn}(h) - \chi_{A_n}}{m(A_n)}$, which is implies $||g_n||_1 = 1$ for all $n$ and $\int h g_n = a$ for all $n$. Thus $a < \int h g_n$ for all $n$. This implies $\sup_{0<a<M} a < \sup_{||g_n||_1 \leq 1} \int h g_n$. $$||f||_{\infty} = M < \sup_{||f||_1 \leq 1} \int fh = \sup_{||f||_1 \leq 1} Tf$$
+Thus we have proven the desired result. QED
+
+
+
+## August 2016
+
+
+
+### Let $C \subset [0,1]$ be a closed set. Prove that $\chi_C$ is Riemann integrable iff $\partial C$ has Lebesgue measure zero.
 #### My Solution:
 
 

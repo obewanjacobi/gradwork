@@ -209,11 +209,29 @@ $(document).ready(function () {
 <h3>Let <span class="math inline">\(A \subset \mathbb{R}\)</span>. Prove that the following are equivalent to each other: (a) <span class="math inline">\(A\)</span> is not Lebesgue measurable; and (b) There is an <span class="math inline">\(\epsilon &gt; 0\)</span> such that whenever <span class="math inline">\(B\)</span> is measurable and <span class="math inline">\(A \subset B\)</span>, then <span class="math inline">\(m^*(B/A) \geq \epsilon\)</span>.</h3>
 <div id="my-solution-8" class="section level4">
 <h4>My Solution:</h4>
+<p>Let <span class="math inline">\(A\)</span> not be Lebesgue measurable and suppose that for all <span class="math inline">\(\epsilon &gt; 0\)</span> there exists <span class="math inline">\(B\)</span> such that <span class="math inline">\(A \subset B\)</span> and <span class="math inline">\(m^* (B-A) &lt; \epsilon\)</span>. So for every <span class="math inline">\(\frac{1}{n}\)</span>, let <span class="math inline">\(B_n \supset A\)</span> and <span class="math inline">\(m^* (B_n - A) &lt; \frac{1}{n}\)</span>. Then <span class="math inline">\(A \subset \cap B_n\)</span> and <span class="math inline">\(m^*((\cap B_n) - A) = 0\)</span>. Since <span class="math inline">\(m^*((\cap B_n) -A) = 0\)</span> which implies <span class="math inline">\((\cap B_n) - A\)</span> is measurable (because Lebesgue measure is complete). Hence, <span class="math inline">\(A = [(\cup (B_n ^c)) \cup (\cap (B_n) - A)]^c\)</span> is measurable. This is a contradiction, thus we have proven the desired result. QED</p>
 </div>
 </div>
 <div id="let-h-in-linfty-mathbbr.-define-a-functional-t-l1-mathbbr-to-mathbbr-by-tf-int_mathbbr-fh-dm.-prove-that-sup_f_1-leq-1-tf-h_infty" class="section level3">
 <h3>Let <span class="math inline">\(h \in L^{\infty} (\mathbb{R})\)</span>. Define a functional <span class="math inline">\(T: L^1 (\mathbb{R}) \to \mathbb{R}\)</span> by <span class="math inline">\(Tf = \int_{\mathbb{R}} (fh) dm\)</span>. Prove that <span class="math inline">\(\sup_{||f||_1 \leq 1} Tf = ||h||_{\infty}\)</span></h3>
 <div id="my-solution-9" class="section level4">
+<h4>My Solution:</h4>
+<ul>
+<li>Will show <span class="math inline">\(\leq\)</span>:</li>
+</ul>
+<p><span class="math display">\[\sup_{||f||_1 \leq 1} Tf = \sup_{||f||_1 \leq 1} \int fh \leq \sup_{||f||_1 \leq 1} ||f||_1 ||h||_{\infty}\]</span> Note, by Holder’s since we have <span class="math inline">\(1, \infty\)</span>, <span class="math display">\[\leq 1 \cdot ||h||_{\infty} = ||_{\infty}\]</span></p>
+<ul>
+<li>Will show <span class="math inline">\(\geq\)</span>:</li>
+</ul>
+<p>We may assume <span class="math inline">\(||h||_{\infty} = M &gt; 0\)</span>. <span class="math inline">\(\mathbb{R}\)</span> is <span class="math inline">\(\sigma\)</span>-finite, so there exists <span class="math inline">\(F_n\)</span> increasing towards <span class="math inline">\(x\)</span> such that <span class="math inline">\(m(F_n) &lt; a\)</span>. Define <span class="math inline">\(A_n = \{x \in F_n| |h(x)| &gt; a\}\)</span> for <span class="math inline">\(0&lt;a&lt;M\)</span>, to be fixed. Hence <span class="math inline">\(m(A_n) &gt; 0\)</span>. Define <span class="math inline">\(g_n(x) = \frac{\mathrm{sgn}(h) - \chi_{A_n}}{m(A_n)}\)</span>, which is implies <span class="math inline">\(||g_n||_1 = 1\)</span> for all <span class="math inline">\(n\)</span> and <span class="math inline">\(\int h g_n = a\)</span> for all <span class="math inline">\(n\)</span>. Thus <span class="math inline">\(a &lt; \int h g_n\)</span> for all <span class="math inline">\(n\)</span>. This implies <span class="math inline">\(\sup_{0&lt;a&lt;M} a &lt; \sup_{||g_n||_1 \leq 1} \int h g_n\)</span>. <span class="math display">\[||f||_{\infty} = M &lt; \sup_{||f||_1 \leq 1} \int fh = \sup_{||f||_1 \leq 1} Tf\]</span> Thus we have proven the desired result. QED</p>
+</div>
+</div>
+</div>
+<div id="august-2016" class="section level2">
+<h2>August 2016</h2>
+<div id="let-c-subset-01-be-a-closed-set.-prove-that-chi_c-is-riemann-integrable-iff-partial-c-has-lebesgue-measure-zero." class="section level3">
+<h3>Let <span class="math inline">\(C \subset [0,1]\)</span> be a closed set. Prove that <span class="math inline">\(\chi_C\)</span> is Riemann integrable iff <span class="math inline">\(\partial C\)</span> has Lebesgue measure zero.</h3>
+<div id="my-solution-10" class="section level4">
 <h4>My Solution:</h4>
 </div>
 </div>
