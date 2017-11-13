@@ -233,6 +233,41 @@ $(document).ready(function () {
 <h3>Let <span class="math inline">\(C \subset [0,1]\)</span> be a closed set. Prove that <span class="math inline">\(\chi_C\)</span> is Riemann integrable iff <span class="math inline">\(\partial C\)</span> has Lebesgue measure zero.</h3>
 <div id="my-solution-10" class="section level4">
 <h4>My Solution:</h4>
+<p>Assume that <span class="math inline">\(\partial C\)</span> has Lesbegue mesure zero. This implies that <span class="math inline">\(m(\{x| \lim_{x \to a} f(x) \neq f(a)\}) = 0\)</span>. Thus the Riemann integral exists and agrees with the Lesbesgue integral.</p>
+<p>Now assume that <span class="math inline">\(\chi_C\)</span> is Riemann integrable. This is true iff the Lesbegue integral exists and <span class="math inline">\(m(\{x|\lim_{x \to a} f(x) \neq f(a)\}) = 0\)</span>. <span class="math inline">\(\chi_C\)</span> is discontinuous at its boundary points, which implies that <span class="math inline">\(m(\partial C) = 0\)</span>. QED</p>
+</div>
+</div>
+<div id="let-s-subset-mathbbr-prove-the-following-statements-are-equivalent-a-s-is-lebesgue-measurable-and-b-there-is-a-g_delta-set-g-and-a-set-n-of-measure-zero-such-that-s-g-n." class="section level3">
+<h3>Let <span class="math inline">\(S \subset \mathbb{R}\)</span>/ Prove the following statements are equivalent: (a) <span class="math inline">\(S\)</span> is Lebesgue measurable and (b) There is a <span class="math inline">\(G_{\delta}\)</span> set <span class="math inline">\(G\)</span> and a set <span class="math inline">\(N\)</span> of measure zero such that <span class="math inline">\(S = G-N\)</span>.</h3>
+<div id="my-solution-11" class="section level4">
+<h4>My Solution:</h4>
+<p>(<span class="math inline">\(b \implies a\)</span>): Given <span class="math inline">\(G\)</span> is a <span class="math inline">\(G_{\delta}\)</span> set, <span class="math inline">\(G\)</span> must then be Borel measurable. Thus it is also Lebesgue measurable. <span class="math inline">\(N\)</span> must be Lebesgue measurable as well since the Lebesgue <span class="math inline">\(\sigma\)</span>-algebra is complete. Thus <span class="math inline">\(S = G-N\)</span> is Lebesgue measurable.</p>
+<p>(<span class="math inline">\(a \implies b\)</span>): This follows directly from a proposition stating that if <span class="math inline">\(A \subset [0,1]\)</span> is a Lebesgue measurable set, and <span class="math inline">\(m\)</span> is a Lebesgue measure, then there exists a set <span class="math inline">\(H\)</span> which cintains <span class="math inline">\(A\)</span> that is the countable intersection of a decreasing sequence of open sets and <span class="math inline">\(m(H-A)=0\)</span>. QED</p>
+</div>
+</div>
+<div id="if-f-is-nonnegative-and-integrable-on-01-then-lim_n-to-infty-int_0-1-sqrtnf-lambda-x-fx-0" class="section level3">
+<h3>If <span class="math inline">\(f\)</span> is nonnegative and integrable on <span class="math inline">\([0,1]\)</span>, then <span class="math inline">\(\lim_{n \to \infty} \int_0 ^1 \sqrt[n]{f} = \lambda \{x| f(x) &gt; 0\}\)</span></h3>
+<div id="my-solution-12" class="section level4">
+<h4>My Solution:</h4>
+<p><span class="math display">\[\int_0 ^1 \sqrt[n]{f} = \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f=0} + \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f&gt;0}\]</span> where <span class="math inline">\(\int_0 ^1 \sqrt[n]{f} \cdot \chi_{f=0} = \int_0 ^1 \sqrt[n]{0} = 0\)</span>. Thus, <span class="math display">\[\int_0 ^1 \sqrt[n]{f} = \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f&gt;0}\]</span> Since <span class="math inline">\(f\)</span> is integrable, we know that <span class="math inline">\(\int_0 ^1 \sqrt[n]{f} &lt; \int_0 ^1 f &lt; \infty\)</span>, thus <span class="math inline">\(\sqrt[n]{f}\)</span> is integrable as well. So, <span class="math display">\[\lim_{n \to \infty} \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f&gt;0} = \int_0 ^1 \lim_{n \to \infty} \sqrt[n]{f} \cdot \chi_{f&gt;0}\]</span> by the D.C.T., and thus, <span class="math display">\[= \int_0 ^1 1 \cdot \chi_{f&gt;0} = m(\{x|f(x) &gt; 0\})\]</span> QED</p>
+</div>
+</div>
+<div id="let-f-in-l1-mathbbr.-if-int_a-b-f-0-for-all-rational-numbers-a-and-b-with-ab-then-f-0-a.e." class="section level3">
+<h3>Let <span class="math inline">\(f \in L^1 (\mathbb{R})\)</span>. If <span class="math inline">\(\int_a ^b f = 0\)</span> for all rational numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with <span class="math inline">\(a&lt;b\)</span>, then <span class="math inline">\(f = 0\)</span> a.e.</h3>
+<div id="my-solution-13" class="section level4">
+<h4>My Solution:</h4>
+</div>
+</div>
+<div id="suppose-that-f-in-l2-01-and-f_2-1.-define-gx-xfx.-prove-that-g-in-l1-01-and-that-g_1-leq-frac1sqrt3." class="section level3">
+<h3>Suppose that <span class="math inline">\(f \in L^2 ([0,1])\)</span> and <span class="math inline">\(||f||_2 = 1\)</span>. Define <span class="math inline">\(g(x) = xf(x)\)</span>. Prove that <span class="math inline">\(g \in L^1 ([0,1])\)</span> and that <span class="math inline">\(||g||_1 \leq \frac{1}{\sqrt{3}}\)</span>.</h3>
+<div id="my-solution-14" class="section level4">
+<h4>My Solution:</h4>
+</div>
+</div>
+<div id="problem" class="section level3">
+<h3>Problem</h3>
+<div id="my-solution-15" class="section level4">
+<h4>My Solution:</h4>
 </div>
 </div>
 </div>

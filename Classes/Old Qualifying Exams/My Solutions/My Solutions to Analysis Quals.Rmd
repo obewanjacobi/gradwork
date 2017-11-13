@@ -3,10 +3,10 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
-  html_document:
+  pdf_document:
     fig_height: 4
     fig_width: 5
-  pdf_document:
+  html_document:
     fig_height: 4
     fig_width: 5
   word_document:
@@ -161,6 +161,49 @@ Thus we have proven the desired result. QED
 
 ### Let $C \subset [0,1]$ be a closed set. Prove that $\chi_C$ is Riemann integrable iff $\partial C$ has Lebesgue measure zero.
 #### My Solution:
+Assume that $\partial C$ has Lesbegue mesure zero. This implies that $m(\{x| \lim_{x \to a} f(x) \neq f(a)\}) = 0$. Thus the Riemann integral exists and agrees with the Lesbesgue integral.
+
+Now assume that $\chi_C$ is Riemann integrable. This is true iff the Lesbegue integral exists and $m(\{x|\lim_{x \to a} f(x) \neq f(a)\}) = 0$. $\chi_C$ is discontinuous at its boundary points, which implies that $m(\partial C) = 0$. QED
+
+
+
+### Let $S \subset \mathbb{R}$/ Prove the following statements are equivalent: (a) $S$ is Lebesgue measurable and (b) There is a $G_{\delta}$ set $G$ and a set $N$ of measure zero such that $S = G-N$.
+#### My Solution:
+($b \implies a$): Given $G$ is a $G_{\delta}$ set, $G$ must then be Borel measurable. Thus it is also Lebesgue measurable. $N$ must be Lebesgue measurable as well since the Lebesgue $\sigma$-algebra is complete. Thus $S = G-N$ is Lebesgue measurable.
+
+($a \implies b$): This follows directly from a proposition stating that if $A \subset [0,1]$ is a Lebesgue measurable set, and $m$ is a Lebesgue measure, then there exists a set $H$ which cintains $A$ that is the countable intersection of a decreasing sequence of open sets and $m(H-A)=0$. QED
+
+
+
+###If $f$ is nonnegative and integrable on $[0,1]$, then $\lim_{n \to \infty} \int_0 ^1 \sqrt[n]{f} = \lambda \{x| f(x) > 0\}$
+#### My Solution:
+$$\int_0 ^1 \sqrt[n]{f} = \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f=0} + \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f>0}$$
+where $\int_0 ^1 \sqrt[n]{f} \cdot \chi_{f=0} = \int_0 ^1 \sqrt[n]{0} = 0$. Thus,
+$$\int_0 ^1 \sqrt[n]{f} = \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f>0}$$
+Since $f$ is integrable, we know that $\int_0 ^1 \sqrt[n]{f} < \int_0 ^1 f < \infty$, thus $\sqrt[n]{f}$ is integrable as well. So,
+$$\lim_{n \to \infty} \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f>0} = \int_0 ^1 \lim_{n \to \infty} \sqrt[n]{f} \cdot \chi_{f>0}$$ by the D.C.T., and thus,
+$$= \int_0 ^1 1 \cdot \chi_{f>0} = m(\{x|f(x) > 0\})$$
+QED
+
+
+
+
+###Let $f \in L^1 (\mathbb{R})$. If $\int_a ^b f = 0$ for all rational numbers $a$ and $b$ with $a<b$, then $f = 0$ a.e.
+#### My Solution:
+
+
+
+
+### Suppose that $f \in L^2 ([0,1])$ and $||f||_2 = 1$. Define $g(x) = xf(x)$. Prove that $g \in L^1 ([0,1])$ and that $||g||_1 \leq \frac{1}{\sqrt{3}}$.
+#### My Solution:
+
+
+
+
+### Problem
+#### My Solution: 
+
+
 
 
 
