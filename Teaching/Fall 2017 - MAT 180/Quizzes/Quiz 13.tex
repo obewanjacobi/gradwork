@@ -1,0 +1,107 @@
+\documentclass[11pt,epsfig]{article}
+
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=6.3in
+\topmargin=-0.5in
+\textheight=9in
+
+\parindent=0in
+\pagestyle{empty}
+
+% C heck if we are compiling under latex or pdflatex, and include the
+% appropriate graphics package
+\usepackage{amsmath}
+\ifx\pdftexversion\undefined
+  \usepackage[dvips]{graphicx}
+\else
+  \usepackage[pdftex]{graphicx}
+\fi
+
+\input{testpoints}
+
+\raggedbottom % Makes the bottom margin more flexible (helpful for pictures)
+
+\begin{document}
+
+
+%%%(change to appropriate class and semester)
+Math 180-08;10;11 Fall
+
+%%%(change to appropriate quiz type and date)
+Quiz 13 November 29th \hspace{1.9in} {Name:} {\underline {\hspace{2.5in}}}
+\vspace{2pc}
+
+%%%(modify rules, time, points as appropriate)
+Show all work to get full credit of this 10 point quiz. Please circle the section that you are in. All calculators are allowed, except for phones. You may choose to do the 5 problems on the front or the two problems on the back in order to get the full 10 points. Please indicate which you would prefer to be graded by writing "front" or "back" on the top of the page. 
+\vspace{2pc}
+
+% problem
+\begin{problem}{2}
+Solve the following indefinite integral.
+\begin{equation*}
+\int 12dx
+\end{equation*}
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{2}
+Solve the following indefinite integral.
+\begin{equation*}
+\int 18xdx
+\end{equation*}
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{2}
+Solve the following indefinite integral.
+\begin{equation*}
+\int 30 x^2 dx
+\end{equation*}
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{2}
+Solve the following indefinite integral.
+\begin{equation*}
+\int \frac{\mathrm{e}^t - t}{2} dt
+\end{equation*}
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{2}
+Solve the following indefinite integral.
+\begin{equation*}
+\int 5 \mathrm{e}^x dx
+\end{equation*}
+\vfill
+\end{problem}
+
+\newpage
+
+% problem
+\begin{problem}{1}
+Solve the following indefinite integral.
+\begin{equation*}
+\int 2x(x^2 + 2) ^2 dx
+\end{equation*}
+\vfill
+\end{problem}
+
+% problem
+\begin{problem}{9}
+Do you like math? If so, please put why. If not, lie to me and make me happy. (Also, as a reminder, please do your course evaluations, they really help professors and TA's out).
+\vfill
+\end{problem}
+
+
+
+
+
+
+\showpoints
+\end{document}
