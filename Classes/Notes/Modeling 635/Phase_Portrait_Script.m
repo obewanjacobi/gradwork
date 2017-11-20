@@ -1,4 +1,4 @@
-f = @(t,x) [x(1) - (x(1))^3; -x(2)];%insert parameters here
+f = @(t,x) [1 - (x(1))^2; -x(2)];%insert parameters here
 x1 = linspace(-5,5,25);
 x2 = linspace(-5,5,25);
 [x,y] = meshgrid(x1,x2);
