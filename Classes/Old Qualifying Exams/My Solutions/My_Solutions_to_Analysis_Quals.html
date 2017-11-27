@@ -256,20 +256,55 @@ $(document).ready(function () {
 <h3>Let <span class="math inline">\(f \in L^1 (\mathbb{R})\)</span>. If <span class="math inline">\(\int_a ^b f = 0\)</span> for all rational numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with <span class="math inline">\(a&lt;b\)</span>, then <span class="math inline">\(f = 0\)</span> a.e.</h3>
 <div id="my-solution-13" class="section level4">
 <h4>My Solution:</h4>
+<p>We will claim here that <span class="math inline">\(f\)</span> integrates to <span class="math inline">\(0\)</span> over arbitrary open sets. Thus for any <span class="math inline">\(\epsilon &gt; 0\)</span>, choose an open set <span class="math inline">\(B\)</span> such that <span class="math inline">\(A = \{f&gt;0\} \subset B\)</span> and <span class="math inline">\(m(B-A) &lt; \delta\)</span>. Hence <span class="math display">\[|\int_A f| \leq |\int_B f - \int_A f| = |\int_{B-A} f| \leq \int_{B-A} |f| &lt; \epsilon\]</span> because <span class="math inline">\(m(B-A) &lt; \delta\)</span>. Thus the integral is <span class="math inline">\(0\)</span> since this is true for all <span class="math inline">\(\epsilon\)</span>.</p>
+<p>We must now prove our claim in order to complete the problem. For any <span class="math inline">\((a,b) \in \mathbb{R} \times \mathbb{R}\)</span>, there exists <span class="math inline">\(\{a_n\}, \{b_n\} \in \mathbb{Q}\)</span> such that <span class="math inline">\(a_n\)</span> decreases to <span class="math inline">\(a\)</span> and <span class="math inline">\(b_n\)</span> increases to <span class="math inline">\(b\)</span> as <span class="math inline">\(n\)</span> goes to infinity. Thus <span class="math inline">\(\int_{(a,b)} f = \int_{\cup(a_n,b_n)} f\)</span>. Using this, and the dominated convergence theorem, we find that <span class="math display">\[\int_{\cup(a_n,b_n)} f = \lim_{n \to \infty} \int_{(a_n,b_n)} f = 0\]</span> with <span class="math inline">\(|f|\)</span> as the majorant since <span class="math inline">\(f \in L^1\)</span>. Now let <span class="math inline">\(B = \bigcup^{\infty} _{n=1} (a_n,b_n)\)</span> with <span class="math inline">\((a_n,b_n)\)</span> being arbitrary disjoint intervals. Then <span class="math display">\[\int_B f = \int \sum^{\infty} _{n=1} f \cdot \chi_{(a_n,b_n)}\]</span> By the dominated convergence theorem, <span class="math display">\[\int \sum^{\infty} _{n=1} f \cdot \chi_{(a_n,b_n)} = \sum^{\infty} _{n=1} \int f \cdot \chi_{(a_n,b_n)} = \sum 0 = 0\]</span> with <span class="math inline">\(|f|\)</span> as the majorant because <span class="math inline">\(f \in L^1\)</span>. Thus <span class="math inline">\(\int_B f = 0\)</span> for any open set <span class="math inline">\(B\)</span>. A similar proof holds for <span class="math inline">\(m(\{x|f(x) &lt; 0\}) = 0\)</span>. Hence <span class="math inline">\(f = 0\)</span> a.e. QED</p>
 </div>
 </div>
 <div id="suppose-that-f-in-l2-01-and-f_2-1.-define-gx-xfx.-prove-that-g-in-l1-01-and-that-g_1-leq-frac1sqrt3." class="section level3">
 <h3>Suppose that <span class="math inline">\(f \in L^2 ([0,1])\)</span> and <span class="math inline">\(||f||_2 = 1\)</span>. Define <span class="math inline">\(g(x) = xf(x)\)</span>. Prove that <span class="math inline">\(g \in L^1 ([0,1])\)</span> and that <span class="math inline">\(||g||_1 \leq \frac{1}{\sqrt{3}}\)</span>.</h3>
 <div id="my-solution-14" class="section level4">
 <h4>My Solution:</h4>
+<p>For <span class="math inline">\(x \in L^2 ([0,1])\)</span>, we have <span class="math display">\[(\int_0 ^1 |f|^2) ^{1/2} = (\frac{1}{3} x^3 |^1 _0)^{1/2} &lt; \infty\]</span> So <span class="math inline">\(x \in L^2\)</span>. Given this, we can see that <span class="math display">\[||x \cdot f(x)||_1 \leq ||x||_2 ||f||_2\]</span> by Holders’. Then, <span class="math display">\[||x||_2 ||f||_2 \leq (\frac{1}{3} x^3 |^1 _0)^{1/2} \cdot 1 \leq \frac{1}{\sqrt{3}}\]</span> QED</p>
 </div>
 </div>
-<div id="problem" class="section level3">
-<h3>Problem</h3>
+<div id="let-a_k-be-a-sequence-of-real-numbers-with-the-property-that-a_k-leq-1-for-all-k.-prove-that-both-series-fx-suminfty-_k1-a_k-xk-gx-suminfty-_k1-k-a_k-xk-1-converge-uniformly-on-every-compact-subinterval-of--11-and-that-fx-gx-for-all-x-in--11." class="section level3">
+<h3>Let <span class="math inline">\(\{a_k\}\)</span> be a sequence of real numbers with the property that <span class="math inline">\(|a_k| \leq 1\)</span> for all <span class="math inline">\(k\)</span>. Prove that both series <span class="math inline">\(f(x) = \sum^{\infty} _{k=1} a_k x^k\)</span>, <span class="math inline">\(g(x) = \sum^{\infty} _{k=1} k a_k x^{k-1}\)</span> converge uniformly on every compact subinterval of <span class="math inline">\((-1,1)\)</span> and that <span class="math inline">\(f'(x) = g(x)\)</span> for all <span class="math inline">\(x \in (-1,1)\)</span>.</h3>
 <div id="my-solution-15" class="section level4">
 <h4>My Solution:</h4>
+<p>Since <span class="math inline">\(|a_k| \leq 1\)</span>, <span class="math display">\[\sum^{\infty} _{k=1} a_k x^k \leq \sum^{\infty}_{k=1} x^k\]</span> which converges uniformly because <span class="math inline">\(|x| &lt; 1\)</span> by the Weirstrass-M test (and because it’s a geometric series). Let <span class="math inline">\(C \subset [0,1]\)</span> be a compact interval of <span class="math inline">\((-1,1)\)</span> and let <span class="math inline">\(a = \mathrm{max}\{|x|: x \in C\}\)</span>. Then <span class="math inline">\(\sum |x|^k \leq \sum a^k\)</span> which converges because it’s a geometric sequence. Now we apply the Weirstrass M-test to give us the desired result. QED</p>
 </div>
 </div>
+<div id="give-an-example-of-a-continuous-function-f01-rightarrow-mathbbr-with-the-property-that-f0-0-f1-1-yet-fx-leq--1-for-almost-every-x-in-01." class="section level3">
+<h3>Give an example of a continuous function <span class="math inline">\(f:[0,1] \rightarrow \mathbb{R}\)</span> with the property that <span class="math inline">\(f(0) = 0\)</span>, <span class="math inline">\(f(1) = 1\)</span>, yet <span class="math inline">\(f'(x) \leq -1\)</span> for almost every <span class="math inline">\(x \in [0,1]\)</span>.</h3>
+<div id="my-solution-16" class="section level4">
+<h4>My Solution:</h4>
+<p>The Cantor Function satidfies this problem.</p>
+</div>
+</div>
+<div id="let-e_1-e_2-e_3...-be-a-sequence-of-measurable-subsets-of-mathbbr-with-the-property-that-suminfty-_n1-lambda-e_n-infty.-show-almost-every-x-in-mathbbr-is-contained-in-only-finitely-many-of-the-e_n." class="section level3">
+<h3>Let <span class="math inline">\(E_1, E_2, E_3,...\)</span> be a sequence of measurable subsets of <span class="math inline">\(\mathbb{R}\)</span> with the property that <span class="math inline">\(\sum^{\infty} _{n=1} \lambda (E_n) &lt; \infty\)</span>. Show almost every <span class="math inline">\(x \in \mathbb{R}\)</span> is contained in only finitely many of the <span class="math inline">\(E_n\)</span>.</h3>
+<div id="my-solution-17" class="section level4">
+<h4>My Solution:</h4>
+<p>By way of contradiction, suppose there exists an <span class="math inline">\(I \subset \mathbb{R}\)</span> such that <span class="math inline">\(m(I) = c &gt; 0\)</span>. Also assume that <span class="math inline">\(I \subset E^* _n\)</span> for all <span class="math inline">\(n\)</span> where <span class="math inline">\(\{E^*_n\}\)</span> is a subsequence of <span class="math inline">\(\{E_n\}\)</span>. But <span class="math display">\[\sum^{\infty} _{n=1} m(E^*_n) \geq \sum^{\infty}_{n=1} m(I) = \sum^{\infty}_{n=1} c\]</span> which diverges because <span class="math inline">\(c &gt; 0\)</span>. Thus by contradiction, we have proven the desired result. QED</p>
+</div>
+</div>
+<div id="let-f01-rightarrow-mathbbr-be-lebesgue-measurable.-prove-that-if-p-leq-fx-leq-q-for-all-x-in-01-then-int_01-f-exists-and-p-leq-int_01-f-leq-q." class="section level3">
+<h3>Let <span class="math inline">\(f:[0,1] \rightarrow \mathbb{R}\)</span> be Lebesgue measurable. Prove that if <span class="math inline">\(p \leq f(x) \leq q\)</span> for all <span class="math inline">\(x \in [0,1]\)</span>, then <span class="math inline">\(\int_{[0,1]} f\)</span> exists and <span class="math inline">\(p \leq \int_{[0,1]} f \leq q\)</span>.</h3>
+<div id="my-solution-18" class="section level4">
+<h4>My Solution:</h4>
+<p><strong><em>Not yet completed</em></strong></p>
+</div>
+</div>
+<div id="define-a-sequence-of-functions-f_n-in-l101-by-f_nx-n-if-x-leq-frac1n-and-fx-0-if-x-frac1n.-does-f_n-converge-in-l1-01-if-so-to-what-function" class="section level3">
+<h3>Define a sequence of functions <span class="math inline">\(f_n \in L^1[0,1]\)</span> by <span class="math inline">\(f_n(x) = n\)</span> if <span class="math inline">\(x \leq \frac{1}{n}\)</span> and <span class="math inline">\(f(x) = 0\)</span> if <span class="math inline">\(x &gt; \frac{1}{n}\)</span>. Does <span class="math inline">\(f_n\)</span> converge in <span class="math inline">\(L^1 [0,1]\)</span>? If so, to what function?</h3>
+<div id="my-solution-19" class="section level4">
+<h4>My Solution:</h4>
+<p><strong><em>Not yet completed</em></strong></p>
+</div>
+</div>
+</div>
+<div id="january-2016" class="section level2">
+<h2>January 2016</h2>
 </div>
 </div>
 <div id="extra-problems" class="section level1">

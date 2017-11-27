@@ -190,19 +190,65 @@ QED
 
 ###Let $f \in L^1 (\mathbb{R})$. If $\int_a ^b f = 0$ for all rational numbers $a$ and $b$ with $a<b$, then $f = 0$ a.e.
 #### My Solution:
+We will claim here that $f$ integrates to $0$ over arbitrary open sets. Thus for any $\epsilon > 0$, choose an open set $B$ such that $A = \{f>0\} \subset B$ and $m(B-A) < \delta$. Hence
+$$|\int_A f| \leq |\int_B f - \int_A f| = |\int_{B-A} f| \leq \int_{B-A} |f| < \epsilon$$
+because $m(B-A) < \delta$. Thus the integral is $0$ since this is true for all $\epsilon$.
 
+We must now prove our claim in order to complete the problem. For any $(a,b) \in \mathbb{R} \times \mathbb{R}$, there exists $\{a_n\}, \{b_n\} \in \mathbb{Q}$ such that $a_n$ decreases to $a$ and $b_n$ increases to $b$ as $n$ goes to infinity. Thus $\int_{(a,b)} f = \int_{\cup(a_n,b_n)} f$. Using this, and the dominated convergence theorem, we find that
+$$\int_{\cup(a_n,b_n)} f = \lim_{n \to \infty} \int_{(a_n,b_n)} f = 0$$ with $|f|$ as the majorant since $f \in L^1$. Now let $B = \bigcup^{\infty} _{n=1} (a_n,b_n)$ with $(a_n,b_n)$ being arbitrary disjoint intervals. Then 
+$$\int_B f = \int \sum^{\infty} _{n=1} f \cdot \chi_{(a_n,b_n)}$$
+By the dominated convergence theorem, 
+$$\int \sum^{\infty} _{n=1} f \cdot \chi_{(a_n,b_n)} = \sum^{\infty} _{n=1} \int f \cdot \chi_{(a_n,b_n)} = \sum 0 = 0$$ with $|f|$ as the majorant because $f \in L^1$. Thus $\int_B f = 0$ for any open set $B$. A similar proof holds for $m(\{x|f(x) < 0\}) = 0$. Hence $f = 0$ a.e. QED
 
 
 
 ### Suppose that $f \in L^2 ([0,1])$ and $||f||_2 = 1$. Define $g(x) = xf(x)$. Prove that $g \in L^1 ([0,1])$ and that $||g||_1 \leq \frac{1}{\sqrt{3}}$.
 #### My Solution:
+For $x \in L^2 ([0,1])$, we have 
+$$(\int_0 ^1 |f|^2) ^{1/2} = (\frac{1}{3} x^3 |^1 _0)^{1/2} < \infty$$
+So $x \in L^2$. Given this, we can see that 
+$$||x \cdot f(x)||_1 \leq ||x||_2 ||f||_2$$ by Holders'.
+Then,
+$$||x||_2 ||f||_2 \leq (\frac{1}{3} x^3 |^1 _0)^{1/2} \cdot 1 \leq \frac{1}{\sqrt{3}}$$
+QED
 
 
 
-
-### Problem
+### Let $\{a_k\}$ be a sequence of real numbers with the property that $|a_k| \leq 1$ for all $k$. Prove that both series $f(x) = \sum^{\infty} _{k=1} a_k x^k$, $g(x) = \sum^{\infty} _{k=1} k a_k x^{k-1}$ converge uniformly on every compact subinterval of $(-1,1)$ and that $f'(x) = g(x)$ for all $x \in (-1,1)$.
 #### My Solution: 
+Since $|a_k| \leq 1$, 
+$$\sum^{\infty} _{k=1} a_k x^k \leq \sum^{\infty}_{k=1} x^k$$ which converges uniformly because $|x| < 1$ by the Weirstrass-M test (and because it's a geometric series). Let $C \subset [0,1]$ be a compact interval of $(-1,1)$ and let $a = \mathrm{max}\{|x|: x \in C\}$. Then $\sum |x|^k \leq \sum a^k$ which converges because it's a geometric sequence. Now we apply the Weirstrass M-test to give us the desired result. QED
 
+
+
+### Give an example of a continuous function $f:[0,1] \rightarrow \mathbb{R}$ with the property that $f(0) = 0$, $f(1) = 1$, yet $f'(x) \leq -1$ for almost every $x \in [0,1]$.
+#### My Solution:
+The Cantor Function satidfies this problem.
+
+
+
+### Let $E_1, E_2, E_3,...$ be a sequence of measurable subsets of $\mathbb{R}$ with the property that $\sum^{\infty} _{n=1} \lambda (E_n) < \infty$. Show almost every $x \in \mathbb{R}$ is contained in only finitely many of the $E_n$.
+#### My Solution:
+By way of contradiction, suppose there exists an $I \subset \mathbb{R}$ such that $m(I) = c > 0$. Also assume that $I \subset E^* _n$ for all $n$ where $\{E^*_n\}$ is a subsequence of $\{E_n\}$. But 
+$$\sum^{\infty} _{n=1} m(E^*_n) \geq \sum^{\infty}_{n=1} m(I) = \sum^{\infty}_{n=1} c$$ which diverges because $c > 0$. Thus by contradiction, we have proven the desired result. QED
+
+
+
+### Let $f:[0,1] \rightarrow \mathbb{R}$ be Lebesgue measurable. Prove that if $p \leq f(x) \leq q$ for all $x \in [0,1]$, then $\int_{[0,1]} f$ exists and $p \leq \int_{[0,1]} f \leq q$.
+#### My Solution:
+***Not yet completed***
+
+
+
+### Define a sequence of functions $f_n \in L^1[0,1]$ by $f_n(x) = n$ if $x \leq \frac{1}{n}$ and $f(x) = 0$ if $x > \frac{1}{n}$. Does $f_n$ converge in $L^1 [0,1]$? If so, to what function?
+#### My Solution: 
+***Not yet completed***
+
+
+
+
+
+## January 2016
 
 
 
