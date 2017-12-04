@@ -3,13 +3,10 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
-  pdf_document:
+  word_document:
     fig_height: 4
     fig_width: 5
   html_document:
-    fig_height: 4
-    fig_width: 5
-  word_document:
     fig_height: 4
     fig_width: 5
 ---
@@ -102,7 +99,7 @@ $$=\tan(t)|^{\pi/4}_{-\pi/4} +\sec(t)|^{\pi/4}_{-\pi/4}= 1-(-1)+\sqrt{2}-\sqrt{2
 a) Let $\epsilon > 0$, since $\sum m(E_n) < \infty$, there exists an $N$ such that $\sum m(E_N) < \epsilon$. So, 
 $$\lim \sup (E_n) = \bigcap^{\infty} _{n=1} \bigcup^{\infty} _{k=n} E_k \subset \bigcup^{\infty} _{k=n} E_k$$
 Hence,
-$$m(\lim \sup (E_n)) \leq m(\bigcup^{\infty} _{k=N} E_k) \leq \sum^{\infty} _{k=n} m(E_k) < \epsilon$$
+$$m(\lim \sup (E_n)) \leq m \left(\bigcup^{\infty} _{k=N} E_k \right) \leq \sum^{\infty} _{k=n} m(E_k) < \epsilon$$
 This implies that $m(\lim \sup E_n) = 0$.
 
 b) Let $E_1 = [0,1]$, $E_2 = [0,\frac{1}{2}]$, $E_3 = [\frac{1}{2},1]$, $E_4 = [0, \frac{1}{4}]$, $E_5 = [\frac{1}{4},\frac{1}{2}]$, $E_6 = [\frac{1}{2}, \frac{3}{4}]$, $E_7 = [\frac{3}{4}, 1]$, $E_8 = [0, \frac{1}{8}]$,...
@@ -191,7 +188,7 @@ QED
 ###Let $f \in L^1 (\mathbb{R})$. If $\int_a ^b f = 0$ for all rational numbers $a$ and $b$ with $a<b$, then $f = 0$ a.e.
 #### My Solution:
 We will claim here that $f$ integrates to $0$ over arbitrary open sets. Thus for any $\epsilon > 0$, choose an open set $B$ such that $A = \{f>0\} \subset B$ and $m(B-A) < \delta$. Hence
-$$|\int_A f| \leq |\int_B f - \int_A f| = |\int_{B-A} f| \leq \int_{B-A} |f| < \epsilon$$
+$$\left|\int_A f\right| \leq \left|\int_B f - \int_A f \right| = \left|\int_{B-A} f \right| \leq \int_{B-A} |f| < \epsilon$$
 because $m(B-A) < \delta$. Thus the integral is $0$ since this is true for all $\epsilon$.
 
 We must now prove our claim in order to complete the problem. For any $(a,b) \in \mathbb{R} \times \mathbb{R}$, there exists $\{a_n\}, \{b_n\} \in \mathbb{Q}$ such that $a_n$ decreases to $a$ and $b_n$ increases to $b$ as $n$ goes to infinity. Thus $\int_{(a,b)} f = \int_{\cup(a_n,b_n)} f$. Using this, and the dominated convergence theorem, we find that
@@ -205,11 +202,11 @@ $$\int \sum^{\infty} _{n=1} f \cdot \chi_{(a_n,b_n)} = \sum^{\infty} _{n=1} \int
 ### Suppose that $f \in L^2 ([0,1])$ and $||f||_2 = 1$. Define $g(x) = xf(x)$. Prove that $g \in L^1 ([0,1])$ and that $||g||_1 \leq \frac{1}{\sqrt{3}}$.
 #### My Solution:
 For $x \in L^2 ([0,1])$, we have 
-$$(\int_0 ^1 |f|^2) ^{1/2} = (\frac{1}{3} x^3 |^1 _0)^{1/2} < \infty$$
+$$\left(\int_0 ^1 |f|^2 \right) ^{1/2} = \left(\frac{1}{3} x^3 |^1 _0 \right)^{1/2} < \infty$$
 So $x \in L^2$. Given this, we can see that 
 $$||x \cdot f(x)||_1 \leq ||x||_2 ||f||_2$$ by Holders'.
 Then,
-$$||x||_2 ||f||_2 \leq (\frac{1}{3} x^3 |^1 _0)^{1/2} \cdot 1 \leq \frac{1}{\sqrt{3}}$$
+$$||x||_2 ||f||_2 \leq \left(\frac{1}{3} x^3 |^1 _0 \right)^{1/2} \cdot 1 \leq \frac{1}{\sqrt{3}}$$
 QED
 
 
@@ -236,13 +233,13 @@ $$\sum^{\infty} _{n=1} m(E^*_n) \geq \sum^{\infty}_{n=1} m(I) = \sum^{\infty}_{n
 
 ### Let $f:[0,1] \rightarrow \mathbb{R}$ be Lebesgue measurable. Prove that if $p \leq f(x) \leq q$ for all $x \in [0,1]$, then $\int_{[0,1]} f$ exists and $p \leq \int_{[0,1]} f \leq q$.
 #### My Solution:
-***Not yet completed***
+First off, it is known that $\int_{[0,1]} 1 = 1$. Since $p \leq f \leq q$, and since we're integrating between $0$ and $1$, we can easily see then that $p \leq \int_{[0,1]} f \leq q$. Let $a = \mathrm{max}\{|p|,|q|\}$, then $|f| < a$ which implies that $\int_{[0,1]} |f| < a$. Thus $f$ is integrable. QED
 
 
 
-### Define a sequence of functions $f_n \in L^1[0,1]$ by $f_n(x) = n$ if $x \leq \frac{1}{n}$ and $f(x) = 0$ if $x > \frac{1}{n}$. Does $f_n$ converge in $L^1 [0,1]$? If so, to what function?
+### Define a sequence of functions $f_n \in L^1[0,1]$ by $f_n(x) = n$ if $x \leq \frac{1}{n}$ and $f(x) = 0$ if $x > \frac{1}{n}$. Does $f_n$ converge in $L^1 ([0,1])$? If so, to what function?
 #### My Solution: 
-***Not yet completed***
+Suppose $f_n \rightarrow f$ in $L^p$. Then $||f_n||_1 \rightarrow ||f||_1$. But $\int|f_n| = \frac{1}{n} \cdot n = 1$ for all $n$. Hence $||f|| = 1$. However, this is a contradiction because $\lim_{n \to \infty} f_n = 0$, thus it does not converge in $L^1 ([0,1])$
 
 
 
@@ -251,6 +248,276 @@ $$\sum^{\infty} _{n=1} m(E^*_n) \geq \sum^{\infty}_{n=1} m(I) = \sum^{\infty}_{n
 ## January 2016
 
 
+
+
+### Let $S$ be dense in $\mathbb{R}$ and $f: \mathbb{R} \to \mathbb{R}$. Prove or give a counterexample: $f$ is measurable iff $\{x : f(x) \geq s\}$ is measurable for all $s \in S$.
+#### My Solution:
+First assume $f$ is measurable. This implies that $\{x|f(x) \geq a\}$ is Lebesgue measurable for all $a \in \mathbb{R}$. Hence $\{x| f(x) \geq s\}$ is Lebesgue measurable for all $s \in S$.
+
+Now assume that $\{x: f(x) \ geq s\}$ is measurable for all $s \in S$. It suffices to show that $\{: f(x) > s\}$ is measurable for all $s \in S^c$. So, let $t \in S^c$, given that $S$ is dense in $\mathbb{R}$. Let $\{t_n\} \subset S$ such that $t_n$ decreases to $t$. Thus,
+$$\{x: f(x) > t\} = \bigcup^{\infty} _{n=1} \{x|f(x) \geq t_n\}$$
+is the union of measurable sets. Hence $f$ is measurable. QED
+
+
+
+### Suppose $\lambda(S)$ denotes the Lebesgue measure of the set $S \subset \mathbb{R}$. Let $g: [0,1] \rightarrow \mathbb{R}$ be absolutely continuous and $E \subset [0,1]$ be such that $\lambda(E) = 0$. Prove that $\lambda(g(E)) = 0$.
+#### My Solution:
+Given $E \subset [0,1]$ with $\lambda(E) = 0$, let $\{(a_i,b_i)\}$ be a collection of disjoint intervals covering $E$ with $\sum^n _{i = 1} |b_i - a_i| < \delta$. $g$ is absolutely continuous, which implies that it must also be continuous. Thus for each $(a_i,b_i)$, let $(c_i,d_i) \subseteq (a_i,b_i)$ such that $\{f(c_i),f(d_i)\} \in \{\mathrm{min}(f)_{(a_i,b_i)}, \mathrm{max}(f)_{(a_i,b_i)}\}$. Also, recall that because $g$ is continuous, this implies that for all $\epsilon > 0$, there exists a $\delta$ such that $|f(a_i)-f(b_i)| < \epsilon$ where $|a_i - b_i| < \delta$. Now notice that 
+$$\sum^n _{i=1} |c_i - d_i| < \sum^n _{i=1} |b_i - a_i| < \delta$$
+because $(c_i,d_i) \subseteq (a_i,b_i)$. Thus
+$$\lambda(g(E)) \leq \lambda \left(g \left(\bigcup^{\infty}_{i=1}(a_i, b_i)\right) \right) = \lambda\left(\bigcup^{\infty}_{i=1} g (a_i,b_i)\right)$$
+$$\leq \sum^{\infty} _{i=1} \lambda(g(a_i,b_i)) \leq \sum^{\infty}_{i=1} |f(c_i) - f(d_i)| < \epsilon$$ 
+because $\sum |c_i - d_i| < \delta$. Thus $\lambda(g(E)) = 0$. QED
+
+
+
+### Let $f_n(x) = x^n$ for each $n \geq 1$. Prove that the sequence $\{f_n\}$ converges uniformly on $[-\delta,\delta]$ for each $0 < \delta < 1$, and converges non-uniformly on $(-1,1)$.
+#### My Solution:
+Before we begin, note that if $|x|^n < \epsilon$, then $$\ln(|x|^n) < \ln(\epsilon) \implies n \ln(|x|) < \ln(\epsilon)$$
+$$ \implies n < \frac{\ln(\epsilon)}{\ln(|x|)}$$. This will be useful in our proof. 
+
+Let $\delta \in (0,1)$ and $\epsilon > 0$. Also let $N = \frac{\ln(\epsilon)}{\ln(\delta)}$. Hence for $n \geq N$, $n \ln(\delta) \leq \ln(\epsilon)$ which implies that $\ln(\delta^n) \leq \ln(\epsilon)$. The reason that the inequality changes directions here is because for $\delta \in (0,1)$ and for very small $\epsilon$ (specifically less than $1$), $\ln(\delta), \ln(\epsilon) < 0$. Thus, we can see that $\delta^n \leq \epsilon$, which implies that $x^n < \delta^n < \epsilon$ for all $x \in (-\delta, \delta)$. Thus $\{f_n\}$ converges uniformly on $[-\delta,\delta]$. 
+
+If we fix $x \in (-1,1)$, this implies that $x^n < \epsilon$ by our previous point in the proof. However, it is not uniform since $N$ depends on $x$. Thus we have proven the desired result. QED
+
+
+
+### Let $\lambda(G)$ denote the Lebesgue measure of the set $G$. Find an open set $G$ which is dense in $[0,1]$ such that $\lambda(G) <1$ and $\lambda(G \cap I) > 0$ for any interval $I \subset [0,1]$.
+#### My Solution:
+Let $\{q_i\}^{\infty}_{i=1}$ represent the rationals in $\mathbb{Q} \cap [0,1]$. For each $n$ define $I_n$ as an interval containing $q_n$, $m(I_n) < \frac{1}{4\cdot 2^n}$ and $I_n \subset[0,1]$. Let $G = \bigcup^{\infty} _{i=1} I_n$ with $$m(G) = m \left(\bigcup ^{\infty}_{i=1} I_n \right) \leq \sum^{\infty} _{i=1} m(I_n)$$
+$$<\sum^{\infty}_{i=1} \frac{1}{4 \cdot 2^n} = \frac{1}{4} \cdot \frac{1}{1-(1/2)} = \frac{1}{2}$$
+Since $G$ contains the rational on $[0,1]$, it is also dense on $[0,1]$. $G$ is open because it is the countable union of open intervals on $[0,1]$. let $I \subset [0,1]$. It must contain a rational, which implies that it intersects any $I_n$ nontrivially, thus $m(I \cap G) > 0$. Thus $G$ is a dense open set on $[0,1]$ such that the measure of $G$ is less than $1$ and intersects any interval of $[0,1]$ nontrivially. QED
+
+
+
+### Is $L^p([a,b])$ separable, where $1<p< \infty$?
+#### My Solution:
+Yes! First note that seperable means that it contains a countable number of dense subsets.
+
+Let $S[a,b] \subset L^p([a,b])$ be step functions on $[a,b]$ and let $S_{\mathbb{Q}}[a,b] \subset S[a,b]$ be step functions of $[a,b]$ with rational endpoints. Since $\mathbb{Q}$ is dense in $\mathbb{R}$, $S_{mathbb{Q}}[a,b]$ is dense in $S[a,b]$ thus it's dense in $L^p([a,b])$. QED
+
+
+
+### Suppose that $1 < p,q < \infty$ and that $\frac{1}{p} + \frac{1}{q} = 1$. Prove that if $f_n \rightarrow f$ in $L^p(\mathbb{R})$ and $g_n \rightarrow g$ in $L^q(\mathbb{R})$, then $f_ng_n \rightarrow fg$ in $L^1 (\mathbb{R})$.
+#### My Solution:
+Here it is sufficient to show that $\lim_{n \to \infty} ||f_ng_n - fg|| = 0$. Well, 
+$$\lim_{n \to \infty} ||f_ng_n - fg||_1 = \lim_{n \to \infty}||f_ng_n - f_ng + f_ng - fg||_1 $$
+$$= \lim_{n \to \infty} ||f_ng_n - f_ng||_1 + ||f_ng-fg||_1$$
+$$= \lim_{n \to \infty} ||f_n||_p \cdot ||g_n - g||_q + ||f_n -f||_p \cdot ||g||_q = 0$$
+where $\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p < \infty$, $||g_n-g||_q \rightarrow 0$, and $||f_n -f||_p \rightarrow 0$. Thus  we have proven the desired result. QED
+
+
+
+### Let $f \in L^1([0,1])$. Prove that $\lim_{n \to \infty} \int_0 ^1 f(x) \cos(nx) dx = 0$.
+#### My Solution:
+***Hilbert stuff, not yet completed***
+
+
+
+### Assume that $f \in L^{\infty}([0,1])$. Prove that $f \in L^p([0,1])$ for each $1 \leq p < \infty$ and that $||f||_{\infty} = \lim_{p \to \infty} ||f||_p$.
+#### My Solution:
+To complete this proof, we will divide the problem into a group of lemmas and prove them to get the desired result.
+
+**Lemma 1**: $f \in L^{\infty}([0,1]) \implies f \in L^1([0,1])$
+*Proof*: Assume $f \in L^{\infty}$. Then $f \leq m = \mathrm{essup}(f)$ a.e. Then $\int_{[0,1]} |f| \leq \int_{[0,1]} m = m < \infty$. Thus $f \in L^1$.
+
+**Lemma 2**: Assume $f \in L^{\infty}([0,1])$. Then $f \in L^p([0,1])$ for $1 \leq p \leq \infty$.
+*Proof*: Consider $\int|f|^p = \int_{\{|f|<1 \}} |f|^p + \int_{\{|f| \geq 1\}} |f|^p$.
+
+- where for $p>1$, $\int_{\{|f| <1\}} |f|^p < \int_{\{|f| <1\}} |f| < \infty$ since $f \in L^1$.
+
+- where $\int_{\{|f| \geq 1\}} |f|^p \leq \int_{\{|f| \geq 1\}} m^p = m^p \cdot m(\{|f| \geq 1\}) < \infty$. Thus $\int |f|^p < \infty$, which implies $f \in L^p$. 
+
+**Lemma 3**: $\lim \sup ||f|| \leq ||f||_{\infty}$
+*Proof*: $|f| \leq ||f||_{\infty}$ a.e. This implies that $|f|^p \leq ||f||_{\infty}^p$, which implies $(\int_{[0,1]} |f|^p)^{1/p} \leq (\int_{[0,1]} ||f||^p _{\infty}) ^{1/p} = ||f||_{\infty} < \infty$. Hence $\lim \sup ||f||_p \leq ||f||_{\infty}$.
+
+**Lemma 4**:$||f||_{\infty} \leq \liminf ||f||_p$
+*Proof*: Let $t \in [0,m = ||f||_{\infty})$. Then $\int |f| = \int _{\{|f| < t\}} |f| + \int _{\{|f| \geq t \}} |f|$. Then $\int |f|^p \geq \int_{\{|f| < 1\}} |f|^p \geq \int_{\{|t| < 1\}} t^p$. Hence $(\int|f|^p)^{(1/p)} \geq (\int_{\{|f| <t\}} t^p)^{1/p} = t \cdot m(\{|f| < t\})^{1/p}$. This implies that $\liminf ||f||_p \geq \liminf t \cdot m(\{|f| < t\})^{1/p} = t \cdot 1$. Thus $\liminf ||f||_p \geq t$ for all $t \in [0, ||f||_{\infty})$. It follows that by our claims then that \lim \sup||f||_p \leq ||f||_{\infty} \leq \liminf ||f||_p$. Thus we have proven the desired result. QED
+
+
+
+
+## August 2015
+
+
+
+
+### Let $C \subset \mathbb{R}$ denote the Cantor set. Let $\chi_C(x) =1$ if $x \in C$ and $0$ otherwise. Explain why $\chi_C$ is Riemann integrable and compute $\int_0 ^1 \chi_C (x)dx$.
+#### My Solution:
+Given that $m(C) = 0$, $\chi_C (x) = 0$ a.e. which implies that $\int \chi_C = 0$ and since $\chi_C (x)$ is bounded with $m(\{x | \lim_{x \to a} f(x) \neq f(a)\}) = m(C) = 0$. Thus $Rf = \int f = 0$. QED
+
+
+
+### Let $E \subset \mathbb{R}$ be a Lebesgue measurable set with $m(E) =1$. Prove there exists a Lebesgue measurable set $f \subset E$ with $m(F) = \frac{1}{2}$. 
+#### My Solution:
+$E = \bigcup^{\infty} _{n = 1} E \cap [n, n+1]$. This implies that $m(E) = \lim_{n \to \infty} m(E \cap [-n,n]) = 1$. Pick a sufficiently large $n \in \mathbb{N}$ such that $m(E \cap [-n,n]) > \frac{1}{2}$. Consider $f(x) = \int_{-n} ^x \chi_E$ for $x \in [-n,n]$. Since $f$ is continuous with $f(-n) = 0$ and $f(n) > \frac{1}{2}$, there exists $c \in [-n,n]$ such that $f(c) = \frac{1}{2}$ by the Intermediate Value Theorem. Thus $(-n,n) \cap E$ is a Lebesgue measurable set with $m((-n,c)\cap E) = \frac{1}{2}$. QED
+
+
+
+### Let $(X, \mathcal{A}, \mu)$ be a measure space. If $f_n : X \rightarrow \mathbb{R}$ is a sequence of functions such that $\sum^{\infty} _{n=1} \int_X |f_n| d \mu$ converges, then prove that $f_n \to 0$ almost everywhere.
+#### My Solution:
+$$\sum^{\infty}_{n=1} \int_X |f_n| d \mu = \lim_{k \to \infty} \sum^k _{n=1} \int_X |f_n| d \mu = \lim_{k \to \infty} \int_X \sum^k _{n =1} |f_n| d \mu$$
+$$ = \int_X \lim_{k \to \infty} \sum^k _{n=1} |f_n| d \mu = \int_X \sum^{\infty} _{n =1} |f_n| d \mu < \infty$$
+by the M.C.T. since $\sum^k _{i=1} |f_n|$ is increasing. Thus $|f_n| \rightarrow 0$ almost everywhere when $n$ approachest $\infty$. Hence $f_n \rightarrow 0$ almost everywhere. QED 
+
+
+
+### Prove that $f(x) = 0$ if $x = 0$ and $f(x) = x^2 \cos (\frac{1}{x^2})$ if $x \neq 0$ is continuous but not absolutely continuous on $[-1,1]$. 
+#### My Solution:
+Consider $x^2 \cos \left(\frac{1}{x^2} \right)$, which is constructed of functions that are continuous everywhere on their domains. So it is continuous on $\mathbb{R}$ excluding $\{0\}$. To show continuity at $x = 0$, consider that $-1 \leq \cos \left(\frac{1}{x^2} \right) \leq 1$ which implies that $-x^2 \leq x^2 \cos \left( \frac{1}{x^2} \right) \leq x^2$ with $\lim_{x \to 0} -x^2 = \lim_{x \to 0} x^2 = 0$ Hence  by the squeeze theorem, $\lim_{x \to 0} x^2 \cos \left( \frac{1}{x^2} \right) = f(0) = 0$. 
+
+Suppose $f$ is absolutely continuous on $[-1,1]$. Hence it is of bounded-variation on $[-1,1]$, thus $V_f [0,1] < \infty$. Consider the partition with enpoints 
+$$P = \{-1\} \cup \left[ \{ \pm \sqrt{\frac{1}{n \pi}} : n \in \mathbb{N} \} \cap [-1,1] \right] \cup \{1\}$$
+Hence for $x_i, x_{i+1} \in P$,
+$$\sum^{\infty} _{i =1} |f(x_i) - f(x_{i+1})| = \sum^{\infty} _{i =1} \left|f \left(\sqrt{\frac{1}{n \pi}} \right) - f \left(\sqrt{\frac{1}{(n+1)\pi}} \right) \right|$$
+$$= \sum^{\infty} _{i =1} \left| \left[ \left(\sqrt{\frac{1}{n \pi}} \right)^2 \cdot \cos \left( \frac{1}{\sqrt{\frac{1}{(n+1) \pi}}^2} \right) \right] - \left[ \left( \sqrt{\frac{1}{(n+1) \pi}}\right)^2 \cdot \cos \left( \frac{1}{\sqrt{\frac{1}{(n+1) \pi}}^2}\right) \right]  \right|$$
+$$= \sum^{\infty} _{i =1} \left| \left( \frac{1}{n \pi} \cos(n \pi) \right) - \left( \frac{1}{(n+1) \pi} \cos((n+1) \pi) \right) \right| = \sum^{\infty} _{i =1} \left| \frac{1}{n \pi} - \frac{-1}{(n+1) \pi} \right|$$
+because $n$ is even and $n+1$ is odd. The above sum is equal to $\frac{1}{\pi} \sum^{\infty} _{i =1} \left| \frac{2n+1}{n^2 +n} \right|$ which diverges because it's a harmonic series. Thus $V_f[0,1] \not< \infty$. This is a contradiction to the assumption of $f$ being absolutely continuous, thus we have proven the desired result. QED
+
+
+
+### Let $(X, \mathcal{A}, \mu)$ be a finite measure space. If $f$ is $\mu$-measurable and $p \leq f(x) \leq q$ for all $x \in X$, then prove that $\int_X f d \mu$ exists and $p \mu(X) \leq \int_X f d \mu \leq q \mu (X)$. 
+#### My Solution:
+Since $X$ is finite, and $p \leq f \leq q$, $\mu (X) = \int_X 1 d \mu$. This implies that $p \cdot \mu (X) \leq \int_X f d \mu \leq q \mu(X)$. 
+
+Now, we must show that $\int_X f d \mu$ is integrable. Consider $|f| \leq \mathrm{max} \{|p|,|q|\} = M$. Hence $|f| \leq M$. This implies that $\int_X |f| d \mu \leq \mu (X) \cdot M < \infty$. Hence $f$ is integrable
+
+
+
+### Suppose that $1< q,p < \infty$ and that $\frac{1}{p} + {1}{q} = 1$. Prove that if $f_n \rightarrow f$ in $L^p(\mathbb{R})$ and $g_n \rightarrow g$ in $L^q(\mathbb{R})$, then $f_ng_n \rightarrow fg$ in $L^1(\mathbb{R})$. 
+#### My Solution:
+It is sufficient to show that the $\lim_{n \to \infty} ||f_ng_n - fg||_1 = 0$. Well,
+$$\lim_{n \to \infty} ||f_n g_n -fg||_1 = \lim_{n \to \infty}||f_ng_n - f_ng||_1 + ||f_ng -fg||_1$$
+$$ \leq \lim_{n \to \infty} ||f_n||_p||g_n-g||_q + ||g||_q||f_n-f||_p$$
+where $\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p < \infty$. Thus $||g_n - g||_q \rightarrow 0$ and $||f_n - f||_p \rightarrow 0$. So the above limit does in fact imply that $f_ng_n \rightarrow fg$ in $L^1(\mathbb{R})$. QED
+
+
+
+### Evaluate $\frac{d}{dt} \int_0 ^1 \frac{\sin(xt)}{x}dx$. Justify your computations.
+#### My Solution:
+***Not yet completed***
+
+
+
+### If $f \in L^1(\mathbb{R}) \cap L^{\infty}(\mathbb{R})$ and $p \geq 1$, then prove that $f \in L^p(\mathbb{R})$. 
+#### My Solution:
+Given $f \in L^1(\mathbb{R}) \cap L^{\infty}(\mathbb{R})$. This implies that $m = \mathrm{essup}(f) < \infty$ and $\int|f| < \infty$. So,
+$$\int|f|^p = \int_{\{x:|f|<1\}} |f|^p + \int_{\{x: |x| >1\}}|f|^p$$
+For $p>0$, $\int_{\{x:|f(x)<1\}}|f|^p < \int_{\{x:|f(x)<1\}}|f|$. Thus
+$$\int_{\{x:|f|<1\}} |f|^p + \int_{\{x: |x| >1\}}|f|^p \leq \int_{\{x:|f|<1\}} |f| + \int_{\{x: |x| >1\}} m^p$$
+where $\int_{\{x:|f|<1\}} |f| < \infty$ and $\int_{\{x: |x| >1\}} m^p = m^p \cdot m(\{x:|f(x) > 1\}) < \infty$ thus the entire equation is less than $\infty$. So $(\int|f|^p)^{1/p} < \infty$ for all $p$. Thus $f \in L^p$. QED
+
+
+
+### If $f:\mathbb{R} \rightarrow [0,\infty)$ is measurable, then $\lim_{n \rightarrow \infty} \int_{-n} ^n f = \int_{\mathbb{R}} f$. 
+#### My Solution:
+Since $f$ is positive, $f \cdot \chi_{[-n,n]}$ is a sequence of increasing positive functions. Thus 
+$$\lim_{n \to \infty} \int f \cdot \chi_{[-n,n]} = \int \lim_{n \to \infty} f \cdot \chi_{[-n,n]} = \int_{\mathbb{R}} f$$ with the step of moving the limit inside the integral is by the Monotone Convergence Theorem. QED
+
+
+
+
+
+## January 2013
+
+
+
+
+
+### Show that every dense subset of $L^{\infty}([0,1])$ is uncountable.
+#### My Solution:
+Let $A = \{ \chi_{(0,t)} : t \in (0,1)\}$. Then for any $\chi_{(0,t_1)}, \chi_{(0,t_2)} \in A$ such that $t_1 \neq t_2$. So,
+$$||\chi_{(0,t_1)} - \chi_{(0,t_2)}||_{\infty} = 1$$
+Without loss of generality, $t_1 < t_2$, then $\chi_{(0,t_1)} - \chi_{(0,t_2)} = 0,1,0$ on $(0,t_1),(t_1,t_2),(t_2,1)$ respectively. 
+
+Consider $\left{ B_{\left(\chi_{(0,t)}, \frac{1}{3} \right)} \right}$ which is an uncountable collection of disjoing balls. And given any dense set $S \subset L^{\infty}([0,1])$ has elements in each ball by definition of density. Thus $S$ is uncountable. QED
+
+
+
+### Let $f$ be a Lebesgue measurable function on $\mathbb{R}$ with the property that $\sup_{\{g \in L^2(\mathbb{R}):||g||_2 \leq 1\}}\int_{\mathbb{R}}|fg|d \lambda \leq 1$. Prove that $f \in L^2(\mathbb{R})$ and $||f||_2 \leq 1$.
+#### My Solution:
+***Not yet solved***
+
+
+
+### Let $f \geq 0$ and $f \in L^p[0,1]$ for all $p \in [1, \infty)$. If $||f||_p ^p = ||f||_1$ for all $p \in [1, \infty)$, then there is a set $S$ such that $f = \chi_S$ a.e.
+#### My Solution:
+We know $||f||_1 = \int |f|^p$ for all $p \in [1, \infty)$. Suppose $m(\{x|f > 1\}) \neq 0$. Pick $\epsilon \in (1, \infty)$ such that $1 < \epsilon \leq f < \infty$. Then $$||f||_1 = \int|f|^p \geq \int_{\{1 < |f|\}} |f|^p \geq \int \epsilon ^p \rightarrow \infty$$
+since $\epsilon > 1$. 
+
+Cosider $m(\{x | 0 < f<1\})$, which we claim is equal to zero. To prove this, pick $0< |f| \leq \epsilon < 1$. Then 
+$$||f||_1 = \int|f|^p \leq \int_{\{0 < |f| \leq \epsilon < 1\}} \epsilon^p \to 0$$ as $p \to \infty$. Hence $f = 0$ or $1$ almost everywhere. If we use this to define $S = \{x| f(x) =1\}$, then $f = \chi_S$ almost everywhere. QED
+
+
+
+### If $E$ is a measurable subset of $\mathbb{R}$, then there is an interval $I$ such that $\lambda(E \cap I) > \frac{9}{10} \lambda(I)$ or $\lambda(E^c \cap I) > \frac{9}{10} \lambda (I)$.
+#### My Solution:
+Suppose not! Then for all $I$, $\lambda(E \cap I) \leq \frac{9}{10} \chi(I)$ and $m(E^c \cap I) \leq \frac{9}{10} \chi(I)$. Suppose $E$ has finite measure and let $E \subset \bigcup^{\infty}_{n=1} I_n$. Then
+$$m(E) = m \left(E \cap \bigcup^{\infty}_{n=1} I_n \right) = m\left(\bigcup^{\infty}_{n=1} E \cap I_n \right) \leq m(E \cap I_n) \leq \frac{9}{10} \sum^{\infty} _{n =1} m (I_n)$$
+Thus for all covers of $E$, $m(E) \leq \frac{9}{10} \sum^{\infty} _{n =1} m(I_n)$. But, by definition 
+$$m(E) = \inf \{m(I_n) : E \subset \bigcup^{\infty}_{n=1} I_n\}$$
+Hence 
+$$m(E) \leq \frac{9}{10} m(E) \implies m(E) = 0$$
+Now for $E$ with any measure, 
+$$m(E \cap(-n,n) \cap I_n) \leq m(E \cap I) \leq \frac{9}{n}m(I_n)$$
+Hence $m(E \cap (-n,n)) = 0$ for all $n$ where 
+$$m(E) = m \left(\bigcup^{\infty}_{n=1} (E \cap(-n,n)) \right) \leq \sum^{\infty}_{n=1} m(E \cap (-n,n)) = 0$$
+Note the same proof works for $m(E^c) = 0$.
+
+***Thus I'm not quite sure if anything is proven...***
+
+
+
+### A measure space $(X, \mu)$ is $\sigma$-finite iff there is an $f : X \rightarrow (0, \infty)$ such that $f \in L^1 (X, \mu)$. 
+#### My Solution:
+Assume that $f : X \rightarrow (0, \infty)$ such that $f \in L^1 (X, \mu)$. Then
+$$X = \{f> 0\} = \bigcup^{\infty}_{n =1} \{f > \frac{1}{n}\}$$
+where 
+$$\mu \left(\{f > \frac{1}{n}\} \right) \leq \int \frac{|f|}{\frac{1}{(1/n)}}d \mu \leq n \cdot \int|f| < \infty$$
+since $f \in L^1$ and by Chebyshev's Inequality.
+
+Now assume $X$ is $\sigma$-finite. We have $X = \bigcup^{\infty}_{i = 1} A_n$, a union of disjoint sets wuth $\mu (A_n < \infty)$. Define $f = \sum^{\infty} _{n=1} a_n$ where $a_n = \frac{1}{\mu (A_n) \cdot n^2} \cdot \chi_{A_n}$ when $\mu(A_n) > 0$ and $a_n = \frac{1}{n^2} \chi_{A_n}$ when $\mu(A_n) = 0$. Then
+$$\int f = \sum^{\infty}_{n=1} \int \frac{1}{\mu(A_n) \cdot n^2} \cdot \chi_{A_n} = \sum^{\infty}_{n=1} \frac{1}{\mu(A_n) \cdot n^2} \int \chi_{A_n} = \sum^{\infty}_{n=1} \frac{1}{n^2} < \infty$$
+Thus proving the desired result. QED
+
+
+
+### (a) Find a sequence $f_n: [0,1] \rightarrow \mathbb{R}$ such that $\int_0 ^1 |f_n(x)| = 2$ for all $n \in \mathbb{N}$ and $\lim_{n \to \infty} f_n(x) = 1$ for all $x \in [0,1]$. (b) If the $f_n$ are as in part (a), then prove $\lim_{n \to \infty} \int_0 ^1 |f_n(x) -1| dx = 1$. 
+#### My Solution:
+***Not yest solved***
+
+
+
+### Show that $\mathcal{G} = \{f \in C[0,1] : \int_0 ^1 f^2 > 1\}$ is open in $C[0,1]$. (Assume $C[0,1]$ has the uniform metric.)
+#### My Solution:
+***Not yest solved***
+
+
+
+### Let $(X, \rho)$ be a metric space and suppose $K$ and $F$ are nonemptu disjoint subsets of $X$ with $K$ compact and $F$ closed. (a) Prove there is a $\delta >0$ such that $\rho(x,y) \geq \delta$ for all $x \in K$ and $y \in F$. (b) Show that part (a) may fail if $K$ is closed, but not compact. 
+#### My Solution:
+***Not yest solved***
+
+
+
+### The limit superior of a sequence of sets $\{E_k\}$ is defined as $\lim \sup E_k = \bigcap^{\infty}_{j=1} \bigcup^{\infty}_{k=j} E_k$. Let $\{E_k: k \in \mathbb{N}\}$ be a sequence of sets in $\mathcal{L}$. (a) Prove that if $\sum_{k \in \mathbb{N}} \lambda(E_k) < \infty$, then $\lambda(\lim \sup(E_k)) = 0$. (b) Is it true in general that $\lambda(\lim \sup(E_k)) = \lim \sup \lambda(E_k)$?
+#### My Solution:
+(a):
+Let $\epsilon > 0$. Given $\sum^{\infty}_{k=1} m(E_k) < \infty$, there exists $N$ such that $\sum^{\infty}_{k=N} m(E_k) < \epsilon$.
+$$\lim \sup(E_k) = \bigcap^{\infty}_{n=1} \bigcup^{\infty}_{k=n} E_k \subset \bigcup^{\infty} _{k=N} E_k$$
+Hence $$m(\lim \sup(E_k)) \leq m\left( \bigcup^{\infty}_{k=N} E_k \right) \leq \sum^{\infty}_{k=N} m(E_k) < \epsilon$$
+which implies that $m(\lim \sup(E_k)) = 0$. QED
+
+(b):
+Consider the sequence of functions: $E_1 = [0,1], E_2 = [0,\frac{1}{2}], E_3 = [\frac{1}{2},1],E_4 = [0,\frac{1}{4}], E_5 = [\frac{1}{4},\frac{1}{2}], E_6 = [\frac{1}{2},\frac{3}{4}], E_7 = [\frac{3}{4},1]$, and so on. Then $\lim_{n \to \infty} m(E_k) = 0$ but for all $n \in \mathbb{N}$, $\bigcup^{\infty}_{k=n} E_k = [0,1]$. 
+
+***Not yet finished***
+
+
+
+### Show that $f(x) = x^2 \sin\left( \frac{1}{x} \right)$ where $x \neq 0$ and $f(x) = 0$ where $x = 0$ is in $BV[-1,1]$, but $g(x) = x^2 \sin \left( \frac{1}{x^2} \right)$ where $x \neq 0$ and $g(x) = 0$ where $x = 0$ is not. 
+#### My Solution:
+***Not yest solved***
 
 
 
