@@ -60,8 +60,8 @@ Thus, $m(f(A)) = m(E) = 0$. QED
 
 ### Prove that if $f:[0,1] \rightarrow (0,\infty)$ is absolutely continuous, then so is $1/f$.
 #### My Solution:
-Given that $f$ is absolutely continuous, we know then that for all $\epsilon > 0$, there exists a $\delta > 0$ such that if $\{(a_i,b_i)\}^n _{i=1}$ is a finite collection of disjoint intervals of $[0,1]$ with $\sum ^n _{i=1} |b_i - a_i| < \delta$ implies that $\sum ^n _{i=1} |f(b_i) - f(a_i)| < \epsilon$. Also, because $f$ is absolutely continuous, we know then that it must also be continuous. Hence, $f$  must be bounded on $[0,1]$. Let $m = \min(f)$ on $[0,1]$ and choose $\delta$ such that $\sum ^n _{i=1} |b_i - a_i| < \delta$ that implies that 
-$$\sum ^n _{i=1} |b_i - a_i| < m^2\epsilon$$
+Given that $f$ is absolutely continuous, we know then that for all $\epsilon > 0$, there exists a $\delta > 0$ such that if $\{(a_i,b_i)\}^n _{i=1}$ is a finite collection of disjoint intervals of $[0,1]$ with $\sum ^n _{i=1} |b_i - a_i| < \delta$ implies that $\sum ^n _{i=1} |f(b_i) - f(a_i)| < \epsilon$. Also, because $f$ is absolutely continuous, we know then that it must also be continuous. Hence, $f$  must be bounded on $[0,1]$. Let $m = \min(f)$ on $[0,1]$ and choose $\delta$ such that $\sum ^n _{i=1} |b_i - a_i| < \delta$ gives us 
+$$\sum ^n _{i=1} |f(b_i) - f(a_i)| < m^2\epsilon$$
 Then note that 
 $$\sum ^n _{i=1} \left|\frac{1}{f(b_i)} - \frac{1}{f(a_i)} \right| =  \sum ^n _{i=1} \left|\frac{f(b_i) - f(a_i)}{f(a_i)f(b_i)} \right|$$
 $$ \leq \frac{1}{m^2} \sum ^n _{i=1} |f(b_i)-f(a_i)| < \frac{m^2 \epsilon}{m^2} = \epsilon$$
@@ -75,7 +75,7 @@ Using Lebesgue's fundamental theorem of calculus, we know that
 $$f(x) = f(0) + \int_0 ^x f'$$
 Then, because $f' = g$ a.e.;
 $$f(x) = f(0) + \int_0 ^x g$$
-This implies that $\int_0 ^x f' = \int_0 ^x g$, thus by the fundamental theorem of calculus, if we take the derivative of both sides, we can see that $f'(x) = g(x)$ for all $x$. QED
+This implies that $\int_0 ^x f' = \int_0 ^x g$, thus by the fundamental theorem of calculus, if we take the derivative of both sides, we can see that $f'(x) = g(x)$ for all $x$. Note, the reason that we can use the fundamental theorem of calculus here is because the function $f$ is absolutely continuous, which implies it's of bounded variation. QED
 
 
 
@@ -103,7 +103,7 @@ $$m(\lim \sup (E_n)) \leq m \left(\bigcup^{\infty} _{k=N} E_k \right) \leq \sum^
 This implies that $m(\lim \sup E_n) = 0$.
 
 b) Let $E_1 = [0,1]$, $E_2 = [0,\frac{1}{2}]$, $E_3 = [\frac{1}{2},1]$, $E_4 = [0, \frac{1}{4}]$, $E_5 = [\frac{1}{4},\frac{1}{2}]$, $E_6 = [\frac{1}{2}, \frac{3}{4}]$, $E_7 = [\frac{3}{4}, 1]$, $E_8 = [0, \frac{1}{8}]$,...
-We repeat these definitions in this pattern, giving us that $\lim_{n \to \infty} m(E_n) = 0$. But for all $n \in \mathbb{N}$, $\bigcup^{\infty} _{k=n} E_k = [0,1]$ implying that $\lim \sup (E_n) = [0,1]$ giving us the desired result. QED
+We repeat these definitions in this pattern, giving us that $\lim_{n \to \infty} m(E_n) = 0$. But for all $n \in \mathbb{N}$, $\bigcup^{\infty} _{k=n} E_k = [0,1]$ implying that $\lim \sup (E_n) = [0,1]$. Thus it may not be true that if $m(E_n) \rightarrow 0$ that $m(\limsup (E_n))=0$. QED
 
 
 
@@ -143,7 +143,7 @@ Let $A$ not be Lebesgue measurable and suppose that for all $\epsilon > 0$ there
 - Will show $\leq$:
 
 $$\sup_{||f||_1 \leq 1} Tf = \sup_{||f||_1 \leq 1} \int fh \leq \sup_{||f||_1 \leq 1} ||f||_1 ||h||_{\infty}$$ Note, by Holder's since we have $1, \infty$, 
-$$\leq 1 \cdot ||h||_{\infty} = ||_{\infty}$$
+$$\leq 1 \cdot ||h||_{\infty} = ||h||_{\infty}$$
 
 - Will show $\geq$:
 
@@ -160,11 +160,11 @@ Thus we have proven the desired result. QED
 #### My Solution:
 Assume that $\partial C$ has Lesbegue mesure zero. This implies that $m(\{x| \lim_{x \to a} f(x) \neq f(a)\}) = 0$. Thus the Riemann integral exists and agrees with the Lesbesgue integral.
 
-Now assume that $\chi_C$ is Riemann integrable. This is true iff the Lesbegue integral exists and $m(\{x|\lim_{x \to a} f(x) \neq f(a)\}) = 0$. $\chi_C$ is discontinuous at its boundary points, which implies that $m(\partial C) = 0$. QED
+Now assume that $\chi_C$ is Riemann integrable. This is true iff the Lesbegue integral exists and $m(\{x|\lim_{x \to a} f(x) \neq f(a)\}) = 0$. So $\chi_C$ is discontinuous at its boundary points, which implies that $m(\partial C) = 0$. QED
 
 
 
-### Let $S \subset \mathbb{R}$/ Prove the following statements are equivalent: (a) $S$ is Lebesgue measurable and (b) There is a $G_{\delta}$ set $G$ and a set $N$ of measure zero such that $S = G-N$.
+### Let $S \subset \mathbb{R}$ Prove the following statements are equivalent: (a) $S$ is Lebesgue measurable and (b) There is a $G_{\delta}$ set $G$ and a set $N$ of measure zero such that $S = G-N$.
 #### My Solution:
 ($b \implies a$): Given $G$ is a $G_{\delta}$ set, $G$ must then be Borel measurable. Thus it is also Lebesgue measurable. $N$ must be Lebesgue measurable as well since the Lebesgue $\sigma$-algebra is complete. Thus $S = G-N$ is Lebesgue measurable.
 
@@ -172,7 +172,7 @@ Now assume that $\chi_C$ is Riemann integrable. This is true iff the Lesbegue in
 
 
 
-###If $f$ is nonnegative and integrable on $[0,1]$, then $\lim_{n \to \infty} \int_0 ^1 \sqrt[n]{f} = \lambda \{x| f(x) > 0\}$
+###If $f$ is nonnegative and integrable on $[0,1]$, then $\lim_{n \to \infty} \int_0 ^1 \sqrt[n]{f} = m \{x| f(x) > 0\}$
 #### My Solution:
 $$\int_0 ^1 \sqrt[n]{f} = \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f=0} + \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f>0}$$
 where $\int_0 ^1 \sqrt[n]{f} \cdot \chi_{f=0} = \int_0 ^1 \sqrt[n]{0} = 0$. Thus,
@@ -204,7 +204,7 @@ $$\int \sum^{\infty} _{n=1} f \cdot \chi_{(a_n,b_n)} = \sum^{\infty} _{n=1} \int
 For $x \in L^2 ([0,1])$, we have 
 $$\left(\int_0 ^1 |f|^2 \right) ^{1/2} = \left(\frac{1}{3} x^3 |^1 _0 \right)^{1/2} < \infty$$
 So $x \in L^2$. Given this, we can see that 
-$$||x \cdot f(x)||_1 \leq ||x||_2 ||f||_2$$ by Holders'.
+$$||x \cdot f(x)||_1 \leq ||x||_2 ||f||_2$$ by Holders' because $2$ and $2$ are conjugate.
 Then,
 $$||x||_2 ||f||_2 \leq \left(\frac{1}{3} x^3 |^1 _0 \right)^{1/2} \cdot 1 \leq \frac{1}{\sqrt{3}}$$
 QED
@@ -224,7 +224,7 @@ The Cantor Function satidfies this problem.
 
 
 
-### Let $E_1, E_2, E_3,...$ be a sequence of measurable subsets of $\mathbb{R}$ with the property that $\sum^{\infty} _{n=1} \lambda (E_n) < \infty$. Show almost every $x \in \mathbb{R}$ is contained in only finitely many of the $E_n$.
+### Let $E_1, E_2, E_3,...$ be a sequence of measurable subsets of $\mathbb{R}$ with the property that $\sum^{\infty} _{n=1} m (E_n) < \infty$. Show almost every $x \in \mathbb{R}$ is contained in only finitely many of the $E_n$.
 #### My Solution:
 By way of contradiction, suppose there exists an $I \subset \mathbb{R}$ such that $m(I) = c > 0$. Also assume that $I \subset E^* _n$ for all $n$ where $\{E^*_n\}$ is a subsequence of $\{E_n\}$. But 
 $$\sum^{\infty} _{n=1} m(E^*_n) \geq \sum^{\infty}_{n=1} m(I) = \sum^{\infty}_{n=1} c$$ which diverges because $c > 0$. Thus by contradiction, we have proven the desired result. QED
@@ -239,7 +239,7 @@ First off, it is known that $\int_{[0,1]} 1 = 1$. Since $p \leq f \leq q$, and s
 
 ### Define a sequence of functions $f_n \in L^1[0,1]$ by $f_n(x) = n$ if $x \leq \frac{1}{n}$ and $f(x) = 0$ if $x > \frac{1}{n}$. Does $f_n$ converge in $L^1 ([0,1])$? If so, to what function?
 #### My Solution: 
-Suppose $f_n \rightarrow f$ in $L^p$. Then $||f_n||_1 \rightarrow ||f||_1$. But $\int|f_n| = \frac{1}{n} \cdot n = 1$ for all $n$. Hence $||f|| = 1$. However, this is a contradiction because $\lim_{n \to \infty} f_n = 0$, thus it does not converge in $L^1 ([0,1])$
+Suppose $f_n \rightarrow f$ in $L^p$. Then $||f_n||_1 \rightarrow ||f||_1$. But $\int|f_n| = \frac{1}{n} \cdot n = 1$ for all $n$. Hence $||f|| = 1$. However, this is a contradiction because $\lim_{n \to \infty} f_n = 0$, thus it does not converge in $L^1 ([0,1])$. QED
 
 
 
@@ -254,7 +254,7 @@ Suppose $f_n \rightarrow f$ in $L^p$. Then $||f_n||_1 \rightarrow ||f||_1$. But 
 #### My Solution:
 First assume $f$ is measurable. This implies that $\{x|f(x) \geq a\}$ is Lebesgue measurable for all $a \in \mathbb{R}$. Hence $\{x| f(x) \geq s\}$ is Lebesgue measurable for all $s \in S$.
 
-Now assume that $\{x: f(x) \ geq s\}$ is measurable for all $s \in S$. It suffices to show that $\{: f(x) > s\}$ is measurable for all $s \in S^c$. So, let $t \in S^c$, given that $S$ is dense in $\mathbb{R}$. Let $\{t_n\} \subset S$ such that $t_n$ decreases to $t$. Thus,
+Now assume that $\{x: f(x) \geq s\}$ is measurable for all $s \in S$. It suffices to show that $\{x: f(x) > s\}$ is measurable for all $s \in S^c$. So, let $t \in S^c$, given that $S$ is dense in $\mathbb{R}$. Let $\{t_n\} \subset S$ such that $t_n$ decreases to $t$. Thus,
 $$\{x: f(x) > t\} = \bigcup^{\infty} _{n=1} \{x|f(x) \geq t_n\}$$
 is the union of measurable sets. Hence $f$ is measurable. QED
 
@@ -282,11 +282,11 @@ If we fix $x \in (-1,1)$, this implies that $x^n < \epsilon$ by our previous poi
 
 
 
-### Let $\lambda(G)$ denote the Lebesgue measure of the set $G$. Find an open set $G$ which is dense in $[0,1]$ such that $\lambda(G) <1$ and $\lambda(G \cap I) > 0$ for any interval $I \subset [0,1]$.
+### Let $m(G)$ denote the Lebesgue measure of the set $G$. Find an open set $G$ which is dense in $[0,1]$ such that $m(G) <1$ and $m(G \cap I) > 0$ for any interval $I \subset [0,1]$.
 #### My Solution:
 Let $\{q_i\}^{\infty}_{i=1}$ represent the rationals in $\mathbb{Q} \cap [0,1]$. For each $n$ define $I_n$ as an interval containing $q_n$, $m(I_n) < \frac{1}{4\cdot 2^n}$ and $I_n \subset[0,1]$. Let $G = \bigcup^{\infty} _{i=1} I_n$ with $$m(G) = m \left(\bigcup ^{\infty}_{i=1} I_n \right) \leq \sum^{\infty} _{i=1} m(I_n)$$
 $$<\sum^{\infty}_{i=1} \frac{1}{4 \cdot 2^n} = \frac{1}{4} \cdot \frac{1}{1-(1/2)} = \frac{1}{2}$$
-Since $G$ contains the rational on $[0,1]$, it is also dense on $[0,1]$. $G$ is open because it is the countable union of open intervals on $[0,1]$. let $I \subset [0,1]$. It must contain a rational, which implies that it intersects any $I_n$ nontrivially, thus $m(I \cap G) > 0$. Thus $G$ is a dense open set on $[0,1]$ such that the measure of $G$ is less than $1$ and intersects any interval of $[0,1]$ nontrivially. QED
+Since $G$ contains the rationals on $[0,1]$, it is also dense on $[0,1]$. $G$ is open because it is the countable union of open intervals on $[0,1]$. let $I \subset [0,1]$. It must contain a rational, which implies that it intersects any $I_n$ nontrivially, thus $m(I \cap G) > 0$. Thus $G$ is a dense open set on $[0,1]$ such that the measure of $G$ is less than $1$ and intersects any interval of $[0,1]$ nontrivially. QED
 
 
 
@@ -294,7 +294,7 @@ Since $G$ contains the rational on $[0,1]$, it is also dense on $[0,1]$. $G$ is 
 #### My Solution:
 Yes! First note that seperable means that it contains a countable number of dense subsets.
 
-Let $S[a,b] \subset L^p([a,b])$ be step functions on $[a,b]$ and let $S_{\mathbb{Q}}[a,b] \subset S[a,b]$ be step functions of $[a,b]$ with rational endpoints. Since $\mathbb{Q}$ is dense in $\mathbb{R}$, $S_{mathbb{Q}}[a,b]$ is dense in $S[a,b]$ thus it's dense in $L^p([a,b])$. QED
+Let $S[a,b] \subset L^p([a,b])$ be step functions on $[a,b]$ and let $S_{\mathbb{Q}}[a,b] \subset S[a,b]$ be step functions of $[a,b]$ with rational endpoints. Since $\mathbb{Q}$ is dense in $\mathbb{R}$, $S_{\mathbb{Q}}[a,b]$ is dense in $S[a,b]$ thus it's dense in $L^p([a,b])$. QED
 
 
 
@@ -303,8 +303,8 @@ Let $S[a,b] \subset L^p([a,b])$ be step functions on $[a,b]$ and let $S_{\mathbb
 Here it is sufficient to show that $\lim_{n \to \infty} ||f_ng_n - fg|| = 0$. Well, 
 $$\lim_{n \to \infty} ||f_ng_n - fg||_1 = \lim_{n \to \infty}||f_ng_n - f_ng + f_ng - fg||_1 $$
 $$= \lim_{n \to \infty} ||f_ng_n - f_ng||_1 + ||f_ng-fg||_1$$
-$$= \lim_{n \to \infty} ||f_n||_p \cdot ||g_n - g||_q + ||f_n -f||_p \cdot ||g||_q = 0$$
-where $\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p < \infty$, $||g_n-g||_q \rightarrow 0$, and $||f_n -f||_p \rightarrow 0$. Thus  we have proven the desired result. QED
+$$\leq \lim_{n \to \infty} ||f_n||_p \cdot ||g_n - g||_q + ||f_n -f||_p \cdot ||g||_q = 0$$
+by Holder's Inequality, where $\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p < \infty$, $||g_n-g||_q \rightarrow 0$, and $||f_n -f||_p \rightarrow 0$. Thus  we have proven the desired result. QED
 
 
 
@@ -348,7 +348,7 @@ Given that $m(C) = 0$, $\chi_C (x) = 0$ a.e. which implies that $\int \chi_C = 0
 
 
 
-### Let $E \subset \mathbb{R}$ be a Lebesgue measurable set with $m(E) =1$. Prove there exists a Lebesgue measurable set $f \subset E$ with $m(F) = \frac{1}{2}$. 
+### Let $E \subset \mathbb{R}$ be a Lebesgue measurable set with $m(E) =1$. Prove there exists a Lebesgue measurable set $F \subset E$ with $m(F) = \frac{1}{2}$. 
 #### My Solution:
 $E = \bigcup^{\infty} _{n = 1} E \cap [n, n+1]$. This implies that $m(E) = \lim_{n \to \infty} m(E \cap [-n,n]) = 1$. Pick a sufficiently large $n \in \mathbb{N}$ such that $m(E \cap [-n,n]) > \frac{1}{2}$. Consider $f(x) = \int_{-n} ^x \chi_E$ for $x \in [-n,n]$. Since $f$ is continuous with $f(-n) = 0$ and $f(n) > \frac{1}{2}$, there exists $c \in [-n,n]$ such that $f(c) = \frac{1}{2}$ by the Intermediate Value Theorem. Thus $(-n,n) \cap E$ is a Lebesgue measurable set with $m((-n,c)\cap E) = \frac{1}{2}$. QED
 
@@ -358,7 +358,7 @@ $E = \bigcup^{\infty} _{n = 1} E \cap [n, n+1]$. This implies that $m(E) = \lim_
 #### My Solution:
 $$\sum^{\infty}_{n=1} \int_X |f_n| d \mu = \lim_{k \to \infty} \sum^k _{n=1} \int_X |f_n| d \mu = \lim_{k \to \infty} \int_X \sum^k _{n =1} |f_n| d \mu$$
 $$ = \int_X \lim_{k \to \infty} \sum^k _{n=1} |f_n| d \mu = \int_X \sum^{\infty} _{n =1} |f_n| d \mu < \infty$$
-by the M.C.T. since $\sum^k _{i=1} |f_n|$ is increasing. Thus $|f_n| \rightarrow 0$ almost everywhere when $n$ approachest $\infty$. Hence $f_n \rightarrow 0$ almost everywhere. QED 
+by the M.C.T. since $\sum^k _{i=1} |f_n|$ is increasing. Thus $|f_n| \rightarrow 0$ almost everywhere because it's integrable when $n$ approachest $\infty$. Hence $f_n \rightarrow 0$ almost everywhere. QED 
 
 
 
@@ -366,13 +366,13 @@ by the M.C.T. since $\sum^k _{i=1} |f_n|$ is increasing. Thus $|f_n| \rightarrow
 #### My Solution:
 Consider $x^2 \cos \left(\frac{1}{x^2} \right)$, which is constructed of functions that are continuous everywhere on their domains. So it is continuous on $\mathbb{R}$ excluding $\{0\}$. To show continuity at $x = 0$, consider that $-1 \leq \cos \left(\frac{1}{x^2} \right) \leq 1$ which implies that $-x^2 \leq x^2 \cos \left( \frac{1}{x^2} \right) \leq x^2$ with $\lim_{x \to 0} -x^2 = \lim_{x \to 0} x^2 = 0$ Hence  by the squeeze theorem, $\lim_{x \to 0} x^2 \cos \left( \frac{1}{x^2} \right) = f(0) = 0$. 
 
-Suppose $f$ is absolutely continuous on $[-1,1]$. Hence it is of bounded-variation on $[-1,1]$, thus $V_f [0,1] < \infty$. Consider the partition with enpoints 
+Suppose $f$ is absolutely continuous on $[-1,1]$. Hence it is of bounded-variation on $[-1,1]$, thus $V_f [0,1] < \infty$. Consider the partition with endpoints 
 $$P = \{-1\} \cup \left[ \{ \pm \sqrt{\frac{1}{n \pi}} : n \in \mathbb{N} \} \cap [-1,1] \right] \cup \{1\}$$
 Hence for $x_i, x_{i+1} \in P$,
-$$\sum^{\infty} _{i =1} |f(x_i) - f(x_{i+1})| = \sum^{\infty} _{i =1} \left|f \left(\sqrt{\frac{1}{n \pi}} \right) - f \left(\sqrt{\frac{1}{(n+1)\pi}} \right) \right|$$
-$$= \sum^{\infty} _{i =1} \left| \left[ \left(\sqrt{\frac{1}{n \pi}} \right)^2 \cdot \cos \left( \frac{1}{\sqrt{\frac{1}{(n+1) \pi}}^2} \right) \right] - \left[ \left( \sqrt{\frac{1}{(n+1) \pi}}\right)^2 \cdot \cos \left( \frac{1}{\sqrt{\frac{1}{(n+1) \pi}}^2}\right) \right]  \right|$$
-$$= \sum^{\infty} _{i =1} \left| \left( \frac{1}{n \pi} \cos(n \pi) \right) - \left( \frac{1}{(n+1) \pi} \cos((n+1) \pi) \right) \right| = \sum^{\infty} _{i =1} \left| \frac{1}{n \pi} - \frac{-1}{(n+1) \pi} \right|$$
-because $n$ is even and $n+1$ is odd. The above sum is equal to $\frac{1}{\pi} \sum^{\infty} _{i =1} \left| \frac{2n+1}{n^2 +n} \right|$ which diverges because it's a harmonic series. Thus $V_f[0,1] \not< \infty$. This is a contradiction to the assumption of $f$ being absolutely continuous, thus we have proven the desired result. QED
+$$\sum^{\infty} _{n =1} |f(x_i) - f(x_{i+1})| = \sum^{\infty} _{n =1} \left|f \left(\sqrt{\frac{1}{n \pi}} \right) - f \left(\sqrt{\frac{1}{(n+1)\pi}} \right) \right|$$
+$$= \sum^{\infty} _{n =1} \left| \left[ \left(\sqrt{\frac{1}{n \pi}} \right)^2 \cdot \cos \left( \frac{1}{\sqrt{\frac{1}{(n+1) \pi}}^2} \right) \right] - \left[ \left( \sqrt{\frac{1}{(n+1) \pi}}\right)^2 \cdot \cos \left( \frac{1}{\sqrt{\frac{1}{(n+1) \pi}}^2}\right) \right]  \right|$$
+$$= \sum^{\infty} _{n =1} \left| \left( \frac{1}{n \pi} \cos(n \pi) \right) - \left( \frac{1}{(n+1) \pi} \cos((n+1) \pi) \right) \right| = \sum^{\infty} _{n =1} \left| \frac{1}{n \pi} - \frac{-1}{(n+1) \pi} \right|$$
+because $n$ is even and $n+1$ is odd. The above sum is equal to $\frac{1}{\pi} \sum^{\infty} _{n =1} \left| \frac{2n+1}{n^2 +n} \right|$ which diverges because it's a harmonic series. Thus $V_f[0,1] \nless \infty$. This is a contradiction to the assumption of $f$ being absolutely continuous, thus we have proven the desired result. QED
 
 
 
@@ -384,12 +384,12 @@ Now, we must show that $\int_X f d \mu$ is integrable. Consider $|f| \leq \mathr
 
 
 
-### Suppose that $1< q,p < \infty$ and that $\frac{1}{p} + {1}{q} = 1$. Prove that if $f_n \rightarrow f$ in $L^p(\mathbb{R})$ and $g_n \rightarrow g$ in $L^q(\mathbb{R})$, then $f_ng_n \rightarrow fg$ in $L^1(\mathbb{R})$. 
+### Suppose that $1< q,p < \infty$ and that $\frac{1}{p} + \frac{1}{q} = 1$. Prove that if $f_n \rightarrow f$ in $L^p(\mathbb{R})$ and $g_n \rightarrow g$ in $L^q(\mathbb{R})$, then $f_ng_n \rightarrow fg$ in $L^1(\mathbb{R})$. 
 #### My Solution:
 It is sufficient to show that the $\lim_{n \to \infty} ||f_ng_n - fg||_1 = 0$. Well,
 $$\lim_{n \to \infty} ||f_n g_n -fg||_1 = \lim_{n \to \infty}||f_ng_n - f_ng||_1 + ||f_ng -fg||_1$$
 $$ \leq \lim_{n \to \infty} ||f_n||_p||g_n-g||_q + ||g||_q||f_n-f||_p$$
-where $\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p < \infty$. Thus $||g_n - g||_q \rightarrow 0$ and $||f_n - f||_p \rightarrow 0$. So the above limit does in fact imply that $f_ng_n \rightarrow fg$ in $L^1(\mathbb{R})$. QED
+by Holder's Inequality where $\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p < \infty$. Thus $||g_n - g||_q \rightarrow 0$ and $||f_n - f||_p \rightarrow 0$. So the above limit does in fact imply that $f_ng_n \rightarrow fg$ in $L^1(\mathbb{R})$. QED
 
 
 
@@ -402,10 +402,10 @@ where $\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p < \infty$. Thus $||g_n 
 ### If $f \in L^1(\mathbb{R}) \cap L^{\infty}(\mathbb{R})$ and $p \geq 1$, then prove that $f \in L^p(\mathbb{R})$. 
 #### My Solution:
 Given $f \in L^1(\mathbb{R}) \cap L^{\infty}(\mathbb{R})$. This implies that $m = \mathrm{essup}(f) < \infty$ and $\int|f| < \infty$. So,
-$$\int|f|^p = \int_{\{x:|f|<1\}} |f|^p + \int_{\{x: |x| >1\}}|f|^p$$
+$$\int|f|^p = \int_{\{x:|f|<1\}} |f|^p + \int_{\{x: |f| >1\}}|f|^p$$
 For $p>0$, $\int_{\{x:|f(x)<1\}}|f|^p < \int_{\{x:|f(x)<1\}}|f|$. Thus
-$$\int_{\{x:|f|<1\}} |f|^p + \int_{\{x: |x| >1\}}|f|^p \leq \int_{\{x:|f|<1\}} |f| + \int_{\{x: |x| >1\}} m^p$$
-where $\int_{\{x:|f|<1\}} |f| < \infty$ and $\int_{\{x: |x| >1\}} m^p = m^p \cdot m(\{x:|f(x) > 1\}) < \infty$ thus the entire equation is less than $\infty$. So $(\int|f|^p)^{1/p} < \infty$ for all $p$. Thus $f \in L^p$. QED
+$$\int_{\{x:|f|<1\}} |f|^p + \int_{\{x: |f| >1\}}|f|^p \leq \int_{\{x:|f|<1\}} |f| + \int_{\{x: |f| >1\}} m^p$$
+where $\int_{\{x:|f|<1\}} |f| < \infty$ and $\int_{\{x: |f| >1\}} m^p = m^p \cdot m(\{x:|f(x) > 1\}) < \infty$ thus the entire equation is less than $\infty$. So $(\int|f|^p)^{1/p} < \infty$ for all $p$. Thus $f \in L^p$. QED
 
 
 
@@ -428,9 +428,10 @@ $$\lim_{n \to \infty} \int f \cdot \chi_{[-n,n]} = \int \lim_{n \to \infty} f \c
 #### My Solution:
 Let $A = \{ \chi_{(0,t)} : t \in (0,1)\}$. Then for any $\chi_{(0,t_1)}, \chi_{(0,t_2)} \in A$ such that $t_1 \neq t_2$. So,
 $$||\chi_{(0,t_1)} - \chi_{(0,t_2)}||_{\infty} = 1$$
-Without loss of generality, $t_1 < t_2$, then $\chi_{(0,t_1)} - \chi_{(0,t_2)} = 0,1,0$ on $(0,t_1),(t_1,t_2),(t_2,1)$ respectively. 
+Without loss of generality, $t_1 < t_2$, then $\chi_{(0,t_1)} - \chi_{(0,t_2)} = 0,1,0$ on $(0,t_1),(t_1,t_2),(t_2,1)$ respectively. This is where we get the above equality, as 
+$$\left\|\chi_{(0,t_2)} - \chi_{(0,t_1)}\right\|_\infty = \sup_{x\in[0,1]}\left|\chi_{(0,t_2)}(x) - \chi_{(0,t_1)}(x)\right| = 1$$
 
-Consider $\left{ B_{\left(\chi_{(0,t)}, \frac{1}{3} \right)} \right}$ which is an uncountable collection of disjoing balls. And given any dense set $S \subset L^{\infty}([0,1])$ has elements in each ball by definition of density. Thus $S$ is uncountable. QED
+Consider $\left\{ B_{\left(\chi_{(0,t)}, \frac{1}{3} \right)} \right\}$ which is an uncountable collection of disjoing balls. And given any dense set $S \subset L^{\infty}([0,1])$ has elements in each ball by definition of density. Thus $S$ is uncountable. QED
 
 
 
@@ -450,7 +451,7 @@ $$||f||_1 = \int|f|^p \leq \int_{\{0 < |f| \leq \epsilon < 1\}} \epsilon^p \to 0
 
 
 
-### If $E$ is a measurable subset of $\mathbb{R}$, then there is an interval $I$ such that $\lambda(E \cap I) > \frac{9}{10} \lambda(I)$ or $\lambda(E^c \cap I) > \frac{9}{10} \lambda (I)$.
+### If $E$ is a measurable subset of $\mathbb{R}$, then there is an interval $I$ such that $m(E \cap I) > \frac{9}{10} m(I)$ or $m(E^c \cap I) > \frac{9}{10} m (I)$.
 #### My Solution:
 Suppose not! Then for all $I$, $\lambda(E \cap I) \leq \frac{9}{10} \chi(I)$ and $m(E^c \cap I) \leq \frac{9}{10} \chi(I)$. Suppose $E$ has finite measure and let $E \subset \bigcup^{\infty}_{n=1} I_n$. Then
 $$m(E) = m \left(E \cap \bigcup^{\infty}_{n=1} I_n \right) = m\left(\bigcup^{\infty}_{n=1} E \cap I_n \right) \leq m(E \cap I_n) \leq \frac{9}{10} \sum^{\infty} _{n =1} m (I_n)$$
@@ -471,9 +472,9 @@ Note the same proof works for $m(E^c) = 0$.
 ### A measure space $(X, \mu)$ is $\sigma$-finite iff there is an $f : X \rightarrow (0, \infty)$ such that $f \in L^1 (X, \mu)$. 
 #### My Solution:
 Assume that $f : X \rightarrow (0, \infty)$ such that $f \in L^1 (X, \mu)$. Then
-$$X = \{f> 0\} = \bigcup^{\infty}_{n =1} \{f > \frac{1}{n}\}$$
+$$X = \{f> 0\} = \bigcup^{\infty}_{n =1} \left\{f > \frac{1}{n} \right\}$$
 where 
-$$\mu \left(\{f > \frac{1}{n}\} \right) \leq \int \frac{|f|}{\frac{1}{(1/n)}}d \mu \leq n \cdot \int|f| < \infty$$
+$$\mu \left(\left\{f > \frac{1}{n}\right\} \right) \leq \int \frac{|f|}{\frac{1}{(1/n)}}d \mu \leq n \cdot \int|f| < \infty$$
 since $f \in L^1$ and by Chebyshev's Inequality.
 
 Now assume $X$ is $\sigma$-finite. We have $X = \bigcup^{\infty}_{i = 1} A_n$, a union of disjoint sets wuth $\mu (A_n < \infty)$. Define $f = \sum^{\infty} _{n=1} a_n$ where $a_n = \frac{1}{\mu (A_n) \cdot n^2} \cdot \chi_{A_n}$ when $\mu(A_n) > 0$ and $a_n = \frac{1}{n^2} \chi_{A_n}$ when $\mu(A_n) = 0$. Then
