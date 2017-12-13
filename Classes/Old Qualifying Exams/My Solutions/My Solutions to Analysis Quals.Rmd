@@ -214,13 +214,15 @@ QED
 ### Let $\{a_k\}$ be a sequence of real numbers with the property that $|a_k| \leq 1$ for all $k$. Prove that both series $f(x) = \sum^{\infty} _{k=1} a_k x^k$, $g(x) = \sum^{\infty} _{k=1} k a_k x^{k-1}$ converge uniformly on every compact subinterval of $(-1,1)$ and that $f'(x) = g(x)$ for all $x \in (-1,1)$.
 #### My Solution: 
 Since $|a_k| \leq 1$, 
-$$\sum^{\infty} _{k=1} a_k x^k \leq \sum^{\infty}_{k=1} x^k$$ which converges uniformly because $|x| < 1$ by the Weirstrass-M test (and because it's a geometric series). Let $C \subset [0,1]$ be a compact interval of $(-1,1)$ and let $a = \mathrm{max}\{|x|: x \in C\}$. Then $\sum |x|^k \leq \sum a^k$ which converges because it's a geometric sequence. Now we apply the Weirstrass M-test to give us the desired result. QED
+$$\sum^{\infty} _{k=1} a_k x^k \leq \sum^{\infty}_{k=1} x^k$$ which converges uniformly because $|x| < 1$ by the Weirstrass-M test (and because it's a geometric series). Let $C \subset [0,1]$ be a compact interval of $(-1,1)$ and let $a = \mathrm{max}\{|x|: x \in C\}$. Then $\sum |x|^k \leq \sum a^k$ which converges because it's a geometric sequence. Now we apply the Weirstrass M-test to give us the desired result. 
+
+As for proving that $f'(x) = g(x)$, we simply note that by definition of differentiation on power series that this is true (with simple calculus II logic). QED
 
 
 
 ### Give an example of a continuous function $f:[0,1] \rightarrow \mathbb{R}$ with the property that $f(0) = 0$, $f(1) = 1$, yet $f'(x) \leq -1$ for almost every $x \in [0,1]$.
 #### My Solution:
-The Cantor Function satidfies this problem.
+Let $C(x)$ be the Cantor function on $[0,1]$. Consider $f(x) = 2C(x) -x$. Then $f(0) = 2 \cdot 0 - 0 = 0$ and $f(1) = 2 \cdot 1 - 1 = 1$. Also, almost everywhere the derivative of the Cantor function is 0 (because almost everywhere it is constant). Then the derivative almost everywhere of $f(x)$ would be $f'(x) = -1$ almost everywhere. 
 
 
 
@@ -485,7 +487,17 @@ Thus proving the desired result. QED
 
 ### (a) Find a sequence $f_n: [0,1] \rightarrow \mathbb{R}$ such that $\int_0 ^1 |f_n(x)| = 2$ for all $n \in \mathbb{N}$ and $\lim_{n \to \infty} f_n(x) = 1$ for all $x \in [0,1]$. (b) If the $f_n$ are as in part (a), then prove $\lim_{n \to \infty} \int_0 ^1 |f_n(x) -1| dx = 1$. 
 #### My Solution:
-***Not yest solved***
+(a)
+$f_n(x):=4n^2x+1 \text{ for }x\in \left[0,\frac{1}{2n}\right]\\
+f_n(x):=-4n^2x+1+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=1\text{ otherwise}.$
+
+(b)
+Given $f_n$ as defined above, we can simply integrate to get this answer. So, given $f_n$ defined as in part (a), $$f_n(x) -1 =4n^2x \text{ for }x\in \left[0,\frac{1}{2n}\right]\\
+f_n(x)-1=-4n^2x+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=0\text{ otherwise}.$$
+Thus 
+$$\lim_{n \to \infty} \int_0 ^1 |f_n -1| dx = \lim_{n \to \infty} \left[ \int_0 ^{1/2n} 4n^2x dx + \int_{1/2n} ^ {1/n} (-4n^2x+4n)dx \right]\\
+= \lim_{n \to \infty} \left[ \frac{2n^2}{4n^2} -0 - \frac{2n^2}{n^2} + \frac{4n}{n} + \frac{2n^2}{4n^2} - \frac{4n}{2n} \right] = \lim_{n \to \infty} 1 = 1$$ QED
+
 
 
 

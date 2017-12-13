@@ -271,14 +271,15 @@ $(document).ready(function () {
 <h3>Let <span class="math inline">\(\{a_k\}\)</span> be a sequence of real numbers with the property that <span class="math inline">\(|a_k| \leq 1\)</span> for all <span class="math inline">\(k\)</span>. Prove that both series <span class="math inline">\(f(x) = \sum^{\infty} _{k=1} a_k x^k\)</span>, <span class="math inline">\(g(x) = \sum^{\infty} _{k=1} k a_k x^{k-1}\)</span> converge uniformly on every compact subinterval of <span class="math inline">\((-1,1)\)</span> and that <span class="math inline">\(f'(x) = g(x)\)</span> for all <span class="math inline">\(x \in (-1,1)\)</span>.</h3>
 <div id="my-solution-15" class="section level4">
 <h4>My Solution:</h4>
-<p>Since <span class="math inline">\(|a_k| \leq 1\)</span>, <span class="math display">\[\sum^{\infty} _{k=1} a_k x^k \leq \sum^{\infty}_{k=1} x^k\]</span> which converges uniformly because <span class="math inline">\(|x| &lt; 1\)</span> by the Weirstrass-M test (and because it’s a geometric series). Let <span class="math inline">\(C \subset [0,1]\)</span> be a compact interval of <span class="math inline">\((-1,1)\)</span> and let <span class="math inline">\(a = \mathrm{max}\{|x|: x \in C\}\)</span>. Then <span class="math inline">\(\sum |x|^k \leq \sum a^k\)</span> which converges because it’s a geometric sequence. Now we apply the Weirstrass M-test to give us the desired result. QED</p>
+<p>Since <span class="math inline">\(|a_k| \leq 1\)</span>, <span class="math display">\[\sum^{\infty} _{k=1} a_k x^k \leq \sum^{\infty}_{k=1} x^k\]</span> which converges uniformly because <span class="math inline">\(|x| &lt; 1\)</span> by the Weirstrass-M test (and because it’s a geometric series). Let <span class="math inline">\(C \subset [0,1]\)</span> be a compact interval of <span class="math inline">\((-1,1)\)</span> and let <span class="math inline">\(a = \mathrm{max}\{|x|: x \in C\}\)</span>. Then <span class="math inline">\(\sum |x|^k \leq \sum a^k\)</span> which converges because it’s a geometric sequence. Now we apply the Weirstrass M-test to give us the desired result.</p>
+<p>As for proving that <span class="math inline">\(f'(x) = g(x)\)</span>, we simply note that by definition of differentiation on power series that this is true (with simple calculus II logic). QED</p>
 </div>
 </div>
 <div id="give-an-example-of-a-continuous-function-f01-rightarrow-mathbbr-with-the-property-that-f0-0-f1-1-yet-fx-leq--1-for-almost-every-x-in-01." class="section level3">
 <h3>Give an example of a continuous function <span class="math inline">\(f:[0,1] \rightarrow \mathbb{R}\)</span> with the property that <span class="math inline">\(f(0) = 0\)</span>, <span class="math inline">\(f(1) = 1\)</span>, yet <span class="math inline">\(f'(x) \leq -1\)</span> for almost every <span class="math inline">\(x \in [0,1]\)</span>.</h3>
 <div id="my-solution-16" class="section level4">
 <h4>My Solution:</h4>
-<p>The Cantor Function satidfies this problem.</p>
+<p>Let <span class="math inline">\(C(x)\)</span> be the Cantor function on <span class="math inline">\([0,1]\)</span>. Consider <span class="math inline">\(f(x) = 2C(x) -x\)</span>. Then <span class="math inline">\(f(0) = 2 \cdot 0 - 0 = 0\)</span> and <span class="math inline">\(f(1) = 2 \cdot 1 - 1 = 1\)</span>. Also, almost everywhere the derivative of the Cantor function is 0 (because almost everywhere it is constant). Then the derivative almost everywhere of <span class="math inline">\(f(x)\)</span> would be <span class="math inline">\(f'(x) = -1\)</span> almost everywhere.</p>
 </div>
 </div>
 <div id="let-e_1-e_2-e_3...-be-a-sequence-of-measurable-subsets-of-mathbbr-with-the-property-that-suminfty-_n1-m-e_n-infty.-show-almost-every-x-in-mathbbr-is-contained-in-only-finitely-many-of-the-e_n." class="section level3">
@@ -487,7 +488,12 @@ $(document).ready(function () {
 <h3>(a) Find a sequence <span class="math inline">\(f_n: [0,1] \rightarrow \mathbb{R}\)</span> such that <span class="math inline">\(\int_0 ^1 |f_n(x)| = 2\)</span> for all <span class="math inline">\(n \in \mathbb{N}\)</span> and <span class="math inline">\(\lim_{n \to \infty} f_n(x) = 1\)</span> for all <span class="math inline">\(x \in [0,1]\)</span>. (b) If the <span class="math inline">\(f_n\)</span> are as in part (a), then prove <span class="math inline">\(\lim_{n \to \infty} \int_0 ^1 |f_n(x) -1| dx = 1\)</span>.</h3>
 <div id="my-solution-42" class="section level4">
 <h4>My Solution:</h4>
-<p><strong><em>Not yest solved</em></strong></p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(f_n(x):=4n^2x+1 \text{ for }x\in \left[0,\frac{1}{2n}\right]\\ f_n(x):=-4n^2x+1+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=1\text{ otherwise}.\)</span></p></li>
+<li><p>Given <span class="math inline">\(f_n\)</span> as defined above, we can simply integrate to get this answer. So, given <span class="math inline">\(f_n\)</span> defined as in part (a), <span class="math display">\[f_n(x) -1 =4n^2x \text{ for }x\in \left[0,\frac{1}{2n}\right]\\
+f_n(x)-1=-4n^2x+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=0\text{ otherwise}.\]</span> Thus <span class="math display">\[\lim_{n \to \infty} \int_0 ^1 |f_n -1| dx = \lim_{n \to \infty} \left[ \int_0 ^{1/2n} 4n^2x dx + \int_{1/2n} ^ {1/n} (-4n^2x+4n)dx \right]\\
+= \lim_{n \to \infty} \left[ \frac{2n^2}{4n^2} -0 - \frac{2n^2}{n^2} + \frac{4n}{n} + \frac{2n^2}{4n^2} - \frac{4n}{2n} \right] = \lim_{n \to \infty} 1 = 1\]</span> QED</p></li>
+</ol>
 </div>
 </div>
 <div id="show-that-mathcalg-f-in-c01-int_0-1-f2-1-is-open-in-c01.-assume-c01-has-the-uniform-metric." class="section level3">
