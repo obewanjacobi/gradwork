@@ -474,7 +474,7 @@ $$||f||_1 = \int|f|^p \leq \int_{\{0 < |f| \leq \epsilon < 1\}} \epsilon^p \to 0
 Suppose not! Then for all $I$, $m(E \cap I) \leq \frac{9}{10} \chi(I)$ and $m(E^c \cap I) \leq \frac{9}{10} \chi(I)$. Suppose $E$ has finite measure and let $E \subset \bigcup^{\infty}_{n=1} I_n$. Then
 $$m(E) = m \left(E \cap \bigcup^{\infty}_{n=1} I_n \right) = m\left(\bigcup^{\infty}_{n=1} E \cap I_n \right) \leq m(E \cap I_n) \leq \frac{9}{10} \sum^{\infty} _{n =1} m (I_n)$$
 Thus for all covers of $E$, $m(E) \leq \frac{9}{10} \sum^{\infty} _{n =1} m(I_n)$. But, by definition 
-$$m(E) = \inf \{m(I_n) : E \subset \bigcup^{\infty}_{n=1} I_n\}$$
+$$m(E) = \inf \{\sum_n m(I_n) : E \subset \bigcup^{\infty}_{n=1} I_n\}$$
 Hence 
 $$m(E) \leq \frac{9}{10} m(E) \implies m(E) = 0$$
 Now for $E$ with any measure, 
