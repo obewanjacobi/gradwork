@@ -190,7 +190,7 @@ $(document).ready(function () {
 <h3>Prove that if <span class="math inline">\(f \in L^p([0,\infty))\)</span>, <span class="math inline">\(1 \leq p \leq \infty\)</span>, then <span class="math inline">\(\lim_{n \to \infty} \int_0 ^{\infty} f(x) \mathrm{e}^{-nx}dx = 0\)</span></h3>
 <div id="my-solution-5" class="section level4">
 <h4>My Solution:</h4>
-<p>Let <span class="math inline">\(A = \{x| f(x) &lt; 1\}\)</span> and <span class="math inline">\(B = \{x|f(x) \geq 1\}\)</span>. Note, since <span class="math inline">\(f \in L^p\)</span>, <span class="math inline">\(m(B) &lt; \infty\)</span>. So, <span class="math display">\[\int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int (f(x) \mathrm{e}^{-nx} \chi_A + f(x) \mathrm{e}^{-nx} \chi_B) dx\]</span> where <span class="math display">\[\int^{\infty} _0 f(x) \mathrm{e}^{-nx} \chi_A dx &lt; \int^{\infty} _0 \mathrm{e}^{-x} = 1\]</span> and <span class="math display">\[\int f(x) \mathrm{e}^{-nx} \chi_B dx \leq \int |f|^p \chi_B &lt; \infty\]</span> since <span class="math inline">\(f \in L^p\)</span>. Thus by the Lebesgue Dominated Convergence Theorem, <span class="math display">\[\lim_{n \to \infty} \int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int^{\infty} _0 \lim_{n \to \infty} f(x) \mathrm{e}^{-nx} dx = \int 0 dx = 0\]</span> QED</p>
+<p>Let <span class="math inline">\(A = \{x| f(x) &lt; 1\}\)</span> and <span class="math inline">\(B = \{x|f(x) \geq 1\}\)</span>. Note, since <span class="math inline">\(f \in L^p\)</span>, <span class="math inline">\(m(B) &lt; \infty\)</span> (because <span class="math inline">\(f \in L^p\)</span>, <span class="math inline">\(\left( \int|f|^p \right)^{1/p} &lt; \infty\)</span>, which implies that <span class="math inline">\(m(B)\)</span> must be finite). So, <span class="math display">\[\int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int (f(x) \mathrm{e}^{-nx} \chi_A + f(x) \mathrm{e}^{-nx} \chi_B) dx\]</span> where <span class="math display">\[\int^{\infty} _0 f(x) \mathrm{e}^{-nx} \chi_A dx &lt; \int^{\infty} _0 \mathrm{e}^{-x} = 1\]</span> and <span class="math display">\[\int f(x) \mathrm{e}^{-nx} \chi_B dx \leq \int |f|^p \chi_B &lt; \infty\]</span> since <span class="math inline">\(f \in L^p\)</span>. Thus by the Lebesgue Dominated Convergence Theorem, <span class="math display">\[\lim_{n \to \infty} \int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int^{\infty} _0 \lim_{n \to \infty} f(x) \mathrm{e}^{-nx} dx = \int 0 dx = 0\]</span> QED</p>
 </div>
 </div>
 <div id="define-the-function-f01-to-mathbbr-by-fx-0-if-x-is-irrational-and-by-fx-frac1q-if-x-is-rational-and-x-fracpq-when-written-in-least-terms.-decide-whether-or-not-f-is-riemann-integrable-on-01-and-if-so-evaluate-its-integral." class="section level3">
@@ -354,16 +354,9 @@ $(document).ready(function () {
 <p>Here it is sufficient to show that <span class="math inline">\(\lim_{n \to \infty} ||f_ng_n - fg|| = 0\)</span>. Well, <span class="math display">\[\lim_{n \to \infty} ||f_ng_n - fg||_1 = \lim_{n \to \infty}||f_ng_n - f_ng + f_ng - fg||_1 \]</span> <span class="math display">\[= \lim_{n \to \infty} ||f_ng_n - f_ng||_1 + ||f_ng-fg||_1\]</span> <span class="math display">\[\leq \lim_{n \to \infty} ||f_n||_p \cdot ||g_n - g||_q + ||f_n -f||_p \cdot ||g||_q = 0\]</span> by Holder’s Inequality, where <span class="math inline">\(\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p &lt; \infty\)</span>, <span class="math inline">\(||g_n-g||_q \rightarrow 0\)</span>, and <span class="math inline">\(||f_n -f||_p \rightarrow 0\)</span>. Thus we have proven the desired result. QED</p>
 </div>
 </div>
-<div id="let-f-in-l101.-prove-that-lim_n-to-infty-int_0-1-fx-cosnx-dx-0." class="section level3">
-<h3>Let <span class="math inline">\(f \in L^1([0,1])\)</span>. Prove that <span class="math inline">\(\lim_{n \to \infty} \int_0 ^1 f(x) \cos(nx) dx = 0\)</span>.</h3>
-<div id="my-solution-26" class="section level4">
-<h4>My Solution:</h4>
-<p><strong><em>Hilbert stuff, not yet completed</em></strong></p>
-</div>
-</div>
 <div id="assume-that-f-in-linfty01.-prove-that-f-in-lp01-for-each-1-leq-p-infty-and-that-f_infty-lim_p-to-infty-f_p." class="section level3">
 <h3>Assume that <span class="math inline">\(f \in L^{\infty}([0,1])\)</span>. Prove that <span class="math inline">\(f \in L^p([0,1])\)</span> for each <span class="math inline">\(1 \leq p &lt; \infty\)</span> and that <span class="math inline">\(||f||_{\infty} = \lim_{p \to \infty} ||f||_p\)</span>.</h3>
-<div id="my-solution-27" class="section level4">
+<div id="my-solution-26" class="section level4">
 <h4>My Solution:</h4>
 <p>To complete this proof, we will divide the problem into a group of lemmas and prove them to get the desired result.</p>
 <p><strong>Lemma 1</strong>: <span class="math inline">\(f \in L^{\infty}([0,1]) \implies f \in L^1([0,1])\)</span> <em>Proof</em>: Assume <span class="math inline">\(f \in L^{\infty}\)</span>. Then <span class="math inline">\(f \leq m = \mathrm{essup}(f)\)</span> a.e. Then <span class="math inline">\(\int_{[0,1]} |f| \leq \int_{[0,1]} m = m &lt; \infty\)</span>. Thus <span class="math inline">\(f \in L^1\)</span>.</p>
@@ -381,28 +374,28 @@ $(document).ready(function () {
 <h2>August 2015</h2>
 <div id="let-c-subset-mathbbr-denote-the-cantor-set.-let-chi_cx-1-if-x-in-c-and-0-otherwise.-explain-why-chi_c-is-riemann-integrable-and-compute-int_0-1-chi_c-xdx." class="section level3">
 <h3>Let <span class="math inline">\(C \subset \mathbb{R}\)</span> denote the Cantor set. Let <span class="math inline">\(\chi_C(x) =1\)</span> if <span class="math inline">\(x \in C\)</span> and <span class="math inline">\(0\)</span> otherwise. Explain why <span class="math inline">\(\chi_C\)</span> is Riemann integrable and compute <span class="math inline">\(\int_0 ^1 \chi_C (x)dx\)</span>.</h3>
-<div id="my-solution-28" class="section level4">
+<div id="my-solution-27" class="section level4">
 <h4>My Solution:</h4>
 <p>Given that <span class="math inline">\(m(C) = 0\)</span>, <span class="math inline">\(\chi_C (x) = 0\)</span> a.e. which implies that <span class="math inline">\(\int \chi_C = 0\)</span> and since <span class="math inline">\(\chi_C (x)\)</span> is bounded with <span class="math inline">\(m(\{x | \lim_{x \to a} f(x) \neq f(a)\}) = m(C) = 0\)</span>. Thus <span class="math inline">\(Rf = \int f = 0\)</span>. QED</p>
 </div>
 </div>
 <div id="let-e-subset-mathbbr-be-a-lebesgue-measurable-set-with-me-1.-prove-there-exists-a-lebesgue-measurable-set-f-subset-e-with-mf-frac12." class="section level3">
 <h3>Let <span class="math inline">\(E \subset \mathbb{R}\)</span> be a Lebesgue measurable set with <span class="math inline">\(m(E) =1\)</span>. Prove there exists a Lebesgue measurable set <span class="math inline">\(F \subset E\)</span> with <span class="math inline">\(m(F) = \frac{1}{2}\)</span>.</h3>
-<div id="my-solution-29" class="section level4">
+<div id="my-solution-28" class="section level4">
 <h4>My Solution:</h4>
 <p><span class="math inline">\(E = \bigcup^{\infty} _{n = 1} E \cap [n, n+1]\)</span>. This implies that <span class="math inline">\(m(E) = \lim_{n \to \infty} m(E \cap [-n,n]) = 1\)</span>. Pick a sufficiently large <span class="math inline">\(n \in \mathbb{N}\)</span> such that <span class="math inline">\(m(E \cap [-n,n]) &gt; \frac{1}{2}\)</span>. Consider <span class="math inline">\(f(x) = \int_{-n} ^x \chi_E\)</span> for <span class="math inline">\(x \in [-n,n]\)</span>. Since <span class="math inline">\(f\)</span> is continuous with <span class="math inline">\(f(-n) = 0\)</span> and <span class="math inline">\(f(n) &gt; \frac{1}{2}\)</span>, there exists <span class="math inline">\(c \in [-n,n]\)</span> such that <span class="math inline">\(f(c) = \frac{1}{2}\)</span> by the Intermediate Value Theorem. Thus <span class="math inline">\((-n,n) \cap E\)</span> is a Lebesgue measurable set with <span class="math inline">\(m((-n,c)\cap E) = \frac{1}{2}\)</span>. QED</p>
 </div>
 </div>
 <div id="let-x-mathcala-mu-be-a-measure-space.-if-f_n-x-rightarrow-mathbbr-is-a-sequence-of-functions-such-that-suminfty-_n1-int_x-f_n-d-mu-converges-then-prove-that-f_n-to-0-almost-everywhere." class="section level3">
 <h3>Let <span class="math inline">\((X, \mathcal{A}, \mu)\)</span> be a measure space. If <span class="math inline">\(f_n : X \rightarrow \mathbb{R}\)</span> is a sequence of functions such that <span class="math inline">\(\sum^{\infty} _{n=1} \int_X |f_n| d \mu\)</span> converges, then prove that <span class="math inline">\(f_n \to 0\)</span> almost everywhere.</h3>
-<div id="my-solution-30" class="section level4">
+<div id="my-solution-29" class="section level4">
 <h4>My Solution:</h4>
 <p><span class="math display">\[\sum^{\infty}_{n=1} \int_X |f_n| d \mu = \lim_{k \to \infty} \sum^k _{n=1} \int_X |f_n| d \mu = \lim_{k \to \infty} \int_X \sum^k _{n =1} |f_n| d \mu\]</span> <span class="math display">\[ = \int_X \lim_{k \to \infty} \sum^k _{n=1} |f_n| d \mu = \int_X \sum^{\infty} _{n =1} |f_n| d \mu &lt; \infty\]</span> by the M.C.T. since <span class="math inline">\(\sum^k _{i=1} |f_n|\)</span> is increasing. Thus <span class="math inline">\(|f_n| \rightarrow 0\)</span> almost everywhere because it’s integrable when <span class="math inline">\(n\)</span> approachest <span class="math inline">\(\infty\)</span>. Hence <span class="math inline">\(f_n \rightarrow 0\)</span> almost everywhere. QED</p>
 </div>
 </div>
 <div id="prove-that-fx-0-if-x-0-and-fx-x2-cos-frac1x2-if-x-neq-0-is-continuous-but-not-absolutely-continuous-on--11." class="section level3">
 <h3>Prove that <span class="math inline">\(f(x) = 0\)</span> if <span class="math inline">\(x = 0\)</span> and <span class="math inline">\(f(x) = x^2 \cos (\frac{1}{x^2})\)</span> if <span class="math inline">\(x \neq 0\)</span> is continuous but not absolutely continuous on <span class="math inline">\([-1,1]\)</span>.</h3>
-<div id="my-solution-31" class="section level4">
+<div id="my-solution-30" class="section level4">
 <h4>My Solution:</h4>
 <p>Consider <span class="math inline">\(x^2 \cos \left(\frac{1}{x^2} \right)\)</span>, which is constructed of functions that are continuous everywhere on their domains. So it is continuous on <span class="math inline">\(\mathbb{R}\)</span> excluding <span class="math inline">\(\{0\}\)</span>. To show continuity at <span class="math inline">\(x = 0\)</span>, consider that <span class="math inline">\(-1 \leq \cos \left(\frac{1}{x^2} \right) \leq 1\)</span> which implies that <span class="math inline">\(-x^2 \leq x^2 \cos \left( \frac{1}{x^2} \right) \leq x^2\)</span> with <span class="math inline">\(\lim_{x \to 0} -x^2 = \lim_{x \to 0} x^2 = 0\)</span> Hence by the squeeze theorem, <span class="math inline">\(\lim_{x \to 0} x^2 \cos \left( \frac{1}{x^2} \right) = f(0) = 0\)</span>.</p>
 <p>Suppose <span class="math inline">\(f\)</span> is absolutely continuous on <span class="math inline">\([-1,1]\)</span>. Hence it is of bounded-variation on <span class="math inline">\([-1,1]\)</span>, thus <span class="math inline">\(V_f [0,1] &lt; \infty\)</span>. Consider the partition with endpoints <span class="math display">\[P = \{-1\} \cup \left[ \{ \pm \sqrt{\frac{1}{n \pi}} : n \in \mathbb{N} \} \cap [-1,1] \right] \cup \{1\}\]</span> Hence for <span class="math inline">\(x_i, x_{i+1} \in P\)</span>, <span class="math display">\[\sum^{\infty} _{n =1} |f(x_i) - f(x_{i+1})| = \sum^{\infty} _{n =1} \left|f \left(\sqrt{\frac{1}{n \pi}} \right) - f \left(\sqrt{\frac{1}{(n+1)\pi}} \right) \right|\]</span> <span class="math display">\[= \sum^{\infty} _{n =1} \left| \left[ \left(\sqrt{\frac{1}{n \pi}} \right)^2 \cdot \cos \left( \frac{1}{\sqrt{\frac{1}{(n+1) \pi}}^2} \right) \right] - \left[ \left( \sqrt{\frac{1}{(n+1) \pi}}\right)^2 \cdot \cos \left( \frac{1}{\sqrt{\frac{1}{(n+1) \pi}}^2}\right) \right]  \right|\]</span> <span class="math display">\[= \sum^{\infty} _{n =1} \left| \left( \frac{1}{n \pi} \cos(n \pi) \right) - \left( \frac{1}{(n+1) \pi} \cos((n+1) \pi) \right) \right| = \sum^{\infty} _{n =1} \left| \frac{1}{n \pi} - \frac{-1}{(n+1) \pi} \right|\]</span> because <span class="math inline">\(n\)</span> is even and <span class="math inline">\(n+1\)</span> is odd. The above sum is equal to <span class="math inline">\(\frac{1}{\pi} \sum^{\infty} _{n =1} \left| \frac{2n+1}{n^2 +n} \right|\)</span> which diverges because it’s a harmonic series. Thus <span class="math inline">\(V_f[0,1] \nless \infty\)</span>. This is a contradiction to the assumption of <span class="math inline">\(f\)</span> being absolutely continuous, thus we have proven the desired result. QED</p>
@@ -410,7 +403,7 @@ $(document).ready(function () {
 </div>
 <div id="let-x-mathcala-mu-be-a-finite-measure-space.-if-f-is-mu-measurable-and-p-leq-fx-leq-q-for-all-x-in-x-then-prove-that-int_x-f-d-mu-exists-and-p-mux-leq-int_x-f-d-mu-leq-q-mu-x." class="section level3">
 <h3>Let <span class="math inline">\((X, \mathcal{A}, \mu)\)</span> be a finite measure space. If <span class="math inline">\(f\)</span> is <span class="math inline">\(\mu\)</span>-measurable and <span class="math inline">\(p \leq f(x) \leq q\)</span> for all <span class="math inline">\(x \in X\)</span>, then prove that <span class="math inline">\(\int_X f d \mu\)</span> exists and <span class="math inline">\(p \mu(X) \leq \int_X f d \mu \leq q \mu (X)\)</span>.</h3>
-<div id="my-solution-32" class="section level4">
+<div id="my-solution-31" class="section level4">
 <h4>My Solution:</h4>
 <p>Since <span class="math inline">\(X\)</span> is finite, and <span class="math inline">\(p \leq f \leq q\)</span>, <span class="math inline">\(\mu (X) = \int_X 1 d \mu\)</span>. This implies that <span class="math inline">\(p \cdot \mu (X) \leq \int_X f d \mu \leq q \mu(X)\)</span>.</p>
 <p>Now, we must show that <span class="math inline">\(\int_X f d \mu\)</span> is integrable. Consider <span class="math inline">\(|f| \leq \mathrm{max} \{|p|,|q|\} = M\)</span>. Hence <span class="math inline">\(|f| \leq M\)</span>. This implies that <span class="math inline">\(\int_X |f| d \mu \leq \mu (X) \cdot M &lt; \infty\)</span>. Hence <span class="math inline">\(f\)</span> is integrable. QED</p>
@@ -418,28 +411,28 @@ $(document).ready(function () {
 </div>
 <div id="suppose-that-1-qp-infty-and-that-frac1p-frac1q-1.-prove-that-if-f_n-rightarrow-f-in-lpmathbbr-and-g_n-rightarrow-g-in-lqmathbbr-then-f_ng_n-rightarrow-fg-in-l1mathbbr." class="section level3">
 <h3>Suppose that <span class="math inline">\(1&lt; q,p &lt; \infty\)</span> and that <span class="math inline">\(\frac{1}{p} + \frac{1}{q} = 1\)</span>. Prove that if <span class="math inline">\(f_n \rightarrow f\)</span> in <span class="math inline">\(L^p(\mathbb{R})\)</span> and <span class="math inline">\(g_n \rightarrow g\)</span> in <span class="math inline">\(L^q(\mathbb{R})\)</span>, then <span class="math inline">\(f_ng_n \rightarrow fg\)</span> in <span class="math inline">\(L^1(\mathbb{R})\)</span>.</h3>
-<div id="my-solution-33" class="section level4">
+<div id="my-solution-32" class="section level4">
 <h4>My Solution:</h4>
 <p>It is sufficient to show that the <span class="math inline">\(\lim_{n \to \infty} ||f_ng_n - fg||_1 = 0\)</span>. Well, <span class="math display">\[\lim_{n \to \infty} ||f_n g_n -fg||_1 = \lim_{n \to \infty}||f_ng_n - f_ng||_1 + ||f_ng -fg||_1\]</span> <span class="math display">\[ \leq \lim_{n \to \infty} ||f_n||_p||g_n-g||_q + ||g||_q||f_n-f||_p\]</span> by Holder’s Inequality where <span class="math inline">\(\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p &lt; \infty\)</span>. Thus <span class="math inline">\(||g_n - g||_q \rightarrow 0\)</span> and <span class="math inline">\(||f_n - f||_p \rightarrow 0\)</span>. So the above limit does in fact imply that <span class="math inline">\(f_ng_n \rightarrow fg\)</span> in <span class="math inline">\(L^1(\mathbb{R})\)</span>. QED</p>
 </div>
 </div>
 <div id="evaluate-fracddt-int_0-1-fracsinxtxdx.-justify-your-computations." class="section level3">
 <h3>Evaluate <span class="math inline">\(\frac{d}{dt} \int_0 ^1 \frac{\sin(xt)}{x}dx\)</span>. Justify your computations.</h3>
-<div id="my-solution-34" class="section level4">
+<div id="my-solution-33" class="section level4">
 <h4>My Solution:</h4>
-<p><strong><em>Not yet completed</em></strong></p>
+<p>Here we will use Leibniz’s integral rule, stating that <span class="math display">\[\frac{d}{dt} \left( \int_a ^b f(x,t) dx \right) = \int^b _a \frac{\partial}{\partial t} f(x,t) dx\]</span> Thus we find that <span class="math display">\[\frac{d}{dt} \int_0 ^1 \frac{\sin(xt)}{x}dx = \int_0 ^1 x \cdot \frac{\cos(xt)}{x} dx = \int_0 ^1 \cos(xt) dx = \frac{\sin(t)}{t}\]</span> where <span class="math inline">\(t &gt; 0\)</span>. QED</p>
 </div>
 </div>
 <div id="if-f-in-l1mathbbr-cap-linftymathbbr-and-p-geq-1-then-prove-that-f-in-lpmathbbr." class="section level3">
 <h3>If <span class="math inline">\(f \in L^1(\mathbb{R}) \cap L^{\infty}(\mathbb{R})\)</span> and <span class="math inline">\(p \geq 1\)</span>, then prove that <span class="math inline">\(f \in L^p(\mathbb{R})\)</span>.</h3>
-<div id="my-solution-35" class="section level4">
+<div id="my-solution-34" class="section level4">
 <h4>My Solution:</h4>
 <p>Given <span class="math inline">\(f \in L^1(\mathbb{R}) \cap L^{\infty}(\mathbb{R})\)</span>. This implies that <span class="math inline">\(m = \mathrm{essup}(f) &lt; \infty\)</span> and <span class="math inline">\(\int|f| &lt; \infty\)</span>. So, <span class="math display">\[\int|f|^p = \int_{\{x:|f|&lt;1\}} |f|^p + \int_{\{x: |f| &gt;1\}}|f|^p\]</span> For <span class="math inline">\(p&gt;0\)</span>, <span class="math inline">\(\int_{\{x:|f(x)&lt;1\}}|f|^p &lt; \int_{\{x:|f(x)&lt;1\}}|f|\)</span>. Thus <span class="math display">\[\int_{\{x:|f|&lt;1\}} |f|^p + \int_{\{x: |f| &gt;1\}}|f|^p \leq \int_{\{x:|f|&lt;1\}} |f| + \int_{\{x: |f| &gt;1\}} m^p\]</span> where <span class="math inline">\(\int_{\{x:|f|&lt;1\}} |f| &lt; \infty\)</span> and <span class="math inline">\(\int_{\{x: |f| &gt;1\}} m^p = m^p \cdot m(\{x:|f(x) &gt; 1\}) &lt; \infty\)</span> thus the entire equation is less than <span class="math inline">\(\infty\)</span>. So <span class="math inline">\((\int|f|^p)^{1/p} &lt; \infty\)</span> for all <span class="math inline">\(p\)</span>. Thus <span class="math inline">\(f \in L^p\)</span>. QED</p>
 </div>
 </div>
 <div id="if-fmathbbr-rightarrow-0infty-is-measurable-then-lim_n-rightarrow-infty-int_-n-n-f-int_mathbbr-f." class="section level3">
 <h3>If <span class="math inline">\(f:\mathbb{R} \rightarrow [0,\infty)\)</span> is measurable, then <span class="math inline">\(\lim_{n \rightarrow \infty} \int_{-n} ^n f = \int_{\mathbb{R}} f\)</span>.</h3>
-<div id="my-solution-36" class="section level4">
+<div id="my-solution-35" class="section level4">
 <h4>My Solution:</h4>
 <p>Since <span class="math inline">\(f\)</span> is positive, <span class="math inline">\(f \cdot \chi_{[-n,n]}\)</span> is a sequence of increasing positive functions. Thus <span class="math display">\[\lim_{n \to \infty} \int f \cdot \chi_{[-n,n]} = \int \lim_{n \to \infty} f \cdot \chi_{[-n,n]} = \int_{\mathbb{R}} f\]</span> with the step of moving the limit inside the integral is by the Monotone Convergence Theorem. QED</p>
 </div>
@@ -449,7 +442,7 @@ $(document).ready(function () {
 <h2>January 2013</h2>
 <div id="show-that-every-dense-subset-of-linfty01-is-uncountable." class="section level3">
 <h3>Show that every dense subset of <span class="math inline">\(L^{\infty}([0,1])\)</span> is uncountable.</h3>
-<div id="my-solution-37" class="section level4">
+<div id="my-solution-36" class="section level4">
 <h4>My Solution:</h4>
 <p>Let <span class="math inline">\(A = \{ \chi_{(0,t)} : t \in (0,1)\}\)</span>. Then for any <span class="math inline">\(\chi_{(0,t_1)}, \chi_{(0,t_2)} \in A\)</span> such that <span class="math inline">\(t_1 \neq t_2\)</span>. So, <span class="math display">\[||\chi_{(0,t_1)} - \chi_{(0,t_2)}||_{\infty} = 1\]</span> Without loss of generality, <span class="math inline">\(t_1 &lt; t_2\)</span>, then <span class="math inline">\(\chi_{(0,t_1)} - \chi_{(0,t_2)} = 0,1,0\)</span> on <span class="math inline">\((0,t_1),(t_1,t_2),(t_2,1)\)</span> respectively. This is where we get the above equality, as <span class="math display">\[\left\|\chi_{(0,t_2)} - \chi_{(0,t_1)}\right\|_\infty = \sup_{x\in[0,1]}\left|\chi_{(0,t_2)}(x) - \chi_{(0,t_1)}(x)\right| = 1\]</span></p>
 <p>Consider <span class="math inline">\(\left\{ B_{\left(\chi_{(0,t)}, \frac{1}{3} \right)} \right\}\)</span> which is an uncountable collection of disjoing balls. And given any dense set <span class="math inline">\(S \subset L^{\infty}([0,1])\)</span> has elements in each ball by definition of density. Thus <span class="math inline">\(S\)</span> is uncountable. QED</p>
@@ -457,14 +450,14 @@ $(document).ready(function () {
 </div>
 <div id="let-f-be-a-lebesgue-measurable-function-on-mathbbr-with-the-property-that-sup_g-in-l2mathbbrg_2-leq-1int_mathbbrfgd-lambda-leq-1.-prove-that-f-in-l2mathbbr-and-f_2-leq-1." class="section level3">
 <h3>Let <span class="math inline">\(f\)</span> be a Lebesgue measurable function on <span class="math inline">\(\mathbb{R}\)</span> with the property that <span class="math inline">\(\sup_{\{g \in L^2(\mathbb{R}):||g||_2 \leq 1\}}\int_{\mathbb{R}}|fg|d \lambda \leq 1\)</span>. Prove that <span class="math inline">\(f \in L^2(\mathbb{R})\)</span> and <span class="math inline">\(||f||_2 \leq 1\)</span>.</h3>
-<div id="my-solution-38" class="section level4">
+<div id="my-solution-37" class="section level4">
 <h4>My Solution:</h4>
 <p>For every <span class="math inline">\(n \in \mathbb{N}\)</span>, let <span class="math display">\[A_n = \{ x \in [-n,n]: |f(x)| \leq n\}\]</span> and let <span class="math inline">\(f_n = f \chi_{A_n}\)</span>. Also define the linear functional <span class="math inline">\(T_n:L^2 \rightarrow \mathbb{R}\)</span> such that <span class="math display">\[T_n(g) = \int_{\mathbb{R}}f_ng\]</span> Clearly <span class="math inline">\(T_n\)</span> is a bounded functional in <span class="math inline">\(L^2\)</span>, since, by Holder’s inequality, <span class="math display">\[|T_n(g)| \leq \int_{\mathbb{R}} |f_ng| \leq ||f_n||_2||g||_2\]</span> Since <span class="math display">\[|T_n(f_n)| = \left| \int_{\mathbb{R}} f^2 \chi_{A_n} \right| = \int_{\mathbb{R}} f_n ^2 = ||f_n||_2 ^2\]</span> we can thus conclude that <span class="math inline">\(||T_n|| = ||f_n||_2\)</span>. Moreover, <span class="math inline">\(|f_ng|\)</span> increases to <span class="math inline">\(|fg|\)</span> as <span class="math inline">\(n \to \infty\)</span>. So <span class="math display">\[\sup_n |T_n(g)| \leq \int_{\mathbb{R}} |fg| &lt; \infty\]</span> By the uniform boundedness principle, we can conclude that the sequence <span class="math inline">\((T_n)\)</span> converges to a bounded linear functional <span class="math inline">\(T\)</span> and that <span class="math display">\[||T|| \leq \liminf_n ||T_n|| &lt; \infty\]</span> On the other hand, by the monotone convergence theorem, <span class="math display">\[\liminf_n ||T_n|| = \liminf_n ||f_n||_2 = \left(\int_{\mathbb{R}} |f|^2 \right)^{1/2}\]</span> hence <span class="math inline">\(f \in L^2\)</span>. Finally, taking <span class="math inline">\(g = \frac{f}{||f||_2}\)</span> in the assumption, we find that <span class="math display">\[\int_{\mathbb{R}} |fg| = ||f||_2 \leq 1\]</span> Thus we have proven the desired result. QED</p>
 </div>
 </div>
 <div id="let-f-geq-0-and-f-in-lp01-for-all-p-in-1-infty.-if-f_p-p-f_1-for-all-p-in-1-infty-then-there-is-a-set-s-such-that-f-chi_s-a.e." class="section level3">
 <h3>Let <span class="math inline">\(f \geq 0\)</span> and <span class="math inline">\(f \in L^p[0,1]\)</span> for all <span class="math inline">\(p \in [1, \infty)\)</span>. If <span class="math inline">\(||f||_p ^p = ||f||_1\)</span> for all <span class="math inline">\(p \in [1, \infty)\)</span>, then there is a set <span class="math inline">\(S\)</span> such that <span class="math inline">\(f = \chi_S\)</span> a.e.</h3>
-<div id="my-solution-39" class="section level4">
+<div id="my-solution-38" class="section level4">
 <h4>My Solution:</h4>
 <p>We know <span class="math inline">\(||f||_1 = \int |f|^p\)</span> for all <span class="math inline">\(p \in [1, \infty)\)</span>. Suppose <span class="math inline">\(m(\{x|f &gt; 1\}) \neq 0\)</span>. Pick <span class="math inline">\(\epsilon \in (1, \infty)\)</span> such that <span class="math inline">\(1 &lt; \epsilon \leq f &lt; \infty\)</span>. Then <span class="math display">\[||f||_1 = \int|f|^p \geq \int_{\{1 &lt; |f|\}} |f|^p \geq \int \epsilon ^p \rightarrow \infty\]</span> since <span class="math inline">\(\epsilon &gt; 1\)</span>.</p>
 <p>Cosider <span class="math inline">\(m(\{x | 0 &lt; f&lt;1\})\)</span>, which we claim is equal to zero. To prove this, pick <span class="math inline">\(0&lt; |f| \leq \epsilon &lt; 1\)</span>. Then <span class="math display">\[||f||_1 = \int|f|^p \leq \int_{\{0 &lt; |f| \leq \epsilon &lt; 1\}} \epsilon^p \to 0\]</span> as <span class="math inline">\(p \to \infty\)</span>. Hence <span class="math inline">\(f = 0\)</span> or <span class="math inline">\(1\)</span> almost everywhere. If we use this to define <span class="math inline">\(S = \{x| f(x) =1\}\)</span>, then <span class="math inline">\(f = \chi_S\)</span> almost everywhere. QED</p>
@@ -472,14 +465,14 @@ $(document).ready(function () {
 </div>
 <div id="if-e-is-a-measurable-subset-of-mathbbr-then-there-is-an-interval-i-such-that-me-cap-i-frac910-mi-or-mec-cap-i-frac910-m-i." class="section level3">
 <h3>If <span class="math inline">\(E\)</span> is a measurable subset of <span class="math inline">\(\mathbb{R}\)</span>, then there is an interval <span class="math inline">\(I\)</span> such that <span class="math inline">\(m(E \cap I) &gt; \frac{9}{10} m(I)\)</span> or <span class="math inline">\(m(E^c \cap I) &gt; \frac{9}{10} m (I)\)</span>.</h3>
-<div id="my-solution-40" class="section level4">
+<div id="my-solution-39" class="section level4">
 <h4>My Solution:</h4>
 <p>Suppose not! Then for all <span class="math inline">\(I\)</span>, <span class="math inline">\(m(E \cap I) \leq \frac{9}{10} \chi(I)\)</span> and <span class="math inline">\(m(E^c \cap I) \leq \frac{9}{10} \chi(I)\)</span>. Suppose <span class="math inline">\(E\)</span> has finite measure and let <span class="math inline">\(E \subset \bigcup^{\infty}_{n=1} I_n\)</span>. Then <span class="math display">\[m(E) = m \left(E \cap \bigcup^{\infty}_{n=1} I_n \right) = m\left(\bigcup^{\infty}_{n=1} E \cap I_n \right) \leq m(E \cap I_n) \leq \frac{9}{10} \sum^{\infty} _{n =1} m (I_n)\]</span> Thus for all covers of <span class="math inline">\(E\)</span>, <span class="math inline">\(m(E) \leq \frac{9}{10} \sum^{\infty} _{n =1} m(I_n)\)</span>. But, by definition <span class="math display">\[m(E) = \inf \{\sum_n m(I_n) : E \subset \bigcup^{\infty}_{n=1} I_n\}\]</span> Hence <span class="math display">\[m(E) \leq \frac{9}{10} m(E) \implies m(E) = 0\]</span> Now for <span class="math inline">\(E\)</span> with any measure, <span class="math display">\[m(E \cap(-n,n) \cap I_n) \leq m(E \cap I) \leq \frac{9}{n}m(I_n)\]</span> Hence <span class="math inline">\(m(E \cap (-n,n)) = 0\)</span> for all <span class="math inline">\(n\)</span> where <span class="math display">\[m(E) = m \left(\bigcup^{\infty}_{n=1} (E \cap(-n,n)) \right) \leq \sum^{\infty}_{n=1} m(E \cap (-n,n)) = 0\]</span> Note the same proof works for <span class="math inline">\(m(E^c) = 0\)</span>. Thus the desired result is proven. QED</p>
 </div>
 </div>
 <div id="a-measure-space-x-mu-is-sigma-finite-iff-there-is-an-f-x-rightarrow-0-infty-such-that-f-in-l1-x-mu." class="section level3">
 <h3>A measure space <span class="math inline">\((X, \mu)\)</span> is <span class="math inline">\(\sigma\)</span>-finite iff there is an <span class="math inline">\(f : X \rightarrow (0, \infty)\)</span> such that <span class="math inline">\(f \in L^1 (X, \mu)\)</span>.</h3>
-<div id="my-solution-41" class="section level4">
+<div id="my-solution-40" class="section level4">
 <h4>My Solution:</h4>
 <p>Assume that <span class="math inline">\(f : X \rightarrow (0, \infty)\)</span> such that <span class="math inline">\(f \in L^1 (X, \mu)\)</span>. Then <span class="math display">\[X = \{f&gt; 0\} = \bigcup^{\infty}_{n =1} \left\{f &gt; \frac{1}{n} \right\}\]</span> where <span class="math display">\[\mu \left(\left\{f &gt; \frac{1}{n}\right\} \right) \leq \int \frac{|f|}{\frac{1}{(1/n)}}d \mu \leq n \cdot \int|f| &lt; \infty\]</span> since <span class="math inline">\(f \in L^1\)</span> and by Chebyshev’s Inequality.</p>
 <p>Now assume <span class="math inline">\(X\)</span> is <span class="math inline">\(\sigma\)</span>-finite. We have <span class="math inline">\(X = \bigcup^{\infty}_{i = 1} A_n\)</span>, a union of disjoint sets wuth <span class="math inline">\(\mu (A_n &lt; \infty)\)</span>. Define <span class="math inline">\(f = \sum^{\infty} _{n=1} a_n\)</span> where <span class="math inline">\(a_n = \frac{1}{\mu (A_n) \cdot n^2} \cdot \chi_{A_n}\)</span> when <span class="math inline">\(\mu(A_n) &gt; 0\)</span> and <span class="math inline">\(a_n = \frac{1}{n^2} \chi_{A_n}\)</span> when <span class="math inline">\(\mu(A_n) = 0\)</span>. Then <span class="math display">\[\int f = \sum^{\infty}_{n=1} \int \frac{1}{\mu(A_n) \cdot n^2} \cdot \chi_{A_n} = \sum^{\infty}_{n=1} \frac{1}{\mu(A_n) \cdot n^2} \int \chi_{A_n} = \sum^{\infty}_{n=1} \frac{1}{n^2} &lt; \infty\]</span> Thus proving the desired result. QED</p>
@@ -487,7 +480,7 @@ $(document).ready(function () {
 </div>
 <div id="a-find-a-sequence-f_n-01-rightarrow-mathbbr-such-that-int_0-1-f_nx-2-for-all-n-in-mathbbn-and-lim_n-to-infty-f_nx-1-for-all-x-in-01.-b-if-the-f_n-are-as-in-part-a-then-prove-lim_n-to-infty-int_0-1-f_nx--1-dx-1." class="section level3">
 <h3>(a) Find a sequence <span class="math inline">\(f_n: [0,1] \rightarrow \mathbb{R}\)</span> such that <span class="math inline">\(\int_0 ^1 |f_n(x)| = 2\)</span> for all <span class="math inline">\(n \in \mathbb{N}\)</span> and <span class="math inline">\(\lim_{n \to \infty} f_n(x) = 1\)</span> for all <span class="math inline">\(x \in [0,1]\)</span>. (b) If the <span class="math inline">\(f_n\)</span> are as in part (a), then prove <span class="math inline">\(\lim_{n \to \infty} \int_0 ^1 |f_n(x) -1| dx = 1\)</span>.</h3>
-<div id="my-solution-42" class="section level4">
+<div id="my-solution-41" class="section level4">
 <h4>My Solution:</h4>
 <ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(f_n(x):=4n^2x+1 \text{ for }x\in \left[0,\frac{1}{2n}\right]\\ f_n(x):=-4n^2x+1+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=1\text{ otherwise}.\)</span></p></li>
@@ -499,21 +492,28 @@ f_n(x)-1=-4n^2x+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{a
 </div>
 <div id="show-that-mathcalg-f-in-c01-int_0-1-f2-1-is-open-in-c01.-assume-c01-has-the-uniform-metric." class="section level3">
 <h3>Show that <span class="math inline">\(\mathcal{G} = \{f \in C[0,1] : \int_0 ^1 f^2 &gt; 1\}\)</span> is open in <span class="math inline">\(C[0,1]\)</span>. (Assume <span class="math inline">\(C[0,1]\)</span> has the uniform metric.)</h3>
-<div id="my-solution-43" class="section level4">
+<div id="my-solution-42" class="section level4">
 <h4>My Solution:</h4>
 <p>The function <span class="math inline">\(\phi(f) = \int_0 ^1 f^2\)</span> is continuous. Thus <span class="math inline">\(\phi ^{-1} ((1, \infty))\)</span> must be open. QED</p>
 </div>
 </div>
 <div id="let-x-rho-be-a-metric-space-and-suppose-k-and-f-are-nonempty-disjoint-subsets-of-x-with-k-compact-and-f-closed.-a-prove-there-is-a-delta-0-such-that-rhoxy-geq-delta-for-all-x-in-k-and-y-in-f.-b-show-that-part-a-may-fail-if-k-is-closed-but-not-compact." class="section level3">
 <h3>Let <span class="math inline">\((X, \rho)\)</span> be a metric space and suppose <span class="math inline">\(K\)</span> and <span class="math inline">\(F\)</span> are nonempty disjoint subsets of <span class="math inline">\(X\)</span> with <span class="math inline">\(K\)</span> compact and <span class="math inline">\(F\)</span> closed. (a) Prove there is a <span class="math inline">\(\delta &gt;0\)</span> such that <span class="math inline">\(\rho(x,y) \geq \delta\)</span> for all <span class="math inline">\(x \in K\)</span> and <span class="math inline">\(y \in F\)</span>. (b) Show that part (a) may fail if <span class="math inline">\(K\)</span> is closed, but not compact.</h3>
-<div id="my-solution-44" class="section level4">
+<div id="my-solution-43" class="section level4">
 <h4>My Solution:</h4>
-<p><strong><em>Not yest solved</em></strong></p>
+<ol style="list-style-type: lower-alpha">
+<li>By way of contradiction, assume for every <span class="math inline">\(n\)</span> we can find an <span class="math inline">\(x_n \in K\)</span> and <span class="math inline">\(y_n \in F\)</span> such that <span class="math inline">\(\rho (x_n, y_n) &lt; \frac{1}{n}\)</span>. Since <span class="math inline">\(K\)</span> is compact, there is a convergent subsequence <span class="math inline">\(x_{n_k}\)</span> whose limit is <span class="math inline">\(x\)</span>. By the triangle inequality, <span class="math inline">\(\rho(x,y_{n_k}) \leq \rho(x,x_{n_k}) + \rho(x_{n_k},y_{n_k})\)</span>. If we juggle the <span class="math inline">\(\epsilon\)</span>’s around a bit, we find that <span class="math inline">\(x \in F\)</span> giving us a contradiction, thus we have proven the desired result. The problem here is that this question is not written that well in regards to our qualifying exam, so for the most part this one should be ignored. It leaves out important details of what exactly <span class="math inline">\(\rho\)</span> is. However, if you would like to check out other solutions on this, follow these links:</li>
+</ol>
+<p>[<a href="https://math.stackexchange.com/questions/185656/show-that-exists-delta-0-such-thatdx-y-geq-delta" class="uri">https://math.stackexchange.com/questions/185656/show-that-exists-delta-0-such-thatdx-y-geq-delta</a>]</p>
+<p>[<a href="http://www.math.ucsd.edu/~benchow/F16/HW7-140A-F16-ans.pdf" class="uri">http://www.math.ucsd.edu/~benchow/F16/HW7-140A-F16-ans.pdf</a>] (check #8)</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Consider an example in <span class="math inline">\(\mathbb{R}^2\)</span> with the standard metric. Take <span class="math inline">\(K\)</span> as the <span class="math inline">\(x\)</span>-axis and <span class="math inline">\(F\)</span> as the graph of the expnential function <span class="math inline">\(\mathrm{e}^x\)</span>, that is, <span class="math inline">\(F = \{(x,y) \in \mathbb{R}^2 | y = \mathrm{e}^x\}\)</span>. These are clearly non-empty and mutually disjoint. Both <span class="math inline">\(K\)</span> and <span class="math inline">\(F\)</span> are closed, but neither is compace because they are both unbounded. It is easy then to see that their distance is zero and a stricly positive <span class="math inline">\(\delta\)</span> of the desired result does not exist. Thus we can see then that if <span class="math inline">\(K\)</span> is not compact and still closed that our proof in part (a) may not hold.</li>
+</ol>
 </div>
 </div>
 <div id="the-limit-superior-of-a-sequence-of-sets-e_k-is-defined-as-lim-sup-e_k-bigcapinfty_j1-bigcupinfty_kj-e_k.-let-e_k-k-in-mathbbn-be-a-sequence-of-sets-in-mathcall.-a-prove-that-if-sum_k-in-mathbbn-lambdae_k-infty-then-lambdalim-supe_k-0.-b-is-it-true-in-general-that-lambdalim-supe_k-lim-sup-lambdae_k" class="section level3">
 <h3>The limit superior of a sequence of sets <span class="math inline">\(\{E_k\}\)</span> is defined as <span class="math inline">\(\lim \sup E_k = \bigcap^{\infty}_{j=1} \bigcup^{\infty}_{k=j} E_k\)</span>. Let <span class="math inline">\(\{E_k: k \in \mathbb{N}\}\)</span> be a sequence of sets in <span class="math inline">\(\mathcal{L}\)</span>. (a) Prove that if <span class="math inline">\(\sum_{k \in \mathbb{N}} \lambda(E_k) &lt; \infty\)</span>, then <span class="math inline">\(\lambda(\lim \sup(E_k)) = 0\)</span>. (b) Is it true in general that <span class="math inline">\(\lambda(\lim \sup(E_k)) = \lim \sup \lambda(E_k)\)</span>?</h3>
-<div id="my-solution-45" class="section level4">
+<div id="my-solution-44" class="section level4">
 <h4>My Solution:</h4>
 <p>(a): Let <span class="math inline">\(\epsilon &gt; 0\)</span>. Given <span class="math inline">\(\sum^{\infty}_{k=1} m(E_k) &lt; \infty\)</span>, there exists <span class="math inline">\(N\)</span> such that <span class="math inline">\(\sum^{\infty}_{k=N} m(E_k) &lt; \epsilon\)</span>. <span class="math display">\[\lim \sup(E_k) = \bigcap^{\infty}_{n=1} \bigcup^{\infty}_{k=n} E_k \subset \bigcup^{\infty} _{k=N} E_k\]</span> Hence <span class="math display">\[m(\lim \sup(E_k)) \leq m\left( \bigcup^{\infty}_{k=N} E_k \right) \leq \sum^{\infty}_{k=N} m(E_k) &lt; \epsilon\]</span> which implies that <span class="math inline">\(m(\lim \sup(E_k)) = 0\)</span>. QED</p>
 <p>(b): Consider the sequence of functions: <span class="math inline">\(E_1 = [0,1], E_2 = [0,\frac{1}{2}], E_3 = [\frac{1}{2},1],E_4 = [0,\frac{1}{4}], E_5 = [\frac{1}{4},\frac{1}{2}], E_6 = [\frac{1}{2},\frac{3}{4}], E_7 = [\frac{3}{4},1]\)</span>, and so on. Then <span class="math inline">\(\lim_{n \to \infty} m(E_k) = 0\)</span> but for all <span class="math inline">\(n \in \mathbb{N}\)</span>, <span class="math inline">\(\bigcup^{\infty}_{k=n} E_k = [0,1]\)</span>. This implies that <span class="math inline">\(\limsup(E_n) = [0,1]\)</span>. Thus it may not be true that <span class="math inline">\(\lambda(\lim \sup(E_k)) = \lim \sup \lambda(E_k)\)</span>. QED</p>
@@ -521,9 +521,14 @@ f_n(x)-1=-4n^2x+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{a
 </div>
 <div id="show-that-fx-x2-sinleft-frac1x-right-where-x-neq-0-and-fx-0-where-x-0-is-in-bv-11-but-gx-x2-sin-left-frac1x2-right-where-x-neq-0-and-gx-0-where-x-0-is-not." class="section level3">
 <h3>Show that <span class="math inline">\(f(x) = x^2 \sin\left( \frac{1}{x} \right)\)</span> where <span class="math inline">\(x \neq 0\)</span> and <span class="math inline">\(f(x) = 0\)</span> where <span class="math inline">\(x = 0\)</span> is in <span class="math inline">\(BV[-1,1]\)</span>, but <span class="math inline">\(g(x) = x^2 \sin \left( \frac{1}{x^2} \right)\)</span> where <span class="math inline">\(x \neq 0\)</span> and <span class="math inline">\(g(x) = 0\)</span> where <span class="math inline">\(x = 0\)</span> is not.</h3>
-<div id="my-solution-46" class="section level4">
+<div id="my-solution-45" class="section level4">
 <h4>My Solution:</h4>
-<p><strong><em>Not yest solved</em></strong></p>
+<p>Because <span class="math inline">\(f(-x) = -f(x)\)</span>, it is sufficient to show this is true for <span class="math inline">\((0,1)\)</span> as <span class="math inline">\((-1,0)\)</span> follows from it. Well, <span class="math display">\[T.V.(f) = \int_0 ^1 |f'(x)| dx = \int_0 ^1 \frac{\left|\cos\left(\frac{1}{x}\right) - 2x \sin\left(\frac{1}{x}\right) \right| \ln(x)}{\frac{1}{x^2}} dx\]</span> Then if we let <span class="math inline">\(u = \frac{1}{x}\)</span> and <span class="math inline">\(du = \ln(x) dx\)</span>, then <span class="math display">\[T.V.(f) = \int_1 ^{\infty} \frac{\left|\cos(u) - \frac{2}{u} \sin(u)\right|}{u^2} du \leq \int_1 ^{\infty} \frac{du}{u^2} = 1 &lt; \infty\]</span> Thus the total variation is finite, thus proving that <span class="math inline">\(f(x)\)</span> is of bounded variation.</p>
+<p>Now we must show that <span class="math inline">\(g(x)\)</span> is not of bounded variation.</p>
+<p>Well, let <span class="math display">\[P = \{-1\} \cup \left[ \{ \pm \sqrt{\frac{1}{n \pi}} : n \in \mathbb{N} \} \cap [-1,1] \right] \cup \{1\}\]</span>. Hence for <span class="math inline">\(x_n, x_{n+1} \in P\)</span>, <span class="math display">\[\sum^{\infty} _{n=1} |f(x_n) - f(x_{n+1})| = \sum^{\infty} _{n=1} \left| f \left(\sqrt{\frac{1}{n \pi}} \right) - f \left( \sqrt{\frac{1}{(n+1) \pi}} \right) \right|\\
+=\sum^{\infty} _{n=1} \left| \left( \frac{1}{n \pi} \sin(n \pi) - \frac{1}{n \pi + \pi} \sin(n \pi + \pi) \right) \right|\\
+=\sum^{\infty} _{n=1} \left| \left( \frac{1}{(n+1) \pi}+ \frac{1}{n \pi} \right) \sin(n \pi) \right| \leq \frac{1}{\pi} \sum^{\infty} _{n=1}\left| \frac{2n+1}{n^2+n} \right|\]</span></p>
+<p>Notice that this is a harmonic series, thus it diverges, implying that <span class="math inline">\(V_g[0,1] \nless \infty\)</span>, thus it cannot be of bounded variation. QED</p>
 </div>
 </div>
 </div>

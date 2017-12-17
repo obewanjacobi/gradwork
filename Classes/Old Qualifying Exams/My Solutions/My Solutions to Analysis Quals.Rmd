@@ -109,7 +109,7 @@ We repeat these definitions in this pattern, giving us that $\lim_{n \to \infty}
 
 ### Prove that if $f \in L^p([0,\infty))$, $1 \leq p \leq \infty$, then $\lim_{n \to \infty} \int_0 ^{\infty} f(x) \mathrm{e}^{-nx}dx = 0$
 #### My Solution:
-Let $A = \{x| f(x) < 1\}$ and $B = \{x|f(x) \geq 1\}$. Note, since $f \in L^p$, $m(B) < \infty$. So,
+Let $A = \{x| f(x) < 1\}$ and $B = \{x|f(x) \geq 1\}$. Note, since $f \in L^p$, $m(B) < \infty$ (because $f \in L^p$, $\left( \int|f|^p \right)^{1/p} < \infty$, which implies that $m(B)$ must be finite). So,
 $$\int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int (f(x) \mathrm{e}^{-nx} \chi_A + f(x) \mathrm{e}^{-nx} \chi_B) dx$$
 where
 $$\int^{\infty} _0 f(x) \mathrm{e}^{-nx} \chi_A dx < \int^{\infty} _0 \mathrm{e}^{-x} = 1$$
@@ -310,12 +310,6 @@ by Holder's Inequality, where $\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p
 
 
 
-### Let $f \in L^1([0,1])$. Prove that $\lim_{n \to \infty} \int_0 ^1 f(x) \cos(nx) dx = 0$.
-#### My Solution:
-***Hilbert stuff, not yet completed***
-
-
-
 ### Assume that $f \in L^{\infty}([0,1])$. Prove that $f \in L^p([0,1])$ for each $1 \leq p < \infty$ and that $||f||_{\infty} = \lim_{p \to \infty} ||f||_p$.
 #### My Solution:
 To complete this proof, we will divide the problem into a group of lemmas and prove them to get the desired result.
@@ -397,7 +391,11 @@ by Holder's Inequality where $\lim_{n \to \infty} ||f_n||_p \rightarrow ||f||_p 
 
 ### Evaluate $\frac{d}{dt} \int_0 ^1 \frac{\sin(xt)}{x}dx$. Justify your computations.
 #### My Solution:
-***Not yet completed***
+Here we will use Leibniz's integral rule, stating that 
+$$\frac{d}{dt} \left( \int_a ^b f(x,t) dx \right) = \int^b _a \frac{\partial}{\partial t} f(x,t) dx$$
+Thus we find that 
+$$\frac{d}{dt} \int_0 ^1 \frac{\sin(xt)}{x}dx = \int_0 ^1 x \cdot \frac{\cos(xt)}{x} dx = \int_0 ^1 \cos(xt) dx = \frac{\sin(t)}{t}$$
+where $t > 0$. QED
 
 
 
@@ -523,7 +521,16 @@ The function $\phi(f) = \int_0 ^1 f^2$ is continuous. Thus $\phi ^{-1} ((1, \inf
 
 ### Let $(X, \rho)$ be a metric space and suppose $K$ and $F$ are nonempty disjoint subsets of $X$ with $K$ compact and $F$ closed. (a) Prove there is a $\delta >0$ such that $\rho(x,y) \geq \delta$ for all $x \in K$ and $y \in F$. (b) Show that part (a) may fail if $K$ is closed, but not compact. 
 #### My Solution:
-***Not yest solved***
+(a)
+By way of contradiction, assume for every $n$ we can find an $x_n \in K$ and $y_n \in F$ such that $\rho (x_n, y_n) < \frac{1}{n}$. Since $K$ is compact, there is a convergent subsequence $x_{n_k}$ whose limit is $x$. By the triangle inequality, $\rho(x,y_{n_k}) \leq \rho(x,x_{n_k}) + \rho(x_{n_k},y_{n_k})$. If we juggle the $\epsilon$'s around a bit, we find that $x \in F$ giving us a contradiction, thus we have proven the desired result. The problem here is that this question is not written that well in regards to our qualifying exam, so for the most part this one should be ignored. It leaves out important details of what exactly $\rho$ is. However, if you would like to check out other solutions on this, follow these links:
+
+[https://math.stackexchange.com/questions/185656/show-that-exists-delta-0-such-thatdx-y-geq-delta]
+
+[http://www.math.ucsd.edu/~benchow/F16/HW7-140A-F16-ans.pdf]  (check #8)
+
+
+(b)
+Consider an example in $\mathbb{R}^2$ with the standard metric. Take $K$ as the $x$-axis and $F$ as the graph of the expnential function $\mathrm{e}^x$, that is, $F = \{(x,y) \in \mathbb{R}^2 | y = \mathrm{e}^x\}$. These are clearly non-empty and mutually disjoint. Both $K$ and $F$ are closed, but neither is compace because they are both unbounded. It is easy then to see that their distance is zero and a stricly positive $\delta$ of the desired result does not exist. Thus we can see then that if $K$ is not compact and still closed that our proof in part (a) may not hold.
 
 
 
@@ -542,7 +549,21 @@ Consider the sequence of functions: $E_1 = [0,1], E_2 = [0,\frac{1}{2}], E_3 = [
 
 ### Show that $f(x) = x^2 \sin\left( \frac{1}{x} \right)$ where $x \neq 0$ and $f(x) = 0$ where $x = 0$ is in $BV[-1,1]$, but $g(x) = x^2 \sin \left( \frac{1}{x^2} \right)$ where $x \neq 0$ and $g(x) = 0$ where $x = 0$ is not. 
 #### My Solution:
-***Not yest solved***
+Because $f(-x) = -f(x)$, it is sufficient to show this is true for $(0,1)$ as $(-1,0)$ follows from it. Well,
+$$T.V.(f) = \int_0 ^1 |f'(x)| dx = \int_0 ^1 \frac{\left|\cos\left(\frac{1}{x}\right) - 2x \sin\left(\frac{1}{x}\right) \right| \ln(x)}{\frac{1}{x^2}} dx$$
+Then if we let $u = \frac{1}{x}$ and $du = \ln(x) dx$, then 
+$$T.V.(f) = \int_1 ^{\infty} \frac{\left|\cos(u) - \frac{2}{u} \sin(u)\right|}{u^2} du \leq \int_1 ^{\infty} \frac{du}{u^2} = 1 < \infty$$
+Thus the total variation is finite, thus proving that $f(x)$ is of bounded variation.
+
+Now we must show that $g(x)$ is not of bounded variation.
+
+Well, let 
+$$P = \{-1\} \cup \left[ \{ \pm \sqrt{\frac{1}{n \pi}} : n \in \mathbb{N} \} \cap [-1,1] \right] \cup \{1\}$$. Hence for $x_n, x_{n+1} \in P$,
+$$\sum^{\infty} _{n=1} |f(x_n) - f(x_{n+1})| = \sum^{\infty} _{n=1} \left| f \left(\sqrt{\frac{1}{n \pi}} \right) - f \left( \sqrt{\frac{1}{(n+1) \pi}} \right) \right|\\
+=\sum^{\infty} _{n=1} \left| \left( \frac{1}{n \pi} \sin(n \pi) - \frac{1}{n \pi + \pi} \sin(n \pi + \pi) \right) \right|\\
+=\sum^{\infty} _{n=1} \left| \left( \frac{1}{(n+1) \pi}+ \frac{1}{n \pi} \right) \sin(n \pi) \right| \leq \frac{1}{\pi} \sum^{\infty} _{n=1}\left| \frac{2n+1}{n^2+n} \right|$$
+
+Notice that this is a harmonic series, thus it diverges, implying that $V_g[0,1] \nless \infty$, thus it cannot be of bounded variation. QED
 
 
 
