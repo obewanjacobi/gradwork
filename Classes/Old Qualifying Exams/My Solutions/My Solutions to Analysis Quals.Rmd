@@ -3,10 +3,10 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
-  word_document:
+  html_document:
     fig_height: 4
     fig_width: 5
-  html_document:
+  word_document:
     fig_height: 4
     fig_width: 5
 ---
