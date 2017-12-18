@@ -3,6 +3,7 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
+  pdf_document: default
   html_document:
     fig_height: 4
     fig_width: 5
@@ -16,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #Prelude
-This document is written in reference to qualifying exams given at the University of Louisville in past years. These solutions are not given from the University, but of my work alone as a way to study for my own qualifying exam. If any tips or recommendations come up and you feel you should share, feel free to raise an issue on GitHub where I have this document saved and open to the public [here](https://github.com/obewanjacobi/gradwork/tree/master/Classes/Old%20Qualifying%20Exams/My%20Solutions). To see the qualifying exams for yourself, [visit this link](http://www.math.louisville.edu/GraduateFAQ/qualifiers/QualifierStudyGuides/). When referencing the Royden book, this is in reference to the *Real Analysis; 4th Edition*. Special thanks to Trevor Leach for sharing his solutions with me for reference on this document. Thank you for reading, and for every advice.
+This document is written in reference to qualifying exams given at the University of Louisville in past years. These solutions are not given from the University, but of my work alone as a way to study for my own qualifying exam. If any tips or recommendations come up and you feel you should share, feel free to raise an issue on GitHub where I have this document saved and open to the public [here](https://github.com/obewanjacobi/gradwork/tree/master/Classes/Old%20Qualifying%20Exams/My%20Solutions). To see the qualifying exams for yourself, [visit this link](http://www.math.louisville.edu/GraduateFAQ/qualifiers/QualifierStudyGuides/). When referencing the Royden book, this is in reference to the *Real Analysis; 4th Edition*. Special thanks to Trevor Leach for sharing his solutions with me for reference on this document. Thank you for reading, and for all advice.
 
 Jacob Townson
 
@@ -32,8 +33,9 @@ functions, Baire category theorem
 
 - AC and BV functions, fundamental theorem of calculus, Lebesgue differentiation theorem
 
-- 
-Hilbert spaces, Lp spaces, lp spaces, Hölder and Minkowski inequalities, completeness
+- Hilbert spaces, Lp spaces, lp spaces, Hölder and Minkowski inequalities, completeness
+
+There are a few types of problems that are consistently on exams as well, and may be good to know. These include that when asked to prove uniform convergence, using the Wierstass M-test is the easiest method; when a problem involves absolute continuity, it will often be used to imply bounded variation, which then implies that we can use the fundamental theorem of calculus; and finally, if we have two functions that are in conjugate $L^p$ spaces, Holder's inequality will help us. Using these tricks and others contained in this document should guarantee a passing score on the qualifier!
 
 
 
@@ -158,7 +160,7 @@ Thus we have proven the desired result. QED
 
 ### Let $C \subset [0,1]$ be a closed set. Prove that $\chi_C$ is Riemann integrable iff $\partial C$ has Lebesgue measure zero.
 #### My Solution:
-Assume that $\partial C$ has Lesbegue mesure zero. This implies that $m(\{x| \lim_{x \to a} f(x) \neq f(a)\}) = 0$. Thus the Riemann integral exists and agrees with the Lesbesgue integral.
+Assume that $\partial C$ has Lesbegue measure zero. This implies that $m(\{x| \lim_{x \to a} f(x) \neq f(a)\}) = 0$. Thus the Riemann integral exists and agrees with the Lebesgue integral.
 
 Now assume that $\chi_C$ is Riemann integrable. This is true iff the Lesbegue integral exists and $m(\{x|\lim_{x \to a} f(x) \neq f(a)\}) = 0$. So $\chi_C$ is discontinuous at its boundary points, which implies that $m(\partial C) = 0$. QED
 
@@ -168,7 +170,7 @@ Now assume that $\chi_C$ is Riemann integrable. This is true iff the Lesbegue in
 #### My Solution:
 ($b \implies a$): Given $G$ is a $G_{\delta}$ set, $G$ must then be Borel measurable. Thus it is also Lebesgue measurable. $N$ must be Lebesgue measurable as well since the Lebesgue $\sigma$-algebra is complete. Thus $S = G-N$ is Lebesgue measurable.
 
-($a \implies b$): This follows directly from a proposition stating that if $A \subset [0,1]$ is a Lebesgue measurable set, and $m$ is a Lebesgue measure, then there exists a set $H$ which cintains $A$ that is the countable intersection of a decreasing sequence of open sets and $m(H-A)=0$. QED
+($a \implies b$): This follows directly from a proposition stating that if $A \subset [0,1]$ is a Lebesgue measurable set, and $m$ is a Lebesgue measure, then there exists a set $H$ which contains $A$ that is the countable intersection of a decreasing sequence of open sets and $m(H-A)=0$. QED
 
 
 
@@ -288,13 +290,13 @@ If we fix $x \in (-1,1)$, this implies that $x^n < \epsilon$ by our previous poi
 #### My Solution:
 Let $\{q_i\}^{\infty}_{i=1}$ represent the rationals in $\mathbb{Q} \cap [0,1]$. For each $n$ define $I_n$ as an interval containing $q_n$, $m(I_n) < \frac{1}{4\cdot 2^n}$ and $I_n \subset[0,1]$. Let $G = \bigcup^{\infty} _{i=1} I_n$ with $$m(G) = m \left(\bigcup ^{\infty}_{i=1} I_n \right) \leq \sum^{\infty} _{i=1} m(I_n)$$
 $$<\sum^{\infty}_{i=1} \frac{1}{4 \cdot 2^n} = \frac{1}{4} \cdot \frac{1}{1-(1/2)} = \frac{1}{2}$$
-Since $G$ contains the rationals on $[0,1]$, it is also dense on $[0,1]$. $G$ is open because it is the countable union of open intervals on $[0,1]$. let $I \subset [0,1]$. It must contain a rational, which implies that it intersects any $I_n$ nontrivially, thus $m(I \cap G) > 0$. Thus $G$ is a dense open set on $[0,1]$ such that the measure of $G$ is less than $1$ and intersects any interval of $[0,1]$ nontrivially. QED
+Since $G$ contains the rationals on $[0,1]$, it is also dense on $[0,1]$. $G$ is open because it is the countable union of open intervals on $[0,1]$. let $I \subset [0,1]$. It must contain a rational, which implies that it intersects any $I_n$ non-trivially, thus $m(I \cap G) > 0$. Thus $G$ is a dense open set on $[0,1]$ such that the measure of $G$ is less than $1$ and intersects any interval of $[0,1]$ non-trivially. QED
 
 
 
 ### Is $L^p([a,b])$ separable, where $1<p< \infty$?
 #### My Solution:
-Yes! First note that seperable means that it contains a countable number of dense subsets.
+Yes! First note that separable means that it contains a countable number of dense subsets.
 
 Let $S[a,b] \subset L^p([a,b])$ be step functions on $[a,b]$ and let $S_{\mathbb{Q}}[a,b] \subset S[a,b]$ be step functions of $[a,b]$ with rational endpoints. Since $\mathbb{Q}$ is dense in $\mathbb{R}$, $S_{\mathbb{Q}}[a,b]$ is dense in $S[a,b]$ thus it's dense in $L^p([a,b])$. QED
 
@@ -328,7 +330,7 @@ To complete this proof, we will divide the problem into a group of lemmas and pr
 *Proof*: $|f| \leq ||f||_{\infty}$ a.e. This implies that $|f|^p \leq ||f||_{\infty}^p$, which implies $(\int_{[0,1]} |f|^p)^{1/p} \leq (\int_{[0,1]} ||f||^p _{\infty}) ^{1/p} = ||f||_{\infty} < \infty$. Hence $\lim \sup ||f||_p \leq ||f||_{\infty}$.
 
 **Lemma 4**:$||f||_{\infty} \leq \liminf ||f||_p$
-*Proof*: Let $t \in [0,m = ||f||_{\infty})$. Then $\int |f| = \int _{\{|f| < t\}} |f| + \int _{\{|f| \geq t \}} |f|$. Then $\int |f|^p \geq \int_{\{|f| < 1\}} |f|^p \geq \int_{\{|t| < 1\}} t^p$. Hence $(\int|f|^p)^{(1/p)} \geq (\int_{\{|f| <t\}} t^p)^{1/p} = t \cdot m(\{|f| < t\})^{1/p}$. This implies that $\liminf ||f||_p \geq \liminf t \cdot m(\{|f| < t\})^{1/p} = t \cdot 1$. Thus $\liminf ||f||_p \geq t$ for all $t \in [0, ||f||_{\infty})$. It follows that by our claims then that \lim \sup||f||_p \leq ||f||_{\infty} \leq \liminf ||f||_p$. Thus we have proven the desired result. QED
+*Proof*: Let $t \in [0,m = ||f||_{\infty})$. Then $\int |f| = \int _{\{|f| < t\}} |f| + \int _{\{|f| \geq t \}} |f|$. Then $\int |f|^p \geq \int_{\{|f| < 1\}} |f|^p \geq \int_{\{|t| < 1\}} t^p$. Hence $(\int|f|^p)^{(1/p)} \geq (\int_{\{|f| <t\}} t^p)^{1/p} = t \cdot m(\{|f| < t\})^{1/p}$. This implies that $\liminf ||f||_p \geq \liminf t \cdot m(\{|f| < t\})^{1/p} = t \cdot 1$. Thus $\liminf ||f||_p \geq t$ for all $t \in [0, ||f||_{\infty})$. It follows that by our claims then that $\lim \sup||f||_p \leq ||f||_{\infty} \leq \liminf ||f||_p$. Thus we have proven the desired result. QED
 
 
 
@@ -354,7 +356,7 @@ $E = \bigcup^{\infty} _{n = 1} E \cap [n, n+1]$. This implies that $m(E) = \lim_
 #### My Solution:
 $$\sum^{\infty}_{n=1} \int_X |f_n| d \mu = \lim_{k \to \infty} \sum^k _{n=1} \int_X |f_n| d \mu = \lim_{k \to \infty} \int_X \sum^k _{n =1} |f_n| d \mu$$
 $$ = \int_X \lim_{k \to \infty} \sum^k _{n=1} |f_n| d \mu = \int_X \sum^{\infty} _{n =1} |f_n| d \mu < \infty$$
-by the M.C.T. since $\sum^k _{i=1} |f_n|$ is increasing. Thus $|f_n| \rightarrow 0$ almost everywhere because it's integrable when $n$ approachest $\infty$. Hence $f_n \rightarrow 0$ almost everywhere. QED 
+by the M.C.T. since $\sum^k _{i=1} |f_n|$ is increasing. Thus $|f_n| \rightarrow 0$ almost everywhere because it's integrable when $n$ approaches $\infty$. Hence $f_n \rightarrow 0$ almost everywhere. QED 
 
 
 
@@ -431,7 +433,7 @@ $$||\chi_{(0,t_1)} - \chi_{(0,t_2)}||_{\infty} = 1$$
 Without loss of generality, $t_1 < t_2$, then $\chi_{(0,t_1)} - \chi_{(0,t_2)} = 0,1,0$ on $(0,t_1),(t_1,t_2),(t_2,1)$ respectively. This is where we get the above equality, as 
 $$\left\|\chi_{(0,t_2)} - \chi_{(0,t_1)}\right\|_\infty = \sup_{x\in[0,1]}\left|\chi_{(0,t_2)}(x) - \chi_{(0,t_1)}(x)\right| = 1$$
 
-Consider $\left\{ B_{\left(\chi_{(0,t)}, \frac{1}{3} \right)} \right\}$ which is an uncountable collection of disjoing balls. And given any dense set $S \subset L^{\infty}([0,1])$ has elements in each ball by definition of density. Thus $S$ is uncountable. QED
+Consider $\left\{ B_{\left(\chi_{(0,t)}, \frac{1}{3} \right)} \right\}$ which is an uncountable collection of disjoint balls. And given any dense set $S \subset L^{\infty}([0,1])$ has elements in each ball by definition of density. Thus $S$ is uncountable. QED
 
 
 
@@ -462,7 +464,7 @@ Thus we have proven the desired result. QED
 We know $||f||_1 = \int |f|^p$ for all $p \in [1, \infty)$. Suppose $m(\{x|f > 1\}) \neq 0$. Pick $\epsilon \in (1, \infty)$ such that $1 < \epsilon \leq f < \infty$. Then $$||f||_1 = \int|f|^p \geq \int_{\{1 < |f|\}} |f|^p \geq \int \epsilon ^p \rightarrow \infty$$
 since $\epsilon > 1$. 
 
-Cosider $m(\{x | 0 < f<1\})$, which we claim is equal to zero. To prove this, pick $0< |f| \leq \epsilon < 1$. Then 
+Consider $m(\{x | 0 < f<1\})$, which we claim is equal to zero. To prove this, pick $0< |f| \leq \epsilon < 1$. Then 
 $$||f||_1 = \int|f|^p \leq \int_{\{0 < |f| \leq \epsilon < 1\}} \epsilon^p \to 0$$ as $p \to \infty$. Hence $f = 0$ or $1$ almost everywhere. If we use this to define $S = \{x| f(x) =1\}$, then $f = \chi_S$ almost everywhere. QED
 
 
@@ -491,7 +493,7 @@ where
 $$\mu \left(\left\{f > \frac{1}{n}\right\} \right) \leq \int \frac{|f|}{\frac{1}{(1/n)}}d \mu \leq n \cdot \int|f| < \infty$$
 since $f \in L^1$ and by Chebyshev's Inequality.
 
-Now assume $X$ is $\sigma$-finite. We have $X = \bigcup^{\infty}_{i = 1} A_n$, a union of disjoint sets wuth $\mu (A_n < \infty)$. Define $f = \sum^{\infty} _{n=1} a_n$ where $a_n = \frac{1}{\mu (A_n) \cdot n^2} \cdot \chi_{A_n}$ when $\mu(A_n) > 0$ and $a_n = \frac{1}{n^2} \chi_{A_n}$ when $\mu(A_n) = 0$. Then
+Now assume $X$ is $\sigma$-finite. We have $X = \bigcup^{\infty}_{i = 1} A_n$, a union of disjoint sets with $\mu (A_n < \infty)$. Define $f = \sum^{\infty} _{n=1} a_n$ where $a_n = \frac{1}{\mu (A_n) \cdot n^2} \cdot \chi_{A_n}$ when $\mu(A_n) > 0$ and $a_n = \frac{1}{n^2} \chi_{A_n}$ when $\mu(A_n) = 0$. Then
 $$\int f = \sum^{\infty}_{n=1} \int \frac{1}{\mu(A_n) \cdot n^2} \cdot \chi_{A_n} = \sum^{\infty}_{n=1} \frac{1}{\mu(A_n) \cdot n^2} \int \chi_{A_n} = \sum^{\infty}_{n=1} \frac{1}{n^2} < \infty$$
 Thus proving the desired result. QED
 
@@ -500,15 +502,19 @@ Thus proving the desired result. QED
 ### (a) Find a sequence $f_n: [0,1] \rightarrow \mathbb{R}$ such that $\int_0 ^1 |f_n(x)| = 2$ for all $n \in \mathbb{N}$ and $\lim_{n \to \infty} f_n(x) = 1$ for all $x \in [0,1]$. (b) If the $f_n$ are as in part (a), then prove $\lim_{n \to \infty} \int_0 ^1 |f_n(x) -1| dx = 1$. 
 #### My Solution:
 (a)
-$f_n(x):=4n^2x+1 \text{ for }x\in \left[0,\frac{1}{2n}\right]\\
-f_n(x):=-4n^2x+1+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=1\text{ otherwise}.$
+$f_n(x):=4n^2x+1 \text{ for }x\in \left[0,\frac{1}{2n}\right]$
+
+
+$f_n(x):=-4n^2x+1+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=1\text{ otherwise}.$
 
 (b)
-Given $f_n$ as defined above, we can simply integrate to get this answer. So, given $f_n$ defined as in part (a), $$f_n(x) -1 =4n^2x \text{ for }x\in \left[0,\frac{1}{2n}\right]\\
-f_n(x)-1=-4n^2x+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=0\text{ otherwise}.$$
+Given $f_n$ as defined above, we can simply integrate to get this answer. So, given $f_n$ defined as in part (a), $$f_n(x) -1 =4n^2x \text{ for }x\in \left[0,\frac{1}{2n}\right]$$
+
+$$f_n(x)-1=-4n^2x+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=0\text{ otherwise}.$$
 Thus 
-$$\lim_{n \to \infty} \int_0 ^1 |f_n -1| dx = \lim_{n \to \infty} \left[ \int_0 ^{1/2n} 4n^2x dx + \int_{1/2n} ^ {1/n} (-4n^2x+4n)dx \right]\\
-= \lim_{n \to \infty} \left[ \frac{2n^2}{4n^2} -0 - \frac{2n^2}{n^2} + \frac{4n}{n} + \frac{2n^2}{4n^2} - \frac{4n}{2n} \right] = \lim_{n \to \infty} 1 = 1$$ QED
+$$\lim_{n \to \infty} \int_0 ^1 |f_n -1| dx = \lim_{n \to \infty} \left[ \int_0 ^{1/2n} 4n^2x dx + \int_{1/2n} ^ {1/n} (-4n^2x+4n)dx \right]$$
+
+$$= \lim_{n \to \infty} \left[ \frac{2n^2}{4n^2} -0 - \frac{2n^2}{n^2} + \frac{4n}{n} + \frac{2n^2}{4n^2} - \frac{4n}{2n} \right] = \lim_{n \to \infty} 1 = 1$$ QED
 
 
 
@@ -530,7 +536,7 @@ By way of contradiction, assume for every $n$ we can find an $x_n \in K$ and $y_
 
 
 (b)
-Consider an example in $\mathbb{R}^2$ with the standard metric. Take $K$ as the $x$-axis and $F$ as the graph of the expnential function $\mathrm{e}^x$, that is, $F = \{(x,y) \in \mathbb{R}^2 | y = \mathrm{e}^x\}$. These are clearly non-empty and mutually disjoint. Both $K$ and $F$ are closed, but neither is compace because they are both unbounded. It is easy then to see that their distance is zero and a stricly positive $\delta$ of the desired result does not exist. Thus we can see then that if $K$ is not compact and still closed that our proof in part (a) may not hold.
+Consider an example in $\mathbb{R}^2$ with the standard metric. Take $K$ as the $x$-axis and $F$ as the graph of the exponential function $\mathrm{e}^x$, that is, $F = \{(x,y) \in \mathbb{R}^2 | y = \mathrm{e}^x\}$. These are clearly non-empty and mutually disjoint. Both $K$ and $F$ are closed, but neither is compact because they are both unbounded. It is easy then to see that their distance is zero and a strictly positive $\delta$ of the desired result does not exist. Thus we can see then that if $K$ is not compact and still closed that our proof in part (a) may not hold.
 
 
 
@@ -559,9 +565,11 @@ Now we must show that $g(x)$ is not of bounded variation.
 
 Well, let 
 $$P = \{-1\} \cup \left[ \{ \pm \sqrt{\frac{1}{n \pi}} : n \in \mathbb{N} \} \cap [-1,1] \right] \cup \{1\}$$. Hence for $x_n, x_{n+1} \in P$,
-$$\sum^{\infty} _{n=1} |f(x_n) - f(x_{n+1})| = \sum^{\infty} _{n=1} \left| f \left(\sqrt{\frac{1}{n \pi}} \right) - f \left( \sqrt{\frac{1}{(n+1) \pi}} \right) \right|\\
-=\sum^{\infty} _{n=1} \left| \left( \frac{1}{n \pi} \sin(n \pi) - \frac{1}{n \pi + \pi} \sin(n \pi + \pi) \right) \right|\\
-=\sum^{\infty} _{n=1} \left| \left( \frac{1}{(n+1) \pi}+ \frac{1}{n \pi} \right) \sin(n \pi) \right| \leq \frac{1}{\pi} \sum^{\infty} _{n=1}\left| \frac{2n+1}{n^2+n} \right|$$
+$$\sum^{\infty} _{n=1} |f(x_n) - f(x_{n+1})| = \sum^{\infty} _{n=1} \left| f \left(\sqrt{\frac{1}{n \pi}} \right) - f \left( \sqrt{\frac{1}{(n+1) \pi}} \right) \right|$$
+
+$$=\sum^{\infty} _{n=1} \left| \left( \frac{1}{n \pi} \sin(n \pi) - \frac{1}{n \pi + \pi} \sin(n \pi + \pi) \right) \right|$$
+
+$$=\sum^{\infty} _{n=1} \left| \left( \frac{1}{(n+1) \pi}+ \frac{1}{n \pi} \right) \sin(n \pi) \right| \leq \frac{1}{\pi} \sum^{\infty} _{n=1}\left| \frac{2n+1}{n^2+n} \right|$$
 
 Notice that this is a harmonic series, thus it diverges, implying that $V_g[0,1] \nless \infty$, thus it cannot be of bounded variation. QED
 
@@ -583,6 +591,56 @@ Notice that this is a harmonic series, thus it diverges, implying that $V_g[0,1]
 
 # Extra Problems
 
+
+
+
+### Let $\mu^*$ be an outer measure on a set $X$. Prove that if $\{E_k\}$ is a sequence of subsets of $X$ and $\sum^{\infty} _{k=1} \mu ^* (E_k) < \infty$, then $\mu^*(\bigcap^{\infty} _{k = 1} \bigcup^{\infty} _{n=k} E_n) = 0$
+#### My Solution:
+Since $\sum^{\infty} _{k=1} \mu^* (E_k) < \infty$, for any $\epsilon > 0$ there exists an $N$ such that $\sum^{\infty} _{k=N} \mu^* (E_k) < \epsilon$ from sub-additivity. Thus
+$$\mu^*\left( \bigcup^{\infty} _{n=N} E_n \right) \leq \sum^{\infty} _{k=N} \mu^* (E_k) < \epsilon$$
+But by monotonicity, 
+$$\mu^* \left( \bigcap^{\infty} _{k=1} \bigcup^{\infty} _{n=k} E_n \right) \leq \mu^* \left( \bigcup^{\infty} _{n=N} E_n \right) < \epsilon$$
+Since $\epsilon$ is arbitrary, we see that $\mu^* \left( \bigcap^{\infty} _{k=1} \bigcup^{\infty} _{n=k} E_n \right) = 0$. QED
+
+
+
+### Let $(X, \mathcal{A}, \mu)$ be a measure space and let $f:X \rightarrow (0,\infty)$ be measurable. Prove that $1/f$ is measurable.
+#### My Solution:
+Let $g = \frac{1}{f}$ and note that for $a \leq 0$, $\{g>a\} = X$ which is in $\mathcal{A}$. So assume $a>0$, and note that $\{g>a\}$ is equivalent to $\{0<f<\frac{1}{a}\}$. But since $\frac{1}{a} \in \mathbb{R}$ this is also a measurable set. QED
+
+
+
+### Let $\mu_n$ and $\mu$ be finite measures on a measurable space $(X, \mathcal{A})$ with the property that $\mu_n(A) \rightarrow \mu(A)$ for all $A \in \mathcal{A}$. Prove that $\int_X f d\mu_n \to \int_X f d\mu$ for every bounded measurable function $f:X \rightarrow \mathbb{R}$.
+#### My Solution:
+Let $f$ be a simple non-negative measurable function. Then 
+$$\lim_{n \to \infty} \int_X f d\mu_n = \lim_{n \to \infty} \int_X \sum^L _{i=1} a_i \chi_{A_i}(x) d \mu_n = \lim_{n \to \infty} \sum^L _{i=1} a_i \mu_n(A_i) = \sum^L _{i=1} a_i \mu(A_i) = \int_X f d\mu$$ QED
+
+
+
+### Suppose that $f \in L^1(\mathbb{R})$ with Lebesgue measure. Prove that $\lim_{n \to \infty} \frac{1}{2n} \int_{-n} ^n fdm = 0$.
+#### My Solution:
+We note that $\left| \frac{1}{2n} f(x) \chi_{\{|x| \leq n\}}(x) \right| \leq |f(x)|$ for $x \in \mathbb{R}$. Since $f \in L^1$, we may apply the DCT with $|f(x)|$ as the majorant. Thus
+$$\lim_{n \to \infty} \int_{\mathbb{R}} \frac{1}{2n} f(x) \chi_{\{|x| \leq n\}}dm = \int_{\mathbb{R}} \lim_{n \to \infty} \frac{f(x)}{2n} \chi_{\{|x| \leq n\}}dm = \int_{\mathbb{R}} 0dm = 0$$. QED
+
+
+
+### Let $\mu$ and $\nu$ be finite (positive) measures on a measurable space $(X, \mathcal{A})$. Define $\rho = \mu - \nu$. Prove that $|\rho|(E) \leq \mu(E) + \nu(E)$ for every set $E \in \mathcal{A}$.
+#### My Solution:
+Let $P_{\rho}$ and $N_{\rho}$ be a Hahn decomposition with respect to $\rho$. So
+$$|\rho|(A) = \rho(A \cap P_{\rho}) - \rho(A \cap N_{\rho}) = \mu(A \cap P_{\rho}) - \nu(A \cap P_{\rho}) - \mu(A \cap N_{\rho}) + \nu(A \cap N_{\rho})$$
+But $\mu(A) + \nu(A) = \mu(A \cap P_{\rho}) + \nu(A \cap P_{\rho}) + \mu(A \cap N_{\rho}) + \nu(A \cap N_{\rho})$. Since all of these terms are non-negative and finite by comparisons of signs, we can clearly see that $|\rho|(E) \leq \mu(E) + \nu(E)$ for all $E \in \mathcal{A}$. QED
+
+
+
+### Let $V$ be a normed vector space and let $L:V \rightarrow \mathbb{R}$ be linear. Define what is meant by $||L||$ and prove that $||L|| < \infty$ if and only if $L$ is continuous.
+#### My Solution:
+First off, $||L|| = \sup_{||V|| \leq 1} \{|L(V)|\}$.
+
+Now we just need to prove that $||L||< \infty$ implies continuity, or that if it's not continuous that $||L|| = \infty$. Let $X \in V$ be such that there exists $\epsilon > 0$ such that in any $B(x,r_n)$ there exists $y_n$ such that 
+$$|L(x)-L(y_n)| = |L(x-y_n)| > \epsilon$$
+This implies that $||L|| \geq \frac{\epsilon}{r_n}$. Take $r_n' = \left( \frac{1}{2} \right)^n$. Clearly, $||L||$ is unbounded here. 
+
+Now to prove that continuous implies bounded. Let $\epsilon > 0$, then there exists a $\delta > 0$ such that $y \in B(x, \delta)$ so that $|L(x) - L(y)| < \epsilon$. We see $\left| L \left(\frac{x-y}{\delta} \right) \right| < \frac{\epsilon}{\delta}$ for all $y \in B(x, \delta)$. Since any $v \in B(0,1)$ can be expressed as $\frac{x-y}{\delta}$, we then see our desired result, that $\sup_{||v||\leq 1} |L(v)| < \frac{\epsilon}{\delta}$. QED
 
 
 
@@ -682,7 +740,7 @@ $$c=x_0 < x_1 < x_2 < ... < x_{n-1} < x_n = d$$
 ### Gordon Chapter 4 (Differentiation)
 
 - Let $I$ be an interval, let $f: I \to \mathbb{R}$, and let $c \in I$. The function $f$ id **differentiable** at $c$ provided that the limit 
-$$\lim_{v \to c} \frac{f(v) - f(c)}{v-c}$$ exists. The **derivative** of $f$ at $c$ is the value of the prementioned limit denoted by $f'(c)$.
+$$\lim_{v \to c} \frac{f(v) - f(c)}{v-c}$$ exists. The **derivative** of $f$ at $c$ is the value of the aforementioned limit denoted by $f'(c)$.
 
 - **Rolle's Theorem**: Let $f:[a,b] \to \mathbb{R}$ be continuous on $[a,b]$ and differentiable on $(a,b)$. If $f(a) = f(b)$, then there exists a point $c \in (a,b)$ such that $f'(c) = 0$.
 
@@ -737,7 +795,7 @@ $$\sum^{\infty}_{k=0} ar^k = \frac{a}{1-r}$$
 
 - The $p$-series $\sum^{\infty}_{k=1} \frac{1}{k^p}$ converges if $p > 1$ and diverges if $p \leq 1$.
 
-- Let $\sum^{\infty}_{k=1} a_k$ be a series of real numbers. If ther series $\sum^{\infty}_{k=1} |a_k|$ converges, then so does $\sum^{\infty}_{k=1} a_k$.
+- Let $\sum^{\infty}_{k=1} a_k$ be a series of real numbers. If the series $\sum^{\infty}_{k=1} |a_k|$ converges, then so does $\sum^{\infty}_{k=1} a_k$.
 
 - Rearrangement stuff is cool, but unnecessary for this study guide.
 
@@ -790,7 +848,7 @@ $$\sum^{\infty}_{k=0} ar^k = \frac{a}{1-r}$$
 ## Graduate Notes/Royden Book
 
 ### Royden Chapter 1 (Sets, Sequences, and Functions)
-- A nonepmty set $E$ of real numbers is said to be **bounded above** provided that there is a real number $b$ such that $x \leq b$ for all $x \in E$. $b$ is known as an upper bound for $E$. We define bounded below similarly.
+- A nonempty set $E$ of real numbers is said to be **bounded above** provided that there is a real number $b$ such that $x \leq b$ for all $x \in E$. $b$ is known as an upper bound for $E$. We define bounded below similarly.
 
 - **The Completeness Axiom**: Let $E$ be a nonempty set of real numbers that is bounded above. Then among the set of upper bounds for $E$ there is a smallest, or least, upper bound.
 
@@ -831,7 +889,7 @@ $$|a+b| \leq |a| + |b|$$
 
 - A collection of sets $\{E_{\lambda}\}_{\lambda \in \Lambda}$ is said to be a **cover** of a set $E$ provided $E \subseteq \cup_{\lambda \in \Lambda} E_{\lambda}$. By a subcover of a cover of $E$ we mean a subcollection of the cover that itself also is a cover of $E$. If each set $E_{\lambda}$ in a cover is open, then we call $\{E_{\lambda}\}_{\lambda \in \Lambda}$ an **open cover** of $E$. If the cover $\{E_{\lambda}\}_{\lambda \in \Lambda}$ contains only a finite number of sets, we call it a **finite cover**. 
 
-- Let $F$ be a closed and bounded set of real numbers. THen every open cover of $F$ has a finite subcover.
+- Let $F$ be a closed and bounded set of real numbers. Then every open cover of $F$ has a finite subcover.
 
 - We say that a countable collection of sets $\{E_n\}^{\infty}_{n=1}$ is **descending** or **nested** provided that $E_{n+1} \subseteq E_n$ for every natural number $n$. It is said to be **ascending** provided $E_n \subseteq E_{n+1}$ for every natural number $n$.
 
@@ -952,13 +1010,13 @@ $$\phi_{\epsilon} \leq f \leq \psi_{\epsilon}; 0 \leq \psi_{\epsilon} - \phi_{\e
 
 - An extended real-valued function $f$ on a measurable set $E$ is measurable iff there is a sequence $\{\phi_n\}$ of simple functions on $E$ which converges pointwise on $E$ to $f$ and has the property that $|\phi_n| \leq |f|$ on $E$ for all $n$. If $f$ is nonnegative, we may choose $\{\phi_n\}$ to be increasing
 
-- **Egoroff's Theorem**: Assume $E$ has finite measure. Let $\{f_n\}$ be a sequence of measurable functions on $E$ that converges pointiwse on $E$ to the real-valued function $f$. THen for all $\epsilon > 0$, there is a closed set $F$ contained in $E$ for which $\{f_n\} \rightarrow f$ uniformly on $F$ and $m(E$~$F) < \epsilon$
+- **Egoroff's Theorem**: Assume $E$ has finite measure. Let $\{f_n\}$ be a sequence of measurable functions on $E$ that converges pointiwse on $E$ to the real-valued function $f$. Then for all $\epsilon > 0$, there is a closed set $F$ contained in $E$ for which $\{f_n\} \rightarrow f$ uniformly on $F$ and $m(E$~$F) < \epsilon$
 
 - Under the assumptions of Egoroff's Thm, for all $\nu > 0$ and $\delta > 0$, there is a measurable subset $A$ of $E$ and an index $N$ for which $|f_n - f| < \nu$ on $A$ for all $n \geq N$ and $m(E$~$A) < \delta$.
 
 - Let $f$ be a simple function defined on $E$. Then for each $\epsilon > 0$, there is a continuous function $g$ on $\mathbb{R}$ and a closed set $F$ contained in $E$ for which $f=g$ on $F$ and $m(E$~$F) < \epsilon$
 
-- Let $f$ be a real-valued measurable function on $E$. Then for all $\epsilon > 0$, there is a continuous function $g$ on $\mathbb{R}$ amd a closed set $F$ contained in $E$ for which $f=g$ on $F$ and $m(E$~$F) < \epsilon$
+- Let $f$ be a real-valued measurable function on $E$. Then for all $\epsilon > 0$, there is a continuous function $g$ on $\mathbb{R}$ and a closed set $F$ contained in $E$ for which $f=g$ on $F$ and $m(E$~$F) < \epsilon$
 
 ### Royden Chapter 4 (Integration)
 
@@ -974,11 +1032,11 @@ where $P$ is a partition of $[a,b]$.
 
 - If the two above mentioned integrals are equal, then we say that $f$ is **Riemann integrable** over $[a,b]^2$.
 
-- For a simple function $\psi$ defined on a set og finite measure $E$, we define the integral of $\psi$ over $E$ by
+- For a simple function $\psi$ defined on a set of finite measure $E$, we define the integral of $\psi$ over $E$ by
 $$\int_E \psi = \sum_{i=1}^n a_i \times m(E_i)$$
 where $\psi = \sum_{i=1}^n a_i \times \chi_{E_i}$ and each $E_i = \{x \in E| \psi(x) = a_i\}$
 
-- Let $\{E_i\}_{i=1}^n$ be a finite disjoint collection of measurable subsets of a set of finite meausre $E$. For $1 \leq i \leq n$, let $a_i$ be a real number. If $\phi = \sum_{i=1}^n a_i \times \chi_{E_i}$ on $E$, then 
+- Let $\{E_i\}_{i=1}^n$ be a finite disjoint collection of measurable subsets of a set of finite measure $E$. For $1 \leq i \leq n$, let $a_i$ be a real number. If $\phi = \sum_{i=1}^n a_i \times \chi_{E_i}$ on $E$, then 
 $$\int_E \phi = \sum_{i=1}^n a_i \times m(E_i)$$
 
 - **Linearity and Monotonicity of Integration**: Let $\phi$ and $\psi$ be simple functions defined on a set of finite measure $E$. Then for any $\alpha$ and $\beta$,
@@ -986,18 +1044,18 @@ $$\int_E (\alpha \phi + \beta \psi) = \alpha \int_E \phi + \beta \int_E \psi$$
 Moreover, if $\phi \leq \psi$ on $E$, then
 $$\int_E \phi \leq \int_E \psi$$
 
-- A bounded function $f$ ona domain $E$ of finite measure is said to be **Lebesgue integrable** over $E$ provided its upper and lower Lebesgue integrals over $E$ are equal. The common value of the upper and lower integrals is called the **Lebesgue integral**.
+- A bounded function $f$ on a domain $E$ of finite measure is said to be **Lebesgue integrable** over $E$ provided its upper and lower Lebesgue integrals over $E$ are equal. The common value of the upper and lower integrals is called the **Lebesgue integral**.
 
 - Let $f$ be a bounded function defined on the closed, bounded interval $[a,b]$. If $f$ is Riemann integrable over $[a,b]$, then it is Lebesgue integrable over $[a,b]$ and the two integrals are equal.
 
-- Let $f$ be a bounded measurable function on a set of finite meausre $E$. Then $f$ is integrable over $E$.
+- Let $f$ be a bounded measurable function on a set of finite measure $E$. Then $f$ is integrable over $E$.
 
 - Let $f$ and $g$ be bounded measurable functions on a set of finite measure $E$. Then for any $\alpha$ and $\beta$,
 $$\int_E (\alpha f + \beta g) = \alpha \int_E f + \beta \int_E g$$
 Moreover, if $f \leq g$ on $E$, then
 $$\int_E f \leq \int_E g$$
 
-- Let $f$ be a bounded measurable function on a set of finite measure $E$. Suppose $A$ and $B$ are disjoint meausrable subsets of $E$. Then
+- Let $f$ be a bounded measurable function on a set of finite measure $E$. Suppose $A$ and $B$ are disjoint measurable subsets of $E$. Then
 $$\int_{A \cup B} f = \int_A f + \int_B f$$
 
 - Let $f$ be a bounded measurable function on a set of finite measure $E$. Then,
@@ -1028,7 +1086,7 @@ $$\lim_{n \to \infty} \int_E f_n = \int_E f$$
 - A measurable function $f$ on $E$ is said to be **integrable** over $E$ provided $\int_E |f| < \infty$. When this is so, we define the integral by 
 $$\int_E f = \int_E f^+ - \int_E f^-$$
 
-- Let $f$ be integrable over $E$. THen $f$ is finite a.e. on $E$ and $\int_E f = \int_{E/E_0} f$ if $E_0 \subseteq E$ such that $m(E_0) = 0$.
+- Let $f$ be integrable over $E$. Then $f$ is finite a.e. on $E$ and $\int_E f = \int_{E/E_0} f$ if $E_0 \subseteq E$ such that $m(E_0) = 0$.
 
 - **The Integral Comparison Test**: Let $f$ be a measurable function on $E$. Suppose there is a nonnegative function $g$ that is integrable over $E$ and dominates $f$ in the sense that $|f| \leq g$ on $E$. Then $f$ is integrable over $E$ and
 $$\left| \int_E f \right| \leq \int_E |f|$$
@@ -1047,7 +1105,7 @@ $$\lim_{n \to \infty} \int_E f_n = \int_E f$$
 
 - Let $E$ be a set of finite measure and $\delta > 0$. Then $E$ is the disjoint union of a finite collection of sets, each of which has measure less than $\delta$.
 
-- A family $\mathcal{F}$ of measuable functions on $E$ is said to be **uniformly integrable** over $E$ provided for each $\epsilon > 0$, there is a $\delta > 0$ such that for each $f \in \mathcal{F}$, if $A \subseteq E$ is measurable and $m(A) < \delta$, then $\int_A |f| < \epsilon$.
+- A family $\mathcal{F}$ of measurable functions on $E$ is said to be **uniformly integrable** over $E$ provided for each $\epsilon > 0$, there is a $\delta > 0$ such that for each $f \in \mathcal{F}$, if $A \subseteq E$ is measurable and $m(A) < \delta$, then $\int_A |f| < \epsilon$.
 
 - Let $\{f_n\}_{k=1} ^n$ be a finite collection of functions, each of which is integrable over $E$. Then $\{f_n\}_{k=1} ^n$ is uniformly integrable.
 
@@ -1056,7 +1114,7 @@ $$\lim_{n \to \infty} \int_E f_n = \int_E f$$
 
 - Let $f$ be a bounded function on a set of finite measure $E$. Then $f$ is Lebesgue integrable over $E$ iff it is measurable.
 
-- Let $f$ be a bounded function on the closed, bounded interval of $[a,b]$. THen $f$ is Riemann integrable over $[a,b]$ iff the set of points in $[a,b]$ at which $f$ fails to be continuous has measure zero.
+- Let $f$ be a bounded function on the closed, bounded interval of $[a,b]$. Then $f$ is Riemann integrable over $[a,b]$ iff the set of points in $[a,b]$ at which $f$ fails to be continuous has measure zero.
 
 ### Royden Chapter 6 (Differentiation)
 
@@ -1134,7 +1192,7 @@ This is known as **Holder's Inequality**.
 - Let $E$ be a measurable set and $1 \leq p < \infty$. If the functions $f$ and $g$ belong to $L^p(E)$, then so does their sum $f+g$ and moreover,
 $$||f+g||_p \leq ||f||_p + ||g||_p$$
 
-- **Cauchy-Schwarz Inequality**: Let $E$ be a maeasurable set and $f$ and $g$ measurable functions on $E$ for which $f^2$ and $g^2$ are integrable over $E$. Then their product $f \cdot g$ is also integrable over $E$ and 
+- **Cauchy-Schwarz Inequality**: Let $E$ be a measurable set and $f$ and $g$ measurable functions on $E$ for which $f^2$ and $g^2$ are integrable over $E$. Then their product $f \cdot g$ is also integrable over $E$ and 
 $$\int_E |fg| \leq \sqrt{\int_E f^2} \cdot \sqrt{\int_E g^2}$$
 
 - Let $E$ be a measurable set and $1 < p < \infty$. Suppose $\mathcal{F}$ is a family of functions in $L^p(E)$ that is bounded in $L^p(E)$ in the sense that there is a constant $M$ for which $||f||_p \leq M$ for all $f$ in $\mathcal{F}$. Then the family $\mathcal{F}$ is uniformly integrable over $E$.
@@ -1174,7 +1232,7 @@ $$\int_E |fg| \leq \sqrt{\int_E f^2} \cdot \sqrt{\int_E g^2}$$
 
 ### Royden Chapter 8 ($L^p$ Spaces Continued)
 
-- A **linear functional** on a linear space $X$ is a real-valued function $T$ on $X$ suxh that for $g$ and $h$ in $X$ and $\alpha$ and $\beta$ real numbers,
+- A **linear functional** on a linear space $X$ is a real-valued function $T$ on $X$ such that for $g$ and $h$ in $X$ and $\alpha$ and $\beta$ real numbers,
 $$T(\alpha \cdot g + \beta \cdot h) = \alpha \cdot T(g) + \beta \cdot T(h)$$
 
 - For a normed linear space $X$, a linear functional $T$ on $X$ is said to be **bounded** provided there is an $M \geq 0$ for which $|T(f)| \leq M \cdot ||f||$ for all $f \in X$. The infimum of all such $M$ is called the **norm** of $T$ and denoted by $||T||_*$
