@@ -3,10 +3,10 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
-  pdf_document: default
   html_document:
     fig_height: 4
     fig_width: 5
+  pdf_document: default
   word_document:
     fig_height: 4
     fig_width: 5
@@ -179,7 +179,7 @@ Now assume that $\chi_C$ is Riemann integrable. This is true iff the Lesbegue in
 $$\int_0 ^1 \sqrt[n]{f} = \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f=0} + \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f>0}$$
 where $\int_0 ^1 \sqrt[n]{f} \cdot \chi_{f=0} = \int_0 ^1 \sqrt[n]{0} = 0$. Thus,
 $$\int_0 ^1 \sqrt[n]{f} = \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f>0}$$
-Since $f$ is integrable, we know that $\int_0 ^1 \sqrt[n]{f} < \int_0 ^1 f < \infty$, thus $\sqrt[n]{f}$ is integrable as well. So,
+Since $f$ is integrable, we know that $\int_0 ^1 \sqrt[n]{f} \cdot \chi_{f>1} < \int_0 ^1 f < \infty$, and $\int_0 ^1 \sqrt[n]{f} \cdot \chi_{0<f<1}$ must be bounded, thus $\sqrt[n]{f}$ is integrable as well. So,
 $$\lim_{n \to \infty} \int_0 ^1 \sqrt[n]{f} \cdot \chi_{f>0} = \int_0 ^1 \lim_{n \to \infty} \sqrt[n]{f} \cdot \chi_{f>0}$$ by the D.C.T., and thus,
 $$= \int_0 ^1 1 \cdot \chi_{f>0} = m(\{x|f(x) > 0\})$$
 QED
