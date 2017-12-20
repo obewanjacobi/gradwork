@@ -3,10 +3,10 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
+  pdf_document: default
   html_document:
     fig_height: 4
     fig_width: 5
-  pdf_document: default
   word_document:
     fig_height: 4
     fig_width: 5
@@ -117,7 +117,7 @@ where
 $$\int^{\infty} _0 f(x) \mathrm{e}^{-nx} \chi_A dx < \int^{\infty} _0 \mathrm{e}^{-x} = 1$$
 and
 $$\int f(x) \mathrm{e}^{-nx} \chi_B dx \leq \int |f|^p \chi_B < \infty$$
-since $f \in L^p$. Thus by the Lebesgue Dominated Convergence Theorem,
+since $f \in L^p$. This argument works for any $1 \leq p < \infty$. As for $p = \infty$, this argument still works, however rather than saying  the above, we argue $\int f(x) \mathrm{e}^{-nx} \chi_B dx \leq \mathrm{ess}\sup{f} \chi_B < \infty$. So for any $p$ such that $1 \leq p \leq \infty$, we can see that the integral is indeed bounded. Thus by the Lebesgue Dominated Convergence Theorem,
 $$\lim_{n \to \infty} \int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int^{\infty} _0 \lim_{n \to \infty} f(x) \mathrm{e}^{-nx} dx = \int 0 dx = 0$$ QED
 
 
@@ -130,7 +130,7 @@ Let $A = \{x|\lim_{x \to a} f(x) \neq f(a)\}$, then $A = \{x| x\in \mathbb{Q}\}$
 
 ### Let $\{p_n\}$ be a sequence of polynomials. Suppose that for every point $x \in [0,1]$ there exists an index $n$ satisfying $p_n(x) = 0$. Prove at least one of the polynomials is identically zero.
 #### My Solution:
-Suppose there does not exist an $n$ such that $P_n = 0$ for all $n \in \mathbb{N}$. Let's define $S_n = \{x \in [0,1]|P_n(x) = 0\}$. Note, $S_n$ has to be finite since each polynomial can only have a finite number of zeros. Now consider $\bigcup^{\infty} _{n=1} S_n \supseteq [0,1]$ since for each $x \in [0,1]$ there exists a polynomial such that $p_n(x) = 0$. But a countable collection of finite sets is countable. But $[0,1]$ is uncountable, thus giving us a contradiction. This implies that one of the polynomials must indeed be identically zero. QED
+Suppose there does not exist an $n$ such that $p_n = 0$ for all $n \in \mathbb{N}$. Let's define $S_n = \{x \in [0,1]|P_n(x) = 0\}$. Note, $S_n$ has to be finite since each polynomial can only have a finite number of zeros. Now consider $\bigcup^{\infty} _{n=1} S_n \supseteq [0,1]$ since for each $x \in [0,1]$ there exists a polynomial such that $p_n(x) = 0$. But a countable collection of finite sets is countable. But $[0,1]$ is uncountable, thus giving us a contradiction. This implies that one of the polynomials must indeed be identically zero. QED
 
 
 
@@ -149,7 +149,7 @@ $$\leq 1 \cdot ||h||_{\infty} = ||h||_{\infty}$$
 
 - Will show $\geq$:
 
-We may assume $||h||_{\infty} = M > 0$. $\mathbb{R}$ is $\sigma$-finite, so there exists $F_n$ increasing towards $x$ such that $m(F_n) < a$. Define $A_n = \{x \in F_n| |h(x)| > a\}$ for $0<a<M$, to be fixed. Hence $m(A_n) > 0$. Define $g_n(x) = \frac{\mathrm{sgn}(h) - \chi_{A_n}}{m(A_n)}$, which is implies $||g_n||_1 = 1$ for all $n$ and $\int h g_n = a$ for all $n$. Thus $a < \int h g_n$ for all $n$. This implies $\sup_{0<a<M} a < \sup_{||g_n||_1 \leq 1} \int h g_n$. $$||f||_{\infty} = M < \sup_{||f||_1 \leq 1} \int fh = \sup_{||f||_1 \leq 1} Tf$$
+We may assume $||h||_{\infty} = M > 0$. $\mathbb{R}$ is $\sigma$-finite, so there exists $F_n$ increasing towards $x$ such that $m(F_n) < a$. Define $A_n = \{x \in F_n| |h(x)| > a\}$ for $0<a<M$, to be fixed. Hence $m(A_n) > 0$. Define $g_n(x) = \frac{\mathrm{sgn}(h) - \chi_{A_n}}{m(A_n)}$, which implies $||g_n||_1 = 1$ for all $n$ and $\int h g_n = a$ for all $n$. Thus $a < \int h g_n$ for all $n$. This implies $\sup_{0<a<M} a < \sup_{||g_n||_1 \leq 1} \int h g_n$. $$||f||_{\infty} = M < \sup_{||f||_1 \leq 1} \int fh = \sup_{||f||_1 \leq 1} Tf$$
 Thus we have proven the desired result. QED
 
 
