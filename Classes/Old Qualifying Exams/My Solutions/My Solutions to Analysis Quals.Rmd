@@ -33,7 +33,7 @@ functions, Baire category theorem
 
 - AC and BV functions, fundamental theorem of calculus, Lebesgue differentiation theorem
 
-- Hilbert spaces, Lp spaces, lp spaces, Hölder and Minkowski inequalities, completeness
+- Hilbert spaces, Lp spaces, lp spaces, Hölder and Minkowski (like triangle) inequalities, completeness
 
 There are a few types of problems that are consistently on exams as well, and may be good to know. These include that when asked to prove uniform convergence, using the Wierstass M-test is the easiest method; when a problem involves absolute continuity, it will often be used to imply bounded variation, which then implies that we can use the fundamental theorem of calculus; and finally, if we have two functions that are in conjugate $L^p$ spaces, Holder's inequality will help us. Using these tricks and others contained in this document should guarantee a passing score on the qualifier!
 
@@ -280,7 +280,7 @@ because $\sum |c_i - d_i| < \delta$. Thus $\lambda(g(E)) = 0$. QED
 Before we begin, note that if $|x|^n < \epsilon$, then $$\ln(|x|^n) < \ln(\epsilon) \implies n \ln(|x|) < \ln(\epsilon)$$
 $$ \implies n < \frac{\ln(\epsilon)}{\ln(|x|)}$$. This will be useful in our proof. 
 
-Let $\delta \in (0,1)$ and $\epsilon > 0$. Also let $N = \frac{\ln(\epsilon)}{\ln(\delta)}$. Hence for $n \geq N$, $n \ln(\delta) \leq \ln(\epsilon)$ which implies that $\ln(\delta^n) \leq \ln(\epsilon)$. The reason that the inequality changes directions here is because for $\delta \in (0,1)$ and for very small $\epsilon$ (specifically less than $1$), $\ln(\delta), \ln(\epsilon) < 0$. Thus, we can see that $\delta^n \leq \epsilon$, which implies that $x^n < \delta^n < \epsilon$ for all $x \in (-\delta, \delta)$. Thus $\{f_n\}$ converges uniformly on $[-\delta,\delta]$. 
+Let $\delta \in (0,1)$ and $\epsilon > 0$. Also let $N = \frac{\ln(\epsilon)}{\ln(\delta)}$. Hence for $n \geq N$ (thus $n \geq \frac{\ln(\epsilon)}{\ln(\delta)}$), $n \ln(\delta) \leq \ln(\epsilon)$ which implies that $\ln(\delta^n) \leq \ln(\epsilon)$. The reason that the inequality changes directions here is because for $\delta \in (0,1)$ and for very small $\epsilon$ (specifically less than $1$), $\ln(\delta), \ln(\epsilon) < 0$. Thus, we can see that $\delta^n \leq \epsilon$, which implies that $x^n < \delta^n < \epsilon$ for all $x \in (-\delta, \delta)$. Thus $\{f_n\}$ converges uniformly on $[-\delta,\delta]$. 
 
 If we fix $x \in (-1,1)$, this implies that $x^n < \epsilon$ by our previous point in the proof. However, it is not uniform since $N$ depends on $x$. Thus we have proven the desired result. QED
 
@@ -296,7 +296,7 @@ Since $G$ contains the rationals on $[0,1]$, it is also dense on $[0,1]$. $G$ is
 
 ### Is $L^p([a,b])$ separable, where $1<p< \infty$?
 #### My Solution:
-Yes! First note that separable means that it contains a countable number of dense subsets.
+Yes! First note that separable means that it contains a countable subset that is dense in $X$.
 
 Let $S[a,b] \subset L^p([a,b])$ be step functions on $[a,b]$ and let $S_{\mathbb{Q}}[a,b] \subset S[a,b]$ be step functions of $[a,b]$ with rational endpoints. Since $\mathbb{Q}$ is dense in $\mathbb{R}$, $S_{\mathbb{Q}}[a,b]$ is dense in $S[a,b]$ thus it's dense in $L^p([a,b])$. QED
 
@@ -471,14 +471,14 @@ $$||f||_1 = \int|f|^p \leq \int_{\{0 < |f| \leq \epsilon < 1\}} \epsilon^p \to 0
 
 ### If $E$ is a measurable subset of $\mathbb{R}$, then there is an interval $I$ such that $m(E \cap I) > \frac{9}{10} m(I)$ or $m(E^c \cap I) > \frac{9}{10} m (I)$.
 #### My Solution:
-Suppose not! Then for all $I$, $m(E \cap I) \leq \frac{9}{10} \chi(I)$ and $m(E^c \cap I) \leq \frac{9}{10} \chi(I)$. Suppose $E$ has finite measure and let $E \subset \bigcup^{\infty}_{n=1} I_n$. Then
-$$m(E) = m \left(E \cap \bigcup^{\infty}_{n=1} I_n \right) = m\left(\bigcup^{\infty}_{n=1} E \cap I_n \right) \leq m(E \cap I_n) \leq \frac{9}{10} \sum^{\infty} _{n =1} m (I_n)$$
+Suppose not! Then for all $I$, $m(E \cap I) \leq \frac{9}{10} m(I)$ and $m(E^c \cap I) \leq \frac{9}{10} m(I)$. Suppose $E$ has finite measure and let $E \subset \bigcup^{\infty}_{n=1} I_n$. Then
+$$m(E) = m \left(E \cap \bigcup^{\infty}_{n=1} I_n \right) = m\left(\bigcup^{\infty}_{n=1} E \cap I_n \right) \leq \sum^{\infty}_{n=1} m(E \cap I_n) \leq \frac{9}{10} \sum^{\infty} _{n =1} m (I_n)$$
 Thus for all covers of $E$, $m(E) \leq \frac{9}{10} \sum^{\infty} _{n =1} m(I_n)$. But, by definition 
 $$m(E) = \inf \{\sum_n m(I_n) : E \subset \bigcup^{\infty}_{n=1} I_n\}$$
 Hence 
 $$m(E) \leq \frac{9}{10} m(E) \implies m(E) = 0$$
 Now for $E$ with any measure, 
-$$m(E \cap(-n,n) \cap I_n) \leq m(E \cap I) \leq \frac{9}{n}m(I_n)$$
+$$m(E \cap(-n,n) \cap I_n) \leq m(E \cap I_n) \leq \frac{9}{n}m(I_n)$$
 Hence $m(E \cap (-n,n)) = 0$ for all $n$ where 
 $$m(E) = m \left(\bigcup^{\infty}_{n=1} (E \cap(-n,n)) \right) \leq \sum^{\infty}_{n=1} m(E \cap (-n,n)) = 0$$
 Note the same proof works for $m(E^c) = 0$. Thus the desired result is proven. QED
