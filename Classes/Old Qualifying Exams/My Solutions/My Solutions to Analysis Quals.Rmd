@@ -3,10 +3,10 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
-  pdf_document: default
   html_document:
     fig_height: 4
     fig_width: 5
+  pdf_document: default
   word_document:
     fig_height: 4
     fig_width: 5
@@ -130,7 +130,7 @@ Let $A = \{x|\lim_{x \to a} f(x) \neq f(a)\}$, then $A = \{x| x\in \mathbb{Q}\}$
 
 ### Let $\{p_n\}$ be a sequence of polynomials. Suppose that for every point $x \in [0,1]$ there exists an index $n$ satisfying $p_n(x) = 0$. Prove at least one of the polynomials is identically zero.
 #### My Solution:
-Suppose there does not exist an $n$ such that $p_n = 0$ for all $n \in \mathbb{N}$. Let's define $S_n = \{x \in [0,1]|P_n(x) = 0\}$. Note, $S_n$ has to be finite since each polynomial can only have a finite number of zeros. Now consider $\bigcup^{\infty} _{n=1} S_n \supseteq [0,1]$ since for each $x \in [0,1]$ there exists a polynomial such that $p_n(x) = 0$. But a countable collection of finite sets is countable. But $[0,1]$ is uncountable, thus giving us a contradiction. This implies that one of the polynomials must indeed be identically zero. QED
+Suppose there does not exist an $n$ such that $p_n = 0$ for all $n \in \mathbb{N}$. Let's define $S_n = \{x \in [0,1]|p_n(x) = 0\}$. Note, $S_n$ has to be finite since each polynomial can only have a finite number of zeros. Now consider $\bigcup^{\infty} _{n=1} S_n \supseteq [0,1]$ since for each $x \in [0,1]$ there exists a polynomial such that $p_n(x) = 0$. But a countable collection of finite sets is countable. But $[0,1]$ is uncountable, thus giving us a contradiction. This implies that one of the polynomials must indeed be identically zero. QED
 
 
 
@@ -144,7 +144,7 @@ Let $A$ not be Lebesgue measurable and suppose that for all $\epsilon > 0$ there
 #### My Solution:
 - Will show $\leq$:
 
-$$\sup_{||f||_1 \leq 1} Tf = \sup_{||f||_1 \leq 1} \int fh \leq \sup_{||f||_1 \leq 1} ||f||_1 ||h||_{\infty}$$ Note, by Holder's since we have $1, \infty$, 
+$$\sup_{||f||_1 \leq 1} Tf = \sup_{||f||_1 \leq 1} \int fh \leq \sup_{||f||_1 \leq 1} ||f||_1 ||h||_{\infty}$$ Note, this is by Holder's since we have $1, \infty$, and
 $$\leq 1 \cdot ||h||_{\infty} = ||h||_{\infty}$$
 
 - Will show $\geq$:
@@ -330,7 +330,7 @@ To complete this proof, we will divide the problem into a group of lemmas and pr
 *Proof*: $|f| \leq ||f||_{\infty}$ a.e. This implies that $|f|^p \leq ||f||_{\infty}^p$, which implies $(\int_{[0,1]} |f|^p)^{1/p} \leq (\int_{[0,1]} ||f||^p _{\infty}) ^{1/p} = ||f||_{\infty} < \infty$. Hence $\lim \sup ||f||_p \leq ||f||_{\infty}$.
 
 **Lemma 4**:$||f||_{\infty} \leq \liminf ||f||_p$
-*Proof*: Let $t \in [0,m = ||f||_{\infty})$. Then $\int |f| = \int _{\{|f| < t\}} |f| + \int _{\{|f| \geq t \}} |f|$. Then $\int |f|^p \geq \int_{\{|f| < 1\}} |f|^p \geq \int_{\{|t| < 1\}} t^p$. Hence $(\int|f|^p)^{(1/p)} \geq (\int_{\{|f| <t\}} t^p)^{1/p} = t \cdot m(\{|f| < t\})^{1/p}$. This implies that $\liminf ||f||_p \geq \liminf t \cdot m(\{|f| < t\})^{1/p} = t \cdot 1$. Thus $\liminf ||f||_p \geq t$ for all $t \in [0, ||f||_{\infty})$. It follows that by our claims then that $\lim \sup||f||_p \leq ||f||_{\infty} \leq \liminf ||f||_p$. Thus we have proven the desired result. QED
+*Proof*: Let $t \in [0,m = ||f||_{\infty})$. Then $\int |f| = \int _{\{|f| < t\}} |f| + \int _{\{|f| \geq t \}} |f|$. Then $\int |f|^p \geq \int_{\{|f| < 1\}} |f|^p \geq \int_{\{|t| < 1\}} t^p$. Hence $(\int|f|^p)^{(1/p)} \geq (\int_{\{|f| <t\}} t^p)^{1/p} = t \cdot m(\{|f| < t\})^{1/p}$. This implies that $\liminf ||f||_p \geq \liminf t \cdot m(\{|f| < t\})^{1/p} = t \cdot 1$. Thus $\liminf ||f||_p \geq t$ for all $t \in [0, ||f||_{\infty})$. It follows that by our claims then that $\lim \sup||f||_p \leq ||f||_{\infty} \leq \liminf ||f||_p$. This implies that $\lim_{p \to \infty} ||f||_p = ||f||_{\infty}$ Thus we have proven the desired result. QED
 
 
 
@@ -428,12 +428,12 @@ $$\lim_{n \to \infty} \int f \cdot \chi_{[-n,n]} = \int \lim_{n \to \infty} f \c
 
 ### Show that every dense subset of $L^{\infty}([0,1])$ is uncountable.
 #### My Solution:
-Let $A = \{ \chi_{(0,t)} : t \in (0,1)\}$. Then for any $\chi_{(0,t_1)}, \chi_{(0,t_2)} \in A$ such that $t_1 \neq t_2$. So,
+Let $A = \{ \chi_{(0,t)} : t \in (0,1)\}$. Then we claim for any $\chi_{(0,t_1)}, \chi_{(0,t_2)} \in A$ such that $t_1 \neq t_2$, so,
 $$||\chi_{(0,t_1)} - \chi_{(0,t_2)}||_{\infty} = 1$$
-Without loss of generality, $t_1 < t_2$, then $\chi_{(0,t_1)} - \chi_{(0,t_2)} = 0,1,0$ on $(0,t_1),(t_1,t_2),(t_2,1)$ respectively. This is where we get the above equality, as 
-$$\left\|\chi_{(0,t_2)} - \chi_{(0,t_1)}\right\|_\infty = \sup_{x\in[0,1]}\left|\chi_{(0,t_2)}(x) - \chi_{(0,t_1)}(x)\right| = 1$$
+To prove this, without loss of generality, let $t_1 < t_2$. Then $|\chi_{(0,t_1)} - \chi_{(0,t_2)}| = 0,1,0$ on $(0,t_1),(t_1,t_2),(t_2,1)$ respectively. This is where we get the above equality, as 
+$$\left\|\chi_{(0,t_2)} - \chi_{(0,t_1)}\right\|_\infty = \sup_{x\in[0,1]}\left|\chi_{(0,t_2)}(x) - \chi_{(0,t_1)}(x)\right| = 1$$ Thus we have proven our claim. 
 
-Consider $\left\{ B_{\left(\chi_{(0,t)}, \frac{1}{3} \right)} \right\}$ which is an uncountable collection of disjoint balls. And given any dense set $S \subset L^{\infty}([0,1])$ has elements in each ball by definition of density. Thus $S$ is uncountable. QED
+Now consider $\left\{ B_{\left(\chi_{(0,t)}, \frac{1}{3} \right)} \right\}$ which is an uncountable collection of disjoint balls. And given any dense set $S \subset L^{\infty}([0,1])$ has elements in each ball by definition of density. Thus $S$ is uncountable. QED
 
 
 
@@ -472,7 +472,7 @@ $$||f||_1 = \int|f|^p \leq \int_{\{0 < |f| \leq \epsilon < 1\}} \epsilon^p \to 0
 ### If $E$ is a measurable subset of $\mathbb{R}$, then there is an interval $I$ such that $m(E \cap I) > \frac{9}{10} m(I)$ or $m(E^c \cap I) > \frac{9}{10} m (I)$.
 #### My Solution:
 Suppose not! Then for all $I$, $m(E \cap I) \leq \frac{9}{10} m(I)$ and $m(E^c \cap I) \leq \frac{9}{10} m(I)$. Suppose $E$ has finite measure and let $E \subset \bigcup^{\infty}_{n=1} I_n$. Then
-$$m(E) = m \left(E \cap \bigcup^{\infty}_{n=1} I_n \right) = m\left(\bigcup^{\infty}_{n=1} E \cap I_n \right) \leq \sum^{\infty}_{n=1} m(E \cap I_n) \leq \frac{9}{10} \sum^{\infty} _{n =1} m (I_n)$$
+$$m(E) = m \left(E \cap \bigcup^{\infty}_{n=1} I_n \right) = m\left(\bigcup^{\infty}_{n=1} (E \cap I_n) \right) \leq \sum^{\infty}_{n=1} m(E \cap I_n) \leq \frac{9}{10} \sum^{\infty} _{n =1} m (I_n)$$
 Thus for all covers of $E$, $m(E) \leq \frac{9}{10} \sum^{\infty} _{n =1} m(I_n)$. But, by definition 
 $$m(E) = \inf \{\sum_n m(I_n) : E \subset \bigcup^{\infty}_{n=1} I_n\}$$
 Hence 
