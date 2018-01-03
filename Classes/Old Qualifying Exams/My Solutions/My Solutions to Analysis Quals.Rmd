@@ -3,10 +3,10 @@ title: "My Solutions to Old Analysis Quals"
 author: "Jacob S Townson"
 date: "August-December 2017"
 output:
+  pdf_document: default
   html_document:
     fig_height: 4
     fig_width: 5
-  pdf_document: default
   word_document:
     fig_height: 4
     fig_width: 5
@@ -40,6 +40,85 @@ There are a few types of problems that are consistently on exams as well, and ma
 
 
 # My Solutions from Quals
+
+## Summer 2017
+
+### If $f \in L^p([0,\infty))$ for $p \geq 1$, then $\lim_{n \to \infty} \int_0 ^{\infty} f(x) \mathrm{e}^{-nx} dx = 0$.
+#### My Solution:
+Let $A = \{x| f(x) < 1\}$ and $B = \{x|f(x) \geq 1\}$. Note, since $f \in L^p$, $m(B) < \infty$ (because $f \in L^p$, $\left( \int|f|^p \right)^{1/p} < \infty$, which implies that $m(B)$ must be finite). So,
+$$\int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int (f(x) \mathrm{e}^{-nx} \chi_A + f(x) \mathrm{e}^{-nx} \chi_B) dx$$
+where
+$$\int^{\infty} _0 f(x) \mathrm{e}^{-nx} \chi_A dx < \int^{\infty} _0 \mathrm{e}^{-x} = 1$$
+and
+$$\int f(x) \mathrm{e}^{-nx} \chi_B dx \leq \int |f|^p \chi_B < \infty$$
+since $f \in L^p$. This argument works for any $1 \leq p < \infty$. As for $p = \infty$, this argument still works, however rather than saying  the above, we argue $\int f(x) \mathrm{e}^{-nx} \chi_B dx \leq \mathrm{ess}\sup{f} \chi_B < \infty$. So for any $p$ such that $1 \leq p \leq \infty$, we can see that the integral is indeed bounded. Thus by the Lebesgue Dominated Convergence Theorem,
+$$\lim_{n \to \infty} \int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int^{\infty} _0 \lim_{n \to \infty} f(x) \mathrm{e}^{-nx} dx = \int 0 dx = 0$$ QED
+
+
+
+### There is a sequence of polynomials $p_n$ such that $p_n(x) \rightarrow 1$ for all $x \in [0,1]$ and $\int_0 ^1 p_n \rightarrow 2$.
+#### My Solution:
+
+
+
+
+### Suppose that $f$ is absolutely continuous on $[0,1]$ and that $f(x) \neq 0$ for all $x \in [0,1]$. Prove that $1/f$ is absolutely continuous on $[0,1]$.
+#### My Solution:
+Given that $f$ is absolutely continuous, we know then that for all $\epsilon > 0$, there exists a $\delta > 0$ such that if $\{(a_i,b_i)\}^n _{i=1}$ is a finite collection of disjoint intervals of $[0,1]$ with $\sum ^n _{i=1} |b_i - a_i| < \delta$ implies that $\sum ^n _{i=1} |f(b_i) - f(a_i)| < \epsilon$. Also, because $f$ is absolutely continuous, we know then that it must also be continuous. Hence, $f$  must be bounded on $[0,1]$. Let $m = \min(f)$ on $[0,1]$ and choose $\delta$ such that $\sum ^n _{i=1} |b_i - a_i| < \delta$ gives us 
+$$\sum ^n _{i=1} |f(b_i) - f(a_i)| < m^2\epsilon$$
+Then note that 
+$$\sum ^n _{i=1} \left|\frac{1}{f(b_i)} - \frac{1}{f(a_i)} \right| =  \sum ^n _{i=1} \left|\frac{f(b_i) - f(a_i)}{f(a_i)f(b_i)} \right|$$
+$$ \leq \frac{1}{m^2} \sum ^n _{i=1} |f(b_i)-f(a_i)| < \frac{m^2 \epsilon}{m^2} = \epsilon$$
+Hence, $\frac{1}{f}$ is absolutely continuous as well. QED
+
+
+
+### Let $\{f_n\}$ be a sequence of Lebesgue measurable functions defined on $[0,1]$ with the property that $\{f_n(x)\}$ converges almost everywhere to a function $f$. Prove that $\lim_{n \to \infty} \int_{[0,1]} \sin(f_n(x)) dx = \int_{[0,1]} \sin(f(x)) dx$.
+#### My Solution:
+
+
+
+
+### Let $K_n$ be a sequence from $L^1(\mathbb{R})$ such that $\{\int_{\mathbb{R}} |K_n|: n \in \mathbb{N}\}$ is bounded, $\int_{\mathbb{R}} K_n \to 1$, and for all $\delta > 0$, $\int_{|x|>\delta}|K_n| \to 0$. If $f:\mathbb{R} \to \mathbb{R}$ is bounded and uniformly continuous, then prove $K_n * f$ uniformly converges to $f$ where $*$ is the convolution.
+#### My Solution:
+
+
+
+
+###Is the closed unit ball of $L^2([0,1])$ closed in $L^1([0,1])$? Justify.
+#### My Solution:
+
+
+
+
+###Let $\{f_n\}$ be a sequence of real-values Lebesgue measurable functions defined on $\mathbb{R}$. Define $E=\{x \in \mathbb{R}| \lim_{n \to \infty} f_n(x)\mathrm{ exists}\}$. Prove that $E$ is Lebesgue measurable.
+#### My Solution:
+
+
+
+
+### Let $\{f_n\}$ be a sequence of continuous functions defined on $\mathbb{R}$. Suppose that for every $x \in \mathbb{R}$ there exists $n \in \mathbb{N}$ such that $f_n(x) = 0$. Prove that there exists an open interval $I \in \mathbb{R}$ and an index $n \in \mathbb{N}$ such that $f_n(x) = 0$ for all $x \in I$.
+#### My Solution:
+
+
+
+
+### Suppose $K$ is a compact metric space and $f_n:K \rightarrow \mathbb{R}$ is a sequence of continuous functions converging pointwise to a continuous function $f$ on $K$. Prove that if $\lim_{n \to \infty} f_n(x) = f(x)$ for every sequence $x_n$ converging to a point $x$, then $f_n$ converges uniformly to $f$.
+#### My Solution:
+
+
+
+
+### Let $f:[a,b] \rightarrow \mathbb{R}$ be a bounded function which is Riemann integrable on $[a,c]$ for every $c \in (a,b)$. Prove that $f$ is Riemann integrable on all of $[a,b]$.
+#### My Solution:
+
+
+
+
+
+
+
+
 
 ## Spring 2017
 
