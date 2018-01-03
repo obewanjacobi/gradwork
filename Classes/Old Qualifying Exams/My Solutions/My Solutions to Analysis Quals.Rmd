@@ -58,7 +58,15 @@ $$\lim_{n \to \infty} \int^{\infty} _0 f(x) \mathrm{e}^{-nx} dx = \int^{\infty} 
 
 ### There is a sequence of polynomials $p_n$ such that $p_n(x) \rightarrow 1$ for all $x \in [0,1]$ and $\int_0 ^1 p_n \rightarrow 2$.
 #### My Solution:
+This problem relies on the Stone-Weierstrass Theorem, stating:
 
+Suppose $f$ is a continuous real-valued function defined on the real interval $[a,b]$. For every $\epsilon > 0$, there exists a polynomial $p$ such that for all $x$ in $[a,b]$, we have $|f(x) - p(x)| < \epsilon$. 
+
+Let 
+$f_n(x):=4n^2x+1 \text{ for }x\in \left[0,\frac{1}{2n}\right]$
+
+
+$f_n(x):=-4n^2x+1+4n \text{ for }x\in \left[\frac{1}{2n},\frac{1}{n}\right]\text{and }f(x)=1\text{ otherwise}.$ This gives us a function that follows this property, then using Stone's Theorem we know that there must be a polynomial that uniformly converges to our defined $f_n$'s. Thus the polynomial exists. QED
 
 
 
@@ -75,43 +83,59 @@ Hence, $\frac{1}{f}$ is absolutely continuous as well. QED
 
 ### Let $\{f_n\}$ be a sequence of Lebesgue measurable functions defined on $[0,1]$ with the property that $\{f_n(x)\}$ converges almost everywhere to a function $f$. Prove that $\lim_{n \to \infty} \int_{[0,1]} \sin(f_n(x)) dx = \int_{[0,1]} \sin(f(x)) dx$.
 #### My Solution:
-
-
-
-
-### Let $K_n$ be a sequence from $L^1(\mathbb{R})$ such that $\{\int_{\mathbb{R}} |K_n|: n \in \mathbb{N}\}$ is bounded, $\int_{\mathbb{R}} K_n \to 1$, and for all $\delta > 0$, $\int_{|x|>\delta}|K_n| \to 0$. If $f:\mathbb{R} \to \mathbb{R}$ is bounded and uniformly continuous, then prove $K_n * f$ uniformly converges to $f$ where $*$ is the convolution.
-#### My Solution:
-
+First note that we know from undergraduate analysis that if $f_n \to f$ pointwise almost everywhere, then the composition of $f_n$ must also converge to the composition of $f$. Thus, for any continuous function $g$, $g \circ f_n \to g \circ f$. Thus $\sin(f_n(x)) \to \sin(f(x))$ pointwise almost everywhere. Thus because of this and because for all $n \in \mathbb{N}$ $\sin(f_n(x)) \leq 1$, we can use the dominated convergence theorem here to show that
+$$\lim_{n \to \infty} \int_{[0,1]} \sin(f_n(x)) dx = \int_{[0,1]} \sin(f(x)) dx$$ QED
 
 
 
 ###Is the closed unit ball of $L^2([0,1])$ closed in $L^1([0,1])$? Justify.
 #### My Solution:
-
+We can generalize this to $L^2(X)$ where $X$ is any measure space. Since we are in the context of metric spaces, we only need to check sequential closeness. Fix $\{f_n\}$ a sequence in the closed unit ball of $L^2(X)$ which converges to $f$ in $L^1$. Then $\int_X |f_n|^2 \leq 1$ for all $n$. Without loss of generality, we can assume that $f_n$ converges to $f$ pointwise. Now by Fatou's Lemma,
+$$\int_X |f|^2 \leq \liminf \int_X |f_n|^2 \leq 1$$. Thus $L^2([0,1])$ is indeed closed in $L^1([0,1])$. QED
 
 
 
 ###Let $\{f_n\}$ be a sequence of real-values Lebesgue measurable functions defined on $\mathbb{R}$. Define $E=\{x \in \mathbb{R}| \lim_{n \to \infty} f_n(x)\mathrm{ exists}\}$. Prove that $E$ is Lebesgue measurable.
 #### My Solution:
+Both $\limsup f_n$ and $\liminf f_n$ exist for all $x \in X$ and are measurable functions. The set $E$ can also be written as
 
+$$E = \left\{x \in X : \lim f_n(x) \text{ exists}\right\} = \left\{ x \in X : \limsup f_n(x) = \liminf f_n(x) \right\}$$
+
+Define $h(x)$ such that 
+
+$$h(x) = \begin{cases} 0 & \text{ if } \limsup f_n(x) = \liminf f_n(x) = \pm\infty\\
+\limsup f_n(x) - \liminf f_n(x) & \text{ otherwise }
+\end{cases}$$
+
+$h$ is a measurable function because $\{x: \limsup f_n > \liminf f_n\}$ and $\{x: \limsup f_n < \liminf f_n\}$ are both measurable. Thus the set $E$ can be written as $E = h^{-1} (\{0\})$, implying that $E$ is indeed measurable. QED
 
 
 
 ### Let $\{f_n\}$ be a sequence of continuous functions defined on $\mathbb{R}$. Suppose that for every $x \in \mathbb{R}$ there exists $n \in \mathbb{N}$ such that $f_n(x) = 0$. Prove that there exists an open interval $I \in \mathbb{R}$ and an index $n \in \mathbb{N}$ such that $f_n(x) = 0$ for all $x \in I$.
 #### My Solution:
+First we will prove this with polynomials, then we will expand it with a density argument to prove it to be true for any continuous function. 
 
+Suppose there does not exist an $n$ such that $p_n = 0$ for all $n \in \mathbb{N}$. Let's define $S_n = \{x \in I|p_n(x) = 0\}$. Note, $S_n$ has to be finite since each polynomial can only have a finite number of zeros. Now consider $\bigcup^{\infty} _{n=1} S_n \supseteq I$ since for each $x \in I$ there exists a polynomial such that $p_n(x) = 0$. But a countable collection of finite sets is countable. But $I$ is uncountable, thus giving us a contradiction. This implies that one of the polynomials must indeed be identically zero.
+
+Now, using Stone's Theorem, we know that any polynomial can be approximated by a continuous function. So for all polynomials $p_n$, since the set of polynomials is dense in the set of continuous functions, it is easy to see that this applies to a sequence of continuous functions as well. QED
 
 
 
 ### Suppose $K$ is a compact metric space and $f_n:K \rightarrow \mathbb{R}$ is a sequence of continuous functions converging pointwise to a continuous function $f$ on $K$. Prove that if $\lim_{n \to \infty} f_n(x) = f(x)$ for every sequence $x_n$ converging to a point $x$, then $f_n$ converges uniformly to $f$.
 #### My Solution:
+First recall the definition of uniformly convergent. $f_n$ converges uniformly to $f$ on $K$ if for all $\epsilon > 0$ there exists an $N$ such that $|f_n(x) - f(x)| < \epsilon$ for all $x \in K$ for all $n \leq N$. 
 
+So, we know then for all $\epsilon^*$, there exists a $\delta$ such that $|x_n -x| < \delta$ such that $|f_n(x) - f(x)| < \epsilon^*$. We can use this to show
+$$|f_n(x) - f(x)| = |f_n(x) + f_n(x_n) - f_n(x_n) - f(x)| \leq |f_n(x) - f_n(x_n)|+|f_n(x_n)-f(x)|$$
+$$< |f_n(x) - f_n(x_n)| + \epsilon^* = |f_n(x-x_n)| + \epsilon^* \leq |f(\delta)| + \epsilon^* < 2\epsilon^*$$
+
+So if we let $\epsilon^* = \frac{\epsilon}{2}$, then we've shown that $f_n$ does indeed converge uniformly to $f$ on $K$. QED
 
 
 
 ### Let $f:[a,b] \rightarrow \mathbb{R}$ be a bounded function which is Riemann integrable on $[a,c]$ for every $c \in (a,b)$. Prove that $f$ is Riemann integrable on all of $[a,b]$.
 #### My Solution:
-
+Let $A = \{x|\lim_{x \to a} f(x) \neq f(a)\}$, so $A$ is the set of discontinuities of $f$ since $f$ is bounded and Riemann Integrable on $[a,c]$ for all $c \in (a,b)$. This implies that the number of discontinuties in $[a,c]$ must sum up to have measure zero. There is also one more point that could possibly be discontinuous, that being $b$. So if we let $\{d_i\}$ be the discontinuities on $[a,c]$ that sum up to measure zero, then $A = \{x|x \in \{d_i\}, x=b\}$. We know $m(b) = 0$ as it is a point and the measure of all the $d_i$'s is zero as well, thus $m(A) = 0$. Also $f$ is clearly measurable as $f$ is bounded and Riemann Integrable. Hence $f$ is Lebesgue measurable and $\int f = Rf$ on all of $[a,b]$. QED
 
 
 
