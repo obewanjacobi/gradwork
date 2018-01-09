@@ -2,6 +2,8 @@
 STATISTICS
 
 NA
+class website: 
+http://www.math.louisville.edu/~rsgill01/668.html
 -----------------------------------------------------
 MODELING
 
@@ -9,9 +11,5 @@ NA
 -----------------------------------------------------
 INDEPENDENT STUDY - BINGTUAN
 
-read chapter 13
------------------------------------------------------
-ANALYSIS QUAL STUDY STUFF
-
-Everyday, work on studying
+read papers (on syllabus)
 -----------------------------------------------------
