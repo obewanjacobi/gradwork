@@ -1,0 +1,257 @@
+---
+title: 'Chapter 3: Random Vectors and Matrices'
+author: "Notes for MATH 668 based on
+Linear Models in Statistics by Alvin C. Rencher and G. Bruce Schaalje, second edition, Wiley, 2008."
+date: "January 18, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\trace{\mathrm{tr}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\EV{E}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+
+### 3.1 Introduction
+- **Definition 3.1.1**: A *random matrix* (or *random vector*) is a matrix (or vector) whose elements are random variables.
+
+### 3.2 Means, Variances, Covariances, and Correlations
+- First, we review some definitions from univariate probability.
+- Suppose $y$ is a continuous random variable with probability density function $f(y)$.
+- The *mean* of the random variable $y$ is 
+\[
+\mu=E(y)=\int_{-\infty}^\infty y f(y) \ dy.
+\]
+- The *expected value* of a function $u(y)$ of the random variable is 
+\[
+E[u(y)]=\int_{-\infty}^\infty u(y)f(y) \ dy.
+\]
+- The *variance* of the random variable $y$ is
+\[
+\sigma^2=\var(y)=E[(y-\mu)^2]=E(y^2)-(E(y))^2.
+\]
+- The *standard deviation* of the random variable $y$ is $\sigma=\sqrt{\var(y)}$.
+- The *covariance* of two random variables $y_i$ and $y_j$ is
+\[
+\sigma_{ij}=\cov(y_i,y_j)=E[(y_i-E(y_i))(y_j-E(y_j))].
+\]
+Note that $\cov(y,y)=\var(y)$.
+- The *correlation* between two random variables $y_i$ and $y_j$ is
+\[
+\rho_{ij}=\frac{\cov(y_i,y_j)}{\sqrt{\var(y_i)}\sqrt{\var(y_j)}}=\frac{\sigma_{ij}}{\sqrt{\sigma_{ii}\sigma_{jj}}} .
+\]
+- If the joint probability density of functions $y_i$ and $y_j$ is $f(y_i,y_j)$ and their respective  marginal probability density functions are $f_i(y_i)$ and $f_j(y_j)$, then $y_i$ and $y_j$ are *independent* if and only if $f(y_i,y_j)=f_i(y_i)f_j(y_j)$.
+- If $y_i$ and $y_j$ are independent, then the following properties hold.
+    + $E(y_i y_j)=E(y_i)E(y_j)$
+    + $\cov(y_i,y_j)=0$
+
+### 3.3 Mean Vectors and Covariance Matrices for Random Vectors
+- **Definition 3.3.1** (p.76): The *expected value* of an $m \times n$ random matrix $\Y=(y_{ij})$ with random elements $y_{ij}$ is 
+\[ 
+\EV\left(\Y\right)
+=\left(\EV\left(y_{ij}\right)\right)
+=\left(\begin{array}{ccc}
+\EV(y_{11}) & \cdots & \EV(y_{1n}) \\
+\vdots & \ddots & \vdots \\
+\EV(y_{m1}) & \cdots & \EV(y_{mn}) \\
+\end{array}\right).
+\]
+- **Definition 3.3.2** (p.75): The *mean* of an $n$-dimensional random vector $\y=\left(\begin{array}{c}y_1 \\ \vdots \\ y_n\end{array}\right)$ is 
+\[
+\bmu=E(\y)=\left(\begin{array}{c}E(y_1) \\ \vdots \\ E(y_n)\end{array}\right).
+\]
+- **Theorem 3.3.1** (p.75): If $\X=(x_{ij})$ and $\Y=(y_{ij})$ are $m\times n$ random matrices, then
+$E(\X+\Y)=E(\X)+E(\Y)$.
+- *Proof*: 
+\[ 
+\bea
+\nnn \EV(\X+\Y)&=&\left(\begin{array}{ccc}
+\EV(x_{11}+y_{11}) & \cdots & \EV(x_{1n}+y_{1n}) \\
+\vdots & \ddots & \vdots \\
+\EV(x_{m1}+y_{m1}) & \cdots & \EV(x_{mn}+y_{mn}) \\
+\end{array}\right) \\
+\nnn &=& \left(\begin{array}{ccc}
+\EV(x_{11})+\EV(y_{11}) & \cdots & \EV(x_{1n})+\EV(y_{1n}) \\
+\vdots & \ddots & \vdots \\
+\EV(x_{m1})+\EV(y_{m1}) & \cdots & \EV(x_{mn})+\EV(y_{mn}) \\
+\end{array}\right) \\
+\nnn &=& \left(\begin{array}{ccc}
+\EV(x_{11}) & \cdots & \EV(x_{1n}) \\
+\vdots & \ddots & \vdots \\
+\EV(x_{m1}) & \cdots & \EV(x_{mn}) \\
+\end{array}\right) +
+\left(\begin{array}{ccc}
+\EV(y_{11}) & \cdots & \EV(y_{1n}) \\
+\vdots & \ddots & \vdots \\
+\EV(y_{m1}) & \cdots & \EV(y_{mn}) \\
+\end{array}\right) \\
+\nnn &=& \EV(\X)+\EV(\Y).
+\eea
+\]
+This can be written more compactly as $\EV[(x_{ij}+y_{ij})]=(\EV[x_{ij}+y_{ij}])=(\EV[x_{ij}]+\EV[y_{ij}])=(\EV[x_{ij}])+(\EV[y_{ij}])=\EV[(x_{ij})]+\EV[(y_{ij})]$.
+- **Definition 3.3.3** (p.75): The *covariance matrix* of an $n$-dimensional random vector $\y=\left(\begin{array}{c}y_1 \\ y_2 \\ \vdots \\ y_n\end{array}\right)$ is
+\[
+\Sig=\cov\left(\y\right)=\EV\left[(\y-\EV(\y))(\y-\EV(\y))'\right] 
+=\left(\begin{array}{cccc}
+\var(y_1) & \cov(y_1,y_2) & \cdots & \cov(y_1,y_n) \\
+\cov(y_2,y_1) & \var(y_2) & \cdots & \cov(y_2,y_n) \\
+\vdots & \vdots & \ddots & \vdots \\
+\cov(y_n,y_1) & \cov(y_n,y_2) & \cdots & \var(y_n) 
+\end{array}\right).
+\]
+- Note that $\Sig$ is symmetric since $\cov(x,y)=\cov(y,x)$.
+
+### 3.4 Correlation Matrices
+- **Definition 3.4.1** (p.77): The *correlation* matrix for a random vector $\y=\left(\begin{array}{c}y_1 \\ y_2 \\ \vdots \\ y_n\end{array}\right)$ is 
+\[
+\P_\rho=(\rho_{ij})
+=\left(\begin{array}{cccc}
+1 & \rho_{12} & \cdots & \rho_{1n} \\
+\rho_{21} & 1 & \cdots & \rho_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+\rho_{n1} & \rho_{n2} & \cdots & 1 
+\end{array}\right).
+\]
+- **Theorem 3.4.1** (p.78): Let $\D_\sigma=[\diag(\Sig)]^{1/2}=\diag(\sqrt{\sigma_{11}},\ldots,\sqrt{\sigma_{nn}})$.
+Then $\P_\rho=\D_\sigma^{-1}\Sig\D_\sigma^{-1}$.
+- *Proof*: Let $q_{ij}=\left\{\begin{array}{cl} 1/\sqrt{\sigma_{ii}} & \mbox{if } i=j\\ 0 & \mbox{if } i\neq j\end{array}\right.$ denote the $(i,j)$-th element of $\D_\sigma^{-1}$.  It follows that
+\[
+\bea
+\nnn \D_\sigma^{-1}\Sig\D_\sigma^{-1}&=&(q_{ij})(\sigma_{ij})\D_\sigma^{-1} \\
+\nnn &=&\left(\sum_{k=1}^n q_{ik}\rho_{kj}\right)(\sigma_{ij})\D_\sigma^{-1} \\
+\nnn &=&(\sigma_{ij}/\sqrt{\sigma_{ii}})\D_\sigma^{-1} \\
+\nnn &=&(\sigma_{ij}/\sqrt{\sigma_{ii}})(q_{ij}) \\
+\nnn &=&\left(\sum_{k=1}^n \frac{\sigma_{ik}}{\sqrt{\sigma_{ii}}}q_{kj}\right) \\
+\nnn &=&\left(\frac{\sigma_{ij}}{\sqrt{\sigma_{ii}}\sqrt{\sigma_{jj}}}\right) = \P_\rho. 
+\eea
+\]
+
+### 3.5 Mean Vectors and Covariance Matrices for Partitioned Random Vectors
+- **Definition 3.5.1** (p.79): The *cross-covariance* between random vectors $\x=\left(\begin{array}{c}x_1 \\ \vdots \\ x_m\end{array}\right)$ and $\y=\left(\begin{array}{c}y_1 \\ \vdots \\ y_n\end{array}\right)$ is
+\[
+\cov(\x,\y)=\EV\left[\left(\x-\EV(\x)\right)\left(\y-\EV(\y)\right)'\right] 
+= \left(\begin{array}{ccc}
+\cov(x_1,y_1) & \cdots & \cov(x_1,y_n) \\
+\vdots & \ddots & \vdots \\
+\cov(x_m,y_1) & \cdots & \cov(x_m,y_n) 
+\end{array}
+\right).
+\]
+- Then, if $\v=\left(\begin{array}{c} \x \\ \y\end{array}\right)$ is a partitioned random vector, the covariance matrix of $\v$ is
+\[
+\Sig=\cov(\v)=\cov\left(\begin{array}{c} \x \\ \y\end{array}\right)=\left(\begin{array}{cc}\Sig_{xx} & \Sig_{xy} \\ \Sig_{yx} & \Sig_{yy}\end{array}\right)
+\]
+where $\Sig_{xx}=\cov(\x)$, $\Sig_{xy}=\cov(\x,\y)$, $\Sig_{yx}=\cov(\y,\x)$, and $\Sig_{yy}=\cov(\y)$.  
+- Note that $\Sig_{yx}=\Sig_{xy}\tr$.
+
+### 3.6 Linear Functions of Random Vectors
+- **Theorem 3.6.1** (p.79): If $\a=\left(\begin{array}{c}a_1 \\ \vdots \\ a_n\end{array}\right)$ is a vector of constants and $\y=\left(\begin{array}{c}y_1 \\ \vdots \\ y_n\end{array}\right)$ is a random vector, then the mean of $z=\a'\y=a_1y_1+\ldots+a_ny_n$ is 
+\[
+E(z)=\a'E(\y).
+\]
+- *Proof*: 
+\[
+\bea
+\nnn E(\a'\y)&=&E(a_1y_1+\ldots+a_ny_n) \\
+\nnn &=&E(a_1y_1)+\ldots+E(a_ny_n) \\
+\nnn &=&a_1E(y_1)+\ldots+a_nE(y_n) \\
+\nnn &=&(a_1,\ldots,a_n)\left(\begin{array}{c} E(y_1) \\ \vdots \\ E(y_n)\end{array}\right) \\
+\nnn &=& \a'E(\y)
+\eea
+\]
+- **Theorem 3.6.2** (p.81): If $\A=\left(\begin{array}{c}\a_1' \\ \vdots \\ \a_m'\end{array}\right)$ is an $m \times n$ matrix of constants and $\y=\left(\begin{array}{c}y_1 \\ \vdots \\ y_n\end{array}\right)$ is an $n$-dimensional random vector, then the expected value of $\z=\A\y$ is
+\[
+E(\z)=\A E(\y)
+\]
+- *Proof*:
+\[
+\bea
+\nnn E\left[\A\y\right]&=&E\left[\left(\begin{array}{c}\a_1' \\ \vdots \\ \a_m'\end{array}\right)\y\right] \\ 
+\nnn &=& E\left(\begin{array}{c}\a_1'\y \\ \vdots \\ \a_m'\y\end{array}\right) \\
+\nnn &=& \left(\begin{array}{c}E(\a_1'\y) \\ \vdots \\ E(\a_m'\y)\end{array}\right) \\
+\nnn &=& \left(\begin{array}{c}\a_1'E(\y) \\ \vdots \\ \a_m'E(\y)\end{array}\right) \\
+\nnn &=& \left(\begin{array}{c}\a_1'\\ \vdots \\ \a_m'\end{array}\right)E(\y)=\A E(\y)
+\eea
+\]
+- **Theorem 3.6.3** (p.81): Suppose that $\A$ is an $m\times n$ matrix of constants, $\X$ is an $n\times p$ random matrix, $\B$ is a $p\times q$ matrix of constants, and $\C$ is a $m \times q$ matrix of constants.  Then 
+\[
+E(\A\X\B+\C)=\A E(\X) \B+\C.
+\]
+- **Theorem 3.6.4** (p.76): $\cov(\x,\y)=E(\x\y')-E(\x)E(\y')$
+- *Proof*: Let $\bmu_x=E(\x)$ and $\bmu_y=E(\y)$. Then it follows that
+\[
+\bea
+\nnn \cov(\x,\y)&=&\EV\left[(\x-\bmu_x)(\y-\bmu_y)'\right] \\
+\nnn &=&\EV\left[(\x-\bmu_x)(\y'-\bmu_y')\right] \\
+\nnn &=&\EV\left[\x(\y'-\bmu_y')-\bmu_x(\y'-\bmu')\right] \\
+\nnn &=&\EV\left(\x\y'-\x\bmu_y'-\bmu_x\y'+\bmu_x\bmu_y'\right) \\
+\nnn &=&E(\x\y')-E(\x\bmu_y')-E(\bmu_x\y')+E(\bmu_x\bmu_y') \\
+\nnn &=&E(\x\y')-E(\x)\bmu_y'-\bmu_x E(\y')+\bmu_x\bmu_y' \\
+\nnn &=&E(\x\y')-\bmu_x\bmu_y'-\bmu_x\bmu_y'+\bmu_x\bmu_y'= E(\x\y')-\bmu_x\bmu_y'. \\
+\eea
+\]
+- **Theorem 3.6.5** (p.83): Suppose that $\A$ is an $m\times n$ matrix of constants, $\x$ is an $n$-dimensional random vector, $\B$ is a $p\times q$ matrix of constants, and $\y$ is a $q$-dimensional random vector.  Then 
+\[
+\cov(\A\x,\B\y)=\A\ \cov(\x,\y)\ \B'.
+\]
+- *Proof*: 
+\[
+\bea
+\nnn \cov(\A\x,\B\y)&=&E\left[(\A\x-E(\A\x))(\B\y-E(\B\y))'\right]\\
+\nnn &=& E\left[(\A\x-\A E(\x))(\B\y-\B E(\y))'\right]\\
+\nnn &=& E\left[\A(\x-E(\x))(\B(\y-E(\y)))'\right]\\
+\nnn &=& E\left[\A(\x-E(\x))(\y-E(\y))'\B'\right]\\
+\nnn &=& \A E\left[(\x-E(\x))(\y-E(\y))'\right]\B'\\
+\nnn &=& \A\ \cov(\x,\y)\ \B'
+\eea
+\]
+- Theorem 3.6.5 is a general result with many important special cases.  Suppose $\a$ is an $m$-dimensional constant vector, $\b$ is an $n$-dimensional constant vector, $\A$ and $\B$ are $m\times n$ matrices of constants, $\x$ is an $m$-dimensional random vector with covariance matrix $\Sig_{xx}$, $\y$ is an $n$-dimensional random vector with covariance matrix $\Sig_{yy}$, the cross-correlation matrix is $\cov(\x,\y)=\Sig_{xy}$.  Then the following statements follow from Theorem 3.6.5.
+    + $\var(\b'\y)=\cov(\b'\y,\b'\y)=\b'\Sig_{yy}\b=\sum_{i=1}^n b_i^2 \var(y_i)+2\sum_{i=1}^{n-1} \sum_{j=i+1}^n b_ib_j\cov(y_i,y_j)$
+    + $\cov(\a'\x,\b'\y)=\a'\Sig_{xy}\b=\sum_{i=1}^m\sum_{j=1}^n a_ib_j\cov(x_i,y_j)$
+    + $\cov(\A\y,\B\y)=\A\ \cov(\y)\ \B'=\A\Sig_{yy}\B'$
+- **Theorem 3.6.6** (p.83): If $\A$ is an $m\times n$ matrix of constants, $\y$ is an $n$-dimensional random vector, and $\b$ is a $m$-dimensional vector of constants, then
+\[
+\cov(\A\y+\b)=\A\ \cov(\y)\ \A'.
+\]

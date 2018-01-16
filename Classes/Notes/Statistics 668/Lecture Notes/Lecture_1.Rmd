@@ -1,0 +1,298 @@
+---
+title: 'Chapter 1: Introduction'
+author: "Notes for MATH 668 based on
+Linear Models in Statistics by Alvin C. Rencher and G. Bruce Schaalje, second edition, Wiley, 2008."
+date: "January 9, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### 1.1 Simple Linear Regression Model
+- Suppose $y=\beta_0+\beta_1 \color{red}{x}+\varepsilon$ where $y$ is called the *dependent* or *response variable*, $x$ is called the *independent*, *predictor*, or *explanatory variable*, and $\varepsilon$ is a random variable called the *error term*.
+- Typically, $\beta_0$ and $\beta_1$ are fixed but unknown model parameters representing the *intercept* and the *slope* of the regression line, respectively.
+- **R Example 1.1.1**: Consider a famous data set on the heights of children based on their parent(s) collected by Galton in (1886). The dataset `GaltonFamilies` is included in the R package `HistData` which can be installed with the following command. 
+```{r eval=FALSE}
+install.packages("HistData")
+```
+The following commands show how to load the package, display its first 10 rows, and display the dimension of the data frame.
+```{r}
+require(HistData)
+GaltonFamilies[1:10,]
+dim(GaltonFamilies)
+```
+Suppose we first consider a model to predict the height of each child based on the midParent height.  Every statistical package has built-in functions to perform common tasks such as fitting a simple linear regression model.  In R, this simple linear regression model can be fit and viewed using the following built-in commands.  (We will consider better ways to model this data in this chapter and later chapters.)
+```{r}
+lm.model=lm(childHeight~midparentHeight,data=GaltonFamilies)
+lm.model
+```
+So, the fitted model in this case is
+\[
+\mbox{Predicted child height}=22.6362+.6374 \cdot \mbox{Midparent height}.
+\]
+
+A scatterplot of the dataset can be obtained as follows; the regression line is also added to the plot in blue.
+```{r}
+plot(GaltonFamilies$midparentHeight,GaltonFamilies$childHeight,xlab="Midparent Height",ylab="Child Height")
+abline(lm.model$coef,col="blue")
+```
+
+### 1.2 Multiple Linear Regression Model
+- The model in the previous section can be extended to allow more explanatory variables to be used to explain/predict the response variable. The following model has $k$ explanatory variables:
+\[
+y=\beta_0+\beta_1 x_1+\beta_2 x_2+\ldots+\beta_k x_k+\varepsilon.
+\]
+- **R Example 1.2.1**: Again, consider the Galton (1886) data set, but now let's use the heights of the father and mother separately as explanatory variables for each child.  In R, this multiple linear regression model can be fit and viewed using the following commands.
+```{r}
+lm.model2=lm(childHeight~mother+father,data=GaltonFamilies)
+lm.model2
+```
+So this fitted model is
+\[
+\mbox{Predicted child height}=22.6433+.2905 \cdot \mbox{Mother height}+ .3683 \cdot \mbox{Father height}.
+\]
+A 3-dimensional scatterplot with the fitted model superimposed can be obtained as follows.  First, if it is not already installed, we need to install the package `rgl` with the command `install.packages("rgl")`.  Then we load the package with the `require` function.  
+
+```{r}
+require(rgl)
+```
+```{r interactive display, echo=FALSE}
+require(knitr, quietly=TRUE)
+knit_hooks$set(webgl = hook_webgl)
+```
+
+Next, the `attach` function allow us to refer to the columns in the data frame `GaltonFamilies` without directly referring to it; the `detach` function removes the ability to immediately reference the columns of the data frame.  The function `plot3d` produces the 3 dimensional scatterplot where the height is the third argument passed to the function.  The next 5 lines use the fitted model `planes3d` function in the `rgl` package to superimpose the fitted regression plane.
+
+```{r webgl=TRUE}
+attach(GaltonFamilies)
+plot3d(mother,father,childHeight)
+a=coef(lm.model2)["mother"]
+b=coef(lm.model2)["father"]
+c=-1
+d=coef(lm.model2)["(Intercept)"]
+planes3d(a, b, c, d, alpha = 0.5)
+detach(GaltonFamilies)
+```
+
+- When deciding on what model we want to use to model data, we need to consider the purpose of our analysis.  There are various purposes that we may be interested in:
+    + Prediction
+    + Data Description or Explanation
+    + Parameter Estimation
+    + Variable Selection or Screening
+    + Control of Output
+
+### 1.3 Analysis-of-Variance Models
+- Another widely-used linear model are *analysis-of-variance* (ANOVA) models. 
+The simplest ANOVA model is the one-way ANOVA model assumes each group of observations 
+has the same mean and the model is specified by
+\[
+y_{ij}=\mu_{i}+\varepsilon_{ij}=\mu+\alpha_i+\varepsilon_{ij}
+\]
+for $i=1,\ldots,\color{red}{G}$ and $j=1,\ldots,n_i$
+where $\mu_i$ is the mean for the $i$th group of observations; in an equivalent specification of the model, $\mu$ is a *mean* and $\alpha_i$ is the *effect* of the $i$th group compared with the mean, but the interpretations of these parameters depend on implicit constraints placed on the model.
+- **R Example 1.3.1**: In the Galton (1886) data set, suppose we want to build a separate model for males and females. With a one-way ANOVA model, we don't include other explanatory variables, but for simplicity we first just fit a one-way ANOVA model.  The following code fits the one-way ANOVA model based on the default in R.
+```{r}
+lm.model3=lm(childHeight~gender,data=GaltonFamilies)
+lm.model3
+```
+This corresponds to the second specification where 
+\[
+\mbox{Height}=64.10 + 5.13\cdot \mbox{Indicator for Male}=\left\{
+\begin{array}{cl}
+64.10 & \mbox{if female} \\
+69.23 & \mbox{if male}
+\end{array}
+\right. .
+\]
+In R, the two group means can be computed separately using the following commands.
+```{r}
+attach(GaltonFamilies)
+mean(childHeight[gender=="female"])
+mean(childHeight[gender!="female"])
+detach(GaltonFamilies)
+```
+
+### 1.A.1 Installing R and a Basic Introduction
+- Downloading and Installing R on Windows
+    + Go to http://cran.r-project.org.
+    + Look under the Section titled "Download and Install R" and click on "Download R for Windows".
+    + Click on "base".
+    + Click on "Download R 3.3.4 for Windows" (or current version) and save it on your computer.
+    + Click on the new desktop icon titled "R-3.3.4-win.exe" (or current setup file) to install R on your computer.
+    + The setup process is self-explanatory.
+- Downloading and Installing R on a Mac
+    + Go to http://cran.r-project.org.
+    + Look under the Section titled "Download and Install R" and click on "Download R for (Mac) OS X".
+    + Click on "R-3.4.3.pkg" (or current version) and save it on your computer.
+    + Double click on the installer file titled "R-3.4.3.pkg" (or current setup file) to install R on your computer.
+    + The setup process is self-explanatory.
+- **R Example 1.A.1**: Consider the following data set:
+\[ 0.44, -6.23, 1, 2, 3, 4, 7, 0, 0, 0
+\]
+
+( a ) Compute the sample mean, sample standard deviation, and sample median for this variable using built-in functions.
+
+( b ) Repeat ( a ) by directly using formulas rather than the built-in functions.
+
+- *Answer*: ( a ) We can enter the data into R and view the vector as follows.
+```{r}
+x=c(.44,-6.23,1:4,7,rep(0,3))
+x
+```
+The sample summary statistics can be computer with the following built-in functions.
+```{r compute summary stats}
+mean(x)
+sd(x)
+median(x)
+```
+( b ) We can also compute these quantites directly in R.  The formula for the mean 
+\[
+\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i
+\]
+can be computed in R as follows.
+```{r}
+sum(x)
+n=length(x)
+n
+x.bar=sum(x)/n
+x.bar
+```
+So, the sample mean is $\bar{x}=1.121$.
+
+Then, we can use the mean to directly compute the variance based on the formula
+\[
+s^2=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2.
+\]
+```{r}
+x-x.bar
+(x-x.bar)^2
+sum((x-x.bar)^2)
+sum((x-x.bar)^2)/(n-1)
+s=sqrt(sum((x-x.bar)^2)/(n-1))
+s
+```
+So, the sample standard deviation is $s=3.423$.
+
+Finally, to compute the median, we need to sort the data.
+```{r}
+sorted.x=sort(x)
+sorted.x
+```
+Then the sample median is usually defined as
+\[
+\frac{x_{\left(\lfloor{(n+1)/2\rfloor}\right)}+x_{\left(\lfloor{n/2+1\rfloor}\right)}}{2}
+\]
+where $\lfloor \ \rfloor$ is the floor function.
+In R, this can be computed as follows.
+```{r}
+c(sorted.x[5],sorted.x[6])
+x.median=(sorted.x[5]+sorted.x[6])/2
+```
+So, the sample median is $\frac{x_{(5)}+x_{(6)}}{2}=0.72$.
+
+- **R Example 1.A.2**: Now, we consider the Galton (1886) data set again to illustrate some additional R commands and syntax while also improving the linear model for the heights of the children based on their parents.
+
+It is important to know how to read data from a file.  The data set "HeightData.txt" is a text file which has the Galton (1886) data set.  In order to read the data into R at the command line, we need to know some commands for finding and changing the filepath.  The command `getwd()` returns the current working directory.  
+```{r}
+getwd()
+```
+The directory can be changed using the `setwd` function as illustrated below.  Note that you must use slashes instead of backslashes (even in Windows which uses backslashes in its filepaths; for more discussion, see http://www.cs.ucsb.edu/~pconrad/topics/BackslashVsForwardSlash/).    
+```{r}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+getwd()
+```
+The command `dir()` displays all of the files and directories in the current working directory.
+```{r echo=2}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+dir()
+```
+Now, the `read.table` function can be used to read the data into R. The optional input **sep="\\t"** tells R that te file is tab-delimited.  The option **header=TRUE** indicates that the file has a header with variable names.  Detailed documentation for the function `read.table` can be obtained with the command `help(read.table)`.
+```{r echo=2}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+D=read.table("HeightData.txt",sep="\t",header=TRUE)
+```
+The following command displays the first ten rows of the data frame `D` and stores it in a new data frame `D10`.
+```{r}
+D10=D[1:10,]
+```
+There are various ways to select subsets of rows and columns in R.  Here are three different ways to extract rows 1-7 and 9 from `D10`.  
+```{r eval=FALSE}
+D10[c(1,2,3,4,5,6,7,9),]
+D10[c(1:7,9),]
+D10[-c(8,10),]
+```
+```{r echo=FALSE}
+D10[-c(8,10),]
+```
+
+The columns of a data frame represent variables, and as we see in `D10`, different columns can be different types; for example, most of the variables are quantitative, but the 7th column **gender** is qualitative.  Here are two ways to extract a vector representing the 7th column of `D10`.
+```{r eval=FALSE}
+D10[,7]
+D10$gender
+```
+```{r echo=FALSE}
+D10$gender
+```
+Furthermore, we can simultaneously select specified rows and columns as illustrated in the following example.
+```{r}
+D10[-c(8,10),7:8]
+```
+
+Now, let's attach `D10`.
+```{r}
+attach(D10)
+```
+The following boolean operation checks which children are females.
+```{r}
+gender=="female"
+```
+R also allows boolean vectors to be used to select rows to be extracted.  For example, the following command displays all data for female children in `D10`.
+```{r}
+D10[gender=="female",]
+detach(D10)
+```
+Now, we can use subsetting to recreate the scatterplot for midparent height and child height but with female children plotted in blue and male children plotted in red as shown in the following code.  The optional argument **type="n"** plots invisible points, but creates the axes so that all of the points will fit on the graph.  The function ``points`` then adds points to the existing plot, and we use the optional argument **col** to specify the color for each group of points.  Then we can fit regression lines for each group using the `lm` function with an appropriate boolean vector in the **subset** option.
+```{r}
+attach(D)
+plot(midparentHeight,childHeight,type="n")
+points(midparentHeight[gender=="female"],childHeight[gender=="female"],col="blue")
+points(midparentHeight[gender=="male"],childHeight[gender=="male"],col="red")
+lm.females=lm(childHeight~midparentHeight,subset=(gender=="female"))
+lm.males=lm(childHeight~midparentHeight,subset=(gender=="male"))
+abline(lm.females$coef,col="blue")
+abline(lm.males$coef,col="red")
+```
+
+Similarly, the following code can be used to create separate 3D plots and regression models for children by gender using both parents' heights as covariates.
+```{r webgl=TRUE}
+clear3d()
+plot3d(mother,father,childHeight,type="n")
+points3d(mother[gender=="female"],father[gender=="female"],childHeight[gender=="female"],col='blue')
+points3d(mother[gender=="male"],father[gender=="male"],childHeight[gender=="male"],col='red')
+lm2.females=lm(childHeight~mother+father,subset=(gender=="female"))
+lm2.males=lm(childHeight~mother+father,subset=(gender=="male"))
+a=coef(lm2.females)["mother"]
+b=coef(lm2.females)["father"]
+c=-1
+d=coef(lm2.females)["(Intercept)"]
+planes3d(a, b, c, d, alpha = 0.5, col='blue')
+a=coef(lm2.males)["mother"]
+b=coef(lm2.males)["father"]
+c=-1
+d=coef(lm2.males)["(Intercept)"]
+planes3d(a, b, c, d, alpha = 0.5, col='red')
+detach(D)
+```
+
+- Here are some additional references for learning R.
+    + [R Manuals](http://lib.stat.cmu.edu/R/CRAN/manuals.html)
+    + [*Using R for Introductory Statistics*](http://www.math.csi.cuny.edu/Statistics/R/simpleR/printable/simpleR.pdf) by John Verzani
+    + [*R for Beginners*](http://lib.stat.cmu.edu/R/CRAN/doc/contrib/Paradis-rdebuts_en.pdf) by Emmanuel Paradis
+    + [R Functions for Regression Analysis](https://cran.r-project.org/doc/contrib/Ricci-refcard-regression.pdf) by Vito Ricci 
+    + Link to some other additional references at http://lib.stat.cmu.edu/R/CRAN/other-docs.html
+    
+

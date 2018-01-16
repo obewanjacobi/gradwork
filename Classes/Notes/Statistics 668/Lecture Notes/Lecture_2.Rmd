@@ -1,0 +1,704 @@
+---
+title: 'Chapter 2: Matrix Algebra'
+author: "Notes for MATH 668 based on
+Linear Models in Statistics by Alvin C. Rencher and G. Bruce Schaalje, second edition, Wiley, 2008."
+date: "January 11, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+header-includes:
+- \usepackage{latexsym}
+- \usepackage{amssymb}
+- \usepackage{amsbsy}
+- \usepackage{color}
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\u{\boldsymbol{u}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\trace{\mathrm{tr}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+
+### 2.1 Matrix and Vector Notation
+- **Definition 2.1.1** (p.5): A *matrix* is a rectangular array of elements.  
+    + The *size* of a matrix is the number of rows and columns in the matrix.
+    + If $\A$ is an $m\times n$ matrix, some notations for the matrix include
+\[
+\A=\left(a_{ij}\right)=\left(\begin{array}{ccc}
+a_{11} & \cdots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \cdots & a_{mn}
+\end{array}\right) .
+\]
+Here $a_{ij}$ represents the element in the $i$th row and the $j$th column.
+    + If $m=n$, then $\A$ is called a *square* matrix. 
+- For example, $\A=\left(\begin{array}{ccc} 4 & 6 & -1 \\ 3 & 0 & 1 \end{array}\right)$ is a $2\times 3$ matrix. The entry in the 1st row and 3rd column is $a_{13}=-1$. 
+- **Definition 2.1.2** (p.6): A *vector* is a matrix with a single row or column.
+- For example, $\x=\left(\begin{array}{c} 2 \\ -5 \\ 3.4 \\ 0\end{array}\right)$ is a 4-dimensional column vector; $\x'=\left( 2,-5,3.4,0 \right)$ is a 4-dimensional row vector.  
+- **Definition 2.1.3** (p.6): Two matrices $\A=\left(a_{ij}\right)$ and $\B=\left(b_{ij}\right)$ are *equal* if both have the same size and $a_{ij}=b_{ij}$ for all $i$ and $j$.
+- **Definition 2.1.4** (p.7): The *transpose* of an $m\times n$ matrix $\A$ is the $n\times m$ matrix $\A'$ (or $\A\tr$) obtained by interchanging the rows and columns of $\A$:
+\[
+\A'=(a_{ij})'=(a_{ji})=\left(\begin{array}{ccc}
+a_{11} & \cdots & a_{n1} \\
+\vdots & \ddots & \vdots \\
+a_{1m} & \cdots & a_{nm}
+\end{array}\right) .
+\]
+- For example, the transpose of $\A=\left(\begin{array}{ccc} 4 & 6 & -1 \\ 3 & 0 & 1 \end{array}\right)$ is
+$\A'=\left(\begin{array}{cc} 4 & 3 \\ 6 & 0 \\ -1 & 1 \end{array}\right)$.
+
+- **Theorem 2.1.1** (p.7): $(\A')'=\A$
+- **Definition 2.1.4** (p.7): A matrix $\A$ is *symmetric* if $\A=\A'$.
+- **Definition 2.1.5** (p.7): The *diagonal* of an $m\times n$ matrix $\A=(a_{ij})$ are the elements $a_{11}, \ldots, a_{\ell\ell}$ where $\ell=\min\left\{m,n\right\}$. We write $\diag(\A)=\left(\begin{array}{c} a_{11} \\ \vdots \\ a_{\ell\ell}\end{array} \right)$.
+- For example, if $\A=\left(\begin{array}{ccc} 4 & 6 & -1 \\ 3 & 0 & 1 \end{array}\right)$, then $\diag(\A)=\left(\begin{array}{c} 4 \\ 0 \end{array} \right)$.
+- **Definition 2.1.6** (p.7): A matrix $\A=(a_{ij})$ is *diagonal* if $a_{ij}=0$ for all $i$ and $j$ such that $i\neq j$. We use $\diag(a_{11},\ldots,a_{nn})$ to denote a square diagonal matrix with diagonal elements $a_{11},\ldots,a_{nn}$.
+- For example, if $\A=\left(\begin{array}{ccc} 4 & 6 & -1 \\ 3 & 0 & 1 \end{array}\right)$, then $\diag(\diag(\A))=\diag(4,0)=\left(\begin{array}{cc} 4 & 0 \\ 0 & 0 \end{array}\right)$.
+- **Definition 2.1.7** (p.8): A matrix $\A=(a_{ij})$ is *upper triangular* if all elements below the diagonal are $0$; that is, $a_{ij}=0$ for all $i>j$. Similarly, a matrix $\A=(a_{ij})$ is *lower triangular* if $a_{ij}=0$ for all $i>j$.
+- **Definition 2.1.8** (p.8): The *identity matrix of order $n$* is an $n\times n$ diagonal matrix such that $a_{11}=\cdots=a_{nn}=1$.  It is denoted by $\I$ or $\I_n$.
+- Here is some other notation reserved for special matrices:
+\[
+\j=\left(\begin{array}{c} 1 \\ \vdots \\ 1\end{array}\right), 
+\J=\left(\begin{array}{ccc} 1 & \cdots & 1 \\ \vdots & \ddots & \vdots \\ 1 & \cdots & 1 \end{array}\right),
+\zeros=\left(\begin{array}{c} 0 \\ \vdots \\ 0\end{array}\right), 
+\O=\left(\begin{array}{ccc} 0 & \cdots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \cdots & 0 \end{array}\right).
+\]
+In each case, subscripts can be used to indicate the size of the vector or matrix.
+
+- **R Example 2.1.1**: The matrix $\A=\left(\begin{array}{ccc} 4 & 6 & -1 \\ 3 & 0 & 1 \end{array}\right)$ can be created in R using any of the following commands.
+```{r}
+A=cbind(c(4,3),c(6,0),c(-1,1))
+A=matrix(c(4,3,6,0,-1,1),2,3)
+A=rbind(c(4,6,-1),c(3,0,1))
+A=matrix(c(4,6,-1,3,0,1),2,3,byrow=TRUE)
+A
+```
+Technically in R, vectors are different from matrices as shown below.
+```{r}
+x=c(2,-5,3.4,0)
+x
+is.vector(x)
+is.matrix(x)
+X=matrix(x)
+X
+is.vector(X)
+is.matrix(X)
+```
+Now, we illustrate syntax in R for computing and working with some of the definitions.  The transpose of `A` can be computed using the function `t`.
+```{r}
+t(A)
+```
+Here is the diagonal of `A` obtain with the function `diag`.
+```{r}
+diag(A)
+```
+The function `diag` can also be used to create a square diagonal matrix with the diagonal elements specified by an input vector.
+```{r}
+diag(c(1,2))
+```
+So combining these different uses of `diag` gives the correct output.
+```{r}
+diag(diag(A))
+```
+The function `rep` is an easy way to create $\j$.
+```{r}
+j=rep(1,3);j
+```
+The function `diag` also allows a convenient way to create $\I$ because it is defined differently when the input is a vector of length 1. 
+```{r}
+I=diag(4);I
+```
+If we actually want to create a $1\times 1$ matrix with entry $4$, we can do so directly.
+```{r}
+matrix(4,1,1)
+```
+The function `matrix` can also be used to create $\O$.
+```{r}
+O=matrix(0,2,3);O
+```
+
+### 2.2 Operations
+- **Definition 2.2.1** (p.9): The *sum* of two $m\times n$ matrices $\A=(a_{ij})$ and $\B=(b_{ij})$ is defined by $\A+\B=\C$ where $\C=(c_{ij})=(a_{ij}+b_{ij})=\left(\begin{array}{ccc}
+a_{11}+b_{11} & \cdots & a_{1n}+b_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{m1}+b_{m1} & \cdots & a_{mn}+b_{mn}
+\end{array}\right)$.  
+
+The difference is defined by $\D=\A-\B$ where $\D=(d_{ij})=(a_{ij}-b_{ij})$.
+Here we say that $\A$ and $\B$ are *conformal for addition*.
+
+- **Theorem 2.2.1** (p.9): If $\A$ and $\B$ are matrices which are conformal for addition, then
+    + $\A+\B=\B+\A$
+    + $(\A+\B)'=\A'+\B'$
+- **Definition 2.2.2** (p.10): The *scalar product* of a scalar $c$ and a matrix $\A$ is defined by $c\A=(ca_{ij})=\left(\begin{array}{ccc}
+ca_{11} & \cdots & ca_{1n} \\
+\vdots & \ddots & \vdots \\
+ca_{m1} & \cdots & ca_{mn}
+\end{array}\right)$.
+- **Definition 2.2.3** (p.10): The *product* of an $m \times n$ matrix $\A$ and an $n\times p$ matrix $B$ is defined by $\A\B=\C$ where 
+\[
+\C=(c_{ij})=\left(\sum_{k=1}^n a_{ik}b_{kj}\right).
+\]
+Here we say that $\A$ and $\B$ are *conformal for multiplication*.
+- In general, note that $\A\B\neq\B\A$; also, $\A$ and $\B$ being conformal for multiplication does not imply that $\B$ and $\A$ are conformal for multiplication.
+- **Theorem 2.2.2** (p.11): 
+    + If $\A$ is an $m\times n$ matrix and $\B$ and $\C$ are $n \times p$ matrices, then $\A(\B\pm \C)=\A\B\pm \A\C$.
+    + If $\A$ and $\B$ are $m\times n$ matrices and $\C$ is an $n \times p$ matrix, then $(\A\pm\B)\C=\color{red}{\A\C \pm\B\C}$.
+- For the $n\times 1$ vector $\b=\left(\begin{array}{c} b_1 \\ \vdots \\ b_n\end{array}\right)$, we see that
+    + $\displaystyle{\b\tr\b}=b_1^2+\ldots+b_n^2$. (Technically, this should be a $1\times 1$ matrix, but sometimes the notation is used to represent the scalar element of the matrix.)
+    + $\displaystyle{\b\b\tr}=(b_ib_j)$ is a symmetric $n\times n$ matrix.
+- **Definition 2.2.4** (p.12): The *length* of a vector $\b$ is $\sqrt{\b\tr\b}$.
+- **Theorem 2.2.3** (p.13): If $\A$ and $\B$ are conformal for multiplication, then $(\A\B)'=\B'\A'$.
+- **Definition 2.2.5** (p.16): If $\A$ is an $n\times p$ matrix, $\x'$ is an $n$-dimensional row vector, and $\y$ is a $p$-dimensional column vector, then $\x'\A\y=\displaystyle{\sum_{i=1}^n\sum_{j=1}^p a_{ij}x_iy_j}$ is called a *bilinear form*.
+- **Definition 2.2.6** (p.16): If $\A$ is an $n\times n$ matrix and $\y$ is an $n$-dimensional column vector, then $\y\tr\A\y=\displaystyle{\sum_{i=1}^n\sum_{j=1}^n a_{ij}y_iy_j}$ is called a *quadratic form*.
+- Note that when discussing quadratic forms, $\ds{\y\tr\A\y=\y\tr\left(\frac{\A+\A'}{2}\right)\y}$, so we can assume $\A$ is symmetric for purposes related to quadratic forms. 
+- **Definition 2.2.7** (p.16): If $\A$ and $\B$ are matrices of the same size, then the *elementwise* (or *Hadamard*) *product* is the matrix $(a_{ij}b_{ij})$.
+- **R Example 2.2.1**: Suppose $\A=\left(\begin{array}{cc} 6 & -1 \\ 0 & 4 \end{array}\right)$ and $\B=\left(\begin{array}{cc} 1 & 0 \\ 2 & 1 \end{array}\right)$.
+Now, let's see how to perform some matrix operations in R. Matrix addition is performed using the `+` operator.
+```{r}
+A=rbind(c(6,-1),c(0,4))
+B=rbind(c(1,0),c(2,1))
+A+B
+```
+So, we see that $\A+\B=\left(\begin{array}{cc} 7 & -1 \\ 2 & 5 \end{array}\right)$.
+
+The scalar product can be computed using the `*` operator since it is an elementwise operation. 
+```{r}
+3*A
+```
+So, we see that $3\A=\left(\begin{array}{cc} 18 & -3 \\ 0 & 12 \end{array}\right)$.
+
+A matrix product is computed in R with the `%*%` operator.
+```{r}
+A%*%B
+```
+So, we see that $\A\B=\left(\begin{array}{cc} 4 & -1 \\ 8 & 4 \end{array}\right)$.
+
+It is important to note that the `*` operator instead computes the elementwise product.
+```{r}
+A*B
+```
+
+The elementwise product is often useful for products involving vectors.  For instance, suppose $\x=\left(\begin{array}{c} 1 \\ 2 \\ -2\end{array}\right)$.  Here are two different ways to compute the square of the length of $\x$.  
+```{r}
+x=c(1,2,-2)
+t(x)%*%x
+
+x*x
+sum(x*x)
+```
+So, we see that $\x'\x=\ds{\sum_{i=1}^3 x_i^2}=9$. Note that, in R, the first expression is treated as a matrix while the second is treated as a vector.
+```{r}
+sqrt(sum(x^2))
+```
+So, the length of $\x$ is $\sqrt{9}=3$.
+
+### 2.3 Partitioned Matrices
+- **Theorem 2.3.1** (p.17): If $\A=\left(\begin{array}{cc} \A_{11} & \A_{12} \\ \A_{21} & \A_{22}\end{array}\right)$ is an $m\times n$ matrix such that $\A_{ij}$ is a $m_i\times n_j$ submatrix and $\B=\left(\begin{array}{cc} \B_{11} & \B_{12} \\ \B_{21} & \B_{22}\end{array}\right)$ is an $n\times p$ matrix such that $\B_{jk}$ is a $n_j\times p_k$ submatrix, then it follows that
+\[
+\A\B=\left(\begin{array}{cc} 
+\A_{11} & \A_{12} \\
+\A_{21} & \A_{22} 
+\end{array}\right)
+\left(\begin{array}{cc} 
+\B_{11} & \B_{12} \\
+\B_{21} & \B_{22} 
+\end{array}\right)
+=\left(\begin{array}{cc} 
+\A_{11}\B_{11}+\A_{12}\B_{21} & \A_{11}\B_{12}+\A_{12}\B_{22} \\
+\A_{21}\B_{11}+\A_{22}\B_{21} & \A_{21}\B_{12}+\A_{22}\B_{22} 
+\end{array}\right) .
+\]
+- Of course, this result can be extended to more general partitions.  One particularly important partition is described in the following result which shows that the product of a matrix and a vector is a linear combination of the columns of the matrix.
+- **Theorem 2.3.2** (p.17): Suppose $\A$ has $p$ columns $\a_1, \ldots, \a_p$ and $\x$ is a $p$-dimensional column vector, then it follows that
+\[
+\A\x=(\a_1,\ldots,\a_p)\left(\begin{array}{c}x_1\\ \vdots\\ x_p\end{array}\right)=
+x_1\a_1+\ldots+x_p\a_p.
+\]
+
+### 2.4 Rank
+- **Definition 2.4.1** (p.19): Let $c_i$ be scalars for $i=1,\ldots,n$. A set of vectors $\a_1,\ldots\a_n$ is *linearly independent* if $c_1\a_1+\ldots+c_n\a_n=\zeros$ implies $c_1=\cdots=c_n=0$.  If $\a_1,\ldots\a_n$ is not linearly independent, then we say that the set is *linearly dependent*.
+- By Theorem 2.3.2, the condition for linear independence in Definition 2.4.1 is equivalent to $\A\x=\zeros \implies \x=\zeros$ where $\x=\left(\begin{array}{c} c_1 \\ \vdots \\ c_n\end{array}\right)$.
+- If $\A$ is a $m\times n$ matrix, note that $\A\zeros_m=\zeros_n$.  So, if $\a_1,\ldots\a_n$ is not linearly independent, then there must be scalars $c_1,\ldots,c_n$ such that $c_i\neq 0$ for some $i$ which satisfy $c_1\a_1+\ldots+c_n\a_n=\zeros_m$.  This implies that $\a_i$ can be expressed as a linear combination of the other vectors since $\a_i=-\ds{\frac{1}{c_i}}\left(c_1\a_1+\ldots+c_{i-1}\a_{i-1}+c_{i+1}\a_{i+1}+\ldots+c_n\a_n\right)$.
+- **Definition 2.4.2** (p.19): The *rank* of a matrix $\A$ is the number of linearly independent columns of $\A$. It is denoted by $\rank(\A)$.
+- It can be shown that it is equivalent to define the rank of $\A$ as the number of linearly independent rows of $\A$ as a consequence of Theorem 2.3.3.
+- **Definition 2.4.3** (p.19): Suppose $\A$ is an $m\times n$ matrix and $\ell=\min\left\{m,n\right\}$.  Then $\A$ is *full rank* if $\rank(\A)=\ell$.
+- **Theorem 2.4.1** (p.21): Suppose $\A$ is an $m\times n$ matrix, $\B$ is an $n\times p$ matrix, and $\E_k$ is a full rank $k\times k$ matrix. 
+    + $\rank(\A\B)\leq \min\left\{\rank(\A),\rank(\B)\right\}$
+    + $\rank(\A\E_n)=\rank(\E_m\A)=\rank(\A)$
+    + $\rank(\A'\A)=\rank(\A\A')=\rank(\A)=\rank(\A')$
+- **Example 2.4.1**: Find the rank of the matrix $\A=\left(\begin{array}{ccc} 0 & 3 & -6\\ 1 & -1 & 3 \\ 3 & -1 & 5\end{array}\right)$.
+- *Answer*: A systematic way to find the rank of a matrix is to find a matrix which is "row equivalent" to $\A$ which is in "reduced row echelon form".   There are three types of "row operations" that we can use; these correpsond to left multiplying our matrix by a full-rank square matrix which has one of the following forms.
+    + Interchange two rows; for example, 
+$\T=\left(\begin{array}{ccc}1 & 0 & 0\\ 0 & 0 & 1 \\ 0 & 1 & 0\end{array}\right)$
+interchanges rows 2 and 3.
+    + Rescale a row by a positive scalar $c$; for example,
+$\T=\left(\begin{array}{ccc}1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 & c\end{array}\right)$
+multiplies row 3 by $c$.
+    + Add a multiple of one row to another row and place the result in the later row; for example,
+$\T=\left(\begin{array}{ccc}1 & 0 & -2\\ 0 & 1 & 0 \\ 0 & 0 & 1\end{array}\right)$
+multiplies row 3 by $-2$ and adds the result to row 1.   
+
+Using these types of operations, we can obtain a convenient "row equivalent" matrix.
+\[
+\rank(\A)=\rank(\T_1\A), \ \ \ \ \
+\T_1\A=
+\left(\begin{array}{ccc}0 & 1 & 0\\ 1 & 0 & 0 \\ 0 & 0 & 1\end{array}\right)
+\left(\begin{array}{ccc}0 & 3 & -6\\ 1 & -1 & 3 \\ 3 & -1 & 5\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 3 & -6 \\ 3 & -1 & 5\end{array}\right)
+\]
+\[
+\rank(\T_1\A)=\rank(\T_2\T_1\A), \ \ \ \ \
+\T_2\T_1\A=
+\left(\begin{array}{ccc}1 & 0 & 0\\ 0 & 1 & 0 \\ -3 & 0 & 1\end{array}\right)
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 3 & -6 \\ 3 & -1 & 5\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 3 & -6 \\ 0 & 2 & -4\end{array}\right)
+\]
+\[
+\rank(\T_2\T_1\A)=\rank(\T_3\T_2\T_1\A), \ 
+\T_3\T_2\T_1\A=
+\left(\begin{array}{ccc}1 & 0 & 0\\ 0 & \frac{1}{3} & 0 \\ 0 & 0 & 1\end{array}\right)
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 3 & -6 \\ 0 & 2 & -4\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 1 & -2 \\ 0 & 2 & -4\end{array}\right)
+\]
+\[
+\rank(\T_3\T_2\T_1\A)=\rank(\T_4\T_3\T_2\T_1\A), \ 
+\T_4\T_3\T_2\T_1\A=
+\left(\begin{array}{ccc}1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 & \frac{1}{2}\end{array}\right)
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 1 & -2 \\ 0 & 2 & -4\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 1 & -2 \\ 0 & 1 & -2\end{array}\right)
+\]
+\[
+\rank(\T_4\T_3\T_2\T_1\A)=\rank(\T_5\T_4\T_3\T_2\T_1\A), \ 
+\T_5\T_4\T_3\T_2\T_1\A=
+\left(\begin{array}{ccc}1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & -1 & 1\end{array}\right)
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 1 & -2 \\ 0 & 1 & -2\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 1 & -2 \\ 0 & 0 & 0\end{array}\right)
+\]
+\[
+\rank(\T_5\T_4\T_3\T_2\T_1\A)=\rank(\T_6\T_5\T_4\T_3\T_2\T_1\A), \ 
+\T_6\T_5\T_4\T_3\T_2\T_1\A=
+\left(\begin{array}{ccc}1 & -1 & 0\\ 0 & 1 & 0 \\ 0 & 0 & 1\end{array}\right)
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 1 & -2 \\ 0 & 0 & 0\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & 0 & 1\\ 0 & 1 & -2 \\ 0 & 0 & 0\end{array}\right)
+\]
+Since $\T_6\T_5\T_4\T_3\T_2\T_1\A$ has two rows with leading 1's, $\rank(\A)=\rank(\T_6\T_5\T_4\T_3\T_2\T_1\A)=2$.  
+
+### 2.5 Inverse
+- **Definition 2.5.1** (p.21): A square matrix $\A$ is *nonsingular* (or *invertible*) if there exists a square matrix $\A^{-1}$ such that $\A^{-1}\A=\A\A^{-1}=\I$.  The matrix $\A^{-1}$ is called the *inverse* of $\A$.  If an inverse for $\A$ does not exist, then $\A$ is *singular*.
+- **Theorem 2.5.1** (p.23): Let $\A$ be a square matrix.  Then $\A$ is nonsingular if and only $\A$ is full rank. 
+- **Example 2.5.1**: Find the inverse of $\A=\left(\begin{array}{cc}2 & 5\\1 & 4\end{array}\right)$, if it exists.
+
+- *Answer*: A systematic way to do this for general square matrices is to use row operations put the  augmented matrix $\left(\A \ \Big| \ \I\right)$ in "reduced row echelon form".
+\[
+\left(\A \ \Big| \ \I\right)=\left(\begin{array}{cc|cc} 2 & 5 & 1 & 0\\ 1 & 4 & 0 & 1\end{array}\right)
+\]
+\[
+\T_1=\left(\begin{array}{cc} 0 & 1 \\ 1 & 0 \end{array}\right), \ \ \ \ \T_1\left(\A\ \Big| \ \I\right)=\left(\begin{array}{cc|cc} 1 & 4 & 0 & 1 \\ 2 & 5 & 1 & 0\end{array}\right)
+\]
+\[
+\T_2=\left(\begin{array}{cc} 1 & 0 \\ -2 & 1 \end{array}\right), \ \ \ \ \T_2\T_1\left(\A \ \Big| \ \I\right)=\left(\begin{array}{cc|cc} 1 & 4 & 0 & 1 \\ 0 & -3 & 1 & -2\end{array}\right)
+\]
+\[
+\T_3=\left(\begin{array}{cc} 1 & 0 \\ 0 & -\frac{1}{3} \end{array}\right), \ \ \ \ \T_3\T_2\T_1\left(\A \ \Big| \ \I\right)=\left(\begin{array}{cc|cc} 1 & 4 & 0 & 1 \\ 0 & 1 & -\frac{1}{3} & \frac{2}{3}\end{array}\right)
+\]
+\[
+\T_4=\left(\begin{array}{cc} 1 & -4 \\ 0 & 1 \end{array}\right), \ \ \ \ \T_4\T_3\T_2\T_1\left(\A \ \Big| \ \I\right)=\left(\begin{array}{cc|cc} 1 & 0 & \frac{4}{3} & -\frac{5}{3} \\ 0 & 1 & -\frac{1}{3} & \frac{2}{3}\end{array}\right)
+\]
+Since $\T_4\T_3\T_2\T_1\left(\A \ \Big| \ \I\right)=
+\left(\T_4\T_3\T_2\T_1\A \ \Big| \ \T_4\T_3\T_2\T_1\right)=
+\left(\I \ \Big| \ \T_4\T_3\T_2\T_1\right)$, the left side of the augmented matrix shows that $\A^{-1}=\T_4\T_3\T_2\T_1$ and the right side of the augmented matrix computes $\A^{-1}$.  
+
+So, we have the result $\A^{-1}=\ds{\left(\begin{array}{cc} \frac{4}{3} & -\frac{5}{3} \\ -\frac{1}{3} & \frac{2}{3}\end{array}\right)}$.
+
+For $2\times 2$ matrices, there is a shortcut formula $\left(\begin{array}{cc} a_{11} & a_{12} \\ a_{21} & a_{22}\end{array}\right)=\frac{1}{a_{11}a_{22}-a_{12}a_{21}}\left(\begin{array}{cc} a_{22} & -a_{12} \\ -a_{21} & a_{11}\end{array}\right)$.  So, we see that
+$\A^{-1}=\frac{1}{3}\left(\begin{array}{cc} 4 & -5 \\ -1 & 2\end{array}\right)$.
+
+- **R Example 2.5.1**: Let's see how to invert this matrix in R.  The function `solve` computes the inverse of a matrix.
+```{r}
+A=cbind(c(2,1),c(5,4))
+solve(A)
+```
+
+- **Theorem 2.5.2** (p.22): Suppose $\A$ and $\B$ a nonsingular matrices.
+    + $(\A^{-1})^{-1}=\A$
+    + If $\A\C=\A\D$, then $\C=\D$.
+    + $(\A')^{-1}=(\A^{-1})'$
+    + $(\A\B)^{-1}=\B^{-1}\A^{-1}$
+- **Theorem 2.5.3** (p.23): If $\A=\left(\begin{array}{cc} \A_{11} & \A_{12} \\ \A_{21} & \A_{22}\end{array}\right)$ is an $n\times n$ nonsingular matrix such that $\A_{ij}$ is a $n_i\times n_j$ submatrix, then it follows that 
+\[
+\A^{-1}=\left(\begin{array}{cc} \A_{11}^{-1}+\A_{11}^{-1}\A_{12}\B^{-1}\A_{21}\A_{11}^{-1} & -\A_{11}^{-1}\A_{12}\B^{-1} \\ -\B^{-1}\A_{21}\A_{11}^{-1} & \B^{-1}\end{array}\right)
+\]
+where $\B=\A_{22}-\A_{21}\A_{11}^{-1}\A_{12}$.
+- **Theorem 2.5.4** (p.24): If $\A$, $\B$, and $\A+\P\B\Q$ are nonsingular matrices, then it follows that
+\[
+(\A+\P\B\Q)^{-1}=\A^{-1}-\A^{-1}\P\B(\B+\B\Q\A^{-1}\P\B)^{-1}\B\Q\A^{-1}.
+\]
+
+### 2.6 Positive Definite Matrices
+- **Definition 2.6.1** (p.25): A square matrix $\A$ is *positive definite* if the quadratic form $\y\tr\A\y>0$ for all nonzero vectors $\y$. A square matrix $\A$ is *positive semidefinite* if the quadratic form $\y\tr\A\y\geq 0$ for all vectors $\y$ and there is at least one nonzero $\y$ such that $\y\tr\A\y=\zeros$.
+- **Theorem 2.6.1** (p.26): Suppose $\A$ is an $p\times p$ matrix and $\B$ is a $k\times p$ matrix with rank $r>0$.
+    + If $\A$ is positive semidefinite, then $\B\A\B'$ is positive semidefinite.
+    + If $\A$ is positive definite and $r=k\leq p$, then $\B\A\B'$ is positive definite.
+    + If $\A$ is positive definite and $k>p$ or $r<\min\left\{k,p\right\}$, then $\B\A\B'$ is positive semidefinite.
+- **Theorem 2.6.2** (p.26): The matrix $\A$ is symmetric and positive definite if and only if there exists a nonsingular matrix $\P$ such that $\A=\P'\P$.
+- For a positive definite matrix $\A$, the Cholesky decomposition provides a method of finding an upper triangular matrix $\T$ such that $\A=\T'\T$.
+- **Theorem 2.6.3** (p.27): If a matrix is positive definite, then it is nonsingular. 
+- **R Example 2.6.1**: Let's see how to use a built-in function `chol` in R to obtain the Cholesky decomposition for the positive definite symmetric matrix $\A=\left(\begin{array}{ccc} 5 & 0 & 1 \\
+0 & 3 & 0 \\ 1 & 0 & 1\end{array}\right)$.  
+```{r}
+A=cbind(c(5,0,1),c(0,3,0),c(1,0,1))
+T=chol(A); T
+```
+So let $\T=\left(\begin{array}{ccc} \sqrt{5} & 0 & \frac{1}{\sqrt{5}} \\ 0 & \sqrt{3} & 0 \\ 0 & 0 & \frac{2}{\sqrt{5}}\end{array}\right)$. The following command checks that $\T'\T=\A$.
+```{r}
+t(T)%*%T
+```
+
+### 2.7 Systems of Equations
+- The system of equations 
+\[
+\bea
+\nnn a_{11}x_1+a_{12}x_2+\ldots+a_{1n}x_n&=&b_1 \\
+\nnn a_{21}x_1+a_{22}x_2+\ldots+a_{2n}x_n&=&b_2 \\
+\nnn &\vdots& \\
+\nnn a_{m1}x_1+a_{m2}x_2+\ldots+a_{mn}x_n&=&b_m \\
+\eea
+\]
+can be written in matrix form as $\A\x=\b$ where
+\[
+\A=\left(\begin{array}{cccc}a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} \\
+\end{array}\right), 
+\x=\left(\begin{array}{c}x_1 \\ x_2 \\ \vdots \\ x_n
+\\ \end{array}\right),
+\mbox{ and } \b=\left(\begin{array}{c}b_1 \\ b_2 \\ \vdots \\ b_m
+\\ \end{array}\right).
+\]
+- **Definition 2.7.1** (p.29): Let $\A$ be an $m\times n$ matrix and $\b$ be an $m$-dimensional column vector. Then the system of equations $\A\x=\b$ is *consistent* if there is at least $n$-dimensional vector $\x$ which satisfies the system of equations; otherwise, the system is *inconsistent* if there are no solutions. 
+- **Theorem 2.7.1** (p.29): If $\A$ is an invertible $n \times n$ matrix and $\b$ is an $n$-dimensional column vector, then $\A\x=\b$ has the unique solution $\x=\A^{-1}\b$.
+- **Example 2.7.1**: Find all solutions to the system of equations
+\[
+\bea
+\nnn 3x_2&=&-6 \\
+\nnn x_1-x_2&=&3 \\
+\nnn 3x_1-x_2&=&5 \\
+\eea .
+\]
+- *Answer*: Letting $\A=\left(\begin{array}{cc} 0 & 3 \\ 1 & -1 \\ 3 & -1\end{array}\right)$ and $\b=\left(\begin{array}{c} -6 \\ 3 \\ 5\end{array}\right)$, we can solve $\A\x=\b$ for $\x$ by using "row operations" as in Example 2.4.1. That is, we left multiply both sides of $\A\x=\b$ by $\T_6\T_5\T_4\T_3\T_2\T_1$
+to obtain 
+\[
+\left(\begin{array}{cc} 1 & 0 \\ 0 & 1 \\ 0 & 0\end{array}\right)\left(\begin{array}{c} x_1\\ x_2\end{array}\right)=\left(\begin{array}{c} 1\\ -2\\ 0\end{array}\right)
+\]
+which implies that $x_1=1$ and $x_2=-2$.
+- Graphically, here are two ways we can view the solution to Example 2.7.1.  Viewing the rows 
+\[
+\bea
+\nnn \color{red}{3x_2}&\color{red}{=}&\color{red}{-6} \\
+\nnn \color{blue}{x_1-x_2}&\color{blue}{=}&\color{blue}{3} \\
+\nnn \color{#FFA200}{3x_1-x_2}&\color{#FFA200}{=}&\color{#FFA200}{5} \\
+\eea .
+\]
+as linear functions, we can plot the three lines (rows) in $\mathbb{R}^2$ as shown below.
+```{r}
+plot(-5:5,-5:5,type="n",xlab=expression(italic(x)[1]),ylab=expression(italic(x)[2]),family="serif",cex.lab=1.5)
+abline(h=-2,col="red") #this option draws a horizontal line at x2=-2
+abline(a=-3,b=-1,col="blue") #a is the y-intercept and b is the slope of the line
+x1=c(-5,5); x2=-5-3*x1; points(x1,x2,type="l",col="#FFA200") #this shows how to plot the line directly with two points 
+```
+
+Alternately, viewing the columns
+\[
+\bea
+\nnn \color{#00FF00}{0}x_1\color{#00FFFF}{+3}x_2&=&\color{#990099}{-6} \\
+\nnn \color{#00FF00}{1}x_1\color{#00FFFF}{-1}x_2&=&\color{#990099}{3} \\
+\nnn \color{#00FF00}{3}x_1\color{#00FFFF}{-1}x_2&=&\color{#990099}{5} \\
+\eea .
+\]
+as vectors with the coefficients of the variables, we can plot the vectors in $\mathbb{R}^3$ as shown below.
+
+```{r}
+require(rgl)
+```
+```{r interactive display, echo=FALSE}
+require(knitr, quietly=TRUE)
+knit_hooks$set(webgl = hook_webgl)
+```
+```{r webgl=TRUE}
+plot3d(c(0,0),c(0,1),c(0,3),type="n",xlab="x",ylab="y",zlab="z",lwd=5,xlim=c(-10,10),ylim=c(-10,10),zlim=c(-10,10),box=FALSE,axes=TRUE)
+segments3d(c(0,0),c(0,1),c(0,3),col=c("green"),lwd=5)
+segments3d(c(0,3),c(0,-1),c(0,-1),col=c("cyan"),lwd=5)
+segments3d(c(0,-6),c(0,3),c(0,5),col=c("#990099"),lwd=5)
+planes3d(2,9,-3,0,alpha=0.1)
+```
+
+```{r webgl=TRUE}
+clear3d()
+plot3d(c(0,0),c(0,1),c(0,3),type="n",xlab="",ylab="",zlab="",lwd=5,xlim=c(-10,10),ylim=c(-10,10),zlim=c(-10,10),box=FALSE,axes=FALSE)
+m=5
+for (s in -m:m) for (t in -m:m){
+ segments3d(c(3*s,3*s),c(-s-m,-s+m),c(-s-3*m,-s+3*m),col="#AAAAAA")
+ segments3d(c(-3*m,3*m),c(t+m,t-m),c(3*t+m,3*t-m),col="#AAAAAA")
+}
+segments3d(c(0,0),c(0,1),c(0,3),col=c("green"),lwd=5)
+segments3d(c(0,3),c(0,-1),c(0,-1),col=c("cyan"),lwd=5)
+segments3d(c(0,-6),c(0,3),c(0,5),col=c("#990099"),lwd=5)
+```
+
+### 2.8 Generalized Inverse
+- **Definition 2.8.1** (p.33): A *generalized inverse* of an $n\times p$ matrix $\A$ is any matrix $\A^-$ which satisfies $\A\A^-\A=\A$.
+- **Theorem 2.8.1** (p.34): Suppose $\A=\left(\begin{array}{cc}\A_{11} & \A_{12} \\ \A_{21} & \A_{22}\end{array}\right)$ is an $n\times p$ matrix of rank $r$ where $\A_{11}$ is an $r\times r$ matrix of rank $r$. Then
+\[
+\A^-=\left(\begin{array}{cc} \A_{11}^{-1} & \O \\ \O & \O\end{array}\right)
+\]
+is a generalized inverse of $\A$.
+
+- Every matrix has a generalized inverse. 
+- If a square matrix is invertible, then its inverse is the unique generalized inverse.
+- **Theorem 2.8.2** (p.37): The system of equations $\A\x=\b$ is consistent if and only if $\A\A^-\b=\b$ for every generalized inverse $\A^-$ of $\A$.
+- **Example 2.8.1**: Find a generalized inverse of $\A=\left(\begin{array}{ccc} 3 & 1 & 4\\ 5 & 2 & 7 \\ 1 & 0 & 1\end{array}\right)$.  
+- *Answer*: It is easy to see that $\rank(\A)=2$ since the third column is the sum of the first two columns, and the second column is not a multiple of the first.  So, since $\left(\begin{array}{cc} 3 & 1 \\ 5 & 2\end{array}\right)^{-1}=\left(\begin{array}{cc} 2 & -1 \\ -5 & 3\end{array}\right)$, 
+$\A^{-}=\left(\begin{array}{ccc} 2 & -1 & 0\\ -5 & 3 & 0 \\ 0 & 0 & 0\end{array}\right)$ is a generalized inverse of $\A$.  
+
+There are many other generalized inverses of $\A$ such as
+$\A_2^{-}=\left(\begin{array}{ccc} -1 & 0 & 4\\ 0 & 0 & 0 \\ 1 & 0 & -3\end{array}\right)$ and
+$\A_3^{-}=\left(\begin{array}{ccc} 0 & 0 & 0\\ 0 & 0.5 & -3.5 \\ 0 & 0 & 1\end{array}\right)$.
+
+### 2.9 Determinants
+- **Definition 2.9.1**: The *determinant* of the $2\times 2$ matrix $\left(\begin{array}{cc} a_{11} & a_{12} \\ a_{21} & a_{22}\end{array}\right)$ is $\det(\A)=a_{11}a_{22}-a_{12}a_{21}$.
+
+The *determinant* of an $n\times n$ matrix $\A=(a_{ij})$ is 
+$\ds{\det(\A)=\sum_{j=1}^n (-1)^{i+j} a_{ij}\det(\M_{ij})}$
+where $i$ is any integer between $1$ and $n$ and $M_{ij}$ is the submatrix formed by eliminating the $i$th row and $j$th column of $\A$.
+
+The notation $\left| \A \right|$ is sometimes also used to represent the determinant of $\A$.
+
+- **Example 2.9.1**: Compute the determinant of $\A=\left(\begin{array}{ccc} 2 & 4 & 6\\ 2 & -1 & 4 \\ 0 & 1 & 5\end{array}\right)$.
+- *Answer*: Using Definition 2.9.1 and expanding on row $i=3$, we have
+
+\[\bea
+\nnn \left|\begin{array}{ccc} 2 & 4 & 6\\ 2 & -1 & 4 \\ 0 & 1 & 5\end{array}\right|&=&
+0 \left|\begin{array}{cc} 4 & 6\\ -1 & 4\end{array}\right|
+-1 \left|\begin{array}{cc} 2 & 6\\ 2 & 4\end{array}\right|
++5 \left|\begin{array}{cc} 2 & 4\\ 2 & -1\end{array}\right| \\
+\nnn &=& 0 - 1(8-12) + 5(-2-8) \\
+\nnn &=& 0+4-50 = -46.
+\eea\]
+
+- A different but equivalent definition is described on p.37 based on permutations of $\left\{1,\ldots,n\right\}$.
+
+- **Theorem 2.9.1**: If $\T=(t_{ij})$ is an $n\times n$ triangular matrix, then $\ds{\det(\T)=\prod_{i=1}^n t_{ii}}$.
+- **Theorem 2.9.2** (p.38): Suppose $\A$ is a square matrix.
+    + $\A$ is singular if and only if $\det(\A)=0$.
+    + $\A$ is positive definite if and only if $\det(\A)>0$.
+    + $\det(\A')=\det(\A)$
+    + If $\A$ is nonsingular, then $\det(\A^{-1})=\det(\A)$.
+- **Theorem 2.9.3** (p.40): If $\A$ and $\B$ are square matrices with the same size, then $\det(\A\B)=\det(\A)\det(\B)=\det(\B)\det(\A)=\det(\B\A)$.
+- This gives us another way to find determinants using row (or column) operations.
+For example, in Example 2.9.1, consider the following products.
+\[
+\T_1\A=
+\left(\begin{array}{ccc}\frac{1}{2} & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 & 1\end{array}\right)
+\left(\begin{array}{ccc}2 & 4 & 6\\ 2 & -1 & 4 \\ 0 & 1 & 5\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & 2 & 3\\ 2 & -1 & 4 \\ 0 & 1 & 5\end{array}\right)
+\]
+\[
+\T_2\T_1\A=
+\left(\begin{array}{ccc}1 & 0 & 0\\ -2 & 1 & 0 \\ 0 & 0 & 1\end{array}\right)
+\left(\begin{array}{ccc}1 & 2 & 3\\ 2 & -1 & 4 \\ 0 & 1 & 5\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & 2 & 3\\ 0 & -5 & -2 \\ 0 & 1 & 5\end{array}\right)
+\]
+\[
+\T_3\T_2\T_1\A=
+\left(\begin{array}{ccc}1 & 0 & 0\\ 0 & 0 & 1 \\ 0 & 1 & 0\end{array}\right)
+\left(\begin{array}{ccc}1 & 2 & 3\\ 0 & -5 & -2 \\ 0 & 1 & 5\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 1 & 5 \\ 0 & -5 & -2\end{array}\right)
+\]
+\[
+\T_4\T_3\T_2\T_1\A=
+\left(\begin{array}{ccc}1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 5 & 1\end{array}\right)
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 1 & 5 \\ 0 & -5 & -2\end{array}\right)
+=
+\left(\begin{array}{ccc}1 & -1 & 3\\ 0 & 1 & 5 \\ 0 & 0 & 23\end{array}\right)
+\]
+Then we see that 
+
+\[\bea
+\nnn \det(\T_4\T_3\T_2\T_1\A)&=&\det(\T_4)\det(\T_3)\det(\T_2)\det(\T_1)\det(\A) \\
+\nnn 23 &=& (1)(-1)(1)\left(\frac{1}{2}\right)\det(\A) \\ 
+\nnn \det(\A) &=& 23(-2)=-46.
+\eea\]
+
+- **R Example 2.9.1**: Let's see how to compute the determinant of the matrix from Example 2.9.1 using the built-in R function `det`.
+```{r}
+A=rbind(c(2,4,6),c(2,-1,4),c(0,1,5))
+det(A)
+```
+
+### 2.10 Orthogonal Vectors and Matrices
+- **Definition 2.10.1** (p.41): Two $n$-dimensional column vectors $\a$ and $\b$ are *orthogonal* if
+$\a\tr\b=a_1b_1+a_2b_2+\ldots+a_nb_n=0$.
+- **Definition 2.10.2** (p.42): The *angle* between vectors $\a$ and $\b$ is $\ds{\theta=\arccos\left(\frac{\a\tr\b}{\sqrt{\a\tr\a}\sqrt{\b\tr\b}}\right)}$.
+- **Definition 2.10.3** (p.42): A set of vectors $\u_1, \ldots, \u_n$ are *orthonormal* if
+    + $\u_i\tr\u_i=1$ for all $i$
+    + $\u_i\tr\u_j=0$ for all $i,j$ such that $i\neq j$. 
+- **Definition 2.10.4** (p.42): A square matrix $\U$ is *orthogonal* if its columns $\u_1,\ldots,\u_n$ are orthonormal.
+- Definition 2.10.4 is equivalent to $\U\tr\U=\I_n$.
+- **Theorem 2.10.1** (p.43): If $\U$ is an orthogonal matrix, then $\U^{-1}=\U\tr$.
+- **Theorem 2.10.2** (p.44): Suppose $\U$ is an orthogonal matrix which has the same size as a square matrix $\A$. Then the following statements hold.
+    + $\left|\det(\U)\right|=1$
+    + $\det(\U\tr\A\U)=\det(\A)$
+
+### 2.11 Trace
+- **Definition 2.11.1** (p.44): If $\A=(a_{ij})$ is an $n\times n$ matrix, then the *trace* of $\A$ is $\ds{\trace(\A)=\sum_{i=1}^n a_{ii}}$.
+- **Theorem 2.11.1** (p.44): 
+    + If $\A$ and $\B$ are $n\times n$ matrices, then $\trace(\A\pm \B)=\trace(\A)\pm\trace(\B)$.
+    + If $\A$ is an $n\times p$ matrix and $\B$ is a $p\times n$ matrix, then $\trace(\A\B)=\trace(\B\A)$
+    + If $\A$ and $\B$ are $n\times n$ matrices and $\P$ is nonsingular, then $\trace(\P^{-1}\A\P)=\trace(\A)$.
+    + If $\A$ is an $n\times p$ matrix with rank $r$ and $\A^-$ is a generalized inverse of $\A$, then $\trace(\A^-\A)=\trace(\A\A^-)=r$.
+
+### 2.12 Eigenvalues and Eigenvectors
+- **Definition 2.12.1** (p.46): An *eigenvector* of square matrix $\A$ is a non-zero vector $\x$ such that $\A\x=\lambda\x$ for some scalar $\lambda$.  The scalar $\lambda$ is called an *eigenvalue* of $\A$.
+- **Definition 2.12.2** (p.47): The *characteristic equation* for $\A$ is $\det(\A-\lambda\I)=0$.
+- To find eigenvalue-eigenvector pairs of an $n\times n$ matrix $\A$, we find all eigenvalues such that the characteristic equation (which is an $n$th degree polynomial function of $\lambda$).  For each eigenvalue $\lambda$, we then find the nonzero vectors $\x$ (up to a constant multiple) such that $(\A-\lambda\I)\x=\zeros$.
+- **Example 2.12.1**: Find all eigenvalue-eigenvector pairs of $\A=\left(\begin{array}{cc} 5 & 2\\2 & 2 \end{array}\right)$.
+- *Answer*: Since $\ds{\det(\A-\lambda\I)=\left|\begin{array}{cc}5-\lambda & 2\\2 & 2-\lambda\end{array}\right|=\lambda^2-7\lambda+6}$,
+the characteristic equation $\lambda^2-7\lambda+6=0$ yields two eigenvalues $\lambda_1=6$ and $\lambda_2=1$.  Solving $(\A-\lambda_1\I)\x=\zeros$, we obtain the solution $\x=c\left(\begin{array}{c} 2\\ 1\end{array}\right)$ so $\lambda=6$ and any multiple of $\left(\begin{array}{c} 2\\ 1\end{array}\right)$ is an eigenvalue-eigenvector pair.
+Solving $(\A-\lambda_2\I)\x=\zeros$, we obtain the solution $\x=c\left(\begin{array}{c} 1\\ -2\end{array}\right)$ so $\lambda=1$ and any multiple of $\left(\begin{array}{c} 1\\ -2\end{array}\right)$ is an eigenvalue-eigenvector pair.
+
+- **Theorem 2.12.1** (p.51): If $\A$ is a square matrix and $\P$ is a nonsingular $n\times n$ matrix, then $\P^{-1}\A\P$ has the same eigenvalues as $\A$.
+- **Theorem 2.12.2** (p.51): Let $\A$ be an $n\times n$ symmetric matrix with eigenvalues $\lambda_1,\lambda_2,\ldots\lambda_n$.  Let $\x_i$ be an eigenvector corresponding to the eigenvalue $\lambda_i$ for $i=1,\ldots,n$.
+    + $\lambda_1,\lambda_2,\ldots,\lambda_n$ are real scalars
+    + If $\lambda_1,\lambda_2,\ldots,\lambda_k$ are distinct, then $\x_1,\ldots,\x_k$ are mutually orthogonal.
+    + Eigenvectors corresponding to the nondistinct eigenvalues can be chosen to be 
+mutually orthogonal to each other and to the other eigenvectors.
+- **Theorem 2.12.3** (p.51): Suppose $\A$ is an $n\times n$ symmetric matrix with eigenvalues $\lambda_1,\lambda_2,\ldots\lambda_n$.  Let $\u_i$ be an eigenvector corresponding to the eigenvalue $\lambda_i$ for $i=1,\ldots,n$ such that $\u_i'\u_j=\left\{\begin{array}{cl} 1&\mbox{if } i=j\\0&\mbox{if } i\neq j\end{array}\right.$. Then 
+\[ \A=\U\D\U\tr=\sum_{i=1}^n \lambda_i\u_i\u_i'
+\]
+where $\D=\diag(\lambda_1,\lambda_2,\ldots,\lambda_n)$ and $\U$ is a matrix with columns $\u_1,\u_2,\ldots,\u_n$.
+- The expression for $\A$ in Theorem 2.12.3 is called the *spectral decomposition* of $\A$.
+- **Theorem 2.12.4** (p.52): Suppose $\A$ is an $n\times n$ matrix with eigenvalues $\lambda_1,\lambda_2,\ldots\lambda_n$.  Then the following results hold.
+    + $\ds{\det(\A)=\prod_{i=1}^n \lambda_i}$
+    + $\ds{\trace(\A)=\sum_{i=1}^n \lambda_i}$
+    + If $\A$ is positive definite, then $\lambda_i>0$ for all $i$.
+    + If $\A$ is positive semidefinite, then $\lambda_i\geq 0$ for all $i$ and the rank of $\A$ is the number of nonzero eigenvalues.
+- **Definition 2.12.3** (p.53): Let $\A=\U\D\U\tr$ be a positive definite matrix where $\D=\diag(\lambda_1,\lambda_2,\ldots,\lambda_n)$ and $\U$ is an orthogonal matrix.  Then its *square root matrix* is $\A^{1/2}=\U\D^{1/2}\U\tr$ where $\D^{1/2}=\diag(\sqrt{\lambda_1},\sqrt{\lambda_2},\ldots,\sqrt{\lambda_n})$.
+- **R Example 2.12.1**: Let's see how to obtain a spectral decomposition in R using the built-in `eigen` function. 
+```{r}
+A=rbind(c(5,2),c(2,2))
+eigen.A=eigen(A)
+lambda=eigen.A$values;lambda
+U=eigen.A$vector;U
+```
+The eigenvalues are stored in the vector `lambda` and the respective eigenvectors are stored in the columns of `U`.  The following command verifies that the spectral decomposition equals `A`.
+```{r}
+U%*%diag(lambda)%*%t(U)
+```
+
+### 2.13 Idempotent Matrices
+- **Definition 2.13.1** (p.54): A square matrix $\A$ is *idempotent* if $\A^2=\A$.
+- **Theorem 2.13.1** (p.54): If $\A$ is idempotent and nonsingular, then $\A=\I$.
+- **Theorem 2.13.2** (p.54): If $\A$ is an $n\times n$ symmetric idempotent matrix of rank $r$, then the roots of the characteristic equation $\det(\A-\lambda\I)=0$ are $1$ (with multiplicity $r$) and $0$ (with multiplicity $n-r$).
+- **Theorem 2.13.3** (p.55): Suppose $\ds{\I=\sum_{i=1}^k \A_i}$ where $\A_i$ isan $n\times n$ symmetric matrix of rank $r_i$ for $i=1,\ldots,n$. Then the following statements hold.
+    + $\A_1,\A_2,\ldots,\A_k$ are idempotent matrices.
+    + $\A_i\A_j=\O$ for all $i\neq j$
+
+### 2.14 Vector and Matrix Calculus
+- **Definition 2.14.1** (p.57): Let $f(\X)$ be a real-valued function of the elements of an $m\times n$ dimensional matrix
+\[
+\X=(x_{ij})=\left(\begin{array}{ccc}
+x_{11} & \cdots & x_{1n}\\ \vdots & \ddots & \vdots\\ x_{m1} & \cdots & x_{mn}
+\end{array} 
+\right) .
+\]
+The *derivative of $f$ with respect to $\X$* is defined as
+\[ 
+\frac{\partial f}{\partial \X}=
+\left(\begin{array}{ccc}
+\frac{\partial f}{\partial x_{11}} & \cdots & \frac{\partial f}{\partial x_{1n}} \\
+\vdots & \ddots & \vdots \\
+\frac{\partial f}{\partial x_{m1}} & \cdots & \frac{\partial f}{\partial x_{mn}}
+\end{array}\right).
+\]
+- This includes the case of differentiating by a column vector or by a row vector.
+- **Theorem 2.14.1** (p.56): If $\x$ is an $n$-dimensional vector and $\c$ is an $n$-dimensional vector of constants, then $\ds{\frac{\partial[\c'\x]}{\partial\x}=\frac{\partial[\x'\c]}{\partial\x}=\c}$.
+- **Theorem 2.14.2** (p.56): If $\x$ is an $n$-dimensional vector and $\C$ is an $n \times n$ matrix of constants, then $\ds{\frac{\partial[\x'\C\x]}{\partial\x}=(\C+\C')\x}$.  If $\C$ is also symmetric, then $\ds{\frac{\partial[\x'\C\x]}{\partial\x}=2\C\x}$.
+    
+- **Definition 2.14.2** (p.58): Let 
+\[
+\A(x)=(a_{ij}(x))=\left(
+\begin{array}{ccc}
+a_{11}(x) & \cdots & a_{1n}(x) \\
+\vdots & \ddots & \vdots \\
+a_{m1}(x) & \ldots & a_{mn}(x)
+\end{array}
+\right)
+\]
+be an $m\times n$ matrix with elements which are functions of a scalar $x$.
+Then the *derivative of $\A$ with respect to $x$* is
+\[ 
+\frac{d \A(x)}{dx}=\left(\frac{d a_{ij}}{dx}\right)=\left(
+\begin{array}{ccc}
+\frac{da_{11}}{dx} & \cdots & \frac{da_{1n}}{dx} \\
+\vdots & \ddots & \vdots \\
+\frac{da_{m1}}{dx} & \ldots & \frac{da_{mn}}{dx}
+\end{array}
+\right).
+\]
+- **Definition 2.14.3** (p.60): Let $\x$ be an $n$-dimensional column vector and let $\h(\x)=\left(\begin{array}{ccc} h_1(\x),\ldots,h_m(\x)\end{array} \right)$ be a row vector-valued function.  Then the *derivative of $\h$ with respect to $\x$* is
+\[
+\frac{\partial}{\partial \x}h(\x)=\left(\begin{array}{c} \frac{\partial}{\partial x_1} \\ \vdots \\ \frac{\partial}{\partial x_n}\end{array}\right)\left(\begin{array}{ccc} h_1(\x),\ldots,h_m(\x)\end{array}\right)=
+\left(
+\begin{array}{ccc}
+\frac{\partial h_1}{\partial x_1} & \cdots & \frac{\partial h_m}{\partial x_1} \\
+\vdots & \ddots & \vdots \\
+\frac{\partial h_1}{\partial x_n} & \ldots & \frac{\partial h_m}{\partial x_n}
+\end{array}
+\right) .
+\]
+- **Theorem 2.14.3**: If $\x$ is an $n$-dimensional vector and $\g(\x)$ and $\h(\x)$ are $n$-dimensional vector-valued functions of $\x$, then 
+    + $\ds{\frac{\partial[\g'+\h']}{\partial\x}=\frac{\partial\g'}{\partial\x}+\frac{\partial\h'}{\partial\x}}$
+    + $\ds{\frac{\partial[\g'\h]}{\partial\x}=\frac{\partial\g'}{\partial\x}\h+\frac{\partial\h'}{\partial\x}\g}$.
