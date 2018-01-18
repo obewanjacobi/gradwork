@@ -1,0 +1,95 @@
+---
+title: "Homework 1 Solutions"
+author: "Jacob Townson"
+date: "January 17, 2018"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+
+# Answer the following questions about the dataset "HeightData.txt".
+
+Before we begin, we must read in the text file containing "HeightData.txt". 
+
+```{r}
+setwd("C:/Users/obewa_000/Documents/My real documents/University of Louisville/public_work/Classes/Homework/Statistics 668")
+D=read.table("HeightData.txt",sep="\t",header=TRUE)
+```
+Now we can work on the required problems.
+
+##(a - 1pt) Find the average height of all children.
+
+```{r}
+mean(D$childHeight)
+```
+
+
+##(b - 1pt) Find the percentage of female children.
+
+```{r}
+girls = D$gender=='female'
+percent.girls = sum(girls)/length(girls)
+percent.girls
+```
+
+
+##(c - 1pt) What is the height of the tallest child?
+
+```{r}
+max(D$childHeight)
+```
+
+
+##(d - 1pt) How many families have exactly 4 children?
+
+```{r}
+require(tidyr)
+require(dplyr)
+D.4 = select(D,family,children)
+D.4 = distinct(D.4)
+D.4 = filter(D.4, children == 4)
+length(D.4$family)
+```
+
+This number contains the number of families with exactly $4$ children. It was helpful to reduce the data in this way as now wehave a dataframe that contains the exact families with $4$ children as well, which in normal cases could be useful for further analysis.
+
+##(e - 2pts) What are the heights of the children in the family with the tallest mother?
+
+```{r}
+require(knitr)
+tallmom = max(D$mother)
+Dmoms = filter(D, mother == tallmom)
+kable(Dmoms)
+```
+
+This dataframe shows us all information about the family with the tallest mother.
+
+##(f - 2pts) What percentage of children are taller than both of their parents?
+
+```{r}
+
+```
+
+
+##(g - 2pts) What is the average height of females whose mother was at least 68 inches tall?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r echo=FALSE}
+setwd("C:/Users/obewa_000/Documents/My real documents/University of Louisville/public_work/")
+```
+
+
