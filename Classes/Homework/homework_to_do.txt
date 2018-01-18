@@ -1,13 +1,14 @@
 -----------------------------------------------------
 STATISTICS
 
-HW1
+NA
 class website: 
 http://www.math.louisville.edu/~rsgill01/668.html
 -----------------------------------------------------
 MODELING
 
-NA
+Section 3.9: 3,4,5
+Section 3.8: 5,7
 -----------------------------------------------------
 INDEPENDENT STUDY - BINGTUAN
 
