@@ -14,5 +14,3 @@ INDEPENDENT STUDY - BINGTUAN
 
 read papers (on syllabus)
 -----------------------------------------------------
-
-test for git

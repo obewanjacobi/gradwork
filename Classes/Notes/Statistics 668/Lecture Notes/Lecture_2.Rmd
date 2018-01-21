@@ -252,8 +252,8 @@ x_1\a_1+\ldots+x_p\a_p.
 - **Definition 2.4.1** (p.19): Let $c_i$ be scalars for $i=1,\ldots,n$. A set of vectors $\a_1,\ldots\a_n$ is *linearly independent* if $c_1\a_1+\ldots+c_n\a_n=\zeros$ implies $c_1=\cdots=c_n=0$.  If $\a_1,\ldots\a_n$ is not linearly independent, then we say that the set is *linearly dependent*.
 - By Theorem 2.3.2, the condition for linear independence in Definition 2.4.1 is equivalent to $\A\x=\zeros \implies \x=\zeros$ where $\x=\left(\begin{array}{c} c_1 \\ \vdots \\ c_n\end{array}\right)$.
 - If $\A$ is a $m\times n$ matrix, note that $\A\zeros_m=\zeros_n$.  So, if $\a_1,\ldots\a_n$ is not linearly independent, then there must be scalars $c_1,\ldots,c_n$ such that $c_i\neq 0$ for some $i$ which satisfy $c_1\a_1+\ldots+c_n\a_n=\zeros_m$.  This implies that $\a_i$ can be expressed as a linear combination of the other vectors since $\a_i=-\ds{\frac{1}{c_i}}\left(c_1\a_1+\ldots+c_{i-1}\a_{i-1}+c_{i+1}\a_{i+1}+\ldots+c_n\a_n\right)$.
-- **Definition 2.4.2** (p.19): The *rank* of a matrix $\A$ is the number of linearly independent columns of $\A$. It is denoted by $\rank(\A)$.
-- It can be shown that it is equivalent to define the rank of $\A$ as the number of linearly independent rows of $\A$ as a consequence of Theorem 2.3.3.
+- **Definition 2.4.2** (p.19): The *rank* of a matrix $\A$ is the <span style="color:red">maximum</span> number of linearly independent columns of $\A$. It is denoted by $\rank(\A)$.
+- <span style="color:red">It can be shown that it is equivalent to define the rank of $\A$ as the number of linearly independent rows of $\A$.</span>
 - **Definition 2.4.3** (p.19): Suppose $\A$ is an $m\times n$ matrix and $\ell=\min\left\{m,n\right\}$.  Then $\A$ is *full rank* if $\rank(\A)=\ell$.
 - **Theorem 2.4.1** (p.21): Suppose $\A$ is an $m\times n$ matrix, $\B$ is an $n\times p$ matrix, and $\E_k$ is a full rank $k\times k$ matrix. 
     + $\rank(\A\B)\leq \min\left\{\rank(\A),\rank(\B)\right\}$
@@ -358,7 +358,7 @@ A=cbind(c(2,1),c(5,4))
 solve(A)
 ```
 
-- **Theorem 2.5.2** (p.22): Suppose $\A$ and $\B$ a nonsingular matrices.
+- **Theorem 2.5.2** (p.22): Suppose $\A$ and $\B$ <span style="color:red">are</span> nonsingular matrices.
     + $(\A^{-1})^{-1}=\A$
     + If $\A\C=\A\D$, then $\C=\D$.
     + $(\A')^{-1}=(\A^{-1})'$
@@ -532,7 +532,7 @@ The notation $\left| \A \right|$ is sometimes also used to represent the determi
     + $\A$ is singular if and only if $\det(\A)=0$.
     + $\A$ is positive definite if and only if $\det(\A)>0$.
     + $\det(\A')=\det(\A)$
-    + If $\A$ is nonsingular, then $\det(\A^{-1})=\det(\A)$.
+    + If $\A$ is nonsingular, then $\color{red}{\ds{\det(\A^{-1})=\frac{1}{\det(\A)}}}$.
 - **Theorem 2.9.3** (p.40): If $\A$ and $\B$ are square matrices with the same size, then $\det(\A\B)=\det(\A)\det(\B)=\det(\B)\det(\A)=\det(\B\A)$.
 - This gives us another way to find determinants using row (or column) operations.
 For example, in Example 2.9.1, consider the following products.
