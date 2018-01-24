@@ -1,8 +1,8 @@
 ---
 title: 'Chapter 3: Random Vectors and Matrices'
-author: "Notes for MATH 668 based on
-Linear Models in Statistics by Alvin C. Rencher and G. Bruce Schaalje, second edition, Wiley, 2008."
-date: "January 18, 2018"
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "January 23, 2018"
 output:
   html_document: default
   pdf_document: default
@@ -154,13 +154,13 @@ This can be written more compactly as $\EV[(x_{ij}+y_{ij})]=(\EV[x_{ij}+y_{ij}])
 \rho_{n1} & \rho_{n2} & \cdots & 1 
 \end{array}\right).
 \]
-- **Theorem 3.4.1** (p.78): Let $\D_\sigma=[\diag(\Sig)]^{1/2}=\diag(\sqrt{\sigma_{11}},\ldots,\sqrt{\sigma_{nn}})$.
+- **Theorem 3.4.1** (p.78): Let $\D_\sigma=[\color{red}{\diag(\diag(\Sig))}]^{1/2}=\diag(\sqrt{\sigma_{11}},\ldots,\sqrt{\sigma_{nn}})$.
 Then $\P_\rho=\D_\sigma^{-1}\Sig\D_\sigma^{-1}$.
 - *Proof*: Let $q_{ij}=\left\{\begin{array}{cl} 1/\sqrt{\sigma_{ii}} & \mbox{if } i=j\\ 0 & \mbox{if } i\neq j\end{array}\right.$ denote the $(i,j)$-th element of $\D_\sigma^{-1}$.  It follows that
 \[
 \bea
 \nnn \D_\sigma^{-1}\Sig\D_\sigma^{-1}&=&(q_{ij})(\sigma_{ij})\D_\sigma^{-1} \\
-\nnn &=&\left(\sum_{k=1}^n q_{ik}\rho_{kj}\right)(\sigma_{ij})\D_\sigma^{-1} \\
+\nnn &=&\color{red}{\left(\sum_{k=1}^n q_{ik}\sigma_{kj}\right)}\D_\sigma^{-1} \\
 \nnn &=&(\sigma_{ij}/\sqrt{\sigma_{ii}})\D_\sigma^{-1} \\
 \nnn &=&(\sigma_{ij}/\sqrt{\sigma_{ii}})(q_{ij}) \\
 \nnn &=&\left(\sum_{k=1}^n \frac{\sigma_{ik}}{\sqrt{\sigma_{ii}}}q_{kj}\right) \\
