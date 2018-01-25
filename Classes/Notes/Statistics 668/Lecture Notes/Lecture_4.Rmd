@@ -1,0 +1,329 @@
+---
+title: 'Chapter 4: Multivariate Normal Distribution'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "January 25, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\trace{\mathrm{tr}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+
+### 4.1 Univariate Normal Density Function
+- The probability density function for a *standard normal random variable* is 
+\[
+g(z)=\frac{1}{\sqrt{2\pi}}e^{-z^2/2}, \ \ z \in \Reals.
+\]
+- The mean of a standard normal random variable $z$ is $E(z)=0$ and its variance is $\var(z)=1$.
+- If $z$ is a standard normal random variable and $\mu$ and $\sigma>0$ are constants, then the change-of-variable technique can be used to find the probability density function of $y=\mu+\sigma z$ as follows.
+\[
+\bea
+\nnn f(y)&=& g(z)\left|\frac{dz}{dy}\right| \\
+\nnn &=& g\left(\frac{y-\mu}{\sigma}\right) \frac{1}{\sigma} \\
+\nnn &=& \frac{1}{\sigma\sqrt{2\pi}}e^{-(y-\mu)^2/(2\sigma^2)}, \ \ y \in \Reals.
+\eea
+\]
+- Here $y$ is a *normal* random variable with mean $E(y)=\mu$ and $\var(y)=\sigma^2$.  We sometimes write $y\sim N(\mu,\sigma^2)$.
+
+### 4.2 Multivariate Normal Density Function
+- If $z_1,\ldots,z_p$ are independent $N(0,1)$ random variables, then the joint probability density function of $\z=(z_1,\ldots,z_p)'$ is
+\[
+\bea
+\nnn g(z_1,\ldots,z_p) &=& \prod_{i=1}^p \frac{1}{\sqrt{2\pi}}e^{-z_i^2/2} \\
+\nnn &=& \frac{1}{(\sqrt{2\pi})^p}e^{-\left(\sum_{i=1}^p z_i^2\right)/2} \\
+\nnn &=& {(2\pi)^{-p/2}}e^{-\z'\z/2}. 
+\eea
+\]
+- Now, we consider the multivariate transformation $\y=h(\z)$ where $h: \Reals^p \to \Reals^p$ is a one-to-one function.  If $\z$ is a random variable with probability density function $g(\z)$ then the probability density function of $\y$ is
+\[
+f(\y)=g(h^{-1}(\y))\left|\det\left(\ds{\frac{\partial \z'}{\partial\y}}\right)\right|
+\]
+(see alternate notation on slide 18 from MATH 667 Lecture 4).
+- **Definition 4.2.1** (p.89): If $\y$ is a $p$-dimensional random variable with probability density function
+\[
+f(\y)=(2\pi)^{-p/2} |\Sig|^{-1/2} e^{-(\y-\bmu)'\Sig^{-1}(\y-\bmu)/2},
+\]
+then $\y$ follows a *multivariate normal distribution* with mean vector $\bmu$ and covariance matrix $\Sig$; we write $\y\sim N_p(\bmu,\Sig)$.
+- **Theorem 4.2.1** (p.89): If $\z\sim N_p(\zeros,\I)$ and $\y=\Sig^{1/2}\z+\bmu$ where $\bmu$ is a $p$-dimensional constant vector and $\Sig$ is a symmetric matrix of constants which is positive definite, then $\y\sim N_p(\bmu,\Sig)$.
+- *Proof*: First, we see that $\z=\Sig^{-1/2}(\y-\bmu)$ where $\Sig^{-1/2}=(\Sig^{1/2})^{-1}$. Also, note that
+\[
+|\Sig|=|\Sig^{1/2}\Sig^{1/2}|=|\Sig^{1/2}||\Sig^{1/2}|=|\Sig^{1/2}|^2
+\]
+so that $|\Sig^{1/2}|=|\Sig|^{1/2}$. Using the multivariate change-of-variables formula, we have
+\[
+\bea
+\nnn f(\y)&=& g(\z) \left|\det\left(\frac{\partial \z'}{\partial\y}\right)\right| \\
+\nnn &=& g\left(\Sig^{-1/2}(\y-\bmu)\right) \left|\det\left(\Sig^{-1/2}\right)\right| \\
+\nnn &=& (2\pi)^{-p/2} e^{-(\Sig^{-1/2}(\y-\bmu))'\Sig^{-1/2}(\y-\bmu)/2} \left|\left((\det\left(\Sig^{1/2}\right)\right)^{-1}\right|\\
+\nnn &=& (2\pi)^{-p/2} e^{-(\y-\bmu)'(\Sig^{-1/2})'\Sig^{-1/2}(\y-\bmu)/2} \left|\det\left(\Sig^{1/2}\right)\right|^{-1} \\
+\nnn &=& (2\pi)^{-p/2} e^{-(\y-\bmu)'((\Sig^{1/2})')^{-1}\Sig^{-1/2}(\y-\bmu)/2} \left|\left(\det\left(\Sig\right)\right)^{1/2}\right|^{-1} \\
+\nnn &=& (2\pi)^{-p/2} e^{-(\y-\bmu)'(\Sig^{1/2})^{-1}\Sig^{-1/2}(\y-\bmu)/2} \left(\det\left(\Sig\right)\right)^{-1/2} \\
+\nnn &=& (2\pi)^{-p/2} e^{-(\y-\bmu)'\Sig^{-1}(\y-\bmu)/2} \left(\det\left(\Sig\right)\right)^{-1/2} 
+\eea
+\]
+which is the probability density function of a $N_p(\bmu,\Sig)$ random variable.
+- Here is some R code to plot the probability density function of a couple of multivariate normal random variables using the package `mvtnorm` (which can be installed using the command `install.packages("mvtnorm")`).  First, the probability density function of a $N_2\left(\zeros,\I\right)$ is illustrated below.
+```{r}
+require(rgl)
+require(mvtnorm)
+```
+```{r interactive display, echo=FALSE}
+require(knitr, quietly=TRUE)
+knit_hooks$set(webgl = hook_webgl)
+```
+```{r webgl=TRUE}
+x=seq(-3,3,by=.1)
+y=seq(-3,3,by=.1)
+x.y=expand.grid(x,y)
+z=dmvnorm(x.y,mean=c(0,0),sigma=diag(2))
+persp3d(x,y,z,color="lightgray",front="lines",alpha=.5)
+```
+- Next, let's see what happens when the covariance matrix is almost singular.
+The probability density function of a $N_2\left(\zeros,\Sig\right)$ is illustrated below
+where $\Sig=\left(\begin{array}{cc} 1 & -1+\varepsilon \\ -1+\varepsilon & 1 \end{array}\right)$ with $\varepsilon=.001$.
+As we see, almost all of the mass is concentrated on the line $y=-x$.
+```{r webgl=TRUE}
+epsilon=.001
+CovarianceMatrix=cbind(c(1,epsilon-1),c(epsilon-1,1))
+x=seq(-3,3,by=.1)
+y=seq(-3,3,by=.1)
+x.y=expand.grid(x,y)
+z=dmvnorm(x.y,mean=c(0,0),sigma=CovarianceMatrix)
+persp3d(x,y,z,color="lightgray",front="lines",alpha=.5)
+```
+
+### 4.3 Moment Generating Functions
+- The univariate moment generating function for a random variable $y$ is 
+$M_y(t)=E(e^{ty})$ and the $k$th (uncentered) moment of $y$ can be obtained by 
+$\ds{E(y^k)=\frac{d^k}{dt^k}\left[M_y(t)\right]\Big|_{t=0}}$ if $M$ is differentiable at $0$.
+- **Definition 4.3.1** (p.91): The *moment generating function* of a random vector $\y=(y_1,\ldots,y_p)'$ is 
+\[
+M_{\y}(\t)=E(e^{\t'\y})=E\left(e^{t_1y_1+\ldots+t_py_p}\right).
+\]
+- **Theorem 4.3.1** (p.91): If $M$ is differentiable at $\zeros$, then 
+\[
+\frac{\partial}{\partial \t}M_{\y}(\t)\Big|_{\t=\zeros}=E(\y).
+\]
+Furthermore, if $i_j\in \left\{1,\ldots,p\right\}$ for $j=1,\ldots,k$, then
+\[
+\frac{\partial^k}{\partial t_{i_1}\cdots \partial t_{i_k}}M_{\y}(\t)\Big|_{\t=\zeros}=E\left(\prod_{j=1}^ky_{i_j}\right),
+\]
+if it exists.
+- **Theorem 4.3.2** (p.91): If $\y\sim N_p(\bmu,\Sig)$, its moment generating function is
+\[
+M_{\y}(\t)=e^{\t'\bmu+\t'\Sig\t/2}.
+\]
+- *Proof*: We have
+\[
+M_{\y}(\t)=\int_{-\infty}^\infty \cdots \int_{-\infty}^\infty (2\pi)^{-p/2} |\Sig|^{-1/2} e^{\t'\y-(\y-\bmu)'\Sig^{-1}(\y-\bmu)/2} d\y. 
+\]
+Now, we need to complete the square in the exponent. A general version of completing the squares for vectors can be obtained as follows.  Since
+\[
+(\x-\c)'\C(\x-\c)=\x'\C\x-2\c'\C\x+\c'\C\c,
+\]
+we see that 
+\[
+\x'\C\x-2\c'\C\x=(\x-\c)'\C(\x-\c)-\c'\C\c.
+\]
+So, it follows that
+\[
+\bea
+\nnn (\y-\bmu)'\Sig^{-1}(\y-\bmu)-2\t'\y&=&(\y-\bmu)'\Sig^{-1}(\y-\bmu)-2\t'(\y-\bmu)-2\t'\bmu \\
+\nnn &=&(\y-\bmu)'\Sig^{-1}(\y-\bmu)-2(\t'\Sig)\Sig^{-1}(\y-\bmu)-2\t'\bmu \\
+\nnn &=&(\y-\bmu)'\Sig^{-1}(\y-\bmu)-2(\Sig\t)'\Sig^{-1}(\y-\bmu)-2\t'\bmu \\
+\nnn &=&(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\Sig\t)-(\Sig\t)'\Sig^{-1}(\Sig\t)-2\t'\bmu \\
+\nnn &=&(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\Sig\t)-\t\Sig\t-2\t'\bmu.
+\eea
+\]
+Then we have
+\[
+\bea
+\nnn M_{\y}(\t)&=& \int_{-\infty}^\infty \cdots \int_{-\infty}^\infty (2\pi)^{-p/2} |\Sig|^{-1/2} e^{(-1/2)\left\{(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\Sig\t)-\t\Sig\t-2\t'\bmu\right\}} d\y \\
+\nnn &=& e^{\t'\bmu+\frac{1}{2}\t\Sig\t}\int_{-\infty}^\infty \cdots \int_{-\infty}^\infty (2\pi)^{-p/2} |\Sig|^{-1/2} e^{-(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\Sig\t)/2} d\y \\
+\nnn &=& e^{\t'\bmu+\frac{1}{2}\t\Sig\t}.
+\eea
+\]
+- **Theorem 4.3.3** (p.92):
+    + ( a ) If two (continuous) random variables have the same moment generating function, then they have the same probability density function.
+    + ( b ) Two random vectors $\y_1$ and $\y_2$ are independent if and only if 
+\[
+M_{\y}(\t)=M_{\y_1}(\t_1)M_{\y_2}(\t_2)
+\]
+where $\y=\begin{pmatrix} \y_1 \\ \y_2 \end{pmatrix}$ and $\t=\begin{pmatrix} \t_1 \\ \t_2 \end{pmatrix}$.
+- Compare Theorem 4.3.3(a) with Theorem L4.6 in Lecture 4 of MATH 667. Theorem 4.3.3(b) is related to Theorem L3.5 in Lecture 3 of MATH 667.
+
+### 4.4 Properties of the Multivariate Normal Distribution
+- **Theorem 4.4.1** (p.92-93): If $\y\sim N_p(\bmu,\Sig)$, $\A$ is a $k\times p$ matrix of constants with rank $k\leq p$, and $\b$ is a $k$-dimensional vector of constants, then
+$\A\y+\b\sim N_k(\A\bmu+\b,\A\Sig\A')$.
+- *Proof*: Since the moment generating function of $\A\y+\b$ is
+\[
+\bea
+\nnn M_{\A\y+\b}(\t)&=&\EV{e^{\t'(\A\y+\b)}} \\
+\nnn &=& \EV{e^{(\A'\t)'\y+\t'\b}} \\
+\nnn &=& \EV{e^{(\A'\t)'\y}}e^{\t'\b} \\
+\nnn &=& e^{(\A'\t)'\bmu+(\A'\t)'\Sig(\A'\t)/2}e^{\t'\b} \\
+\nnn &=& e^{\t'\A\bmu+\t'\b+\t'\A\Sig\A'\t/2} \\
+\nnn &=& e^{\t'(\A\bmu+\b)+\t'(\A\Sig\A')\t/2},
+\eea
+\]
+Theorem 4.3.2 and Theorem 4.3.3(a) imply that $\A\y+\b\sim N(\A\bmu+\b,\A\Sig\A')$.
+- **Example 4.4.1**: Suppose $\bpm y_1 \\ y_2 \\ y_3\epm\sim N_3\left(\bpm 4 \\ 1 \\ 0\epm,\bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm\right)$.  Find the distribution of $\bpm y_1 \\ y_3 \epm$.
+- *Answer*: Let $\A=\bpm 1 & 0 & 0 \\ 0 & 0 & 1\epm$.  Then we see that 
+\[
+\A\y=\bpm 1 & 0 & 0 \\ 0 & 0 & 1\epm \bpm y_1 \\ y_2 \\ y_3 \epm = \bpm y_1 \\ y_3 \epm.
+\]
+By Theorem 4.4.1, $\bpm y_1 \\ y_3 \epm \sim N_2 \left(\bpm 4 \\ 0 \epm, \bpm 9 
+& -2 \\ -2 & 1\epm \right)$ 
+\[
+E\bpm y_1 \\ y_3 \epm = \A E(\y)=\bpm 1 & 0 & 0 \\ 0 & 0 & 1\epm \bpm 4 \\ 1 \\ 0\epm = 
+\bpm 4 \\ 0 \epm
+\]
+and 
+\[
+\var\bpm y_1 \\ y_3 \epm = \A\cov(\y)\A' = \bpm 1 & 0 & 0 \\ 0 & 0 & 1\epm \bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm \bpm 1 & 0 \\ 0 & 0 \\ 0 & 1\epm=\bpm 9 
+& -2 \\ -2 & 1\epm.
+\]
+- **Theorem 4.4.2** (p.93): If $\y\sim N_p(\bmu,\Sig)$, then any $r$-dimensional subvector of $\y$ follows an $r$-variate normal distribution with the same means, variances, and covariances as in the original $p$-variate normal distribution.
+- *Proof*: Without loss of generality, let $\y=\begin{pmatrix} \y_1 \\ \y_2 \end{pmatrix}\sim N\left(\begin{pmatrix} \bmu_1 \\ \bmu_2 \end{pmatrix}, \begin{pmatrix} \Sig_{11} & \Sig_{12} \\ \Sig_{21} & \Sig_{22} \end{pmatrix}\right)$ where $\y_1=\begin{pmatrix} y_1 \\ \vdots \\ y_r \end{pmatrix}$.  
+By Theorem 4.4.1, we have
+\[
+\left[\I_r, \O_{r,p-r}\right]\y=\y_1\sim N_r(\bmu_1,\Sig_{11})
+\]
+since 
+\[
+\bea
+\nnn \EV{\y_1}&=&\left(\I_r, \O_{r,p-r}\right)\EV{\y} \\
+\nnn &=&\left(\I_r, \O_{r,p-r}\right)\begin{pmatrix} \bmu_1 \\ \bmu_2 \end{pmatrix}\\
+\nnn &=& \I_r\bmu_1+\O_{r,p-r}\bmu_2 \\
+\nnn &=&\bmu_1
+\eea
+\]
+and
+\[
+\bea
+\nnn \cov(\y_1)&=&\left(\I_r, \O_{r,p-r}\right)\cov(\y)\left(\I_r, \O_{r,p-r}\right)' \\
+\nnn &=&\left(\I_r, \O_{r,p-r}\right)\begin{pmatrix} \Sig_{11} & \Sig_{12} \\ \Sig_{21} & \Sig_{22} \end{pmatrix}\begin{pmatrix} \I_r \\ \O_{p-r,r}\end{pmatrix} \\
+\nnn &=& \left(\Sig_{11}, \Sig_{12}\right)\begin{pmatrix} \I_r \\ \O_{p-r,r}\end{pmatrix} \\
+\nnn &=& \Sig_{11}.
+\eea
+\]
+- **Example 4.4.2**: Suppose $\bpm y_1 \\ y_2 \\ y_3\epm\sim N_3\left(\bpm 4 \\ 1 \\ 0\epm,\bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm\right)$.  Find the distribution of $y_1+y_3+1$.
+- *Answer*: From Example 4.4.1 (or Theorem 4.4.2), we know $\bpm y_1 \\ y_3 \epm \sim N_2 \left(\bpm 4 \\ 0 \epm, \bpm 9 & -2 \\ -2 & 1\epm \right)$.  Letting $\a'=(1,1)$ and $b=1$, Theorem 4.4.1 implies that
+\[
+\a'\bpm y_1 \\ y_3 \epm+b = y_1+y_3+1 \sim N(5,6)
+\]
+since
+\[
+\EV{\a'\bpm y_1 \\ y_3 \epm+b}=\a'\bpm 4 \\ 0 \epm+b=(1,1)\bpm 4 \\ 0 \epm + 1 = (4+0)+1=5
+\]
+and 
+\[
+\var\left(\a'\bpm y_1 \\ y_3 \epm+b\right)=\a'\bpm 9 & -2 \\ -2 & 1\epm(\a')'=(1,1)\bpm 9 & -2 \\ -2 & 1\epm \bpm 1 \\ 1 \epm = 6.
+\]
+- **Theorem 4.4.3** (p.94): If $\ds{\bpm \x \\ \y \epm \sim N\left(\bpm \bmu_x \\ \bmu_y \epm, \bpm \Sig_{xx} & \Sig_{xy} \\ \Sig_{yx} & \Sig_{yy}\epm\right)}$, then $\x$ and $\y$ are independent if and only if $\Sig_{xy}=\O$.
+- *Proof*: Suppose that $\Sig_{xy}=\O$. Let $\v=\bpm \x \\ \y \epm$.  Letting $\t=\bpm \t_x \\ \t_y\epm$, the moment generating function of $\v$ is
+\[
+\bea
+\nnn M_{\v}(\t)&=&\exp\left\{\t'\bpm \bmu_x \\ \bmu_y \epm+\frac{1}{2}\t'\bpm \Sig_{xx} & \Sig_{xy} \\ \Sig_{yx} & \Sig_{yy}\epm\t\right\} \\
+\nnn &=& \exp\left\{\t_x'\bmu_x+\t_y\bmu_y+\frac{1}{2}\left(\t_x'\Sig_{xx}\t_x+\t_x'\Sig_{xy}\t_y+\t_y'\Sig_{yx}\t_x+\t_y'\Sig_{yy}\t_y\right)\right\} \\
+\nnn &=& \exp\left\{\t_x'\bmu_x+\frac{1}{2}\t_x'\Sig_{xx}\t_x\right\}\exp\left\{\t_y\bmu_y+\frac{1}{2}\t_y'\Sig_{yy}\t_y\right\}\exp\left\{\frac{1}{2}\left(\t_x'\Sig_{xy}\t_y+\t_y'\Sig_{yx}\t_x\right)\right\} \\ 
+\nnn &=& M_{\x}(\t_1)M_{\x}(\t_2)\exp\left\{\frac{1}{2}\left(\t_x'\Sig_{xy}\t_y+\t_y'\Sig_{yx}\t_x\right)\right\}.
+\eea
+\]
+Since $\Sig_{xy}=\O$, we have $\Sig_{yx}=\Sig_{xy}'=\O'$ so that $M_{\v}(\t)=M_{\x}(\t_1)M_{\y}(\t_2)$ which implies that $\x$ and $\y$ are independent by Theorem 4.3.3(b).  
+Conversely, suppose that $\x$ and $\y$ are independent.  Then we have
+\[
+\EV{\x\y'}=\EV{(x_iy_j)}=(\EV{x_iy_j})=(\EV{x_i}\EV{y_j})=\EV{\x}\EV{\y}'
+\]
+so, by Theorem 3.6.4,
+$\Sig_{xy}=\EV{\x\y'}-\EV{\x}\EV{\y}'=\O$.
+- **Example 4.4.3**: Suppose $\bpm y_1 \\ y_2 \\ y_3\epm\sim N_3\left(\bpm 4 \\ 1 \\ 0\epm,\bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm\right)$. Which pairs of random variables are independent?
+- *Answer*: Random variables $y_1$ and $y_2$ are independent since $\y$ is multivariate normal and $\cov(y_1,y_2)=0$.
+- **Theorem 4.4.4** (p.94): If $\y\sim N_p(\bmu,\Sig)$ and $\A$ and $\B$ are $m\times p$ and $n\times p$ matrices of constants, respectively, then $\A\y$ and $\B\y$ are independent if and only if $\cov(\A\y,\B\y)=\A\Sig\B'=\O_{m,n}$.
+- *Proof*: The result follows immediately by applying Theorem 4.4.3 to $\bpm \A \\ \B\epm\y=\bpm \A\y \\ \B\y \epm$.
+- **Example 4.4.4**: Suppose $\bpm y_1 \\ y_2 \\ y_3\epm\sim N_3\left(\bpm 4 \\ 1 \\ 0\epm,\bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm\right)$. Show that $\bpm y_1 + 2y_3 \\ y_2-y_3 \epm$ and $y_3$ are independent.
+- *Answer*: Let $\y=\bpm y_1 \\ y_2 \\ y_3\epm$, $\A=\bpm 1 & 2 & 0 \\ 0 & 1 & -1\epm$, and $\B=\bpm 0 & 0 & 1 \epm$. Note that $\A\y=\bpm y_1 + 2y_3 \\ y_2-y_3 \epm$ and $\B\y=y_3$.  Then Theorem 4.4.4 implies that they are independent since
+\[
+\bea
+\nnn \A\cov(\y)\B'&=&\bpm 1 & 2 & 0 \\ 0 & 1 & -1\epm \bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm \bpm 0 \\ 0 \\ 1 \epm \\
+\nnn &=& \bpm 9 & 8 & 0 \\ 2 & 3 & 0 \epm \bpm 0 \\ 0 \\ 1 \epm \\
+\nnn &=& \bpm 0 \\ 0 \epm .
+\eea 
+\]
+- **Theorem 4.4.5** (p.95): If $\ds{\bpm \x \\ \y \epm \sim N\left(\bpm \bmu_x \\ \bmu_y \epm, \bpm \Sig_{xx} & \Sig_{xy} \\ \Sig_{yx} & \Sig_{yy}\epm\right)}$, then the conditional distribution of $\y$ given $\x$ is multivariate normal with mean vector
+\[
+E(\y|\x)=\bmu_y+\Sig_{yx}\Sig_{xx}^{-1}(\x-\bmu_x)
+\]
+and covariance matrix
+\[
+\cov(\y|\x)=\Sig_{yy}-\Sig_{yx}\Sig_{xx}^{-1}\Sig_{xy}.
+\]
+- **Example 4.4.5**: Suppose $\bpm y_1 \\ y_2 \\ y_3\epm\sim N_3\left(\bpm 4 \\ 1 \\ 0\epm,\bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm\right)$. Find the conditional distribution of $y_3$ given that $y_1=2$ and $y_2=1$.
+- *Answer*: By Theorem 4.4.5, $y_3\Bigg|\bpm y_1 \\ y_2\epm = \bpm 2 \\ 1 \epm \sim N(\frac{4}{9},\frac{11}{26})$ since 
+\[
+\bea
+\nnn \EV{y_3\Bigg|\bpm y_1 \\ y_2\epm = \bpm 2 \\ 1 \epm} &=& 0 + (-2,1)\bpm 9 & 0 \\ 0 & 4\epm^{-1}\left(\bpm 2\\ 1\epm - \bpm 4 \\ 1 \epm\right) \\
+&=& 0 + (-2,1)\bpm \frac{1}{9} & 0 \\ 0 & \frac{1}{4}\epm\left(\bpm 2\\ 1\epm - \bpm 4 \\ 1 \epm\right) \\
+&=& \left(-\frac{2}{9},\frac{1}{4}\right)\bpm -2 \\ 0 \epm \\
+&=& \frac{4}{9}
+\eea
+\]
+and
+\[
+\bea
+\nnn \var\left(y_3\Bigg|\bpm y_1 \\ y_2\epm= \bpm 2 \\ 1 \epm\right)&=&1-(-2,1)\bpm 9 & 0 \\ 0 & 4\epm^{-1}(-2,1)' \\
+\nnn &=& 1-\left(-\frac{2}{9},\frac{1}{4}\right)\bpm -2 \\ 1 \epm \\
+\nnn &=& 1- \left(\frac{4}{9}+\frac{1}{4}\right) \\
+\nnn &=& \frac{11}{36}.
+\eea
+\]
