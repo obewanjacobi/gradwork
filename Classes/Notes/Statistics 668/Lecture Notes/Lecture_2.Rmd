@@ -597,7 +597,7 @@ $\a\tr\b=a_1b_1+a_2b_2+\ldots+a_nb_n=0$.
 - **Theorem 2.11.1** (p.44): 
     + If $\A$ and $\B$ are $n\times n$ matrices, then $\trace(\A\pm \B)=\trace(\A)\pm\trace(\B)$.
     + If $\A$ is an $n\times p$ matrix and $\B$ is a $p\times n$ matrix, then $\trace(\A\B)=\trace(\B\A)$
-    + If $\A$ and $\B$ are $n\times n$ matrices and $\P$ is nonsingular, then $\trace(\P^{-1}\A\P)=\trace(\A)$.
+    + If $\A$ <span style="color:red">is an $n\times n$ matrix</span> and $\P$ is nonsingular, then $\trace(\P^{-1}\A\P)=\trace(\A)$.
     + If $\A$ is an $n\times p$ matrix with rank $r$ and $\A^-$ is a generalized inverse of $\A$, then $\trace(\A^-\A)=\trace(\A\A^-)=r$.
 
 ### 2.12 Eigenvalues and Eigenvectors
@@ -642,7 +642,7 @@ U%*%diag(lambda)%*%t(U)
 - **Definition 2.13.1** (p.54): A square matrix $\A$ is *idempotent* if $\A^2=\A$.
 - **Theorem 2.13.1** (p.54): If $\A$ is idempotent and nonsingular, then $\A=\I$.
 - **Theorem 2.13.2** (p.54): If $\A$ is an $n\times n$ symmetric idempotent matrix of rank $r$, then the roots of the characteristic equation $\det(\A-\lambda\I)=0$ are $1$ (with multiplicity $r$) and $0$ (with multiplicity $n-r$).
-- **Theorem 2.13.3** (p.55): Suppose $\ds{\I=\sum_{i=1}^k \A_i}$ where $\A_i$ isan $n\times n$ symmetric matrix of rank $r_i$ for $i=1,\ldots,n$. Then the following statements hold.
+- **Theorem 2.13.3** (p.55): Suppose $\ds{\I=\sum_{i=1}^k \A_i}$ where $\A_i$ is an $n\times n$ symmetric matrix of rank $r_i$ for $i=1,\ldots,n$. Then the following statements hold.
     + $\A_1,\A_2,\ldots,\A_k$ are idempotent matrices.
     + $\A_i\A_j=\O$ for all $i\neq j$
 

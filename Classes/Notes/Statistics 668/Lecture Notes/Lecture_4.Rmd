@@ -107,7 +107,8 @@ so that $|\Sig^{1/2}|=|\Sig|^{1/2}$. Using the multivariate change-of-variables 
 \nnn &=& (2\pi)^{-p/2} e^{-(\Sig^{-1/2}(\y-\bmu))'\Sig^{-1/2}(\y-\bmu)/2} \left|\left((\det\left(\Sig^{1/2}\right)\right)^{-1}\right|\\
 \nnn &=& (2\pi)^{-p/2} e^{-(\y-\bmu)'(\Sig^{-1/2})'\Sig^{-1/2}(\y-\bmu)/2} \left|\det\left(\Sig^{1/2}\right)\right|^{-1} \\
 \nnn &=& (2\pi)^{-p/2} e^{-(\y-\bmu)'((\Sig^{1/2})')^{-1}\Sig^{-1/2}(\y-\bmu)/2} \left|\left(\det\left(\Sig\right)\right)^{1/2}\right|^{-1} \\
-\nnn &=& (2\pi)^{-p/2} e^{-(\y-\bmu)'(\Sig^{1/2})^{-1}\Sig^{-1/2}(\y-\bmu)/2} \left(\det\left(\Sig\right)\right)^{-1/2} \\
+\nnn &=& \color{red}{(2\pi)^{-p/2} e^{-(\y-\bmu)'(\Sig^{1/2}(\Sig^{1/2})')^{-1}(\y-\bmu)/2} \left|\left(\det\left(\Sig\right)\right)^{1/2}\right|^{-1}} \\
+\nnn &=& \color{red}{(2\pi)^{-p/2} e^{-(\y-\bmu)'(\Sig^{1/2}\Sig^{1/2})^{-1}(\y-\bmu)/2} \left|\left(\det\left(\Sig\right)\right)^{1/2}\right|^{-1}} \\
 \nnn &=& (2\pi)^{-p/2} e^{-(\y-\bmu)'\Sig^{-1}(\y-\bmu)/2} \left(\det\left(\Sig\right)\right)^{-1/2} 
 \eea
 \]
@@ -182,15 +183,15 @@ So, it follows that
 \nnn &=&(\y-\bmu)'\Sig^{-1}(\y-\bmu)-2(\t'\Sig)\Sig^{-1}(\y-\bmu)-2\t'\bmu \\
 \nnn &=&(\y-\bmu)'\Sig^{-1}(\y-\bmu)-2(\Sig\t)'\Sig^{-1}(\y-\bmu)-2\t'\bmu \\
 \nnn &=&(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\Sig\t)-(\Sig\t)'\Sig^{-1}(\Sig\t)-2\t'\bmu \\
-\nnn &=&(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\Sig\t)-\t\Sig\t-2\t'\bmu.
+\nnn &=&(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\Sig\t)-\color{red}{\t'}\Sig\t-2\t'\bmu.
 \eea
 \]
 Then we have
 \[
 \bea
-\nnn M_{\y}(\t)&=& \int_{-\infty}^\infty \cdots \int_{-\infty}^\infty (2\pi)^{-p/2} |\Sig|^{-1/2} e^{(-1/2)\left\{(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\Sig\t)-\t\Sig\t-2\t'\bmu\right\}} d\y \\
-\nnn &=& e^{\t'\bmu+\frac{1}{2}\t\Sig\t}\int_{-\infty}^\infty \cdots \int_{-\infty}^\infty (2\pi)^{-p/2} |\Sig|^{-1/2} e^{-(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\Sig\t)/2} d\y \\
-\nnn &=& e^{\t'\bmu+\frac{1}{2}\t\Sig\t}.
+\nnn M_{\y}(\t)&=& \int_{-\infty}^\infty \cdots \int_{-\infty}^\infty (2\pi)^{-p/2} |\Sig|^{-1/2} e^{(-1/2)\left\{(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\color{red}{-}\Sig\t)-\color{red}{\t'}\Sig\t-2\t'\bmu\right\}} d\y \\
+\nnn &=& e^{\t'\bmu+\frac{1}{2}\color{red}{\t'}\Sig\t}\int_{-\infty}^\infty \cdots \int_{-\infty}^\infty (2\pi)^{-p/2} |\Sig|^{-1/2} e^{-(\y-\bmu-\Sig\t)'\Sig^{-1}(\y-\bmu\color{red}{-}\Sig\t)/2} d\y \\
+\nnn &=& e^{\t'\bmu+\frac{1}{2}\color{red}{\t'}\Sig\t}.
 \eea
 \]
 - **Theorem 4.3.3** (p.92):
