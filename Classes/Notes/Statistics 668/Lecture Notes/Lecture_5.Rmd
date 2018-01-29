@@ -1,0 +1,288 @@
+---
+title: 'Chapter 5: Distribution of Quadratic Forms'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "January 30, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\H{\boldsymbol{\mathrm{H}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+$\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}$
+
+### 5.1 Sums of Squares
+- In this chapter, we consider the distribution of quadratic forms $\ds{\y\tr\A\y=\sum_i\sum_j a_{ij} y_iy_j}$ where $\y=(y_i)$ is a random vector and $\A=(a_{ij})$ is a matrix of constants.
+- Recall, $\I$ is the identity matrix, $\j$ is a vector of $1$'s, and $\J$ is a matrix of $1$'s. 
+- In this section, suppose that they are $n$-dimensional.
+- Here are some basic univarate statistics in matrix form.
+    + $\ds{\bar{y}=\frac{1}{n}\sum_{i=1}^n y_i=\frac{1}{n}\j\tr\y}$
+    + $\ds{\bar{y}^2=\frac{1}{n^2}(\j\tr\y)(\j\tr\y)=\frac{1}{n^2}(\y\tr\j)(\j\tr\y)=\frac{1}{n^2}\y\tr(\j\j\tr)\y=\frac{1}{n^2}\y\tr\J\y}$
+    + $\ds{\sum_{i=1}^n(y_i-\bar{y})^2=\sum_{i=1}^n y_i^2-n\bar{y}^2=\y\tr\I\y-\frac{1}{n}\y\tr\J\y=\y\tr\left(\I-\frac{1}{n}\J\right)\y}$
+- The following decomposition is very useful:
+\[
+\I=\left(\I-\frac{1}{n}\J\right)+\frac{1}{n}\J.
+\]
+- **Theorem 5.1.1** (p.106):  
+( a ) $\I$, $\I-\frac{1}{n}\J$, and $\frac{1}{n}\J$ are idempotent.  
+( b ) $(\I-\frac{1}{n}\J)(\frac{1}{n}\J)=\O$
+- *Proof*: (a) We see that  
+$\I^2=\I$,  
+$\left(\frac{1}{n}\J\right)\left(\frac{1}{n}\J\right)=\frac{1}{n^2}(\J\J)=\frac{1}{n^2}(n\J)=\frac{1}{n}\J$,  
+$\left(\I-\frac{1}{n}\J\right)\left(\I-\frac{1}{n}\J\right)=\I^2-\frac{2}{n}\J+\left(\frac{1}{n}\J\right)^2=\I-\frac{2}{n}\J+\frac{1}{n}\J=\I-\frac{1}{n}\J$,  
+and (b) $\left(\I-\frac{1}{n}\J\right)\left(\frac{1}{n}\J\right)=\left(\frac{1}{n}\J\right)-\left(\frac{1}{n}\J\right)^2=\frac{1}{n}\J-\frac{1}{n}\J=\O$.
+
+### 5.2 Mean and Variance of Quadratic Forms
+- **Theorem 5.2.1** (p.107): If $\A$ is an $n\times n$ matrix of constants and $\y$ is an $n$-dimensional random vector such that $E(\y)=\bmu$ and $\cov(\y)=\Sig$, then 
+\[
+E(\y\tr\A\y)=\trace{\A\Sig}+\bmu\tr\A\bmu.
+\]
+- *Proof*: Since $\Sig=E(\y\y\tr)-\bmu\bmu\tr$, it follows that $E(\y\y\tr)=\Sig+\bmu\bmu\tr$ so that 
+\[
+\bea
+\nnn E(\y\tr\A\y)&=& E(\trace{\y\tr\A\y}) \\
+\nnn &=& E(\trace{\A\y\y\tr}) \\
+\nnn &=& \trace{E(\A\y\y\tr)} \\
+\nnn &=& \trace{\A E(\y\y\tr)} \\
+\nnn &=& \trace{\A(\Sig+\bmu\bmu\tr)} \\
+\nnn &=& \trace{\A\Sig+\A\bmu\bmu\tr} \\
+\nnn &=& \trace{\A\Sig}+\trace{\A\bmu\bmu\tr} \\
+\nnn &=& \trace{\A\Sig}+\trace{\bmu\tr\A\bmu} \\
+\nnn &=& \trace{\A\Sig}+\bmu\tr\A\bmu.
+\eea
+\]
+- **Theorem 5.2.2** (p.111): If $\A$ is an $m\times n$ matrix of constants, and $\x$ and $\y$ are $m$- and $n$-dimensional random vectors such that $E\bpm\x \\ \y \epm=\bpm\bmu_x \\ \bmu_y\epm$ and $\cov\bpm \x \\ \y\epm=\bpm \Sig_{xx} & \Sig_{xy} \\ \Sig_{yx} & \Sig_{yy}\epm$, then 
+\[
+E(\x\tr\A\y)=\trace{\A\Sig_{yx}}+\bmu_x\tr\A\bmu_y.
+\]
+- **Example 5.2.1**: Suppose that $(x_1,y_1), \ldots, (x_n,y_n)$ is a random sample such that $E\bpm x_i \\ y_i\epm=\bpm \mu_x \\ \mu_y\epm$ and $\cov\bpm x_i \\ y_i\epm=\bpm \sigma_x^2 & \sigma_{xy} \\ \sigma_{xy} & \sigma_y^2\epm$, and let $\ds{s_{xy}=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}$.  Show that $E(s_{xy})=\sigma_{xy}$.
+- *Answer*: Let $\x=\bpm x_1 \\ \vdots \\ x_n\epm$ and $\y=\bpm y_1 \\ \vdots \\ y_n\epm$. Then $E\bpm \x \\ \y\epm=\bpm \mu_x\j \\ \mu_y\j \epm$ and $\cov\bpm \x \\ \y\epm=\bpm \sigma_x^2\I & \sigma_{xy}\I \\ \sigma_{xy}\I & \sigma_y^2\I\epm$. Since 
+\[
+s_{xy}=\frac{1}{n-1} \x\tr\left(\I-\frac{1}{n}\J\right)\y,
+\]
+Theorem 5.2.2 implies that 
+\[
+\bea
+\nnn E(s_{xy})&=&\frac{1}{n-1}\left\{\trace{\left(\I-\frac{1}{n}\J\right)\sigma_{xy}\I}+\left(\mu_x\j\right)\tr\left(\I-\frac{1}{n}\J\right)\left(\mu_y\j\right)\right\} \\
+\nnn &=&\frac{1}{n-1}\left\{\sigma_{xy}\trace{\I-\frac{1}{n}\J}+\mu_x\mu_y\j\tr\left(\I-\frac{1}{n}\j\j\tr\right)\j\right\} \\
+\nnn &=&\frac{1}{n-1}\left\{\sigma_{xy}\left(\trace{\I}-\frac{1}{n}\trace{\J}\right)+\mu_x\mu_y\left(\j\tr\j-\frac{1}{n}\j\tr\j\j\tr\j\right)\right\} \\
+\nnn &=&\frac{1}{n-1}\left\{\sigma_{xy}\left(n-\frac{1}{n}n\right)+\mu_x\mu_y\left(n-\frac{1}{n}n^2\right)\right\} \\
+\nnn &=&\frac{1}{n-1}\left\{\sigma_{xy}\left(n-1\right)+0\right\} \\
+\nnn &=& \sigma_{xy}.
+\eea
+\]
+- **Theorem 5.2.3** (p.108): If $\A$ is a $p\times p$ matrix of constants and $\y\sim N_p(\bmu,\Sig)$, then the moment generating function of $\y\tr\A\y$ is 
+\[
+M_{\y\tr\A\y}(t)=\det(\I-2t\A\Sig)^{-1/2}e^{-\bmu\tr(\I-(\I-2t\A\Sig)^{-1})\Sig^{-1}\bmu/2}.
+\]
+- **Theorem 5.2.4** (p.109): If $\A$ is a $p\times p$ symmetric matrix of constants and $\y\sim N_p(\bmu,\Sig)$, then 
+\[
+\var(\y\tr\A\y)=2\trace{\A\Sig\A\Sig}+4\bmu\tr\A\Sig\A\bmu.
+\]
+- **Theorem 5.2.5** (p.110): If $\A$ is a $p\times p$ symmetric matrix of constants and $\y\sim N_p(\bmu,\Sig)$, then 
+\[
+\cov(\y,\y\tr\A\y)=2\Sig\A\bmu.
+\]
+- *Proof*: We have
+\[
+\bea
+\nnn \cov(\y,\y\tr\A\y) &=& E\left[(\y-\bmu)(\y\tr\A\y-\trace{\A\Sig}-\bmu\tr\A\bmu)\right]\\
+\nnn &=& E\left[(\y-\bmu)\left((\y-\bmu)'\A(\y-\bmu)+2(\y-\bmu)'\A\bmu-\trace{\A\Sig}\right)\right]\\
+\nnn &=& E\left[(\y-\bmu)(\y-\bmu)'\A(\y-\bmu)\right]+2E\left[(\y-\bmu)(\y-\bmu)'\right]\A\bmu-E(\y-\bmu)\trace{\A\Sig}\\
+\nnn &=& E\left[(\y-\bmu)(\y-\bmu)'\A(\y-\bmu)\right]+2\Sig\A\bmu-\zeros\\
+\nnn &=& E\left(\Sig^{1/2}\z\z'\Sig^{1/2}\A\Sig^{1/2}\z\right)+2\Sig\A\bmu
+\eea
+\]
+where $\z=\Sig^{-1/2}(\y-\bmu)\sim N_p(\zeros,\I)$.
+Letting $\B=\Sig^{1/2}\A\Sig^{1/2}$, it follows that
+\[
+\bea
+\nnn E\left[\z\z'\B\z\right]&=&E\left[\bpm z_1 \\ \vdots \\ z_p\epm 
+\sum_{i=1}^p\sum_{j=1}^p b_ib_jz_iz_j\right] \\
+\nnn &=& E\bpm\sum_{i=1}^p\sum_{j=1}^p b_ib_j z_1z_iz_j \\ \vdots \\ \sum_{i=1}^p\sum_{j=1}^p b_ib_j z_pz_iz_j\epm
+\eea
+\]
+and, for any $k\in \left\{1,\ldots,p\right\}$,
+\[
+\bea
+\nnn \EV{\sum_{i=1}^p\sum_{j=1}^p b_ib_j z_kz_iz_j}&=&
+\sum_{i=1}^p\sum_{j=1}^p b_ib_j \EV{z_kz_iz_j} \\
+\nnn &=& b_k^2\EV{z_k^3} \\
+\nnn &=& b_k^2 \int_{-\infty}^{\infty} z^3\frac{1}{\sqrt{2\pi}}e^{-z^2/2} \ dz \\
+\nnn &=& 0.
+\eea
+\]
+Thus, $\ds{E\left(\Sig^{1/2}\z\z'\Sig^{1/2}\A\Sig^{1/2}\z\right)=\zeros}$ which implies that $\cov(\y,\y\tr\A\y)=2\Sig\A\bmu$.
+
+### 5.3 Noncentral Chi-Square Distribution
+- **Definition 5.3.1** (p.113): If $y_1, \ldots, y_n$ are independent $N(\mu_i,1)$ random variables, then the probability distribution of $v=\sum_{i=1}^n y_i^2=\y\tr\y$ is called a *noncentral chi-square* distribution with $n$ degrees of freedom and noncentrality parameter $\ds{\lambda=\frac{1}{2}\sum_{i=1}^n \mu_i^2=\bmu\tr\bmu/2}$.  We sometimes write $v\sim\chi^2(n,\lambda)$.
+- **Definition 5.3.2** (p.112): If $y_1, \ldots, y_n$ are independent $N(0,1)$ random variables, then the probability distribution of $v=\sum_{i=1}^n y_i^2=\y\tr\y$ is called a *chi-square* distribution with $n$ degrees of freedom and we can write $v\sim\chi^2(n)$.
+- **Theorem 5.3.1** (p.114): If $v\sim \chi^2(n,\lambda)$, then 
+    + $E(v)=n+2\lambda$
+    + $\var(v)=2n+8\lambda$
+    + $M_v(t)=(1-2t)^{-n/2}e^{-\lambda\left[1-1/(1-2t)\right]}$.
+- *Proof*: These statements  follow from Theorem 5.2.1, Theorem 5.2.4, and Theorem 5.2.3, respectively. For instance, with $\A=\Sig=\I$, Theorem 5.2.4 gives
+\[
+\var(v)=2\trace{\I}+4\bmu\tr\bmu=2n+4(2\lambda)=2n+8\lambda.
+\]
+- **Theorem 5.3.2** (p.114): If $v_1,\ldots, v_k$ are independent $\chi^2(n_i,\lambda_i)$ random variables, then $\ds{\sum_{i=1}^k v_i \sim \chi^2\left(\sum_{i=1}^k n_i, \sum_{i=1}^k \lambda_i\right)}$.
+- *Proof*: By Theorem 4.3.3(b), the moment generating function of $\ds{\sum_{i=1}^k v_i}$
+is 
+\[
+\bea
+\nnn M(t)&=&\prod_{i=1}^k (1-2t)^{-n_i/2}e^{-\lambda_i\left[1-1/(1-2t)\right]} \\
+\nnn &=& (1-2t)^{-\sum_{i=1}^k n_i/2}e^{-\sum_{i=1}^k \lambda_i\left[1-1/(1-2t)\right]}.
+\eea
+\]
+This is the moment generating function of a $\chi^2\left(\sum_{i=1}^k n_i, \sum_{i=1}^k \lambda_i\right)$ distribution so the result holds based on Theorem 4.3.3(a).
+
+### 5.4 Noncentral $F$ and $t$ Distribution
+- **Definition 5.4.1** (p.116): If $y\sim N(\mu,1)$ and $u\sim \chi^2(p)$ are independent random variables, then the probability distribution of $\ds{t=\frac{y}{\sqrt{u/p}}}$ is called a *noncentral t* distribution with $p$ degrees of freedom and noncentrality parameter $\mu$.  We sometimes write $t\sim t(p,\mu)$.
+- **Definition 5.4.2** (p.116): If $z\sim N(0,1)$ and $u\sim \chi^2(p)$ are independent random variables, then the probability distribution of $\ds{t=\frac{z}{\sqrt{u/p}}}$ is called a *t* distribution with $p$ degrees of freedom and write $t\sim t(p)$.
+- Compare this with Definition L13.2 from MATH 667.  
+- **Definition 5.4.3** (p.115): If $u\sim \chi^2(p,\lambda)$ and $v\sim \chi^2(q)$ are independent random variables, then the probability distribution of $\ds{z=\frac{u/p}{v/q}}$ is called a *noncentral F* distribution with $p$ degrees of freedom in the numerator, $q$ degrees of freedom in the denominator, and noncentrality parameter $\lambda$.  We sometimes write $z\sim F(p, q,\lambda)$.
+- **Definition 5.4.4** (p.114): If $u\sim \chi^2(p)$ and $v\sim \chi^2(q)$ are independent random variables, then the probability distribution of $\ds{w=\frac{u/p}{v/q}}$ is called an *F* distribution with $p$ degrees of freedom in the numerator and $q$ degrees of freedom in the denominator and we write $w\sim F(p, q)$.
+- **R Example 5.4.1**: Suppose that $y_1, \ldots, y_{4}$ are iid $N(1,9)$ random variables, $z_1,\ldots,z_{25}$ are iid $N(0,1)$ random variables, and $(y_1, \ldots, y_4)$ is independent of $(z_1,\ldots,z_{25})$.  Compute $\ds{P\left(\sum_{i=1}^4 y_i^2>\sum_{j=1}^{25} z_j^2\right)}$.
+- *Answer*: Here
+\[
+P\left(\sum_{i=1}^4 y_i^2>\sum_{j=1}^{25} z_j^2\right)=P\left(\frac{\frac{1}{4}\sum_{i=1}^4 \left(\frac{y_i}{3}\right)^2}{\frac{1}{25}\sum_{j=1}^{25} z_j^2}>\frac{25}{36}\right)
+\]
+where $\ds{\sum_{i=1}^4 \left(\frac{y_i}{3}\right)^2=\frac{1}{9}\sum_{i=1}^4 y_i^2\sim\chi^2\left(4,\lambda=\frac{1}{2}\sum_{i=1}^4 \left(\frac{1}{3}\right)^2=\frac{2}{9}\right)}$ by Theorem 5.3.1 and 
+$\ds{\sum_{j=1}^{25} z_j^2\sim\chi^2(25)}$ by Theorem 5.3.2 (which are independent since they are functions of independent random vectors).  This probability can be computed using the R function `pf` as follows. The arguments specifying the degrees of freedom are **df1** and **df2**, the noncentrality parameter is specified by **ncp** (except R's noncentrality parameter is $\bmu\tr\A\bmu=2\lambda$), and the option **lower.tail=FALSE** tells R to compute the probability that the F-ratio is larger than $\frac{25}{36}$.
+```{r}
+pf(25/36,df1=4,df2=25,ncp=2*2/9,lower.tail=FALSE)
+```
+We can simulate this ratio many times using the `rnorm` function to verify that our answer looks reasonable.
+```{r}
+set.seed(159847)
+numberOfSimulations=10000000
+leftSum=rep(0,numberOfSimulations)
+rightSum=rep(0,numberOfSimulations)
+for (i in 1:numberOfSimulations){
+ y=rnorm(4,mean=1,sd=3)
+ z=rnorm(25)
+ leftSum[i]=sum(y^2)
+ rightSum[i]=sum(z^2)
+}
+mean(leftSum > rightSum)
+```
+
+### 5.5 Distribution of Quadratic Forms
+- **Theorem 5.5.1** (p.117): Suppose $\y\sim N_p(\bmu,\Sig)$, $\A$ is a symmetric matrix of constants with rank $r$, and $\lambda=\frac{1}{2}\bmu\tr\A\bmu$.  Then $\y\tr\A\y\sim \chi^2(r,\lambda)$ if and only if $\A\Sig$ is idempotent.
+- *Proof*: Let $\omega_1, \ldots, \omega_p$ be the eigenvalues of $\A\Sig$.  Then the eigenvalues of $\I-2t\A\Sig$ are $1-2t\omega_i$ for $i=1,\ldots,p$.  If we choose $t$ small enough so that $|2t\omega_i|<1$ for all $i$, then 
+\[
+\frac{1}{1-2t\omega_i}=1+\sum_{k=1}^\infty (2t)^k\omega_i^k
+\]
+and
+\[
+(\I-2t\A\Sig)^{-1}=\I+\sum_{k=1}^\infty (2t)^k(\A\Sig)^k \ \ \ \ (\mbox{see p.50}).
+\]
+Since $\A\Sig$ is idempotent, Theorem 2.13.2 implies that $r$ of the $\omega$'s equal 1 and the other $p-r$ $\omega$'s equal 0.  So, the moment generating function of $\y\tr\A\y$ is 
+\[
+\bea
+\nnn M_{\y\tr\A\y}&=& \det(\I-2t\A\Sig)^{-1/2}e^{-\bmu\tr(\I-(\I-2t\A\Sig)^{-1})\Sig^{-1}\bmu/2} \\
+\nnn &=& \left(\prod_{i=1}^p (1-2t\omega_i)\right)^{-1/2} e^{-\bmu\tr\left(-\sum_{k=1}^\infty (2t)^k \A\Sig\right)\Sig^{-1}\bmu/2} \\
+\nnn &=& \left((1-2t)^r\right)^{-1/2} e^{-(\bmu\tr\A\bmu/2)\left(-\sum_{k=1}^\infty (2t)^k\right)} \\
+\nnn &=& (1-2t)^{-r/2} e^{-(\bmu\tr\A\bmu/2)\left(1-1/(1-2t)\right)}
+\eea
+\]
+which is the moment generating function of a $\chi^2(r,\lambda=\bmu\tr\A\bmu/2)$ random variable (see Theorem 5.3.1).
+
+For a proof of the converse statement, see http://www.tandfonline.com/doi/pdf/10.1080/00031305.1999.10474473.
+
+- **Example 5.5.1**: Suppose that $y_1,\ldots,y_n$ is a random sample from a $N(\mu,\sigma^2)$ distribution. Show that $\ds{\frac{\sum_{i=1}^n (y_i-\bar{y})^2}{\sigma^2}\sim \chi^2(n-1)}$.
+- *Answer*: Here $\y=\bpm y_1\\ \vdots \\ y_p\epm \sim N_n(\mu\j,\sigma^2\I)$ and 
+\[
+\frac{\sum_{i=1}^n (y_i-\bar{y})^2}{\sigma^2}=\y\tr\frac{(\I-\frac{1}{n}\J)}{\sigma^2}\y.
+\]
+By Theorem 5.1.1(a), $\I-\frac{1}{n}\J$ is idempotent, so all of its eigenvalues are either 0 or 1 and its rank equals the number of eigenvalues which are 1.  The sum of the eigenvalues of $\I-\frac{1}{n}\J$ is 
+\[
+\trace{\I-\frac{1}{n}\J}=\trace{\I}-\frac{1}{n}\trace{\J}=n-\frac{1}{n}n=n-1,
+\]
+so $\rank(\I-\frac{1}{n}\J)=n-1$. The noncentrality parameter is
+\[
+\bea
+\nnn \lambda &=&\frac{1}{2} (\mu\j)'\left(\frac{1}{\sigma^2}(\I-\frac{1}{n}\J)\right)(\mu\j)\\
+\nnn &=&\frac{\mu^2}{2} \j\tr(\I-\frac{1}{n}\J)\j\\
+\nnn &=&\frac{\mu^2}{2} \left(\j\tr\j-\frac{1}{n}\j\tr\j\j\tr\j\right)\\
+\nnn &=&\frac{\mu^2}{2} \left(n-\frac{1}{n}n^2\right)\\
+\nnn &=& 0.
+\eea
+\]
+So, by Theorem 5.5.1, $\ds{\frac{\sum_{i=1}^n (y_i-\bar{y})^2}{\sigma^2}}$ is a chi-square random variable with $\rank(\I-\frac{1}{n}\J)=n-1$ degrees of freedom.  
+Compare this with the proof of Theorem L4.1(c) from MATH 667.
+
+### 5.6 Independence of Linear Forms and Quadratic Forms
+- **Theorem 5.6.1** (p.119): If $\y\sim N_p(\bmu,\Sig)$, $\B$ is a $k\times p$ matrix of constants, and $\A$ is a $p\times p$ matrix of constants, then $\B\y$ and $\y\tr\A\y$ are independent if and only if $\B\Sig\A=\O$.
+- **Theorem 5.6.2** (p.120): If $\y\sim N_p(\bmu,\Sig)$ and $\A$ and $\B$ are $p\times p$ symmetric matrices of constants, then $\y\tr\A\y$ and $\y\tr\B\y$ are independent if and only if $\A\Sig\B=\O$.
+- **Example 5.6.1**: Suppose $\y\sim N_p(\bmu,\sigma^2\I)$ and $\H$ is a $p\times p$ symmetric idempotent matrix of constants with rank $r<p$ where $\bmu\tr(\I-\H)\bmu=0$. What is the distribution of $\ds{\frac{\y\tr\H\y/r}{\y\tr(\I-\H)\y/(p-r)}}$?
+- *Answer*: Note the $\frac{1}{\sigma}\y\sim N_p\left(\frac{1}{\sigma}\bmu,\I\right)$. Since $\H$ and $\I-\H$ are idempotent, Theorem 5.5.1 implies that 
+\[
+\left(\frac{1}{\sigma}\y\right)'\H\left(\frac{1}{\sigma}\y\right)=\frac{1}{\sigma^2}\y\tr\H\y\sim \chi^2(r,\frac{1}{2\sigma^2}\bmu\tr\H\bmu)
+\]
+and
+\[
+\left(\frac{1}{\sigma}\y\right)'(\I-\H)\left(\frac{1}{\sigma}\y\right)=\frac{1}{\sigma^2}\y\tr(\I-\H)\y\sim \chi^2(r) \mbox{ since } \bmu\tr(\I-\H)\bmu=0.
+\]
+By Theorem 5.6.2, $\y\tr\H\y$ and $\y\tr(\I-\H)\y$ are independent since $\H(\I-\H)=\O$.
+So, by Definition 5.4.3, we see that
+\[
+\frac{\y\tr\H\y/r}{\y\tr(\I-\H)\y/(p-r)}=\frac{\left(\frac{1}{\sigma^2}\y\tr\H\y\right)/r}{\left(\frac{1}{\sigma^2}\y\tr(\I-\H)\y\right)/(p-r)}\sim F(r,p-r,\frac{1}{2\sigma^2}\bmu\tr\H\bmu).
+\]
+- **Theorem 5.6.3** (p.121): Suppose $\y\sim N_n(\bmu,\sigma^2\I)$, $\A_i$ is an $n\times n$ symmetric matrix of rank $r_i$ for $i=1,\ldots k$, and 
+\[
+\y\tr\y=\sum_{i=1}^k \y\tr\A_i\y. 
+\]
+Then $\ds{\frac{1}{\sigma^2}\y\tr\A_i\y \sim \chi^2\left(r_i,\frac{1}{2\sigma^2}\bmu\tr\A_i\bmu\right)}$ for $i=1,\ldots,k$ and $\y\tr\A_1\y, \ldots, \y\tr\A_k\y$ are mutually independent if and only if at least one of the following statements holds:
+    + $\A_1,\ldots,\A_k$ are idempotent matrices
+    + $\A_i\A_j=\O$ for all $i\neq j$
+    + $\ds{n=\sum_{i=1}^k r_i}$
