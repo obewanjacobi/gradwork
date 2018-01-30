@@ -82,10 +82,10 @@ $\A'=\left(\begin{array}{cc} 4 & 3 \\ 6 & 0 \\ -1 & 1 \end{array}\right)$.
 
 - **Theorem 2.1.1** (p.7): $(\A')'=\A$
 - **Definition 2.1.4** (p.7): A matrix $\A$ is *symmetric* if $\A=\A'$.
-- **Definition 2.1.5** (p.7): The *diagonal* of an $m\times n$ matrix $\A=(a_{ij})$ are the elements $a_{11}, \ldots, a_{\ell\ell}$ where $\ell=\min\left\{m,n\right\}$. We write $\diag(\A)=\left(\begin{array}{c} a_{11} \\ \vdots \\ a_{\ell\ell}\end{array} \right)$.
-- For example, if $\A=\left(\begin{array}{ccc} 4 & 6 & -1 \\ 3 & 0 & 1 \end{array}\right)$, then $\diag(\A)=\left(\begin{array}{c} 4 \\ 0 \end{array} \right)$.
-- **Definition 2.1.6** (p.7): A matrix $\A=(a_{ij})$ is *diagonal* if $a_{ij}=0$ for all $i$ and $j$ such that $i\neq j$. We use $\diag(a_{11},\ldots,a_{nn})$ to denote a square diagonal matrix with diagonal elements $a_{11},\ldots,a_{nn}$.
-- For example, if $\A=\left(\begin{array}{ccc} 4 & 6 & -1 \\ 3 & 0 & 1 \end{array}\right)$, then $\diag(\diag(\A))=\diag(4,0)=\left(\begin{array}{cc} 4 & 0 \\ 0 & 0 \end{array}\right)$.
+- <span style="color:red>**Definition 2.1.5** (p.7): The *diagonal* of an $m\times n$ matrix $\A=(a_{ij})$ are the elements $a_{11}, \ldots, a_{\ell\ell}$ where $\ell=\min\left\{m,n\right\}$.</span>
+- For example, if $\A=\left(\begin{array}{ccc} 4 & 6 & -1 \\ 3 & 0 & 1 \end{array}\right)$, then <span style="color:red">the diagonal of $\A$ are the elements $4$ and $0$</span>.
+- **Definition 2.1.6** (p.7): A matrix $\A=(a_{ij})$ is *diagonal* if $a_{ij}=0$ for all $i$ and $j$ such that $i\neq j$. We use $\diag(a_{11},\ldots,a_{nn})$ <span style="color:red">or $\diag(\A)$</span> to denote a square diagonal matrix with diagonal elements $a_{11},\ldots,a_{nn}$.
+- For example, if $\A=\left(\begin{array}{ccc} 4 & 6 & -1 \\ 3 & 0 & 1 \end{array}\right)$, then $\color{red}{\diag(\A)}=\diag(4,0)=\left(\begin{array}{cc} 4 & 0 \\ 0 & 0 \end{array}\right)$.
 - **Definition 2.1.7** (p.8): A matrix $\A=(a_{ij})$ is *upper triangular* if all elements below the diagonal are $0$; that is, $a_{ij}=0$ for all $i>j$. Similarly, a matrix $\A=(a_{ij})$ is *lower triangular* if $a_{ij}=0$ for all $i>j$.
 - **Definition 2.1.8** (p.8): The *identity matrix of order $n$* is an $n\times n$ diagonal matrix such that $a_{11}=\cdots=a_{nn}=1$.  It is denoted by $\I$ or $\I_n$.
 - Here is some other notation reserved for special matrices:

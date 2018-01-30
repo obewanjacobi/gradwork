@@ -154,7 +154,7 @@ This can be written more compactly as $\EV[(x_{ij}+y_{ij})]=(\EV[x_{ij}+y_{ij}])
 \rho_{n1} & \rho_{n2} & \cdots & 1 
 \end{array}\right).
 \]
-- **Theorem 3.4.1** (p.78): Let $\D_\sigma=[\color{red}{\diag(\diag(\Sig))}]^{1/2}=\diag(\sqrt{\sigma_{11}},\ldots,\sqrt{\sigma_{nn}})$.
+- **Theorem 3.4.1** (p.78): Let $\D_\sigma=[\color{red}{\diag(\Sig)}]^{1/2}=\diag(\sqrt{\sigma_{11}},\ldots,\sqrt{\sigma_{nn}})$.
 Then $\P_\rho=\D_\sigma^{-1}\Sig\D_\sigma^{-1}$.
 - *Proof*: Let $q_{ij}=\left\{\begin{array}{cl} 1/\sqrt{\sigma_{ii}} & \mbox{if } i=j\\ 0 & \mbox{if } i\neq j\end{array}\right.$ denote the $(i,j)$-th element of $\D_\sigma^{-1}$.  It follows that
 \[
