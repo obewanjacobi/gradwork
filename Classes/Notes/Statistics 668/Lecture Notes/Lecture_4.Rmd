@@ -278,10 +278,10 @@ and
 \nnn M_{\v}(\t)&=&\exp\left\{\t'\bpm \bmu_x \\ \bmu_y \epm+\frac{1}{2}\t'\bpm \Sig_{xx} & \Sig_{xy} \\ \Sig_{yx} & \Sig_{yy}\epm\t\right\} \\
 \nnn &=& \exp\left\{\t_x'\bmu_x+\t_y\bmu_y+\frac{1}{2}\left(\t_x'\Sig_{xx}\t_x+\t_x'\Sig_{xy}\t_y+\t_y'\Sig_{yx}\t_x+\t_y'\Sig_{yy}\t_y\right)\right\} \\
 \nnn &=& \exp\left\{\t_x'\bmu_x+\frac{1}{2}\t_x'\Sig_{xx}\t_x\right\}\exp\left\{\t_y\bmu_y+\frac{1}{2}\t_y'\Sig_{yy}\t_y\right\}\exp\left\{\frac{1}{2}\left(\t_x'\Sig_{xy}\t_y+\t_y'\Sig_{yx}\t_x\right)\right\} \\ 
-\nnn &=& M_{\x}(\t_1)M_{\x}(\t_2)\exp\left\{\frac{1}{2}\left(\t_x'\Sig_{xy}\t_y+\t_y'\Sig_{yx}\t_x\right)\right\}.
+\nnn &=& M_{\x}(\color{red}{\t_x})M_{\color{red}{\y}}(\color{red}{\t_y})\exp\left\{\frac{1}{2}\left(\t_x'\Sig_{xy}\t_y+\t_y'\Sig_{yx}\t_x\right)\right\}.
 \eea
 \]
-Since $\Sig_{xy}=\O$, we have $\Sig_{yx}=\Sig_{xy}'=\O'$ so that $M_{\v}(\t)=M_{\x}(\t_1)M_{\y}(\t_2)$ which implies that $\x$ and $\y$ are independent by Theorem 4.3.3(b).  
+Since $\Sig_{xy}=\O$, we have $\Sig_{yx}=\Sig_{xy}'=\O'$ so that $M_{\v}(\t)=M_{\x}(\color{red}{\t_x})M_{\y}(\color{red}{\t_y})$ which implies that $\x$ and $\y$ are independent by Theorem 4.3.3(b).  
 Conversely, suppose that $\x$ and $\y$ are independent.  Then we have
 \[
 \EV{\x\y'}=\EV{(x_iy_j)}=(\EV{x_iy_j})=(\EV{x_i}\EV{y_j})=\EV{\x}\EV{\y}'
@@ -293,11 +293,11 @@ $\Sig_{xy}=\EV{\x\y'}-\EV{\x}\EV{\y}'=\O$.
 - **Theorem 4.4.4** (p.94): If $\y\sim N_p(\bmu,\Sig)$ and $\A$ and $\B$ are $m\times p$ and $n\times p$ matrices of constants, respectively, then $\A\y$ and $\B\y$ are independent if and only if $\cov(\A\y,\B\y)=\A\Sig\B'=\O_{m,n}$.
 - *Proof*: The result follows immediately by applying Theorem 4.4.3 to $\bpm \A \\ \B\epm\y=\bpm \A\y \\ \B\y \epm$.
 - **Example 4.4.4**: Suppose $\bpm y_1 \\ y_2 \\ y_3\epm\sim N_3\left(\bpm 4 \\ 1 \\ 0\epm,\bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm\right)$. Show that $\bpm y_1 + 2y_3 \\ y_2-y_3 \epm$ and $y_3$ are independent.
-- *Answer*: Let $\y=\bpm y_1 \\ y_2 \\ y_3\epm$, $\A=\bpm 1 & 2 & 0 \\ 0 & 1 & -1\epm$, and $\B=\bpm 0 & 0 & 1 \epm$. Note that $\A\y=\bpm y_1 + 2y_3 \\ y_2-y_3 \epm$ and $\B\y=y_3$.  Then Theorem 4.4.4 implies that they are independent since
+- *Answer*: Let $\y=\bpm y_1 \\ y_2 \\ y_3\epm$, $\A=\bpm 1 & \color{red}{0} & \color{red}{2} \\ 0 & 1 & -1\epm$, and $\B=\bpm 0 & 0 & 1 \epm$. Note that $\A\y=\bpm y_1 + 2y_3 \\ y_2-y_3 \epm$ and $\B\y=y_3$.  Then Theorem 4.4.4 implies that they are independent since
 \[
 \bea
-\nnn \A\cov(\y)\B'&=&\bpm 1 & 2 & 0 \\ 0 & 1 & -1\epm \bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm \bpm 0 \\ 0 \\ 1 \epm \\
-\nnn &=& \bpm 9 & 8 & 0 \\ 2 & 3 & 0 \epm \bpm 0 \\ 0 \\ 1 \epm \\
+\nnn \A\cov(\y)\B'&=&\bpm 1 & \color{red}{0} & \color{red}{2} \\ 0 & 1 & -1\epm \bpm 9 & 0 & -2 \\ 0 & 4 & 1\\ -2 & 1 & 1\epm \bpm 0 \\ 0 \\ 1 \epm \\
+\nnn &=& \bpm \color{red}{5} & \color{red}{2} & 0 \\ 2 & 3 & 0 \epm \bpm 0 \\ 0 \\ 1 \epm \\
 \nnn &=& \bpm 0 \\ 0 \epm .
 \eea 
 \]
