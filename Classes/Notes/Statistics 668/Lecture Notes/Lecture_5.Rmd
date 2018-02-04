@@ -147,17 +147,17 @@ Letting $\B=\Sig^{1/2}\A\Sig^{1/2}$, it follows that
 \[
 \bea
 \nnn E\left[\z\z'\B\z\right]&=&E\left[\bpm z_1 \\ \vdots \\ z_p\epm 
-\sum_{i=1}^p\sum_{j=1}^p b_ib_jz_iz_j\right] \\
-\nnn &=& E\bpm\sum_{i=1}^p\sum_{j=1}^p b_ib_j z_1z_iz_j \\ \vdots \\ \sum_{i=1}^p\sum_{j=1}^p b_ib_j z_pz_iz_j\epm
+\sum_{i=1}^p\sum_{j=1}^p \color{red}{b_{ij}} z_iz_j\right] \\
+\nnn &=& E\bpm\sum_{i=1}^p\sum_{j=1}^p \color{red}{b_{ij}} z_1z_iz_j \\ \vdots \\ \sum_{i=1}^p\sum_{j=1}^p \color{red}{b_{ij}} z_pz_iz_j\epm
 \eea
 \]
 and, for any $k\in \left\{1,\ldots,p\right\}$,
 \[
 \bea
-\nnn \EV{\sum_{i=1}^p\sum_{j=1}^p b_ib_j z_kz_iz_j}&=&
-\sum_{i=1}^p\sum_{j=1}^p b_ib_j \EV{z_kz_iz_j} \\
-\nnn &=& b_k^2\EV{z_k^3} \\
-\nnn &=& b_k^2 \int_{-\infty}^{\infty} z^3\frac{1}{\sqrt{2\pi}}e^{-z^2/2} \ dz \\
+\nnn \EV{\sum_{i=1}^p\sum_{j=1}^p \color{red}{b_{ij}} z_kz_iz_j}&=&
+\sum_{i=1}^p\sum_{j=1}^p \color{red}{b_{ij}} \EV{z_kz_iz_j} \\
+\nnn &=& \color{red}{b_{kk}}\EV{z_k^3} \\
+\nnn &=& \color{red}{b_{kk}}\int_{-\infty}^{\infty} z^3\frac{1}{\sqrt{2\pi}}e^{-z^2/2} \ dz \\
 \nnn &=& 0.
 \eea
 \]
@@ -265,13 +265,13 @@ Compare this with the proof of Theorem L4.1(c) from MATH 667.
 - **Theorem 5.6.1** (p.119): If $\y\sim N_p(\bmu,\Sig)$, $\B$ is a $k\times p$ matrix of constants, and $\A$ is a $p\times p$ matrix of constants, then $\B\y$ and $\y\tr\A\y$ are independent if and only if $\B\Sig\A=\O$.
 - **Theorem 5.6.2** (p.120): If $\y\sim N_p(\bmu,\Sig)$ and $\A$ and $\B$ are $p\times p$ symmetric matrices of constants, then $\y\tr\A\y$ and $\y\tr\B\y$ are independent if and only if $\A\Sig\B=\O$.
 - **Example 5.6.1**: Suppose $\y\sim N_p(\bmu,\sigma^2\I)$ and $\H$ is a $p\times p$ symmetric idempotent matrix of constants with rank $r<p$ where $\bmu\tr(\I-\H)\bmu=0$. What is the distribution of $\ds{\frac{\y\tr\H\y/r}{\y\tr(\I-\H)\y/(p-r)}}$?
-- *Answer*: Note the $\frac{1}{\sigma}\y\sim N_p\left(\frac{1}{\sigma}\bmu,\I\right)$. Since $\H$ and $\I-\H$ are idempotent, Theorem 5.5.1 implies that 
+- *Answer*: Note the $\frac{1}{\sigma}\y\sim N_p\left(\frac{1}{\sigma}\bmu,\I\right)$. Since <span style="color:red">$\H$ is idempotent with rank $r$ and $\I-\H$ is idempotent with rank $p-r$</span>, Theorem 5.5.1 implies that 
 \[
 \left(\frac{1}{\sigma}\y\right)'\H\left(\frac{1}{\sigma}\y\right)=\frac{1}{\sigma^2}\y\tr\H\y\sim \chi^2(r,\frac{1}{2\sigma^2}\bmu\tr\H\bmu)
 \]
 and
 \[
-\left(\frac{1}{\sigma}\y\right)'(\I-\H)\left(\frac{1}{\sigma}\y\right)=\frac{1}{\sigma^2}\y\tr(\I-\H)\y\sim \chi^2(r) \mbox{ since } \bmu\tr(\I-\H)\bmu=0.
+\left(\frac{1}{\sigma}\y\right)'(\I-\H)\left(\frac{1}{\sigma}\y\right)=\frac{1}{\sigma^2}\y\tr(\I-\H)\y\sim \chi^2(\color{red}{p-r}) \mbox{ since } \bmu\tr(\I-\H)\bmu=0.
 \]
 By Theorem 5.6.2, $\y\tr\H\y$ and $\y\tr(\I-\H)\y$ are independent since $\H(\I-\H)=\O$.
 So, by Definition 5.4.3, we see that
