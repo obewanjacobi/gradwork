@@ -201,7 +201,7 @@ $\ds{\sum_{j=1}^{25} z_j^2\sim\chi^2(25)}$ by Theorem 5.3.2 (which are independe
 ```{r}
 pf(25/36,df1=4,df2=25,ncp=2*2/9,lower.tail=FALSE)
 ```
-We can simulate this ratio many times using the `rnorm` function to verify that our answer looks reasonable.
+We can simulate <span style="color:red">these sums</span> many times using the `rnorm` function to verify that our answer looks reasonable.
 ```{r}
 set.seed(159847)
 numberOfSimulations=10000000
@@ -240,7 +240,7 @@ which is the moment generating function of a $\chi^2(r,\lambda=\bmu\tr\A\bmu/2)$
 For a proof of the converse statement, see http://www.tandfonline.com/doi/pdf/10.1080/00031305.1999.10474473.
 
 - **Example 5.5.1**: Suppose that $y_1,\ldots,y_n$ is a random sample from a $N(\mu,\sigma^2)$ distribution. Show that $\ds{\frac{\sum_{i=1}^n (y_i-\bar{y})^2}{\sigma^2}\sim \chi^2(n-1)}$.
-- *Answer*: Here $\y=\bpm y_1\\ \vdots \\ y_p\epm \sim N_n(\mu\j,\sigma^2\I)$ and 
+- *Answer*: Here $\y=\bpm y_1\\ \vdots \\ y_{\color{red}{n}}\epm \sim N_n(\mu\j,\sigma^2\I)$ and 
 \[
 \frac{\sum_{i=1}^n (y_i-\bar{y})^2}{\sigma^2}=\y\tr\frac{(\I-\frac{1}{n}\J)}{\sigma^2}\y.
 \]
