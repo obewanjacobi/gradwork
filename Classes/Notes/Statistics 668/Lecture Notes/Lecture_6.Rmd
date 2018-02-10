@@ -90,7 +90,7 @@ and
 \[
 \hat{\beta}_0=\bar{y}-\hat{\beta}_1\bar{x}
 \]
-where $\ds{s_{xy}=\sion (x_i-\bar{x})(y_i-\bar{y})=\sion (x_i-\bar{x})y_i=\sion x_i(y_i-\bar{y})}$ and $\ds{s_{x}^2=\sion (x_i-\bar{x})^2=\sion x_i^2-n\bar{x}^2}$.
+where $\ds{s_{xy}=\color{red}{\frac{1}{n-1}}\sion (x_i-\bar{x})(y_i-\bar{y})=\color{red}{\frac{1}{n-1}}\sion (x_i-\bar{x})y_i=\color{red}{\frac{1}{n-1}}\sion x_i(y_i-\bar{y})}$ and $\ds{s_{x}^2=\color{red}{\frac{1}{n-1}}\sion (x_i-\bar{x})^2=\color{red}{\frac{1}{n-1}}\left(\sion x_i^2-n\bar{x}^2\right)}$.
 - *Proof*: Differentiating $Q$ with respect to $b_0$ and $b_1$, we obtain
 \[
 \frac{\partial Q}{\partial b_0}=-2\sum_{i=1}^n\left(y_i-b_0-b_1 x_i\right)
@@ -118,13 +118,13 @@ where $\hat{\beta}_0$ and $\hat{\beta}_1$ denote the values of $b_0$ and $b_1$ w
 \nnn \sion x_iy_i&=&n\bar{x}\bar{y} -\hat{\beta}_1 n \bar{x}^2 +\hat{\beta}_1\sion x_i^2 \\
 \nnn \sion x_iy_i-n\bar{x}\bar{y}&=&\hat{\beta}_1\left(\sion x_i^2-n \bar{x}^2\right) \\
 \nnn \sion (x_i-\bar{x})(y_i-\bar{y})&=&\hat{\beta}_1 \sion (x_i-\bar{x})^2 \\
-\nnn s_{xy}&=& \hat{\beta}_1 s_{x}^2 \\
+\nnn \color{red}{(n-1)}s_{xy}&=& \color{red}{(n-1)}\hat{\beta}_1 s_{x}^2 \\
 \nnn \hat{\beta}_1&=&\frac{s_{xy}}{s_{x}^2} \ \ \ \ (s_x^2>0 \mbox{ since not all } x_i\mbox{'s are the same}).
 \eea
 \]
 - Note that 
 \[
-s_{xy}=\sion (x_i-\bar{x})(y_i-\bar{y})=\sion (x_i-\bar{x})y_i-\bar{y}\sion(x_i-\bar{x})=\sion (x_i-\bar{x})y_i-0,
+s_{xy}=\color{red}{\frac{1}{n-1}}\sion (x_i-\bar{x})(y_i-\bar{y})=\color{red}{\frac{1}{n-1}}\sion (x_i-\bar{x})y_i-\bar{y}\sion(x_i-\bar{x})=\color{red}{\frac{1}{n-1}}\sion (x_i-\bar{x})y_i-0,
 \]
 so $\ds{\hat{\beta}_1=\frac{\sion (x_i-\bar{x})y_i}{\sion (x_i-\bar{x})^2}}$.
 - To see that $\hat{\beta}_0$ and $\hat{\beta}_1$ minimize $Q$, we show that $Q$ is a convex function by showing its matrix of second partial derivatives is positive definite for all $b_0$ and $b_1$.
@@ -137,20 +137,20 @@ which is positive definite since $2n>0$ and
 \bea
 \nnn \det\left(\frac{\partial^2 Q}{\partial (b_0,b_1)}\right)&=&4n\sion x_i^2-4n^2\bar{x}^2 \\
 \nnn &=& 4n \left(\sion x_i^2-n\bar{x}^2\right) \\
-\nnn &=& 4n s_x^2 > 0.
+\nnn &=& 4n \color{red}{(n-1)}s_x^2 > 0.
 \eea
 \]
-- **Theorem 6.2.2**: For the simple linear regression model, we have $E(\hat{\beta}_0)=\beta_0$, $E(\hat{\beta}_1)=\beta_1$, $\ds{\var(\hat{\beta}_0)=\frac{\sigma^2}{s_x^2}}$ and $\ds{\var(\hat{\beta}_1)=\sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{s_{x}^2}\right)}$
+- **Theorem 6.2.2**: For the simple linear regression model, we have $E(\hat{\beta}_0)=\beta_0$, $E(\hat{\beta}_1)=\beta_1$, $\ds{\var(\hat{\beta}_0)=\frac{\sigma^2}{\color{red}{\sion (x_i-\bar{x})^2}}}$ and $\ds{\var(\hat{\beta}_1)=\sigma^2\left(\frac{1}{n}+\frac{\bar{x}^2}{\color{red}{\sion (x_i-\bar{x})^2}}\right)}$.
 - *Proof*: Here, we just prove that $\hat{\beta}_1$ is unbiased; the other results can be obtained in a similar manner using properties of expectations and variances, and will be proved more generally in Chapter 7.
 \[
 \bea
-\nnn \EV{\hat{\beta}_1}&=& \EV{\frac{\sion (x_i-\bar{x})y_i}{s_x^2}} \\
-\nnn &=& \EV{\frac{\sion (x_i-\bar{x})}{s_x^2} y_i} \\
-\nnn &=& \frac{\sion (x_i-\bar{x})}{s_x^2}\EV{y_i} \\
-\nnn &=& \frac{\sion (x_i-\bar{x})}{s_x^2}(\beta_0+\beta_1 x_i) \\
-\nnn &=& \frac{\beta_0}{s_x^2}\sion (x_i-\bar{x})+\frac{\beta_1}{s_x^2}\sion (x_i-\bar{x})x_i-0 \\
-\nnn &=& 0+\frac{\beta_1}{s_x^2}\sion (x_i-\bar{x})x_i-\frac{\beta_1}{s_x^2}\sion (x_i-\bar{x})\bar{x} \\
-\nnn &=& 0+\frac{\beta_1}{s_x^2}\sion (x_i-\bar{x})^2 \\
+\nnn \EV{\hat{\beta}_1}&=& \EV{\frac{\sion (x_i-\bar{x})y_i}{\color{red}{\sion (x_i-\bar{x})^2}}} \\
+\nnn &=& \EV{\color{red}{\sion}\frac{(x_i-\bar{x})}{\color{red}{(n-1)s_x^2}} y_i} \\
+\nnn &=& \color{red}{\sion}\frac{(x_i-\bar{x})}{\color{red}{(n-1)s_x^2}}\EV{y_i} \\
+\nnn &=& \color{red}{\sion}\frac{ (x_i-\bar{x})}{\color{red}{(n-1)s_x^2}}(\beta_0+\beta_1 x_i) \\
+\nnn &=& \frac{\beta_0}{\color{red}{(n-1)s_x^2}}\sion (x_i-\bar{x})+\frac{\beta_1}{\color{red}{(n-1)s_x^2}}\sion (x_i-\bar{x})x_i-0 \\
+\nnn &=& 0+\frac{\beta_1}{\color{red}{(n-1)s_x^2}}\sion (x_i-\bar{x})x_i-\frac{\beta_1}{\color{red}{(n-1)s_x^2}}\sion (x_i-\bar{x})\bar{x} \\
+\nnn &=& 0+\frac{\beta_1}{\color{red}{(n-1)s_x^2}}\sion (x_i-\bar{x})^2 \\
 \nnn &=& \beta_1.
 \eea
 \]
@@ -182,18 +182,18 @@ and
 Also, we have
 \[
 \bea
-\nnn \cov(y_1,\hat{\beta}_1)&=& \cov(y_i,\sum_{j=1}^n \frac{(x_j-\bar{x})y_j}{s_x^2}) \\
-\nnn &=& \sum_{j=1}^n\frac{(x_j-\bar{x})}{s_x^2}\cov(y_i,y_j) \\
-\nnn &=& \frac{(x_i-\bar{x})}{s_x^2}\var(y_i) \\
-\nnn &=& \frac{(x_i-\bar{x})}{s_x^2}\sigma^2 
+\nnn \cov(y_1,\hat{\beta}_1)&=& \cov\left(y_i,\sum_{j=1}^n \frac{(x_j-\bar{x})y_j}{\color{red}{(n-1)}s_x^2}\right) \\
+\nnn &=& \sum_{j=1}^n\frac{(x_j-\bar{x})}{\color{red}{(n-1)}s_x^2}\cov(y_i,y_j) \\
+\nnn &=& \frac{(x_i-\bar{x})}{\color{red}{(n-1)}s_x^2}\var(y_i) \\
+\nnn &=& \frac{(x_i-\bar{x})}{\color{red}{(n-1)}s_x^2}\sigma^2 
 \eea
 \]
 and 
 \[
 \bea
 \nnn \cov(\bar{y},\hat{\beta}_1)&=&\sum_{i=1}^n \frac{1}{n}\cov(y_i,\hat{\beta}_1) \\
-\nnn &=& \frac{1}{n}\sion \frac{(x_i-\bar{x})}{s_x^2}\sigma^2\\
-\nnn &=& \frac{\sigma^2}{ns_x^2}\sion (x_i-\bar{x})\\
+\nnn &=& \frac{1}{n}\sion \frac{(x_i-\bar{x})}{\color{red}{(n-1)}s_x^2}\sigma^2\\
+\nnn &=& \frac{\sigma^2}{n\color{red}{(n-1)}s_x^2}\sion (x_i-\bar{x})\\
 \nnn &=& 0.
 \eea
 \]
@@ -207,8 +207,8 @@ Now, we compute
 \nnn &=& \sion\left\{\var(y_i-\hat{y}_i)+0\right\} \\
 \nnn &=& \sion\left\{\var(y_i-\bar{y}-\hat{\beta}_1(x_i-\bar{x}))\right\} \\
 \nnn &=& \sion\left\{\var(y_i-\bar{y})+(x_i-\bar{x})^2\var(\hat{\beta}_1)-2(x_i-\bar{x})\cov(y_i-\bar{y},\hat{\beta}_1)\right\} \\
-\nnn &=& \sion\left\{\left(1-\frac{1}{n}\right)\sigma^2+(x_i-\bar{x})^2\frac{\sigma^2}{s_x^2}-2\left(x_i-\bar{x}\right) \left(\left(1-\frac{1}{n}\right)\sigma^2-0\right)\right\} \\
-\nnn &=& \sion\frac{n-1}{n}\sigma^2+\sion(x_i-\bar{x})^2\frac{\sigma^2}{s_x^2}-2\left(1-\frac{1}{n}\right)\sigma^2\sion\left(x_i-\bar{x}\right) \\
+\nnn &=& \sion\left\{\left(1-\frac{1}{n}\right)\sigma^2+(x_i-\bar{x})^2\frac{\sigma^2}{\color{red}{\sum_{j=1}^n (x_j-\bar{x})^2}}-2\left(x_i-\bar{x}\right) \left(\left(1-\frac{1}{n}\right)\sigma^2-0\right)\right\} \\
+\nnn &=& \sion\frac{n-1}{n}\sigma^2+\sion(x_i-\bar{x})^2\frac{\sigma^2}{\color{red}{\sum_{j=1}^n (x_j-\bar{x})^2}}-2\left(1-\frac{1}{n}\right)\sigma^2\sion\left(x_i-\bar{x}\right) \\
 \nnn &=& (n-1)\sigma^2-\sigma^2-0 \\
 \nnn &=& (n-2)\sigma^2.
 \eea
@@ -225,7 +225,7 @@ $\hat{y}_i=\hat{\beta}_0+\hat{\beta}_1 x_i=\bar{y}+\hat{\beta}_1(x_i-\bar{x})$.
 \[ SSE=Q(\hat{\beta}_0,\hat{\beta}_1)=\sum_{i=1}^n \res_i^2.
 \]
 - Suppose we have no information about the $x$'s, and want to estimate the mean of the $y$'s based only on $y_1, y_2, \ldots, y_n$.  Then the least squares estimate of the mean of the $y$'s is $\bar{y}=\frac{1}{n}\sion y_i$.
-- Consider the following interesting decomposition of $\ds{s_y^2=\sion (y_i-\bar{y})^2}$:
+- Consider the following interesting decomposition of $\ds{\color{red}{(n-1)}s_y^2=\sion (y_i-\bar{y})^2}$:
 \[
 \bea
 \nnn \sion (y_i-\bar{y})^2&=&\sion (y_i-\hat{y}_i+\hat{y}_i-\bar{y})^2 \\
@@ -251,7 +251,7 @@ where $SST=\sion (y_i-\bar{y})^2$ is the *total sum of squares* and
 $SSR=\sion(\hat{y}_i-\bar{y})^2$ is the *regression sum of squares*.
 - To assess the proportion of variation explained by the regression model compared with that explained only using the mean, we can consider the 
 *coefficient of determination* defined by $\frac{SSR}{SST}$.
-- Since $SST=\sion (y_i-\bar{y})^2=(n-1)s_y^2$ and $SSR=\sion(\hat{y}_i-\bar{y})^2=\hat{\beta}_1^2\sion(x_i-\bar{x})^2= \hat{\beta}_1^2s_{x}^2$, it follows that
+- Since $SST=\sion (y_i-\bar{y})^2=(n-1)s_y^2$ and $SSR=\sion(\hat{y}_i-\bar{y})^2=\hat{\beta}_1^2\sion(x_i-\bar{x})^2= \hat{\beta}_1^2\color{red}{(n-1)}s_{x}^2$, it follows that
 \[
 \bea
 \nnn \frac{SSR}{SST}&=&\hat{\beta}_1^2\frac{s_{x}^2}{s_{y}^2} \\
@@ -269,7 +269,7 @@ where $\ds{r= \frac{s_{xy}}{s_{x}s_{y}}}$ is the sample correlation between the 
 \nnn &=& \frac{rs_{y}}{s_{x}}.
 \eea
 \]
-- Note that $\ds{\frac{s_{x}}{\sqrt{n-1}}}$ is the sample standard deviation of the $x$'s and $\ds{\frac{s_{y}}{\sqrt{n-1}}}$ is the sample standard deviation of the $y$'s.
+- Note that $\color{red}{s_x}$ is the sample standard deviation of the $x$'s and $\color{red}{s_y}$ is the sample standard deviation of the $y$'s.
 - So, if the $x$ value increases by one standard deviation, the method of least squares estimates that the $y$ value increases by $r$ standard deviations. 
 - **R Example 6.4.1**: Reconsider a data set on the heights of children based on their parent(s) collected by Galton in (1886) previously considered in R Example 1.1.1.  
 The dataset `GaltonFamilies` is included in the R package `HistData` which can be installed with the following command. 
