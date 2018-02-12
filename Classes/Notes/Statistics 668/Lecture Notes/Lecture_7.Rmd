@@ -1,0 +1,840 @@
+---
+title: 'Chapter 7: Multiple Regression: Estimation'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "February 13, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\d{\boldsymbol{d}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\s{\boldsymbol{s}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\w{\boldsymbol{w}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\H{\boldsymbol{\mathrm{H}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\S{\boldsymbol{\mathrm{S}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\V{\boldsymbol{\mathrm{V}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\ep{\boldsymbol{\varepsilon}}$
+$\def\bet{\boldsymbol{\beta}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\def\sion{\sum_{i=1}^n}$
+$\def\res{\hat{\varepsilon}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+$\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}$
+
+### 7.2 The Model
+- **Definition 7.2.1** (p.137): The *multiple linear regression model* with $n$ observations can be written as
+\[
+y_i=\beta_0+\beta_1 x_{i1}+\beta_2 x_{i2}+\ldots+\beta_k x_{ik}+\varepsilon_i, \ \ \ \ i=1, 2, \ldots, k+1,\ldots, n 
+\]
+with the following assumptions:
+    + $E(\ep)=\zeros$,
+    + $\cov(\ep)=\sigma^2\I$.
+- Here, $\beta_0, \beta_1, \ldots, \beta_k$ are fixed but unknown model parameters representing the *(partial) regression coefficients*.
+- In this chapter, we assume the $x_{ij}$'s are not random.
+- Also, $\y$ is the *dependent* or *response vector*, the $\x_j=\bpm x_{1j} \\ \vdots \\ x_{nj}\epm$ is the $j$th *independent*, *predictor*, or *explanatory variable*, and $\ep$ is a random vector.
+- The multiple linear regression model can be expressed in matrix form as
+\[
+\y=\X\bet+\ep
+\]
+where
+\[
+\y=\bpm y_1 \\ \vdots \\ y_n \epm, \X=\bpm 1 & x_{11} & \cdots & x_{1k} \\ 
+1 & x_{21} & \cdots & x_{2k} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & \cdots & x_{nk} \epm, \bet=\bpm \beta_0 \\ \beta_1 \\ \vdots \\ \beta_k \epm, \ep=\bpm \varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n \epm.
+\]
+The matrix $\X$ is often referred to as the *design matrix*.
+
+### 7.3 Estimation of $\boldsymbol{\beta}$ and $\sigma^2$
+- **Definition 7.3.1** (p.142): The *least squares estimate* of $\bet$ is a vector $\hat{\bet}$ which minimizes the least squares function
+\[
+\bea
+\nnn Q(\b)&=&\ep\tr\ep \\
+\nnn &=&(\y-\X\b)\tr(\y-\X\b)\\
+\nnn &=&\sum_{i=1}^n \left(y_i-b_0-b_1 x_{i1}-b_2 x_{i2}-\ldots-b_k x_{ik}\right)^2.
+\eea
+\]
+- **Theorem 7.3.1**: If $n\geq p$ and $\X$ is a $n\times p$ full rank matrix, then $\X\tr\X$ is a $p\times p$ full rank matrix.
+- *Proof*: Since $\X$ is full rank, its columns are linearly independent (that is, $\X\u=\zeros$ implies $\u=\zeros$).  
+
+Now, we will show that the columns of $\X\tr\X$ are independent.  
+
+For any $p$-dimensional vector $\v=\bpm v_1 \\ \vdots \\ v_p \epm$, $\v\tr\v=v_1^2+\ldots+v_p^2$ equals 0 if and only if $\v=\zeros$.  
+
+Suppose $(\X\tr\X)\u=\zeros$. Let $\v=\X\u$ so that
+\[
+\v\tr\v=\u\tr\X\tr\X\u=\u\tr\zeros=\zeros.
+\]
+Then $\v=\zeros$, or equivalently, $\X\u=\zeros$.  Since $\X$ is full rank, this implies that $\u=\zeros$. Thus, $\X\tr\X\u=\zeros$ implies $\u=\zeros$.
+
+- Recall some vector differentiation rules from Chapter 2:
+\[
+\frac{\partial[\c\tr\x]}{\partial\x}=\frac{\partial[\x\tr\c]}{\partial\x}=\c,
+\]
+\[
+\frac{\partial[\x\tr\C\x]}{\partial\x}=2\C\x \mbox{ if } \C \mbox{ is symmetric}.
+\]
+
+- **Theorem 7.3.2** (p.142): Suppose we observe data $(x_{i1},\ldots,x_{ik},y_i)$ for $i=1,\ldots, n$ from a multiple linear regression model where $n>k$. If $\X$ has rank $k+1$ (it is full rank), then the least squares estimate of $\bet$ is 
+\[
+\hat{\bet}=\left(\X\tr\X\right)^{-1}\X\tr\y.
+\]
+- *Proof*: Since
+\[
+\bea
+\nnn Q(\b)&=&(\y-\X\b)\tr(\y-\X\b) \\
+\nnn &=& \y\tr\y-\b\tr\X\tr\y-\y\tr\X\b+\b\tr\X\tr\X\b \\
+\nnn &=& \y\tr\y-\y\tr\X\b-\y\tr\X\b+\b\tr\X\tr\X\b \\
+\nnn &=& \y\tr\y-2\y\tr\X\b+\b\tr\X\tr\X\b, \\
+\eea
+\]
+we have
+\[
+\bea
+\nnn \frac{\partial Q}{\partial \b}&=& \zeros-2(\y\tr\X)\tr + 2\X\tr\X\b \\
+\nnn &=& -2\X\tr\y + 2\X\tr\X\b.
+\eea
+\]
+Setting $\ds{\frac{\partial Q}{\partial \b}=\zeros}$ and denoting the solution as $\hat{\bet}$, we write
+\[
+\bea
+\nnn -2\X\tr\y + 2\X\tr\X\hat{\bet} &=& \zeros \\
+\nnn 2\X\tr\X\hat{\bet} &=& 2\X\tr\y \\
+\nnn \X\tr\X\hat{\bet} &=& \X\tr\y \\
+\nnn \hat{\bet} &=& \left(\X\tr\X\right)^{-1}\X\tr\y \ \ \ \ (\X\tr\X \mbox{ is invertible since } \X \mbox{ is full rank)}.
+\eea
+\]
+To show that $\hat{\bet}$ minimizes $Q$, consider
+\[
+\bea
+\nnn Q(\b)&=&(\y-\X\hat{\bet}+\X\hat{\bet}-\X\b)\tr(\y-\X\hat{\bet}+\X\hat{\bet}-\X\b) \\
+\nnn &=&(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})-2(\y-\X\hat{\bet})\tr(\X\hat{\bet}-\X\b)+(\X\hat{\bet}-\X\b)\tr(\X\hat{\bet}-\X\b) \\
+\nnn &=&(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})-2(\X(\hat{\bet}-\b))\tr(\y-\X\hat{\bet})+(\X(\hat{\bet}-\b))\tr(\X(\hat{\bet}-\b)) \\
+\nnn &=&(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})-2(\hat{\bet}-\b)\tr\X\tr(\y-\X\hat{\bet})+(\hat{\bet}-\b)\tr\X\tr\X(\hat{\bet}-\b) \\
+\nnn &=&(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})-2(\hat{\bet}-\b)\tr(\X\tr\y-\X\tr\X\hat{\bet})+(\hat{\bet}-\b)\tr\X\tr\X(\hat{\bet}-\b).
+\eea
+\]
+Since $-2(\X\tr\y-\X\tr\X\hat{\bet})=\zeros$, 
+\[
+Q(\b)=(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})+\v\tr\v
+\]
+where $\v=\X(\hat{\bet}-\b)$.  Now, $\v\tr\v\geq 0$ with equality if and only if $\v=\X(\hat{\bet}-\b)=\zeros$. This occurs if and only if $\b=\hat{\bet}$ since $\X$ is full rank.  Thus, $Q(\b)\geq Q(\hat{\bet})$ with equality if and only if $\b=\hat{\bet}$.
+- **Theorem 7.3.3** (p.145): If $\X$ is full rank, then $E(\hat{\bet})=\bet$ and $\cov(\hat{\bet})=\sigma^2(\X\tr\X)^{-1}$.
+- *Proof*: 
+\[
+\bea
+\nnn E(\hat{\bet})&=& E\left[(\X\tr\X)^{-1}\X\tr\y\right] \\
+\nnn &=& (\X\tr\X)^{-1}\X\tr E(\y) \\
+\nnn &=& (\X\tr\X)^{-1}\X\tr\X\bet=\bet \\
+\eea
+\]
+and
+\[
+\bea
+\nnn \cov(\hat{\bet})&=&\cov\left[(\X\tr\X)^{-1}\X\tr\y\right] \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr\cov(\y)((\X\tr\X)^{-1}\X\tr)\tr \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr\cov(\y)\X((\X\tr\X)^{-1})\tr \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr\cov(\y)\X(\X\tr\X)^{-1} \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr(\sigma^2\I)\X(\X\tr\X)^{-1} \\
+\nnn &=&\sigma^2(\X\tr\X)^{-1}\X\tr\X(\X\tr\X)^{-1} \\
+\nnn &=&\sigma^2(\X\tr\X)^{-1}. 
+\eea
+\]
+- **Theorem 7.3.4** (p.150): Let $\ds{s^2=\frac{1}{n-k-1}Q(\hat{\bet})}$.  If $\X$ is full rank, then $E(s^2)=\sigma^2$ for the multiple linear regression model.
+- *Proof*: Since
+\[
+\bea
+\nnn Q(\hat{\bet})&=& (\y-\X\hat{\bet})\tr(\y-\X\hat{\bet}) \\
+\nnn &=& \y\tr\y-2\hat{\bet}\tr\X\tr\y+\hat{\bet}\tr\X\tr\X\hat{\bet}\\
+\nnn &=& \y\tr\y-2\hat{\bet}\tr\X\tr\y+\hat{\bet}\tr\X\tr\y \\
+\nnn &=& \y\tr\y-\hat{\bet}\tr\X\tr\y \\ 
+\nnn &=& \y\tr\y-\y\tr\X(\X\tr\X)^{-1}\X\tr\y \\ 
+\nnn &=& \y\tr\y-\y\tr\H\y \\ 
+\nnn &=& \y\tr(\I-\H)\y
+\eea
+\]
+where $\H=\X(\X\tr\X)^{-1}\X\tr$, Theorem 5.2.1 implies that
+\[
+\bea
+\nnn E[Q(\hat{\bet})] &=& \trace{(\I_n-\H)(\sigma^2\I)}+(\X\bet)\tr(\I-\H)(\X\bet) \\
+\nnn &=& \sigma^2\trace{\I_n-\H}+\bet\tr\X\tr(\I-\H)\X\bet \\
+\nnn &=& \sigma^2\trace{\I_n-\H}+\bet(\X\tr\X-\X\tr\X(\X\tr\X)^{-1}\X\tr\X)\bet \\
+\nnn &=& \sigma^2\trace{\I_n-\H}+\bet(\X\tr\X-\X\tr\X)\bet \\
+\nnn &=& \sigma^2\trace{\I_n-\H} \\
+\nnn &=& \sigma^2\left\{\trace{\I_n}-\trace{\H}\right\}. \\
+\eea
+\]
+Since $\H^2=\X(\X\tr\X)^{-1}\X\tr\X(\X\tr\X)^{-1}\X\tr=\X(\X\tr\X)^{-1}\X\tr=\H$ so that $\H$ is idempotent, Theorem 2.11.1 implies that
+\[
+\bea
+\nnn \trace{\H}&=&\trace{\left(\X(\X\tr\X)^{-1}\right)\X\tr} \\
+\nnn &=&\trace{\X\tr\X(\X\tr\X)^{-1}} \\
+\nnn &=&\trace{\I_{k+1}}\\
+\nnn &=& k+1.
+\eea
+\]
+So, we have
+\[
+\bea
+\nnn E[Q(\hat{\bet})] &=& \sigma^2\left\{n-(k+1)\right\} \\
+\nnn &=& \sigma^2(n-k-1),
+\eea
+\]
+and it follows that $\ds{E(s^2)=\frac{1}{n-k-1}E[Q(\hat{\bet})]=\sigma^2}$.
+- The next result is known as the *Gauss-Markov Theorem*.
+- **Theorem 7.3.5** (p.148): For the multiple linear regression model, the least squares estimate is the best linear unbiased estimate (BLUE). That is, suppose we are interested in estimating $\a\tr\bet$ where $\a$ is a $(k+1)$-dimensional vector of constants, and we consider estimates of the form $\c\tr\y$. If $E(\c\tr\y)=\a\tr\bet$ for all $\bet$, then $\var(\c\tr\y)\geq \var(\a\tr\hat{\bet})$.
+- *Proof*: Let $\d=\X\tr\c$.  Since $\a\tr\bet=E(\c\tr\y)=\c\tr E(\y)=\c\tr\X\bet=\d\tr\bet$ for all $\bet$, it follows that $\a=\d$ (this can be shown since $\bet=\bpm 1 \\ 0 \\ \vdots \\ 0\epm$ implies $a_1=d_1$, $\cdots$ , $\bet=\bpm 0 \\ \vdots \\ 0 \\ 1\epm$ implies $a_{k+1}=d_{k+1}$).
+
+Since $\I-\H$ is idempotent and symmetric, we see that 
+\[
+\bea
+\nnn \c\tr(\I-\H)\c &=& \c\tr(\I-\H)(\I-\H)\c \\
+\nnn &=& \c\tr(\I-\H)\tr(\I-\H)\c \\
+\nnn &=& ((\I-\H)\c)\tr(\I-\H)\c \geq 0.
+\eea
+\]
+
+Since $\a=\d=\X\tr\c$, $\c\tr(\I-\H)\c\geq 0$ implies that
+\[
+\bea
+\nnn \var(\a\tr\hat{\bet})&=& \a\tr\cov(\hat{\bet})\a \\
+\nnn &=& \a\tr\sigma^2(\X\tr\X)^{-1}\a \\
+\nnn &=& \sigma^2\c\tr\X(\X\tr\X)^{-1}\X\tr\c \\
+\nnn &=& \sigma^2\c\tr\H\c \\
+\nnn &\leq& \sigma^2\c\tr\H\c + \sigma^2\c\tr(\I-\H)\c \\
+\nnn &=& \sigma^2\c\tr\I\c \\
+\nnn &=& \c\tr(\sigma^2\I)\c \\
+\nnn &=& \cov(\c\tr\y).
+\eea
+\]
+
+### 7.4 Geometry of Least-Squares
+- **R Example 7.4.1**: Consider the simple linear regression model for the following data set:
+\[
+(3,4), (-1,2), (1,0)
+\]
+First, let's find the least squares estimate based on the formula in Theorem 7.3.2.  To do this, we start by creating the design matrix and the response vector.
+```{r}
+x=c(3,-1,1)
+X=cbind(1,x);X
+y=c(4,2,0);y
+```
+Now, we use the formula for the least squares estimate.
+```{r}
+beta.hat=solve(t(X)%*%X)%*%t(X)%*%y; beta.hat
+```
+So, $\hat{\bet}=\bpm 1.5 \\ 0.5\epm$ and the regression line for modeling $y$ based on $x$ is 
+\[
+\hat{y}=1.5+0.5x.
+\]
+Graphically, if we look at the rows of $\X$ and $\y$, the least squares line minimizes the sum of squares of vertical distances of the data points to the line as illustrated below.
+```{r}
+plot(x,y,pch=19)
+abline(beta.hat,col="blue")
+y.hat=X%*%beta.hat
+for (i in 1:3)
+ points(c(x[i],x[i]),c(y[i],y.hat[i]),type="l",col="red")
+```
+
+There is another geometrical intrepretation if we look at the column of $\X$ and $\y$.
+First, we plot the 3-dimensional vectors from the columns of $\X$ in red and find the subspace of $\Reals^3$ spanned by these two vectors.
+```{r}
+require(rgl)
+```
+```{r interactive display, echo=FALSE}
+require(knitr, quietly=TRUE)
+knit_hooks$set(webgl = hook_webgl)
+```
+```{r webgl=TRUE}
+plot3d(c(0,1),c(0,1),c(0,1),type="n",xlab="",ylab="",zlab="",lwd=5,xlim=c(0,3),ylim=c(0,3),zlim=c(0,3),box=FALSE,axes=FALSE)
+m=4
+for (s in -m:m) for (t in -m:m){
+  segments3d(c(3*s-m,3*s+m),c(-s-m,-s+m),c(s-m,s+m),col="#AAAAAA")
+  segments3d(c(t-3*m,t+3*m),c(t+m,t-m),c(t-m,t+m),col="#AAAAAA")
+}
+segments3d(c(0,1),c(0,1),c(0,1),col="#CC0000",lwd=5)
+segments3d(c(0,x[1]),c(0,x[2]),c(0,x[3]),col="#FF0000",lwd=5)
+```
+Now, we plot the 3-dimensional response vector $\y=\color{#0000FF}{\bpm 4 \\ 2 \\ 0\epm}$. 
+```{r webgl=TRUE}
+segments3d(c(0,y[1]),c(0,y[2]),c(0,y[3]),col="#0000FF",lwd=5)
+```
+Now, we project the response vector onto the subspace spanned by the columns of the design matrix.  The fitted vector $\hat{\y}=\X\hat{\bet}=\color{#FF00FF}{\bpm 3 \\ 1 \\ 2\epm}$ and the residual vector $\hat{\ep}=\y-\hat{\y}=\color{#00FF00}{\bpm 1 \\ 1 \\ -2\epm}$ are shown below.
+```{r webgl=TRUE}
+segments3d(c(0,y.hat[1]),c(0,y.hat[2]),c(0,y.hat[3]),col="#FF00FF",lwd=5)
+segments3d(c(y[1],y.hat[1]),c(y[2],y.hat[2]),c(y[3],y.hat[3]),col="#00FF00",lwd=5)
+```
+
+### 7.6 Normal Model
+- **Definition 7.6.1** (p.157): The *normal multiple linear regression model* with $n$ observations can be written as
+\[
+y_i=\beta_0+\beta_1 x_{i1}+\beta_2 x_{i2}+\ldots+\beta_k x_{ik}+\varepsilon_i, \ \ \ \ i=1, 2, \ldots, k+1,\ldots, n 
+\]
+with the following assumption:
+    + $\ep\sim N_n(\zeros,\sigma^2\I)$.
+- From Theorem 4.2.1, the likelihood function for $\bet$ and $\sigma^2$ is
+\[
+\bea
+\nnn L(\bet,\sigma^2)&=&(2\pi)^{-n/2} e^{-(\y-\X\bet)'(\sigma^2\I)^{-1}(\y-\X\bet)/2} \left(\det\left(\sigma^2\I\right)\right)^{-1/2} \\
+\nnn &=&(2\pi\sigma^2)^{-n/2} e^{-(\y-\X\bet)'(\y-\X\bet)/(2\sigma^2)}.
+\eea
+\]
+- The log-likelihood function can then be written as
+\[
+\ell(\bet,\sigma^2)=\ln L(\bet,\sigma^2)=-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln \sigma^2-\frac{1}{2\sigma^2}Q(\bet).
+\]
+- **Theorem 7.6.1** (p.158): For the normal multiple linear regression model where $n>k$ and $\X$ has rank $k+1$ (it is full rank), the maximum likelihood estimator of $\bpm\bet,\sigma^2\epm$ is $\bpm \hat{\bet} \\ \hat{\sigma}^2\epm$ where
+\[
+\hat{\bet}=\left(\X\tr\X\right)^{-1}\X\tr\y \ \ \mbox{ and } \ \ \hat{\sigma}^2=\frac{1}{n}Q(\hat{\bet})=\frac{1}{n}(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet}).
+\]
+- *Proof*: Differentiating $\ell(\bet,\sigma^2)$ with respect to $\hat{\bet}$ and $\sigma^2$, we obtain
+\[
+\frac{\partial \ell}{\partial \bet}=-\frac{1}{2\sigma^2}\frac{\partial Q}{\partial \bet}
+\]
+and 
+\[
+\frac{\partial \ell}{\partial \sigma^2}=-\frac{n}{2\sigma^2}+\frac{1}{2(\sigma^2)^2}Q(\hat{\bet}).
+\]
+Setting the first equation equal to $\zeros$ and solving, we see that 
+\[
+\bea
+\nnn -\frac{1}{2\sigma^2}\frac{\partial Q}{\partial \bet}&=&\zeros \\
+\nnn \frac{\partial Q}{\partial \bet}&=&\zeros \\ 
+\nnn \hat{\bet} &=& (\X\tr\X)^{-1}\X\tr\y.
+\eea
+\]
+Substituting $\bet=\hat{\bet}$ and setting the second equation equal 0 and solving, we obtain
+\[
+\bea
+\nnn -\frac{n}{2\hat{\sigma}^2}+\frac{1}{2(\hat{\sigma}^2)^2}Q(\hat{\bet})&=&0 \\
+\nnn \frac{n}{2\hat{\sigma}^2}&=& \frac{1}{2(\hat{\sigma}^2)^2}Q(\hat{\bet}) \\
+\nnn \hat{\sigma}^2&=& \frac{Q(\hat{\bet})}{n}. \\
+\eea
+\]
+To show that $\bpm \hat{\bet} \\ \hat{\sigma}^2\epm$ maximizes $\ell$, let $\ell^*$ be the profile likelihood defined by
+\[
+\ell^*(\sigma^2)=\ell(\hat{\bet},\sigma^2)=-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln \sigma^2-\frac{1}{2\sigma^2}Q(\hat{\bet}).
+\]
+Since 
+\[
+\bea
+\nnn \frac{d\ell^*}{d(\sigma^2)}&=& -\frac{n}{2\sigma^2}+\frac{1}{2(\sigma^2)^2}Q(\hat{\bet}) \\
+\nnn &=& -\frac{n}{2(\sigma^2)^2}\left(\sigma^2-\hat{\sigma}^2\right)
+\eea
+\]
+is positive when $\sigma^2<\hat{\sigma}^2$ and negative when $\sigma^2>\hat{\sigma}^2$, $\ell^*(\sigma^2)$ is maximized at $\sigma^2=\hat{\sigma}^2$.
+Finally, we see that
+\[
+\ell(\hat{\bet},\hat{\sigma}^2)=\ell^*(\hat{\sigma}^2)\geq \ell^*(\sigma^2)=\ell(\hat{\bet},\sigma^2)\geq \ell(\bet,\sigma^2)
+\]
+for all $\bet$ and $\sigma^2$.
+- **Theorem 7.6.2** (p.159): For the normal multiple linear regression model where $n>k+1$ and $\X$ has rank $k+1$ (it is full rank), the maximum likelihood estimator has the following properties:  
+( a ) $\hat{\bet}\sim N_{k+1}(\bet,\sigma^2(\X\tr\X)^{-1})$  
+( b ) $\ds{\frac{n\hat{\sigma}^2}{\sigma^2}=\frac{(n-k-1)s^2}{\sigma^2}\sim \chi^2(n-k-1)}$  
+( c ) $\hat{\bet}$ and $\hat{\sigma}^2$ are independent.
+- *Proof*: ( a ) Theorem 4.4.1 implies that $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$ follows a $(k+1)$-dimensional Normal distribution with mean vector
+\[
+\bea
+\nnn E[(\X\tr\X)^{-1}\X\tr\y]&=&(\X\tr\X)^{-1}\X\tr E(\y)\\
+\nnn &=&(\X\tr\X)^{-1}\X\tr\X\bet \\
+\nnn &=&\bet
+\eea
+\]
+and covariance matrix
+\[
+\bea
+\nnn \cov[(\X\tr\X)^{-1}\X\tr\y]&=&(\X\tr\X)^{-1}\X\tr\cov(\y)((\X\tr\X)^{-1}\X\tr)\tr \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr\cov(\y)\X\tr(\X\tr\X)^{-1} \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr(\sigma^2\I)\X\tr(\X\tr\X)^{-1} \\
+\nnn &=&\sigma^2(\X\tr\X)^{-1}\X\tr\X\tr(\X\tr\X)^{-1} \\
+\nnn &=&\sigma^2(\X\tr\X)^{-1}.
+\eea
+\]
+( b ) Letting $\H=\X(\X\tr\X)^{-1}\X\tr$, Theorem 5.5.1 implies that 
+\[
+\bea
+\nnn \frac{n\hat{\sigma}^2}{\sigma^2}&=&\frac{(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})}{\sigma^2} \\
+\nnn &=&\frac{\y\tr(\I-\H)(\I-\H)\y}{\sigma^2} \\
+\nnn &=&\y\tr\frac{1}{\sigma^2}(\I-\H)\y \sim \chi^2(n-k-1)
+\eea
+\]
+since $\ds{\left(\frac{1}{\sigma^2}(\I-\H)\right)\left(\sigma^2\I\right)=\I-\H}$ is idempotent with rank $n-k-1$.  
+( c ) By Theorem 5.6.1, $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$ and $\ds{\frac{n\hat{\sigma}^2}{\sigma^2}}=\y\tr\frac{1}{\sigma^2}(\I-\H)\y$ are independent since 
+\[
+\bea
+\nnn (\X\tr\X)^{-1}\X\tr(\sigma^2\I)\frac{1}{\sigma^2}(\I-\H)&=& (\X\tr\X)^{-1}\X\tr(\I-\H) \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr-(\X\tr\X)^{-1}\X\tr\X(\X\tr\X)^{-1}\X\tr \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr-(\X\tr\X)^{-1}\X\tr \\
+\nnn &=&\O_{k+1,n}.
+\eea
+\]
+Then $\hat{\bet}$ and $\hat{\sigma}^2=\ds{\frac{\sigma^2}{n}\left(\frac{n\hat{\sigma}^2}{\sigma^2}\right)}$ are independent (see Theorem L3.5 from MATH 667).
+- **Theorem 7.6.3** (p.160): For the normal multiple linear regression model, $\bpm \hat{\bet} \\ s^2\epm$ is the uniform minimum variance unbiased estimator (UMVUE) of $\bpm \bet \\ \sigma^2\epm$.
+
+### 7.5 The Model in Centered Form
+- The multiple linear regression model can be reparametrized in centered form by writing
+\[
+\bea
+\nnn y_i&=&\beta_0+\beta_1 x_{i1}+\beta_2 x_{i2}+\ldots+\beta_k x_{ik}+\varepsilon_i \\
+\nnn &=& \alpha+\beta_1 (x_{i1}-\bar{x}_1)+\beta_2 (x_{i2}-\bar{x}_2)+\ldots+\beta_k (x_{ik}-\bar{x}_k)+\varepsilon_i \\
+\eea
+\]
+where $\ds{\bar{x}_j=\frac{1}{n}\sion x_{ij}}$ for $j=1, \ldots, k$ and 
+\[
+\alpha=\beta_0+\beta_1\bar{x}_1+\ldots+\beta_k\bar{x}_k.
+\]
+- In matrix form, this can be written as
+\[
+\y=(\j,\X_c)\bpm \alpha \\ \bet_1\epm + \ep
+\]
+where
+\[
+\bet_1=\bpm \beta_1 \\ \vdots \\ \beta_k\epm
+\]
+is the vector of regression coefficients with the intercept removed,
+\[
+\X_1=\bpm x_{11} & \cdots & x_{1k} \\ 
+x_{21} & \cdots & x_{2k} \\ \vdots & \ddots & \vdots \\ x_{n1} & \cdots & x_{nk} \epm
+\]
+is the design matrix with the first column of ones removed, and
+\[
+\X_c=\left(\I-\frac{1}{n}\J\right)\X_1
+=\bpm x_{11}-\bar{x}_1 & \cdots & x_{1k}-\bar{x}_k \\ 
+x_{21}-\bar{x}_1 & \cdots & x_{2k}-\bar{x}_k \\ 
+\vdots & \ddots & \vdots \\ 
+x_{n1}-\bar{x}_1 & \cdots & x_{nk}-\bar{x}_k \epm
+\]
+is the centered design matrix.
+- Then $\hat{\alpha}=\bar{y}$ and 
+\[
+\hat{\bet}_1=(\X_c\tr\X_c)^{-1}\X_c\tr\y.
+\]
+- If we denote the sample variance of the $j$th column of $\X_c$ as
+\[
+s_i^2=\frac{1}{n-1}\sion (x_{ij}-\bar{x}_j)^2, 
+\]
+the sample covariance of the $j$th and $g$th columns of $\X_c$ as
+\[
+s_{jg}=\frac{1}{n-1}\sion (x_{ij}-\bar{x}_j)(x_{ig}-\bar{x}_{g}), 
+\]
+and the sample covariance of $\y$ and the $j$th column of $\X_c$ as
+\[
+s_{yj}=\frac{1}{n-1}\sion (y-\bar{y})(x_{ij}-\bar{x}_j),
+\]
+then 
+\[
+\hat{\bet}_1=\S_{xx}^{-1}\s_{yx} \ \ \mbox{ and } \ \ 
+\hat{\beta}_0=\hat{\alpha}-\hat{\bet}_1\tr\bar{\x}=\bar{y}-\s_{yx}\tr\S_{xx}^{-1}\bar{\x}
+\]
+where $\S_{xx}=\bpm s_1^2 & s_{12} & \cdots & s_{1k} \\ s_{21} & s_2^2 & \cdots & s_{2k} \\ \vdots & \vdots & \ddots & \vdots \\ s_{k1} & s_{k2} & \cdots & s_k^2 \epm=\ds{\frac{1}{n-1}\X_c\tr\X_c}$,
+$\s_{yx}=\bpm s_{y1} \\ s_{y2} \\ \vdots \\ s_{yk} \epm=\ds{\frac{1}{n-1}\X_c\tr\y}$,
+and $\bar{\x}=\bpm \bar{x}_1 \\ \bar{x}_2 \\ \vdots \\ \bar{x}_k\epm$.
+
+### 7.7 $R^2$ in Fixed-$x$ Regression
+- Here, we generalize some of the notation from Section 6.4.
+- The *predicted value* of $y$ at $\x$ is 
+$\hat{\y}=\x\tr\hat{\bet}$.
+- The vector of *fitted values* of $\y$ is
+$\hat{\y}=\X\hat{\bet}$.
+- The *residual vector* is $\hat{\ep}=\y-\hat{\y}$.
+- Evaluating the least squares function at $\hat{\bet}$, we obtain the *residual sum of squares* (or *error sum of squares*) denoted by
+\[ 
+SSE=Q(\hat{\bet})=\hat{\ep}\tr\hat{\ep}=(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})=\y\tr\y-\hat{\bet}\tr\X\tr\y.
+\]
+- The corrected total sum of squares $\ds{SST=\sion (y_i-\bar{y})^2=\y\tr\y-n\bar{y}^2}$ can be decomposed into two parts
+\[
+SST=SSE+SSR
+\]
+where $\ds{SSR=\sion (\hat{y}_i-\bar{y})^2=\hat{\bet}\tr\X\tr\y-n\bar{y}^2=\hat{\bet}_1\tr\X_c\tr\y}$.
+- The *coefficient of determination* $\ds{R^2=\frac{SSR}{SST}}$ is the the proportion of variation explained by the regression model compared with that explained only using the mean. This gives a measure of how well the model fits the data.
+- $R$ is sometimes referred to as the *multiple correlation coefficient*.
+
+### 7.8 Generalized Least-Squares: $\mbox{cov}(\boldsymbol{y})=\sigma^2\boldsymbol{V}$
+- Suppose the multiple linear regression model holds except
+$\cov(\ep)=\sigma^2\V$ where $\V$ is known symmetric positive definite matrix but $\sigma^2$ is unknown.
+- **Definition 7.8.1** (p.164): The *generalized least squares* estimate of $\bet$ is the vector $\hat{\bet}$ which minimizes the generalized least squares function
+\[
+\bea
+\nnn Q_V(\b)&=& \ep\tr\V^{-1}\ep \\
+\nnn &=& (\y-\X\b)\tr\V^{-1}(\y-\X\b) \\
+\nnn &=& \sum_{i=1}^n\sum_{j=1}^n w_{ij} (y_i-b_0-b_1x_{i1}-\ldots-b_kx_{ik})(y_j-b_0-b_1x_{j1}-\ldots-b_kx_{jk})
+\eea
+\]
+where $w_{ij}$ is the element in the $i$th row and $j$th column of $\V^{-1}$.
+
+- **Theorem 7.8.1** (p.165): Given observed data $(x_{i1},\ldots,x_{ik},y_i)$ for $i=1,\ldots, n$ from a multiple linear regression model where $n>k$ and $\X$ has rank $k+1$ (it is full rank), the least squares estimate of $\bet$ is 
+\[
+\hat{\bet}=\left(\X\tr\V^{-1}\X\right)^{-1}\X\tr\V^{-1}\y.
+\]
+The following properties hold:
+    + $\hat{\bet}$ is the best linear unbiased estimate (BLUE) of $\bet$
+    + $\cov(\hat{\bet})=\sigma^2(\X\tr\V\X)^{-1}$
+    + $\ds{s^2=\frac{1}{n-k-1}Q_V(\hat{\bet})}$ is an unbiased estimate of $\sigma^2$.
+    
+- *Proof*: The results follow from the results in Section 7.3 with $\y$ replaced by $\V^{-1/2}\y$ and $\X$ replaced by $\V^{-1/2}\X$.
+
+### 7.9 Model Misspecification
+- In this section, we consider what happens if the true multiple linear regression model is
+\[
+\y=\X\bet+\ep=(\X_1, \X_2)\bpm \bet_1 \\ \bet_2 \epm + \ep = \X_1\bet_1+\X_2\bet_2+\ep
+\]
+but we incorrectly leave out the variables in the columns $\X_2$ and use the model
+\[
+\y=\X_1\bet_1^*+\ep^*.
+\]
+- **Theorem 7.9.1** (p.170): Suppose $\X_1\tr\X_1$ is invertible.  If $\y=\X_1\bet_1+\X_2\bet_2+\ep$ where $E(\ep)=\zeros$ and $\cov(\ep)=\sigma^2\I$ and $\hat{\bet}_1^*=(\X_1\tr\X_1)^{-1}\X_1\tr\y$ is the least-squares estimator of $\bet_1^*$ in the misspecified model without $\X_2$, then  
+( a ) $E(\hat{\bet}_1^*)=\bet_1+\A\bet_2$ where $\A=(\X_1\tr\X_1)^{-1}\X_1\tr\X_2$ is the *alias* matrix  
+( b ) $\cov(\hat{\bet}_1^*)=\sigma^2(\X_1\tr\X_1)^{-1}$.
+- *Proof*: For ( a ), we compute
+\[
+\bea
+\nnn E(\hat{\bet}_1^*)&=& (\X_1\tr\X_1)^{-1}\X_1\tr E(\y)\\
+\nnn &=& (\X_1\tr\X_1)^{-1}\X_1\tr(\X_1\bet_1+\X_2\bet_2)\\
+\nnn &=& (\X_1\tr\X_1)^{-1}\X_1\tr\X_1\bet_1+(\X_1\tr\X_1)^{-1}\X_1\tr\X_2\bet_2\\
+\nnn &=& \bet_1+(\X_1\tr\X_1)^{-1}\X_1\tr\X_2\bet_2.
+\eea
+\]
+For (b), we compute
+\[
+\bea
+\nnn \cov(\hat{\bet}_1^*)&=& (\X_1\tr\X_1)^{-1}\X_1\tr\cov(\y)\X_1(\X_1\tr\X_1)^{-1} \\
+\nnn &=& (\X_1\tr\X_1)^{-1}\X_1\tr(\sigma^2\I)\X_1(\X_1\tr\X_1)^{-1} \\
+\nnn &=& \sigma^2(\X_1\tr\X_1)^{-1}\X_1\tr\X_1(\X_1\tr\X_1)^{-1} \\
+\nnn &=&\sigma^2(\X_1\tr\X_1)^{-1}.
+\eea
+\]
+- **Theorem 7.9.2** (p.172): Suppose $\X_1$ is an $n\times (p+1)$ matrix and $\X_1\tr\X_1$ is invertible. Let $\ds{s_1^2=\frac{(\y-\X_1\hat{\bet}_1^*)\tr(\y-\X_1\hat{\bet}_1^*)}{n-p-1}}$
+be the estimator of $\sigma^2$ based only on $\X_1$ where $\hat{\bet}_1^*=(\X_1\tr\X_1)^{-1}\X_1\tr\y$.
+If $\y=\X_1\bet_1+\X_2\bet_2+\ep$ where $E(\ep)=\zeros$ and $\cov(\ep)=\sigma^2\I$, then
+\[
+E(s_1^2)=\sigma^2+\frac{\bet_2\tr\X_2\tr(\I-\X_1\tr(\X_1\tr\X_1)^{-1}\X_1\tr)\X_2\bet_2}{n-p-1}.
+\]
+- *Proof*: The result holds since Theorem 5.2.1 implies that
+\[
+\bea
+\nnn E\left[(y-\X_1\hat{\bet}_1^*)\tr(y-\X_1\hat{\bet}_1^*)\right]&=& E\left[\y\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\y\right]\\
+\nnn &=& E\left[\y\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\y\right]\\
+\nnn &=& \trace{\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)(\sigma^2\I)}+\bet\tr\X\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\X\bet \\
+\nnn &=& \sigma^2\left(\trace{\I_n}-\trace{\X_1(\X_1\tr\X_1)^{-1}\X_1\tr}\right)+\bet\tr\X\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\X\bet \\
+\nnn &=& \sigma^2\left(\trace{\I_n}-\trace{\X_1\tr\X_1(\X_1\tr\X_1)^{-1}}\right)+\bet\tr\X\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\X\bet \\
+\nnn &=& \sigma^2\left(n-p-1\right)+\bet\tr\X\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\X\bet \\
+\nnn &=& \sigma^2\left(n-p-1\right)+(\bet_1\tr\X_1\tr+\bet_2\tr\X_2\tr)\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)(\X_1\bet_1+\X_2\bet_2) \\
+\nnn &=& \sigma^2\left(n-p-1\right)+\bet_2\tr\X_2\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\X_2\bet_2. \\
+\eea
+\]
+- **Example 7.9.1**: Suppose $y_i=\beta_0+\beta_1 x_i+\beta_2 x_i^2+\varepsilon_i$ for $i=1, \ldots, 4$ where $x_i=i$ are known values, the regression parameters $\beta_0$, $\beta_1$, and $\beta_2$ are unknown, and $\varepsilon_1, \ldots, \varepsilon_4$ are independent and identically distributed random variables with mean 0 and unknown variance $\sigma^2$.  
+Now, suppose that the $x^2$ term is excluded from the model, and least squares estimation is used to model the $y$'s based on an intercept term and the $x$'s (that is,
+suppose that we incorrectly use a linear model and find values $\hat{\beta}_0^*$ and $\hat{\beta}_1^*$, which minimize $\sum_{i=1}^4 (y_i-\beta_0^*+\beta_1^* x_i)^2$).  What is the bias of using $\ds{s_1^2=\frac{1}{2}\sion (y_i-\hat{\beta}_0^*-\hat{\beta}_1^*x_i)^2}$ to estimate $\sigma^2$? 
+- *Answer*: Here the design matrix is 
+\[
+\X=(\X_1,\X_2) \mbox{ with } \X_1=\bpm 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \epm \mbox{ and } 
+\X_2=\bpm 1 \\ 4 \\ 9 \\ 16\epm,
+\]
+so 
+\[
+\X_1\tr\X_1 = \bpm 4 & 10 \\ 10 & 30 \epm, \X_2\tr\X_2 = 354, \mbox{ and } \X_1\tr\X_2 = \bpm 30 \\ 100 \epm.
+\]
+Then $\X_1\tr\X_1 = \bpm 4 & 10 \\ 10 & 30 \epm^{-1}=\frac{1}{20}\bpm 30 & -10 \\ -10 & 4 \epm=\bpm 1.5 & -0.5 \\ -0.5 & 0.2 \epm$ so 
+\[
+\X_2\tr\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\X_2=(30, 100)\bpm 1.5 & -0.5 \\ -0.5 & 0.2 \epm\bpm 30 \\ 100 \epm=350
+\]
+and it follows that $\ds{E(s^2)-\sigma^2=\frac{\beta_2(354-350)\beta_2}{4-1-1}=2\beta_2^2}$.
+
+- For the next result, we will need Theorem 2.5.3:  
+If $\A=\left(\begin{array}{cc} \A_{11} & \A_{12} \\ \A_{21} & \A_{22}\end{array}\right)$ is an $n\times n$ nonsingular matrix, then 
+\[
+\A^{-1}=\left(\begin{array}{cc} \A_{11}^{-1}+\A_{11}^{-1}\A_{12}\B^{-1}\A_{21}\A_{11}^{-1} & -\A_{11}^{-1}\A_{12}\B^{-1} \\ -\B^{-1}\A_{21}\A_{11}^{-1} & \B^{-1}\end{array}\right)
+\]
+where $\B=\A_{22}-\A_{21}\A_{11}^{-1}\A_{12}$.
+- **Theorem 7.9.3** (p.171): Suppose $\X_1\tr\X_1$ is invertible. If $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$ where $\X=(\X_1, \X_2)$, $\hat{\bet}=\bpm \hat{\bet}_1 \\ \hat{\bet}_2 \epm$, and $\hat{\bet}_1^*=(\X_1\tr\X_1)^{-1}\X_1\tr\y$, then 
+\[
+\cov(\hat{\bet}_1)-\cov(\hat{\bet}_1^*)=\sigma^2 \A\B^{-1}\A\tr
+\]
+where $\A=(\X_1\tr\X_1)^{-1}\X_1\tr\X_2$ and $\B=\X_2\tr\X_2-\X_2\tr\X_1\A$.  Furthermore, $\A\B^{-1}\A\tr$ is positive definite or positive semidefinite so  $\var(\hat{\beta}_j)\geq\var(\hat{\beta}_j^*)$ for all $j$. 
+- *Proof*: Since 
+\[
+\bea
+\nnn \cov(\hat{\bet})&=&\sigma^2 (\X\tr\X)^{-1} \\
+\nnn &=&\sigma^2\bpm \X_1\tr\X_1 & \X_1\tr\X_2 \\ \X_2\tr\X_1 & \X_2\tr\X_2 \epm^{-1} \\
+\nnn &=&\sigma^2\bpm (\X_1\tr\X_1)^{-1}+(\X_1\tr\X_1)^{-1}\X_1\tr\X_2\B^{-1}\X_2\tr\X_1(\X_1\tr\X_1)^{-1} & - (\X_1\tr\X_1)^{-1}\X_1\tr\X_2\B^{-1} \\ -\B^{-1}\X_2\tr\X_1(\X_1\tr\X_1)^{-1} & \B^{-1}\epm \\
+\nnn &=&\sigma^2\bpm (\X_1\tr\X_1)^{-1}+\A\B^{-1}\A\tr & - \A\B^{-1} \\ -\B^{-1}\A\tr & \B^{-1}\epm 
+\eea
+\]
+where $\B=\X_2\tr\X_2-\X_2\tr\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\X_2=\X_2\tr\X_2-\X_2\tr\X_1\A$, 
+\[
+\cov(\hat{\bet}_1)=\sigma^2 \left((\X_1\tr\X_1)^{-1}+\A\B^{-1}\A\tr\right).
+\]
+Thus, $\cov(\hat{\bet}_1)-\cov(\hat{\bet}_1^*)=\sigma^2\A\B^{-1}\A\tr$. This matrix is positive definite or positive semidefinite since, for any $\v$ with the dimension of $\bet_1$, 
+\[
+\bea
+\nnn \v\tr\A\B^{-1}\A\tr&=&\v\tr\A\X_2\tr(\I-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr)\X_2\A\tr \\
+\nnn &=&\v\tr\A\X_2\tr(\I-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr)\tr(\I-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr)\X_2\A\tr \\
+\nnn &=& \w\tr\w \geq 0
+\eea
+\]
+where $\w=(\I-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr)\X_2\A\tr$.
+
+### 7.10 Orthogonalization
+- Notice that if the columns of $\X_1$ are orthogonal to the columns of $\X_2$ (that is, $\X_1\tr\X_2=\O$), then the least squares estimates of $\bet_1$ and $\bet_2$ based on fitting models separately with only $\X_1$ and $\X_2$, respectively, are the same as the full model based on $\X=(\X_1,\X_2)$.  
+Note that $\X_1\tr\X_2=\O$ implies $\A=\O$ and $\B=\X_2\tr\X_2$.
+Then we see that
+\[
+\bea
+\nnn \bpm \hat{\bet}_1 \\ \hat{\bet}_2 \epm &=& (\X\tr\X)^{-1}\X\tr\y \\
+\nnn &=& \bpm \X_1\tr\X_1 & \X_1\tr\X_2 \\ \X_2\tr\X_1 & \X_2\tr\X_2 \epm^{-1}\bpm\X_1 \\ \X_2 \epm\tr\y \\
+\nnn &=& \bpm (\X_1\tr\X_1)^{-1}+\A\B^{-1}\A\tr & - \A\B^{-1} \\ -\B^{-1}\A\tr & \B^{-1}\epm\bpm \X_1\tr\y \\ \X_2\tr\y \epm \\
+\nnn &=& \bpm(\X_1\tr\X_1)^{-1} & \O \\ \O & (\X_2\tr\X_2)^{-1}\epm\bpm \X_1\tr\y \\ \X_2\tr\y \epm \\
+\nnn &=& \bpm (\X_1\tr\X_1)^{-1}\X_1\tr\y \\ (\X_2\tr\X_2)^{-1}\X_2\tr\y \epm \\
+\nnn &=& \bpm \hat{\bet}_1^* \\ \hat{\bet}_2^* \epm.
+\eea
+\]
+- Orthogonalization also provides a method for updating coefficient estimates for a regression model of $\y$ based only on $\X_1$ to obtain coefficient estimates for the full model based of $\y$ based on $\X=(\X_1,\X_2)$, even when the columns of $\X_2$ are not orthogonal to the columns of $\X_1$.  
+- Here are the steps:
+    + Step 1: Regress $\y$ on $\X_1$ to obtain $\hat{\bet}_1^*=(\X_1\tr\X)^{-1}\X_1\tr\y$ and residuals $\ep_1^*=\y-\hat{\y}_1$ where $\hat{\y}_1=\X_1\hat{\bet}_1^*$.
+    + Step 2: Simultaneously regress each column of $\X_2$ on $\X_1$ where each column of $(\X_1\tr\X_1)^{-1}\X_1\tr\X_2=\A$ gives the coefficients for the corresponding column.
+Then the residuals are $\X_{2\cdot 1}=\X_2-\X_1\A$.
+    + Step 3: Regress $\y-\hat{\y}_1$ on $\X_{2\cdot 1}$ to obtain $\hat{\bet}_2$.  This gives
+\[
+\bea
+\nnn \widehat{\y-\hat{\y}_1} &=& \X_{2\cdot 1}\hat{\bet}_2 \\
+\nnn \hat{\y}-\hat{\y}_1 &=& (\X_2-\X_1\A)\hat{\bet}_2 \\
+\nnn \hat{\y} &=& \hat{\y}_1-\X_1\A\hat{\bet}_2+\X_2\hat{\bet}_2 \\
+\nnn \hat{\y} &=& \X_1\hat{\bet}_1^*-\X_1\A\hat{\bet}_2+\X_2\hat{\bet}_2 \\
+\nnn \hat{\y} &=& \X_1(\hat{\bet}_1^*-\A\hat{\bet}_2)+\X_2\hat{\bet}_2 \\
+\eea
+\]
+so $\hat{\bet}_1=\hat{\bet}_1^*-\A\hat{\bet}_2$.
+
+- **R Example 7.10.1**: Let's see how the orthogonal method works geometrically for the data in R Example 7.4.1.
+
+First, we regress $\y=\color{#0000FF}{\bpm 4 \\ 2 \\ 0\epm}$ on $\j=\color{#CC0000}{\bpm 1 \\ 1 \\ 1\epm}$ to obtain
+\[
+\hat{\beta}_1^*=\frac{\j\tr\y}{\j\tr\j}=\frac{6}{3}=2
+\]
+so the projection of $\y$ onto $\j$ is $\hat{\y}_1=2\j$ and its residual is 
+\[
+\y-\hat{\y}_1=\color{#FF8800}{\bpm 2 \\ 0 \\ -2 \epm}
+\]
+as illustrated below.
+
+```{r webgl=TRUE}
+x=c(3,-1,1)
+y=c(4,2,0)
+j=rep(1,3)
+y.hat.1=mean(y)*j
+plot3d(c(0,1),c(0,1),c(0,1),type="n",xlab="",ylab="",zlab="",lwd=5,xlim=c(0,3),ylim=c(0,3),zlim=c(0,3),box=FALSE,axes=FALSE)
+m=4
+for (s in -m:m) for (t in -m:m){
+  segments3d(c(3*s-m,3*s+m),c(-s-m,-s+m),c(s-m,s+m),col=ifelse(s==0,"#000000","#AAAAAA"))
+  segments3d(c(t-3*m,t+3*m),c(t+m,t-m),c(t-m,t+m),col=ifelse(t==0,"#000000","#AAAAAA"))
+}
+segments3d(c(0,1),c(0,1),c(0,1),col="#CC0000",lwd=5)
+segments3d(c(0,y[1]),c(0,y[2]),c(0,y[3]),col="#0000FF",lwd=5)
+segments3d(c(y[1],y.hat.1[1]),c(y[2],y.hat.1[2]),c(y[3],y.hat.1[3]),col="#FF8800",lwd=5)
+```
+
+Then we find a vector in the subspace spanned by $\x=\color{#FF0000}{\bpm 3 \\ -1 \\ 1 \epm}$ and $\j=\color{#CC0000}{\bpm 1 \\ 1 \\ 1\epm}$ orthogonal to $\j$ by computing the residual after regressing $\x$ on $\j$.  The coefficient estimate of this regression is 
+\[
+A=\frac{\j\tr\x}{\j\tr\j}=\frac{3}{3}=1
+\]
+so the projection of $\x$ onto $\j$ is 
+\[
+\hat{\x}=1 \j=\j
+\]
+and its residual is
+\[
+\X_{2\cdot 1}=\x-\hat{\x}=\color{#00FFFF}{\bpm 2 \\ -2 \\ 0 \epm}
+\]
+as illustrated below.
+
+```{r webgl=TRUE}
+x.hat=mean(x)*j
+plot3d(c(0,1),c(0,1),c(0,1),type="n",xlab="",ylab="",zlab="",lwd=5,xlim=c(0,3),ylim=c(0,3),zlim=c(0,3),box=FALSE,axes=FALSE)
+m=4
+for (s in -m:m) for (t in -m:m){
+  segments3d(c(3*s-m,3*s+m),c(-s-m,-s+m),c(s-m,s+m),col=ifelse(s==0,"#000000","#AAAAAA"))
+  segments3d(c(t-3*m,t+3*m),c(t+m,t-m),c(t-m,t+m),col=ifelse(t==0,"#000000","#AAAAAA"))
+}
+segments3d(c(0,1),c(0,1),c(0,1),col="#CC0000",lwd=5)
+segments3d(c(0,x[1]),c(0,x[2]),c(0,x[3]),col="#FF0000",lwd=5)
+segments3d(c(x[1],x.hat[1]),c(x[2],x.hat[2]),c(x[3],x.hat[3]),col="#00FFFF",lwd=5)
+```
+
+Then we regress the residual $\y-\hat{\y}_1=\color{#FF8800}{\bpm 2 \\ 0 \\ -2 \epm}$ on $\x-\hat{\x}=\color{#00FFFF}{\bpm 2 \\ -2 \\ 0 \epm}$ and obtain the regression coefficient
+\[
+\hat{\beta}_2=\frac{(\y-\hat{\y}_1)\tr(\x-\hat{\x})}{(\x-\hat{\x})\tr(\x-\hat{\x})}=\frac{4+0+0}{4+4+0}=\frac{1}{2}.
+\]
+The projection of $\y-\hat{\y}_1$ onto $\x-\hat{\x}$ is 
+\[
+\bea
+\nnn \widehat{\y-\hat{\y}_1}&=&\hat{\y}-\hat{\y}_1 \\
+\nnn &=&\frac{1}{2}(\x-\hat{\x}).
+\eea
+\]
+Its projection and its residual 
+\[
+(\y-\hat{\y}_1)-\widehat{\y-\hat{\y}_1}=\y-\hat{\y}=\color{#00FF00}{\bpm 1 \\ 1 \\ -2
+\epm}
+\]
+is illustrated below.
+
+```{r webgl=TRUE}
+beta.hat.2=sum((y-y.hat.1)*(x-x.hat))/sum((x-x.hat)^2)
+plot3d(c(0,1),c(0,1),c(0,1),type="n",xlab="",ylab="",zlab="",lwd=5,xlim=c(0,3),ylim=c(0,3),zlim=c(0,3),box=FALSE,axes=FALSE)
+m=4
+for (s in -m:m) for (t in -m:m){
+  segments3d(c(3*s-m,3*s+m),c(-s-m,-s+m),c(s-m,s+m),col=ifelse(s==0,"#000000","#AAAAAA"))
+  segments3d(c(t-3*m,t+3*m),c(t+m,t-m),c(t-m,t+m),col=ifelse(t==0,"#000000","#AAAAAA"))
+}
+segments3d(c(y[1],y.hat.1[1]),c(y[2],y.hat.1[2]),c(y[3],y.hat.1[3]),col="#FF8800",lwd=5)
+segments3d(c(mean(x)+x[1],mean(x)+x.hat[1]),c(mean(x)+x[2],mean(x)+x.hat[2]),c(mean(x)+x[3],mean(x)+x.hat[3]),col="#00FFFF",lwd=5)
+segments3d(c(mean(y)+beta.hat.2*(x[1]-mean(x)),y[1]),c(mean(y)+beta.hat.2*(x[2]-mean(x)),y[2]),c(mean(y)+beta.hat.2*(x[3]-mean(x)),y[3]),col="#00FF00",lwd=5)
+```
+Finally, we obtain the regression coefficients for the full model
+\[
+\bea
+\nnn \hat{\y}-\hat{\y}_1 &=& \frac{1}{2}(\x-\hat{\x}) \\
+\nnn \hat{\y} &=& \hat{\y}_1 + \frac{1}{2}(\x-\hat{\x}) \\
+\nnn \hat{\y} &=& 2\j + \frac{1}{2}(\x-\j) \\
+\nnn \hat{\y} &=& 2\j + \frac{1}{2}\x-\frac{1}{2}\j \\
+\nnn \hat{\y} &=& \frac{3}{2}\j + \frac{1}{2}\x, \\
+\eea
+\]
+and we see that $\hat{\y}=\color{#FF00FF}{\bpm 3 \\ 1 \\ 2\epm}$.
+
+- **R Example 7.10.2**: The following code shows the computation time for various methods used to compute the estimates of the regression coefficients in R Example 7.10.1.
+```{r}
+x=c(3,-1,1)
+X=cbind(1,x)
+y=c(4,2,0)
+
+### METHOD 1: Use lm function.
+# Start the clock
+R=10000
+ptm <- proc.time()
+# Run code R times
+for (i in 1:R){
+ beta.hat=lm(y~x)$coef
+}
+# Stop the clock
+run=proc.time() - ptm
+run/R
+
+### METHOD 2: Use multiple linear regression formula for beta.hat.
+# Start the clock
+R=100000
+ptm <- proc.time()
+# Run code R times
+for (i in 1:R){
+ beta.hat=solve(t(X)%*%X)%*%t(X)%*%y
+}
+# Stop the clock
+run=proc.time() - ptm
+run/R
+
+### METHOD 3: Use orthogonalization/simple linear regression method.
+# Start the clock
+R=1000000
+ptm <- proc.time()
+# Run code R times
+for (i in 1:R){
+ m=mean(x)
+ xc=x-m
+ beta2.hat=sum(xc*y)/sum(xc*xc)
+ beta1.hat=mean(y)-beta2.hat*m
+}
+# Stop the clock
+run=proc.time() - ptm
+run/R
+```
+
+In R, we can also use C functions to make computations more efficiently.  Here is a method to perform linear regression based on least squares using the LAPACK library **dgels**.
+```
+#include <R.h>
+
+extern int dgels_(char *trans, int *m, int *n, int *nrhs, double *a, int *lda, double *b, int *ldb, double *work, int *lwork, int *info);
+
+void ls(double *X, double *y, int *n, int *p){
+/* http://www.netlib.org/lapack/explore-html/d7/d3b/group__double_g_esolve_ga225c8efde208eaf246882df48e590eac.html
+*/
+ double *wrk;
+ char trans='N';
+ int intone=1;
+ int info;
+ int lw=(*p)+16*(*n);
+ wrk=malloc(lw*sizeof(double));
+ dgels_(&trans,n,p,&intone,X,n,y,n,wrk,&lw,&info); 
+ free(wrk);
+}
+```
+```{r}
+dyn.load("ls.dll")
+ourls = function(X,y){
+ n=as.integer(nrow(X))
+ p=as.integer(ncol(X))
+ out=.C("ls",as.double(X),beta=as.double(y),n,p)
+ out$beta[1:p]
+}
+ourls(X,y)
+```
+
+Now, let's compare its speed with the other methods.
+```{r}
+### METHOD 4: Use linear regression method from C.
+# Start the clock
+R=1000000
+ptm <- proc.time()
+# Run code R times
+for (i in 1:R){
+ beta.hat=ourls(X,y)
+}
+# Stop the clock
+run=proc.time() - ptm
+run/R
+```
