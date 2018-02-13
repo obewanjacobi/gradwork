@@ -1,7 +1,7 @@
 -----------------------------------------------------
 STATISTICS 668
 
-HW 3
+HW 3 (only #2 left)
 class website: 
 http://www.math.louisville.edu/~rsgill01/668.html
 -----------------------------------------------------
