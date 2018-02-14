@@ -79,7 +79,7 @@ with the following assumptions:
 ### 6.2 Estimation of $\boldsymbol{\beta}_0$, $\boldsymbol{\beta}_1$, and $\sigma^2$
 - **Definition 6.2.1** (p.128): The *least square estimates* of $\beta_0$ and $\beta_1$ are the values which minimize the least squares function
 \[
-Q(b_0,b_1)=\ep\tr\ep=\sum_{i=1}^n \varepsilon_i^2=\sum_{i=1}^n \left(y_i-b_0-b_1 x_i\right)^2.
+\color{red}{Q(b_0,b_1)=\sum_{i=1}^n \left(y_i-b_0-b_1 x_i\right)^2.}
 \]
 The minimizers are often denoted by $\hat{\beta}_0$ and $\hat{\beta}_1$.
 - **Theorem 6.2.1** (p.128): Given observed data $(x_1,y_1), \ldots, (x_n,y_n)$ from a simple linear regression model such that there is some $k$ such that $x_k\neq x_1$, the least squares estimates of $\beta_0$ and $\beta_1$ are

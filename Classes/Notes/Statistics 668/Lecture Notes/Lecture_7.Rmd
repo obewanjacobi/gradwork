@@ -94,11 +94,12 @@ The matrix $\X$ is often referred to as the *design matrix*.
 ### 7.3 Estimation of $\boldsymbol{\beta}$ and $\sigma^2$
 - **Definition 7.3.1** (p.142): The *least squares estimate* of $\bet$ is a vector $\hat{\bet}$ which minimizes the least squares function
 \[
+\color{red}{
 \bea
-\nnn Q(\b)&=&\ep\tr\ep \\
-\nnn &=&(\y-\X\b)\tr(\y-\X\b)\\
+\nnn Q(\b)&=&(\y-\X\b)\tr(\y-\X\b)\\
 \nnn &=&\sum_{i=1}^n \left(y_i-b_0-b_1 x_{i1}-b_2 x_{i2}-\ldots-b_k x_{ik}\right)^2.
 \eea
+}
 \]
 - **Theorem 7.3.1**: If $n\geq p$ and $\X$ is a $n\times p$ full rank matrix, then $\X\tr\X$ is a $p\times p$ full rank matrix.
 - *Proof*: Since $\X$ is full rank, its columns are linearly independent (that is, $\X\u=\zeros$ implies $\u=\zeros$).  
@@ -282,7 +283,7 @@ for (i in 1:3)
  points(c(x[i],x[i]),c(y[i],y.hat[i]),type="l",col="red")
 ```
 
-There is another geometrical intrepretation if we look at the column of $\X$ and $\y$.
+There is another geometrical intrepretation if we look at the columns of $\X$ and $\y$.
 First, we plot the 3-dimensional vectors from the columns of $\X$ in red and find the subspace of $\Reals^3$ spanned by these two vectors.
 ```{r}
 require(rgl)
