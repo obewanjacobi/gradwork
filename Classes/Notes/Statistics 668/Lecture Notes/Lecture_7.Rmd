@@ -251,7 +251,8 @@ Since $\a=\d=\X\tr\c$, $\c\tr(\I-\H)\c\geq 0$ implies that
 \nnn &\leq& \sigma^2\c\tr\H\c + \sigma^2\c\tr(\I-\H)\c \\
 \nnn &=& \sigma^2\c\tr\I\c \\
 \nnn &=& \c\tr(\sigma^2\I)\c \\
-\nnn &=& \cov(\c\tr\y).
+\nnn &=& \color{red}{\c\tr\cov(\y)\c} \\
+\nnn &=& \color{red}{\var(\c\tr\y)}.
 \eea
 \]
 
@@ -340,7 +341,7 @@ with the following assumption:
 \]
 and 
 \[
-\frac{\partial \ell}{\partial \sigma^2}=-\frac{n}{2\sigma^2}+\frac{1}{2(\sigma^2)^2}Q(\hat{\bet}).
+\frac{\partial \ell}{\partial \sigma^2}=-\frac{n}{2\sigma^2}+\frac{1}{2(\sigma^2)^2}Q(\color{red}{\bet}).
 \]
 Setting the first equation equal to $\zeros$ and solving, we see that 
 \[
