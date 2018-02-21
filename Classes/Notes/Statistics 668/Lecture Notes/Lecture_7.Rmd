@@ -481,7 +481,7 @@ and $\bar{\x}=\bpm \bar{x}_1 \\ \bar{x}_2 \\ \vdots \\ \bar{x}_k\epm$.
 ### 7.7 $R^2$ in Fixed-$x$ Regression
 - Here, we generalize some of the notation from Section 6.4.
 - The *predicted value* of $y$ at $\x$ is 
-$\hat{\y}=\x\tr\hat{\bet}$.
+$\color{red}{\hat{y}}=\x\tr\hat{\bet}$.
 - The vector of *fitted values* of $\y$ is
 $\hat{\y}=\X\hat{\bet}$.
 - The *residual vector* is $\hat{\ep}=\y-\hat{\y}$.
@@ -503,14 +503,13 @@ $\cov(\ep)=\sigma^2\V$ where $\V$ is known symmetric positive definite matrix bu
 - **Definition 7.8.1** (p.164): The *generalized least squares* estimate of $\bet$ is the vector $\hat{\bet}$ which minimizes the generalized least squares function
 \[
 \bea
-\nnn Q_V(\b)&=& \ep\tr\V^{-1}\ep \\
-\nnn &=& (\y-\X\b)\tr\V^{-1}(\y-\X\b) \\
+\nnn \color{red}{Q_V(\b)}&=& \color{red}{(\y-\X\b)\tr\V^{-1}(\y-\X\b)} \\
 \nnn &=& \sum_{i=1}^n\sum_{j=1}^n w_{ij} (y_i-b_0-b_1x_{i1}-\ldots-b_kx_{ik})(y_j-b_0-b_1x_{j1}-\ldots-b_kx_{jk})
 \eea
 \]
 where $w_{ij}$ is the element in the $i$th row and $j$th column of $\V^{-1}$.
 
-- **Theorem 7.8.1** (p.165): Given observed data $(x_{i1},\ldots,x_{ik},y_i)$ for $i=1,\ldots, n$ from a multiple linear regression model where $n>k$ and $\X$ has rank $k+1$ (it is full rank), the least squares estimate of $\bet$ is 
+- **Theorem 7.8.1** (p.165): Given observed data $(x_{i1},\ldots,x_{ik},y_i)$ for $i=1,\ldots, n$ from a multiple linear regression model where $n>k$ and $\X$ has rank $k+1$ (it is full rank), the <span style="color:red">generalized</span> least squares estimate of $\bet$ is 
 \[
 \hat{\bet}=\left(\X\tr\V^{-1}\X\right)^{-1}\X\tr\V^{-1}\y.
 \]
