@@ -1,0 +1,353 @@
+---
+title: 'Chapter 8: Multiple Regression: Tests of Hypotheses and Confidence Intervals'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "February 27, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\d{\boldsymbol{d}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\s{\boldsymbol{s}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\w{\boldsymbol{w}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\H{\boldsymbol{\mathrm{H}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\S{\boldsymbol{\mathrm{S}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\V{\boldsymbol{\mathrm{V}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\ep{\boldsymbol{\varepsilon}}$
+$\def\bet{\boldsymbol{\beta}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\def\Fobs{F_{\mbox{obs}}}$
+$\def\sion{\sum_{i=1}^n}$
+$\def\res{\hat{\varepsilon}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+$\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}$
+
+### 8.1 Test of Overall Regression
+- In the multiple regression model setting where  
+\[
+\y=\X\bet+\ep
+\]
+where 
+\[
+\y=\bpm y_1 \\ \vdots \\ y_n \epm, \X=(\j,\X_1)=\bpm 1 & x_{11} & \cdots & x_{1k} \\ 
+1 & x_{21} & \cdots & x_{2k} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & \cdots & x_{nk} \epm, \bet=\bpm \beta_0 \\ \beta_1 \\ \vdots \\ \beta_k \epm, \ep=\bpm \varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n \epm.
+\]
+- To make inferences in this chapter, we assume $\ep\sim N_n(\zeros,\sigma^2\I)$.
+- In this section, we want to perform a hypothesis test of $H_0: \bet_1=\bpm \beta_1 \\ \vdots \\ \beta_k \epm = \zeros$ (equivalently, $H_0: \beta_1=\cdots=\beta_k=0$) versus $H_1: \bet_1\neq \zeros$ by comparing the null model under $H_0$,  
+
+    $\y=\j \beta_0 + \ep \hspace{3cm} \implies y_i=\beta_0+\varepsilon_i$  
+
+    with the alternative full model under $H_1$,
+
+    $\y=\X\bet+\ep \hspace{3cm} \implies y_i=\beta_0+\beta_1x_{i1}+\ldots+\beta_kx_{ik}+\varepsilon_i$.
+
+- **Theorem 8.1.1** (p.187): Suppose $\y \sim N_n(\X\bet,\sigma^2\I)$ where $\X=(\j,\X_1)$ is an $n\times (k+1)$ matrix of rank $k+1<n$, and we use the $F$ statistic 
+\[
+F=\frac{SSR / k}{SSE / (n-k-1)}
+\]
+where $SSR=\ds{\sion (\hat{y}_i-\bar{y})^2}=\y\tr(\H-\frac{1}{n}\J)\y=\hat{\bet}\tr\X\tr\y-n\bar{y}^2$
+and $SSE=\ds{\sion (y_i-\hat{y}_i)^2}=(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})=\y\tr(\I-\H)\y=\y\tr\y-\hat{\bet}\tr\X\tr\y$  
+with $\H=\X(\X\tr\X)^{-1}\X\tr$ and $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$.
+
+    ( a ) If $H_0: \bet_1=\zeros$ is false, then $F$ ~ $F\left(k,n-k-1,\lambda_1=\frac{1}{2\sigma^2}\bet_1\tr\X_1\tr (\I-\frac{1}{n}\J)\X_1\bet_1\right)$.
+
+    ( b ) If $H_0: \bet_1=\zeros$ is true, then $\lambda_1=0$ and $F$ ~ $F\left(k,n-k-1\right)$.
+
+- An ANOVA table is often used to summarize the calculations for an overall $F$-test.
+
+<table style="width:100%">
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<tr>
+ <th>Source of Variation</th>
+ <th>df</th>
+ <th>Sum of Squares</th>
+ <th>Mean Square</th>
+ <th>Expected Mean Square</th>
+</tr>
+<tr>
+ <th>Due to $\bet_1$</th>
+ <th>$k$</th>
+ <th>$SSR=\hat{\bet}\tr\X\tr\y-n\bar{y}^2$</th>
+ <th>$\ds{\frac{SSR}{k}}$</th>
+ <th>$\sigma^2+\frac{1}{k}\bet_1\tr\X_1\tr (\I-\frac{1}{n}\J)\X_1\bet_1$
+<tr>
+ <th>Error</th>
+ <th>$n-k-1$</th>
+ <th>$SSE=\y\tr\y-\hat{\bet}\tr\X\tr\y$</th>
+ <th>$\ds{\frac{SSE}{n-k-1}}$</th>
+ <th>$\sigma^2$</th>
+</tr>
+<tr>
+ <th>Total</th>
+ <th>$n-1$</th>
+ <th>$SST=\y\tr\y-n\bar{y}^2$</th>
+ <th></th>
+ <th></th>
+</tr>
+</table>
+
+$~$
+
+- Recall the procedure for performing a hypothesis test based on the calculation of the $F$ statistic and its distribution from Theorem 8.1.1, we can perform an $F$-test as follows.
+    + We want to test $H_0$ versus $H_1$ at significance level $\alpha$.
+    + We compute the observed value of the test statistic (in this case, $\Fobs$).
+    + We determine a critical value or the $p$ value under $H_0$.  
+In this case, the critical value, denoted by $F_{\alpha,k,n-k-1}$, the value such that $P(F>F_{\alpha,k,n-k-1})=\alpha$ if $F\sim F(k,n-k-1)$.  The $p$ value is $P(F>\Fobs)$ where $F\sim F(k,n-k-1)$.
+    + We reject $H_0$ if $\Fobs > F_{\alpha,k,n-k-1}$, or equivalently, if the $p$ value is less than $\alpha$.  We fail to reject $H_0$ otherwise.
+
+- **R Example 8.1.1**: Let $\X$ be a $10 \times 3$ matrix such that its first column has all ones, its second column has elements $x_{i1}=i$, and its third column has elements $x_{i2}=\lfloor \left|x-5.5\right| \rfloor$.  In R, the following commands will create and print this matrix.
+```{r}
+n=10;k=2
+X1=cbind(1:n,floor(abs(1:n-5.5)))
+X=cbind(1,X1)
+X
+```
+Also, suppose that the true but unknown $\bet$ is $\bpm 3 \\ -1 \\ 2\epm$ and the true but unknown $\sigma$ is $\sqrt{20}$.
+```{r}
+true.beta=c(3,-1,2)
+true.sigma=sqrt(20)
+```
+Finally, we create and print the response vector with the following command.
+```{r}
+set.seed(238476)
+y=X%*%true.beta+rnorm(n,mean=0,sd=true.sigma)
+y
+```
+Here is the built-in `lm` function for analyzing a multiple regression model. The matrix `X1` is used since R automatically inserts an intercept by default.
+```{r}
+lm.model=lm(y~X1)
+summary(lm.model)
+```
+The `summary` function includes the results of an overall F-test on the bottom line.
+
+Now, let's see how to perform the $F$-test from our formulas.  Let's compute summary statistics.
+```{r}
+XtX=t(X)%*%X; XtX
+Xty=t(X)%*%y; Xty
+yty=t(y)%*%y; yty
+```
+\[
+\X\tr\X=\bpm 10 & 55 & 20 \\ 55 & 385 & 110 \\ 20 & 110 & 60 \epm, 
+\X\tr\y=\bpm 18.072648 \\ 1.340316 \\ 69.034123 \epm, 
+\y\tr\y=252.6146
+\]
+The parameter estimates can be computed as follows.
+```{r}
+beta.hat=solve(XtX)%*%Xty;beta.hat
+SSE=yty-t(beta.hat)%*%Xty
+s2=SSE/(n-k-1);s2
+```
+\[
+\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y=\bpm 5.055665 \\ -1.188597 \\ 1.644441 \epm
+\]
+\[
+\hat{\sigma}^2=\frac{\y\tr\y-\hat{\beta}\tr\X\tr\y}{n-k-1}=7.045127
+\]
+The observed $F$-statistic can be computed as follows.
+```{r}
+SSR=t(beta.hat)%*%Xty-n*(Xty[1,1]/n)^2
+SSE;SSR
+F.observed=(SSR/k)/(SSE/(n-k-1));F.observed
+```
+\[
+SSE=\y\tr\y-\hat{\beta}\tr\X\tr\y=49.31589,
+SSR=\hat{\beta}\tr\X\tr\y-n\left(\frac{1}{n}\j\tr\y\right)^2=170.6367
+\]
+\[
+F=\frac{SSR / k}{SSE / (n-k-1)}=\frac{170.6367 / 2}{49.31589 / 7}=12.11026
+\]
+We can either compute the critical value or the $p$ value to make the decision at level $\alpha=.05$.
+- *Critical value method*: The critical value can be computed with the following command.
+```{r}
+alpha=.05
+F.critical.value=qf(1-alpha,df1=k,df2=n-k-1);F.critical.value
+```
+Since $F_{.05,2,7}=4.737414<12.11026=\Fobs$, we reject $H_0$.
+
+- *$p$ value method*: The $p$ value can be computed with the following command.
+```{r}
+1-pf(F.observed,df1=2,df2=7)
+```
+Since the $p$ value $0.005337065$ is less than $\alpha=.05$, we reject $H_0$.
+
+- **R Example 8.1.2**: Let's see what happens if we repeat the previous problem for $R=1000$ simulated data sets.  These 1000 simulations give us an estimate of the power of the test under this alternative.
+```{r}
+R=1000
+set.seed(2338)
+Fobs=rep(0,R)
+for (i in 1:R){
+ y=X%*%true.beta+rnorm(n,mean=0,sd=true.sigma)
+ lm.model=lm(y~X1)
+ Fobs[i]=summary(lm.model)$fstat[1]
+}
+mean(Fobs>qf(1-alpha,df1=k,df2=n-k-1))
+```
+So, in these 1000 simulation for this value of $\bet$, the test was rejected $51.2\%$ of the time.
+The true power can be computed using the cdf of the noncentral F which is available in R.
+```{r}
+I=diag(n);J=matrix(1,n,n)
+1-pf(F.critical.value,df1=k,df2=n-k-1,ncp=t(true.beta[2:3])%*%t(X1)%*%(I-J/n)%*%(X1%*%true.beta[2:3])/(true.sigma^2))
+```
+so, under this alternative, the power is the test is $0.5230408$.
+
+### 8.2 Test of a Subset of the $\boldsymbol{\beta}$ Values
+- In this section, we want to test a hypothesis that a subset of the $\beta$'s are equal to 0.  Without loss of generality, suppose we want to 
+perform a hypothesis test of $H_0: \bet_2=\bpm \beta_{k-h+1} \\ \vdots \\ \beta_k \epm = \zeros$ versus $H_1: \bet_2\neq \zeros$ by comparing the null model under $H_0$, 
+
+    $\y=\X_1\bet_1 + \ep \hspace{3cm} \implies y_i=\beta_0 x_{i0}+\beta_1x_{i1}+\ldots+\beta_{k-h}x_{i,k-h}+\varepsilon_i$  
+
+    with the alternative full model under $H_1$,
+
+    $\y=\X\bet+\ep=\X_1\bet_1+\X_2\bet_2+\ep \hspace{3cm} \implies y_i=\beta_0+\beta_1x_{i1}+\ldots+\beta_kx_{ik}+\varepsilon_i$
+where
+\[
+\X=(\X_1,\X_2)=\left(\begin{array}{cccc:ccc} 1 & x_{11} & \cdots & x_{1,k-h} & x_{1,k-h+1} & \cdots & x_{1,k} \\ 
+1 & x_{21} & \cdots & x_{2,k-h} & x_{2,k-h+1} & \cdots & x_{1,k} \\ 
+\vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\ 
+1 & x_{n1} & \cdots & x_{n,k-h} & x_{n,k-h+1} & \cdots & x_{1,k} \end{array}\right)
+\]
+and
+\[
+\bet=\bpm \bet_1 \\ \bet_2 \epm = \left(\begin{array}{c} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_{k-h} \\ \hdashline \beta_{k-h+1} \\ \vdots \\ \beta_k \end{array}\right).
+\]
+
+- **Theorem 8.2.1** (p.193): Suppose $\y \sim N_n(\X\bet,\sigma^2\I)$ where $\X=(\X_1, \X_2)$ is an $n\times (k+1)$ matrix of rank $k+1<n$, $\X_1$ is a $n\times (k-h)$ matrix, and $\X_2$ is a $n\times h$ matrix.  Consider the $F$ statistic 
+\[
+F=\frac{SS(\bet_2|\bet_1) / h}{SSE / (n-k-1)}
+\]
+where $SS(\bet_2|\bet_1)=\y\tr(\H-\H_1)\y=\hat{\bet}\tr\X\tr\y-\hat{\bet}_1^{*\top}\X_1\tr\y$
+and $SSE=\y\tr(\I-\H)\y=\y\tr\y-\hat{\bet}\tr\X\tr\y$  
+with $\H=\X(\X\tr\X)^{-1}\X\tr$, $\H_1=\X_1(\X_1\tr\X_1)^{-1}\X_1\tr$,  $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$, and $\hat{\bet}_1^*=(\X_1\tr\X_1)^{-1}\X_1\tr\y$.
+
+    ( a ) If $H_0: \bet_1=\zeros$ is false, then $F$ ~ $F\left(h,n-k-1,\lambda_1=\frac{1}{2\sigma^2}\bet_2\X_2\tr\left(\I-\H_1\right)\X_2\bet_2\right)$.
+
+    ( b ) If $H_0: \bet_1=\zeros$ is true, then $\lambda_1=0$ and $F$ ~ $F\left(h,n-k-1\right)$.
+
+### 8.3 $F$ Test in Terms of $R^2$
+- For the model $\y=\X\bet+\ep$, recall that we defined the coefficient of determination as
+\[
+R^2=\frac{SSR}{SST}=\frac{\hat{\bet}\tr\X\tr\y-n\bar{y}^2}{\y\tr\y-n\bar{y}^2}.
+\]
+- **Theorem 8.3.1**: The $F$-statistic in Theorem 8.1.1 can be expressed as 
+\[
+F=\left(\frac{n-k-1}{k}\right)\frac{R^2}{(1-R^2)},
+\]
+and the $F$-statistic in Theorem 8.2.1 can be expressed as 
+\[
+F=\left(\frac{n-k-1}{h}\right)\frac{(R^2-R_r^2)}{(1-R^2)},
+\]
+where $R_r^2=\ds{\frac{\hat{\bet}_1^{*\top}\X_1\tr\y-n\bar{y}^2}{\y\tr\y-n\bar{y}^2}}$.
+- *Proof*: The result follows immediately from $\ds{R^2=\frac{SSR}{SSR+SSE}} \implies
+R^2 (SSR+SSE)=SSR \implies R^2 SSE=(1-R^2)SSR \implies \frac{SSR}{SSE}=\ds{\frac{R^2}{1-R^2}}$.
+- **Example 8.3.1**: Suppose a linear regression model (with an intercept) is used to predict $y$ based on 6 explanatory variables $x_1, \ldots, x_6$.  Suppose we wish to test $H_0: \bpm \beta_5 \\ \beta_6 \epm = \zeros$ versus $H_1: \bpm \beta_5 \\ \beta_6 \epm \neq \zeros$ at significance level $.05$.  If the coefficient of determination rises from $0.4$ when only $x_1, \ldots, x_4$ are used to $0.8$ when $x_1,\ldots, x_6$ are used, what for what sample sizes would we reject $H_0$?
+- *Answer*: Here $k=6$, $h=2$, $R^2=0.8$, and $R_r^2=0.4$ so that 
+\[
+\Fobs=\left(\frac{n-7}{2}\right)\frac{(0.8-0.4)}{(1-0.8)}=n-7
+\]
+which is increasing in $n$
+The critical value is $F_{.05,h=2,n-k-1=n-7}$ which is decreasing in $n$.  When $n=12$, $\Fobs=5<
+5.79=F_{.05,2,5}$ but when $n=6$, $\Fobs=6>5.14=F_{.05,2,6}$.  So, we reject $H_0$ as long as $n$ is at least 13.
+
+### 8.4 The General Linear Hypothesis Tests
+- In this section, we will consider the general linear hypothesis test $H_0: \C\bet=\t$ versus $H_1: \C\bet\neq \t$ for a specified $q\times (k+1)$ matrix $\C$ and  $q$-dimensional column vector $\t$.
+- **Theorem 8.4.1** (p.203): Suppose $\y \sim N_n(\X\bet,\sigma^2\I)$ where $\X$ is an $n\times (k+1)$ matrix of rank $k+1<n$, $\C$ is a $q\times (k+1)$ matrix of rank $q \leq k+1$, and $\t$ is a $q$-dimensional column vector. Let $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$.  Then the following results hold.  
+
+    ( a ) $\C\hat{\bet}-\t \sim N_q(\C\bet-\t,\sigma^2\C(\X\tr\X)^{-1}\C\tr)$  
+    ( b ) $\ds{\frac{SSH}{\sigma^2}=\frac{1}{\sigma^2}(\C\hat{\bet}-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\hat{\bet}-\t)\sim\chi^2\left(q,\lambda=\frac{1}{2\sigma^2}(\C\bet-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\bet-\t)\right)}$  
+    ( c ) $\ds{\frac{SSE}{\sigma^2}=\frac{1}{\sigma^2}\y\tr\left(\I-\H\right)\y \sim \chi^2(n-k-1)}$ where $\H=\X(\X\tr\X)^{-1}\X\tr$  
+    ( d ) $SSH$ and $SSE$ are independent
+- *Proof*: ( a ) By Theorem 7.6.2(a), $\hat{\bet}\sim N_{k+1}(\bet,\sigma^2(\X\tr\X)^{-1})$.  Then the result follows from Theorem 4.4.1 since 
+\[
+E(\C\hat{\bet}-\t)=\C E(\hat{\bet})-\t=\C\bet-\t
+\]
+and
+\[
+\cov(\C\hat{\bet}-\t)=\C \ \cov(\hat{\bet}) \ \C\tr
+=\C\left(\sigma^2(\X\tr\X)^{-1}\right)\C\tr
+=\sigma^2\C(\X\tr\X)^{-1}\C\tr)
+\]
+
+    ( b ) Part (a) and Theorem 5.5.1 imply that $\ds{\frac{SSH}{\sigma^2}}$ follows a chi-square distribution since $\left(\frac{\C(\X\tr\X)^{-1}\C\tr}{\sigma^2}\right)\left(\sigma^2\C(\X\tr\X)^{-1}\C\tr\right)=\I_q$ is idempotent.  It has $q$ degrees of freedom since $\C$ and $(\X\tr\X)^{-1}$ are full rank.  Its noncentrality parameter is $\frac{1}{2}\left(\C\bet-\t\right)\tr\left(\frac{\C(\X\tr\X)^{-1}\C\tr}{\sigma^2}\right)\left(\C\bet-\t\right)$.
+    
+    ( c ) This was proven in Theorem 7.6.2(b).
+    
+    ( d ) From Theorem 7.6.2(c), $\hat{\bet}$ and $\hat{\sigma}^2$ are independent.  Since $SSH$ is a function of $\hat{\bet}$ and $SSE=n\hat{\sigma}^2$, they are independent (see Theorem L.3.5 from MATH 667).
+
+- **Theorem 8.4.2** (p.203): Suppose $\y \sim N_n(\X\bet,\sigma^2\I)$ where $\X$ is an $n\times (k+1)$ matrix of rank $k+1<n$, $\C$ is a $q\times (k+1)$ matrix of rank $q \leq k+1$, and $\t$ is a $q$-dimensional column vector.   Consider the $F$ statistic 
+\[
+F=\frac{SSH / q}{SSE / (n-k-1)}
+\]
+where $SSH=(\C\hat{\bet}-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\hat{\bet}-\t)$
+and $SSE=\y\tr(\I-\H)\y=\y\tr\y-\hat{\bet}\tr\X\tr\y$  
+with $\H=\X(\X\tr\X)^{-1}\X\tr$, $\H_1=\X_1(\X_1\tr\X_1)^{-1}\X_1\tr$,  and $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$.
+
+    ( a ) If $H_0: \C\bet=\t$ is false, then $F$ ~ $F\left(q,n-k-1,\lambda=\frac{1}{2\sigma^2}(\C\bet-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\bet-\t)\right)$.
+
+    ( b ) If $H_0: \C\bet=\t$ is true, then $\lambda=0$ and $F$ ~ $F\left(q,n-k-1\right)$.
+- *Proof*: ( a ) Since $\ds{\frac{SSH}{\sigma^2}\sim\chi^2\left(q,\lambda=\frac{1}{2\sigma^2}(\C\bet-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\bet-\t)\right)}$, $\ds{\frac{SSE}{\sigma^2}\sim\chi^2(n-k-1)}$ are independent, 
+\[
+F=\frac{\frac{SSH}{\sigma^2} / q}{\frac{SSE}{\sigma^2} / (n-k-1)}\sim F(q,n-k-1,\lambda)
+\]
+by Definition 5.4.3.
+
+    ( b ) This follows from ( a ) with $\C\bet=\t$.
+
+- **R Example 8.4.1**: Galton data: test b1=b4 and b2=b5 
+
+### 8.5 Tests on $\beta_j$ and $\boldsymbol{a}'\boldsymbol{\beta}$
+
+### 8.6 Confidence Intervals and Prediction Intervals
+
+### 8.7 Likelihood Ratio Tests
