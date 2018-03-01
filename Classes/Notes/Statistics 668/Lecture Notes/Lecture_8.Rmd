@@ -2,7 +2,7 @@
 title: 'Chapter 8: Multiple Regression: Tests of Hypotheses and Confidence Intervals'
 author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
   and G. Bruce Schaalje, second edition, Wiley, 2008.
-date: "February 27, 2018"
+date: "March 1, 2018"
 output:
   html_document: default
   pdf_document: default
@@ -33,6 +33,7 @@ $\def\B{\boldsymbol{\mathrm{B}}}$
 $\def\C{\boldsymbol{\mathrm{C}}}$
 $\def\D{\boldsymbol{\mathrm{D}}}$
 $\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\G{\boldsymbol{\mathrm{G}}}$
 $\def\H{\boldsymbol{\mathrm{H}}}$
 $\def\I{\boldsymbol{\mathrm{I}}}$
 $\def\J{\boldsymbol{\mathrm{J}}}$
@@ -46,9 +47,13 @@ $\def\U{\boldsymbol{\mathrm{U}}}$
 $\def\V{\boldsymbol{\mathrm{V}}}$
 $\def\X{\boldsymbol{\mathrm{X}}}$
 $\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\Z{\boldsymbol{\mathrm{Z}}}$
+$\def\LR{\mbox{LR}}$
 $\def\bmu{\boldsymbol{\mu}}$
 $\def\ep{\boldsymbol{\varepsilon}}$
 $\def\bet{\boldsymbol{\beta}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\lam{\boldsymbol{\lambda}}$
 $\def\Sig{\boldsymbol{\Sigma}}$
 $\def\zeros{\boldsymbol{0}}$
 $\def\diag{\mathrm{diag}}$
@@ -65,6 +70,7 @@ $\def\cov{\mbox{cov}}$
 $\def\Reals{\mathbb{R}}$
 $\def\abs{\mbox{abs}}$
 $\def\Fobs{F_{\mbox{obs}}}$
+$\def\tobs{t_{\mbox{obs}}}$
 $\def\sion{\sum_{i=1}^n}$
 $\def\res{\hat{\varepsilon}}$
 $\newcommand{\EV}[1]{E\left(#1\right)}$
@@ -140,7 +146,7 @@ table, th, td {
 
 $~$
 
-- Recall the procedure for performing a hypothesis test based on the calculation of the $F$ statistic and its distribution from Theorem 8.1.1, we can perform an $F$-test as follows.
+- Recall the procedure for performing a hypothesis test. Based on the calculation of the $F$ statistic and its distribution from Theorem 8.1.1, we can perform an $F$-test as follows.
     + We want to test $H_0$ versus $H_1$ at significance level $\alpha$.
     + We compute the observed value of the test statistic (in this case, $\Fobs$).
     + We determine a critical value or the $p$ value under $H_0$.  
@@ -296,7 +302,7 @@ R^2 (SSR+SSE)=SSR \implies R^2 SSE=(1-R^2)SSR \implies \frac{SSR}{SSE}=\ds{\frac
 \[
 \Fobs=\left(\frac{n-7}{2}\right)\frac{(0.8-0.4)}{(1-0.8)}=n-7
 \]
-which is increasing in $n$
+which is increasing in $n$.
 The critical value is $F_{.05,h=2,n-k-1=n-7}$ which is decreasing in $n$.  When $n=12$, $\Fobs=5<
 5.79=F_{.05,2,5}$ but when $n=6$, $\Fobs=6>5.14=F_{.05,2,6}$.  So, we reject $H_0$ as long as $n$ is at least 13.
 
@@ -319,7 +325,7 @@ and
 =\sigma^2\C(\X\tr\X)^{-1}\C\tr)
 \]
 
-    ( b ) Part (a) and Theorem 5.5.1 imply that $\ds{\frac{SSH}{\sigma^2}}$ follows a chi-square distribution since $\left(\frac{\C(\X\tr\X)^{-1}\C\tr}{\sigma^2}\right)\left(\sigma^2\C(\X\tr\X)^{-1}\C\tr\right)=\I_q$ is idempotent.  It has $q$ degrees of freedom since $\C$ and $(\X\tr\X)^{-1}$ are full rank.  Its noncentrality parameter is $\frac{1}{2}\left(\C\bet-\t\right)\tr\left(\frac{\C(\X\tr\X)^{-1}\C\tr}{\sigma^2}\right)\left(\C\bet-\t\right)$.
+    ( b ) Part (a) and Theorem 5.5.1 imply that $\ds{\frac{SSH}{\sigma^2}}$ follows a chi-square distribution since $\frac{\color{red}{\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}}}{\sigma^2}\left(\sigma^2\C(\X\tr\X)^{-1}\C\tr\right)=\I_q$ is idempotent.  It has $q$ degrees of freedom since $\C$ and $(\X\tr\X)^{-1}$ are full rank.  Its noncentrality parameter is $\frac{1}{2}\left(\C\bet-\t\right)\tr\frac{\color{red}{\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}}}{\sigma^2}\left(\C\bet-\t\right)$.
     
     ( c ) This was proven in Theorem 7.6.2(b).
     
@@ -333,9 +339,12 @@ where $SSH=(\C\hat{\bet}-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\hat{\b
 and $SSE=\y\tr(\I-\H)\y=\y\tr\y-\hat{\bet}\tr\X\tr\y$  
 with $\H=\X(\X\tr\X)^{-1}\X\tr$, $\H_1=\X_1(\X_1\tr\X_1)^{-1}\X_1\tr$,  and $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$.
 
-    ( a ) If $H_0: \C\bet=\t$ is false, then $F$ ~ $F\left(q,n-k-1,\lambda=\frac{1}{2\sigma^2}(\C\bet-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\bet-\t)\right)$.
+    ( a ) If $H_0: \C\bet=\t$ is false, then 
+\[
+F\sim F\left(q,n-k-1,\lambda=\frac{1}{2\sigma^2}(\C\bet-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\bet-\t)\right).
+\]
 
-    ( b ) If $H_0: \C\bet=\t$ is true, then $\lambda=0$ and $F$ ~ $F\left(q,n-k-1\right)$.
+    ( b ) If $H_0: \C\bet=\t$ is true, then $\lambda=0$ and $F\sim F\left(q,n-k-1\right)$.
 - *Proof*: ( a ) Since $\ds{\frac{SSH}{\sigma^2}\sim\chi^2\left(q,\lambda=\frac{1}{2\sigma^2}(\C\bet-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\bet-\t)\right)}$, $\ds{\frac{SSE}{\sigma^2}\sim\chi^2(n-k-1)}$ are independent, 
 \[
 F=\frac{\frac{SSH}{\sigma^2} / q}{\frac{SSE}{\sigma^2} / (n-k-1)}\sim F(q,n-k-1,\lambda)
@@ -344,10 +353,437 @@ by Definition 5.4.3.
 
     ( b ) This follows from ( a ) with $\C\bet=\t$.
 
-- **R Example 8.4.1**: Galton data: test b1=b4 and b2=b5 
+- **R Example 8.4.1**: Consider the Galton (1886) data on the heights of children based on the heights of their parents.  We can load and display the first 5 rows of the data set using the following commands.
+```{r}
+require(HistData)
+GaltonFamilies[1:5,]
+```
+The following code can be used to create separate 3D plots and regression models for children by gender using both parents' heights as covariates.
+```{r}
+require(rgl)
+```
+```{r interactive display, echo=FALSE}
+require(knitr, quietly=TRUE)
+knit_hooks$set(webgl = hook_webgl)
+```
+```{r webgl=TRUE}
+attach(GaltonFamilies)
+plot3d(mother,father,childHeight,type="n")
+points3d(mother[gender=="female"],father[gender=="female"],childHeight[gender=="female"],col='blue')
+points3d(mother[gender=="male"],father[gender=="male"],childHeight[gender=="male"],col='red')
+lm2.females=lm(childHeight~mother+father,subset=(gender=="female"))
+lm2.males=lm(childHeight~mother+father,subset=(gender=="male"))
+a=coef(lm2.females)["mother"]
+b=coef(lm2.females)["father"]
+c=-1
+d=coef(lm2.females)["(Intercept)"]
+planes3d(a, b, c, d, alpha = 0.5, col='blue')
+a=coef(lm2.males)["mother"]
+b=coef(lm2.males)["father"]
+c=-1
+d=coef(lm2.males)["(Intercept)"]
+planes3d(a, b, c, d, alpha = 0.5, col='red')
+detach(GaltonFamilies)
+```
+Let's construct a model that allows us to test a hypothesis related to this model.
+We need some notation before specifying the covariates:
+\[
+\bea
+\nnn g_i &=& \mbox{ indicator for female gender (1 if } i^{th} \mbox{child is female, 0 if male)} \\
+\nnn m_i &=& \mbox{ height of the mother of the } i^{th} \mbox{child} \\
+\nnn f_i &=& \mbox{ height of the father of the } i^{th} \mbox{child}
+\eea
+\]
+The response variable is
+\[
+y_i = \mbox{ height of the } i^{th} \mbox{ child}
+\]
+and the explanatory variables are
+\[
+\bea
+\nnn x_{i1} &=& g_i \\
+\nnn x_{i2} &=& g_i m_i \\
+\nnn x_{i3} &=& g_i f_i \\
+\nnn x_{i4} &=& 1-g_i \\
+\nnn x_{i5} &=& (1-g_i) m_i \\
+\nnn x_{i6} &=& (1-g_i) f_i \\
+\eea
+\]
+in the model 
+\[
+y_i=\beta_1x_{i1}+\beta_2x_{i2}+\beta_3x_{i3}+\beta_4x_{i4}+\beta_5x_{i5}+\beta_6x_{i6}+\varepsilon_i.
+\]
+Note that no intercept is included in this parameterization.
+The follow R code creates the response vector and design matrix to represent this model.
+```{r}
+y=GaltonFamilies$childHeight
+g=as.numeric(GaltonFamilies$gender=="female")
+m=GaltonFamilies$mother
+f=GaltonFamilies$father
+X=cbind(g,g*m,g*f,1-g,(1-g)*m,(1-g)*f);dimnames(X)=NULL
+X[1:5,]
+```
+One hypothesis of interest is whether the plane for female children is parallel to the plane for male children.  
+
+(Step 1:) The null hypothesis corresponding to this statement is 
+\[
+H_0: \beta_2=\beta_5 \mbox{ and } \beta_3=\beta_6.
+\]
+In matrix form we can write
+\[
+H_0: \C\bet=\zeros \mbox{ versus } H_1: \C\bet\neq \zeros
+\]
+where $\C=\bpm 0 & 1 & 0 & 0 & -1 & 0 \\ 0 & 0 & 1 & 0 & 0 & -1 \epm$ and $\bet=\bpm \beta_1 \\ \vdots \\ \beta_6 \epm$.
+
+We can compute the $F$-statistic based on Theorem 8.4.2 with the following code.
+```{r}
+beta.hat=solve(t(X)%*%X)%*%t(X)%*%y; beta.hat
+C=rbind(c(0,1,0,0,-1,0),c(0,0,1,0,0,-1))
+C%*%beta.hat
+SSH=t(C%*%beta.hat)%*%solve(C%*%solve(t(X)%*%X)%*%t(C))%*%(C%*%beta.hat);SSH
+SSE=sum(y^2)-sum((X%*%beta.hat)^2); SSE
+n=nrow(X);n
+F=(SSH/2)/(SSE/(n-6)); F
+```
+(Step 2:) So, the F-statistic is 
+\[
+\Fobs=\frac{SSH/q}{SSE/(n-k-1)}=\frac{3.822808 / 2}{4354.052 / (934-6)}=0.4073867.
+\]
+(Step 3:) The critical value for this test at level $.05$ is $F_{.05,2,928}=3.005424$, as computed below.
+```{r}
+alpha=.05
+qf(1-alpha,2,928)
+```
+(Step 4:) We fail to reject $H_0$ at level $.05$ since $\Fobs<F_{.05,2,928}$.
+
+Here is a method to perform this test in R using the function `anova`.
+```{r}
+X.reduced=cbind(X[,1],X[,2]+X[,5],X[,3]+X[,6],X[,4])
+lm.reduced=lm(y~X.reduced+0)
+lm.full=lm(y~X+0)
+anova(lm.reduced,lm.full)
+```
 
 ### 8.5 Tests on $\beta_j$ and $\boldsymbol{a}'\boldsymbol{\beta}$
+- If $\C=\a\tr$ where $\a$ is a $(k+1)$-dimensional vector and $\t=c$, then the numerator the $F$-test in Theorem 8.4.2 becomes
+\[
+\bea
+\nnn SSH/q &=& (\a\tr\hat{\bet}-c)\left(\a\tr(\X\tr\X)^{-1}\a\right)^{-1}(\a\tr\hat{\bet}-c)/1 \\
+\nnn &=& \frac{(\a\tr\hat{\bet}-c)^2}{\a\tr(\X\tr\X)^{-1}\a}
+\eea
+\]
+so the $F$-statistic for testing $H_0:\a\tr\bet=c$ versus $H_1:\a\tr\bet\neq c$ is
+\[
+\bea
+\nnn F&=&\frac{SSH/q}{SSE/(n-k-1)} \\
+\nnn &=&\frac{(\a\tr\hat{\bet}-c)^2 / (\a\tr(\X\tr\X)^{-1}\a)}{s^2} \\
+\nnn &=& \frac{(\a\tr\hat{\bet}-c)^2}{s^2  (\a\tr(\X\tr\X)^{-1}\a)}.
+\eea
+\]
+- Equivalently, when $q=1$ we can perform a $t$-test by taking the square root of $F$.  In addition, the advantage of the $t$-test is that we can perform one-sided tests.
+- **Theorem 8.5.1**: Suppose $\y \sim N_n(\X\bet,\sigma^2\I)$ where $\X$ is an $n\times (k+1)$ matrix of rank $k+1<n$, $\a$ is a $q$-dimensional column vector, and $t$ is a real number.   Consider the $t$ statistic 
+\[
+t=\frac{\a\tr\hat{\bet}-c}{s\sqrt{\a\tr(\X\tr\X)^{-1}\a}}
+\]
+where $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$.
+
+    ( a ) If $H_0: \a\tr\bet=c$ is false, then 
+\[
+t\sim t\left(n-k-1,\lambda=\frac{1}{2\sigma^2}(\a\tr\bet-c)\tr\left(\a(\X\tr\X)^{-1}\a\tr\right)^{-1}(\a\tr\bet-c)\right).
+\]
+
+    ( b ) If $H_0: \a\tr\bet=c$ is true, then $\lambda=0$ and $t\sim t\left(n-k-1\right)$.
+- *Proof*: ( a ) Theorem 8.4.1(a) implies that 
+\[
+\frac{\a\tr\hat{\bet}-c}{\sigma\sqrt{\a\tr(\X\tr\X)^{-1}\a}}\sim N(0,1),
+\]
+and Theorem 8.4.1(c) states that $\frac{s^2}{\sigma^2}\sim\chi^2(n-k-1)$, 
+They are independent since $\ds{\frac{\a\tr\hat{\bet}-c}{\sigma\sqrt{\a\tr(\X\tr\X)^{-1}\a}}}$ is a function of $\hat{\bet}$, $\ds{\frac{(n-k-1)s^2}{\sigma^2}=\frac{n\hat{\sigma}^2}{\sigma^2}}$ is a function of $\hat{\sigma}^2$, and $\hat{\bet}$ and $\hat{\sigma}^2$ are independent by Theorem 7.6.2(c). Then, by Definition 5.4.2, it follows that
+\[
+\frac{\frac{\a\tr\hat{\bet}-c}{\sigma\sqrt{\a\tr(\X\tr\X)^{-1}\a}}}{\sqrt{\frac{(n-k-1)s^2}{\sigma^2}/(n-k-1)}}=\frac{\a\tr\hat{\bet}-c}{s\sqrt{\a\tr(\X\tr\X)^{-1}\a}}\sim t(n-k-1).
+\]
+- **R Example 8.5.1**: Now, for the Galton height data consider the model 
+\[
+y_i=\beta_0+\beta_1 g_i+\beta_2 m_i+\beta_3 f_i+\varepsilon_i.
+\]
+(Step 1:) Suppose we want to test 
+\[
+H_0: \beta_1=0 \mbox{ versus } H_1: \beta_1 < 0.
+\]
+In matrix form we can write
+\[
+H_0: \a\tr\bet=\zeros \mbox{ versus } H_1: \a\tr\bet< \zeros
+\]
+where $\a\tr=(0,1,0,0)$ and $\bet=\bpm \beta_0 \\ \beta_1 \\ \beta_2 \\ \beta_3 \epm$.
+
+We can compute the $t$-statistic based on Theorem 8.4.2 with the following code.
+```{r}
+X=cbind(1,g,m,f)
+beta.hat=solve(t(X)%*%X)%*%t(X)%*%y
+a=c(0,1,0,0)
+t(a)%*%solve(t(X)%*%X)%*%a
+SSE=sum(y^2)-sum((X%*%beta.hat)^2)
+s2=SSE/(n-4);s2
+t=beta.hat[2]/(sqrt(s2)*sqrt(t(a)%*%solve(t(X)%*%X)%*%a));t
+```
+(Step 2:) The test statistic is 
+\[
+\tobs=\frac{\a\tr\hat{\bet}-0}{s\sqrt{\a\tr(\X\tr\X)^{-1}\a}}
+=\frac{-5.214989}{\sqrt{4.685887}\sqrt{0.004291563}}=-36.77476.
+\]
+(Step 3:) For this one(left)-sided test, the critical value for a level $.05$ test is
+$-t_{.05,934-4}=-1.646494$, as shown below.
+```{r}
+alpha=.05
+qt(alpha,930)
+```
+(Step 4:) We reject $H_0$ at level $.05$ since $\tobs< -t_{.05,930}$.
 
 ### 8.6 Confidence Intervals and Prediction Intervals
+- In this section, confidence sets are developed in the multiple linear regression model setting.  For a general review of confidence intervals, see Lecture 16 from MATH 667.
+- **Theorem 8.6.1** (p.211): Suppose $\y \sim N_n(\X\bet,\sigma^2\I)$ where $\X$ is an $n\times (k+1)$ matrix of rank $k+1<n$, and $\a$ is a $q$-dimensional column vector.  Then
+\[
+\a\tr\hat{\bet}\pm t_{\alpha/2,n-k-1} s \sqrt{\a\tr(\X\tr\X)^{-1}\a}
+\]
+is a $100(1-\alpha)$\% confidence interval for $\a\tr\bet$.
+- *Proof*: Theorem 8.5.1(b) implies that $\ds{\frac{\a\tr\hat{\bet}-\a\tr\bet}{s\sqrt{\a\tr(\X\tr\X)^{-1}\a}}\sim t(n-k-1)}$ so
+\[
+\bea
+\nnn 1-\alpha &=& P\left(-t_{\alpha/2,n-k-1} < \frac{\a\tr\hat{\bet}-\a\tr\bet}{s\sqrt{\a\tr(\X\tr\X)^{-1}\a}} < t_{\alpha/2,n-k-1}\right) \\
+\nnn &=& P\left(-t_{\alpha/2,n-k-1}s\sqrt{\a\tr(\X\tr\X)^{-1}\a} < \a\tr\hat{\bet}-\a\tr\bet < t_{\alpha/2,n-k-1}s\sqrt{\a\tr(\X\tr\X)^{-1}\a}\right) \\
+\nnn &=& P\left(-\a\tr\hat{\bet}-t_{\alpha/2,n-k-1}s\sqrt{\a\tr(\X\tr\X)^{-1}\a} < -\a\tr\bet < -\a\tr\hat{\bet}+t_{\alpha/2,n-k-1}s\sqrt{\a\tr(\X\tr\X)^{-1}\a}\right) \\
+\nnn &=& P\left(\a\tr\hat{\bet}+t_{\alpha/2,n-k-1}s\sqrt{\a\tr(\X\tr\X)^{-1}\a} > \a\tr\bet > \a\tr\hat{\bet}-t_{\alpha/2,n-k-1}s\sqrt{\a\tr(\X\tr\X)^{-1}\a}\right). 
+\eea
+\]
+- **R Example 8.6.1**: For the Galton height data with the multiple linear regression model 
+\[
+y_i=\beta_0+\beta_1 g_i+\beta_2 m_i+\beta_3 f_i+\varepsilon_i
+\]
+suppose that we want a 90\% confidence interval for $\beta_0+\beta_1+65\beta_2+70\beta_3$.  (This is the average height for a female whose mother has height 65 inches and whose father has height 70 inches.) The following computations can be used to compute the confidence interval.
+```{r}
+X=cbind(1,g,m,f)
+beta.hat=solve(t(X)%*%X)%*%t(X)%*%y
+a=c(1,1,65,70)
+SSE=sum(y^2)-sum((X%*%beta.hat)^2)
+s2=SSE/(n-4)
+estimate=sum(a*beta.hat);estimate
+standard.error=sqrt(s2)*c(sqrt(t(a)%*%solve(t(X)%*%X)%*%a));standard.error
+alpha=.10; qt(1-alpha/2,n-4)
+estimate+c(-1,1)*qt(1-alpha/2,n-4)*standard.error
+```
+So, a 90% confidence interval for $\beta_0+\beta_1+65\beta_2+70\beta_3$ is
+\[
+64.66493\pm 1.646494(0.1068809) \ \ \ \ \implies (64.48895,64.84091).
+\]
 
+- Instead, suppose that we want to predict a future observation $y_0$ for one individual with values $\x_0$ corresponding to the explanatory variables. 
+- **Theorem 8.6.2** (p.214): Suppose $\bpm \y \\ y_0\epm \sim N_{n+1}\left(\bpm \X \\ \x_0 \epm\bet,\sigma^2\I\right)$ where $\X$ is an $n\times (k+1)$ matrix of rank $k+1<n$, and $\a$ is a $q$-dimensional column vector. Let $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$ be the estimate of $\bet$ based on $\X$ and $\y$.  Then
+\[
+\x_0\tr\hat{\bet}\pm t_{\alpha/2,n-k-1} s \sqrt{1+\x_0\tr(\X\tr\X)^{-1}\x_0}
+\]
+is a $100(1-\alpha)$\% prediction interval for $y_0$.
+- *Proof*: Since $y_0$ and $\hat{\bet}$ are independent, 
+\[
+\bea
+\nnn \var(y_0-\x_0\tr\hat{\bet})&=&\var(y_0)+\var(\x_0\tr\hat{\bet}) \\
+\nnn &=& \var(y_0)+\x_0\tr\var(\hat{\bet})\x_0 \\
+\nnn &=& \var(y_0)+\x_0\tr\left(\sigma^2(\X\tr\X)^{-1}\right)\x_0 \\
+\nnn &=& \sigma^2+\sigma^2\x_0\tr(\X\tr\X)^{-1}\x_0 \\
+\nnn &=& \sigma^2\left(1+\x_0\tr(\X\tr\X)^{-1}\x_0\right).
+\eea
+\]
+Since it is a linear combination of the normal random vector, $\bpm\y \\ y_0\epm$, 
+\[
+\frac{y_0-\x_0\tr\hat{\bet}}{\sigma\sqrt{1+\x_0\tr(\X\tr\X)^{-1}\x_0}}\sim N(0,1)
+\]
+which is independent of $\ds{\frac{(n-k-1)s^2}{\sigma^2}\sim \chi^2(n-k-1)}$ so that
+\[
+\frac{\x_0\tr\hat{\bet}-y_0}{s\sqrt{1+\x_0\tr(\X\tr\X)^{-1}\x_0}} \sim t(n-k-1)
+\]
+by Definition 5.4.2.
+Then we have
+\[
+\bea
+\nnn 1-\alpha &=& P\left(-t_{\alpha/2,n-k-1} < \frac{y_0-\x_0\tr\hat{\bet}}{s\sqrt{1+\x_0\tr(\X\tr\X)^{-1}\x_0}} < t_{\alpha/2,n-k-1}\right) \\
+\nnn &=& P\left(-t_{\alpha/2,n-k-1}s\sqrt{1+\x_0\tr(\X\tr\X)^{-1}\x_0} < y_0-\x_0\tr\hat{\bet} < t_{\alpha/2,n-k-1}s\sqrt{1+\x_0\tr(\X\tr\X)^{-1}\x_0}\right) \\
+\nnn &=& P\left(\x_0\tr\hat{\bet}-t_{\alpha/2,n-k-1}s\sqrt{1+\x_0\tr(\X\tr\X)^{-1}\x_0} < y_0 < \x_0\tr\hat{\bet}+t_{\alpha/2,n-k-1}s\sqrt{1+\x_0\tr(\X\tr\X)^{-1}\x_0}\right). 
+\eea
+\]
+- **R Example 8.6.2**: For the Galton height data with the multiple linear regression model 
+\[
+y_i=\beta_0+\beta_1 g_i+\beta_2 m_i+\beta_3 f_i+\varepsilon_i
+\]
+suppose that we want a 90\% prediction interval for $y_0\sim N(\beta_0+\beta_1+65\beta_2+70\beta_3,\sigma^2)$.
+Minor modifications to the code for R Example 8.6.1 produces the following result.
+```{r}
+standard.error=sqrt(s2)*c(1+sqrt(t(a)%*%solve(t(X)%*%X)%*%a));standard.error
+estimate+c(-1,1)*qt(1-alpha/2,n-4)*standard.error
+```
+So, a 90% prediction interval for $y_0$ with $\x_0\tr=(1,1,65,70)$ is
+\[
+64.66493\pm 1.646494(2.271572) \ \ \ \ \implies (60.92480, 68.40506).
+\]
+
+- **Theorem 8.6.3** (p.215): Suppose $\y \sim N_n(\X\bet,\sigma^2\I)$ where $\X$ is an $n\times (k+1)$ matrix of rank $k+1<n$, and $\a$ is a $q$-dimensional column vector.  Then
+\[
+\left(\frac{(n-k-1)s^2}{\chi^2_{\alpha/2,n-k-1}},\frac{(n-k-1)s^2}{\chi^2_{1-\alpha/2,n-k-1}}\right)
+\]
+is a $100(1-\alpha)$\% confidence interval for $\sigma^2$.
+- **Theorem 8.6.4** (p.209): Suppose $\y \sim N_n(\X\bet,\sigma^2\I)$ where $\X$ is an $n\times (k+1)$ matrix of rank $k+1<n$, and $\a$ is a $q$-dimensional column vector.  Then
+\[
+\left\{ \bet : \|\X(\hat{\bet}-\bet)\|^2 \leq (k+1)s^2F_{\alpha,k+1,n-k-1}\right\}
+\]
+is a $100(1-\alpha)$\% confidence region for $\bet$.
+- *Proof*: By Theorem 8.4.2(b) with $\C=\I$ and $\t=\bet$, we see the 
+\[
+\bea
+\nnn \frac{(\hat{\bet}-\bet)\tr\X\tr\X(\hat{\bet}-\bet)/(k+1)}{(n-k-1)s^2/(n-k-1)} &=& \frac{\left(\X(\hat{\bet}-\bet)\right)\tr\left(\X(\hat{\bet}-\bet)\right)/(k+1)}{s^2} \\
+\nnn &=& \frac{\|\X(\hat{\bet}-\bet)\|^2}{(k+1)s^2} \sim F(k+1,n-k-1).\\
+\eea
+\]
+So, we have
+\[
+\bea
+\nnn 1-\alpha&=& P\left(\frac{\|\X(\hat{\bet}-\bet)\|^2}{(k+1)s^2} \sim F(k,n-k-1) \leq F_{\alpha,k,n-k-1}\right) \\
+\nnn &=& P\left(\|\X(\hat{\bet}-\bet)\|^2 \sim (k+1)s^2 F(k+1,n-k-1) \leq F_{\alpha,k+1,n-k-1}\right).
+\eea
+\]
+- **Example 8.6.1**: Suppose that $\y$ is a $4$-dimensional $N_4(\X\bet,\sigma^2\I)$ random
+vector where $\X$ is a $4\times 2$ matrix with columns $\j$ and $\x$, $\j$ is an $4$-dimensional vector of ones, $\x$ is a non-random $4$-dimensional vector, $\bet=\left(\begin{array}{c}\beta_0 \\ \beta_1\end{array}\right)$ is a unknown vector of intercept and slope parameters, and $\sigma^2$ is the unknown variance parameter. Let $\hat{\beta}_0$, $\hat{\beta}_1$, and $\hat{\sigma}^2$ denote the maximum likelihood estimators of $\beta_0$, $\beta_1$ and $\sigma^2$, respectively. 
+
+    ( a ) If $\ds{\j\tr\x=1}$ and $\ds{\x\tr\x=3}$, find values $A$, $B$, and $C$ such that 
+\[ A\left(\frac{\hat{\beta}_0-\beta_0}{\hat{\sigma}}\right)^2+B\left(\frac{\hat{\beta}_0-\beta_0}{\hat{\sigma}}\right)\left(\frac{\hat{\beta}_1-\beta_1}{\hat{\sigma}}\right)+C\left(\frac{\hat{\beta}_1-\beta_1}{\hat{\sigma}}\right)^2\leq 1
+\]
+is a 95\% confidence ellipse for $\bet$.
+
+    ( b ) Now, also suppose that $\ds{\j\tr\y=2}$, $\ds{\y\tr\y=38}$, and $\ds{\x\tr\y=10}$.  
+Compute the maximum likelihood estimates $\hat{\beta}_0$, $\hat{\beta}_1$, and $\hat{\sigma}^2$. 
+Is $\bet=\left(\begin{array}{c} 0 \\ 0 \end{array}\right)$ inside the confidence ellipse in part (a)?
+- *Answer*: (a) Since $\X\tr\X=\bpm \j\tr\j & \j\tr\x \\ \x\tr\j & \x\tr\x \epm = \bpm 4 & 1 \\ 1 & 3 \epm$, we see that 
+\[
+\bea
+\nnn \|\X(\hat{\bet}-\bet)\|^2 &=&(\hat{\bet}-\bet)\tr\X\tr\X(\hat{\bet}-\bet) \\ 
+\nnn &=& (\hat{\beta}_0-\beta_0, \hat{\beta}_1-\beta_1) \bpm 4 & 1 \\ 1 & 3 \epm \bpm\hat{\beta}_0-\beta_0& \hat{\beta}_1-\beta_1\epm \\
+\nnn &=& 4(\hat{\beta}_0-\beta_0)^2+2(\hat{\beta}_0-\beta_0)(\hat{\beta}_1-\beta_1)+3(\hat{\beta}_1-\beta_1)^2.
+\eea
+\]
+Also, $2s^2=2\frac{SSE}{4-2}=SSE=4\hat{\sigma}^2$ and $F_{.05,2,2}=19$ so 
+\[
+\frac{\|\X(\hat{\bet}-\bet)\|^2}{(1+1)s^2F_{.05,2,2}}=\frac{4}{76}\left(\frac{\hat{\beta}_0-\beta_0}{\hat{\sigma}}\right)^2+\frac{2}{76}\left(\frac{\hat{\beta}_0-\beta_0}{\hat{\sigma}}\right)\left(\frac{\hat{\beta}_1-\beta_1}{\hat{\sigma}}\right)+\frac{3}{76}\left(\frac{\hat{\beta}_1-\beta_1}{\hat{\sigma}}\right)^2
+\]
+and we see that $\ds{A=\frac{4}{76}=\frac{1}{19}}$, $\ds{B=\frac{2}{76}=\frac{1}{38}}$ and $\ds{C=\frac{3}{76}}$.
+
+    ( b ) Since $\X\tr\y=\bpm \j\tr\y \\ \x\tr\y\epm=\bpm 2 \\ 10 \epm$ and $\ds{\hat{\sigma}^2=\frac{1}{4}(\y\tr\y-\hat{\bet}\tr\X\tr\y)=\frac{1}{4}\left(38-\frac{23}{11}\right)=\frac{23}{22}}$, we compute
+\[
+\frac{4}{76}\frac{(-4/11)^2}{23/22}+\frac{2}{76}\frac{(-4/11)(38/11)}{23/22}+\frac{3}{76}\frac{(38/11)^2}{23/22}=\frac{186}{437}.
+\]
+This is less than 1, so $\bpm 0 \\ 0\epm$ is in the $95\%$ confidence ellipse.
+    
 ### 8.7 Likelihood Ratio Tests
+- **Definition 8.7.1** (p.218): The *likelihood ratio test statistic* for testing the null hypothesis $H_0$ versus an alternative $H_1$ is
+\[
+\LR = \frac{\ds{\sup_{\thet\in H_0} L(\thet)}}{\ds{\sup_{\thet \in H_0 \cup H_1} L(\thet)}}
+\]
+where $L$ is the likelihood function with parameter vector $\thet$. A *likelihood ratio test* of size $\alpha$ is the test which has a rejection region of the form $\left\{ \LR \leq c\right\}$ where $c$ is chosen so that $P(\LR\leq c)=\alpha$ if $H_0$ is true.
+- To compute the likelihood ratio, we need to find the constrained maximizer of $L$ under $H_0$.  We will consider the general case $H_0: \C\bet=\t$.
+- Here is a description of the *Lagrange Multiplier Method* for maximizing/minimizing a function $f(\thet)$ subject to a constraint $\G\thet=\g$.
+    + The Lagrangian function is $F(\thet,\lam)=f(\thet)+\lam\tr(\G\thet-\g)$.
+    + The stationary equations for the Lagrangian function are
+\[
+\bea
+\nnn \frac{\partial F}{\partial \thet}&=& \frac{\partial f}{\partial \thet}+\G\tr\lam \\
+\nnn \frac{\partial F}{\partial \lam} &=& \G\thet-\g.
+\eea
+\]
+    + If $\hat{\thet}$ is a local constrained maximum/minimium, then $(\hat{\thet},\hat{\lam})$ is a stationary point.
+    + If $(\hat{\thet},\hat{\lam})$ is a stationary point of the Lagrangian function, then $\hat{\thet}$ is a local constrained maximum(minimum) if $\ds{\frac{\partial^2 f}{\partial \thet\partial \thet\tr}\Big|_{\thet=\hat{\thet}}}$ is negative(positive) definite.
+
+- **Theorem 8.7.1** (p.201): For a normal multiple linear regression model where $n>k$ and $\X$ has rank $k+1$ (full rank) with constraint $\C\bet=\t$ where $\C$ is a $q\times(k+1)$ matrix of rank $q\leq k$, the constrained maximizers of the likelihood function 
+\[
+\ell(\bet,\sigma^2)=-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln \sigma^2-\frac{1}{2\sigma^2}Q(\bet) \ \ \ \mbox{(see Section 7.6)}
+\]
+are
+\[
+\hat{\bet}_c=\hat{\bet}-(\X\tr\X)^{-1}\C\tr(\C(\X\tr\X)^{-1}\C\tr)^{-1}(\C\hat{\bet}-\t)
+\]
+and
+\[
+\hat{\sigma}_c^2=\frac{Q(\hat{\bet}_c)}{n}.
+\]
+- *Proof*: The Lagrangian function is
+\[
+F(\bet,\sigma^2,\lam)=\ell(\bet,\sigma^2)+\lam\tr(\C\bet-\t)\tr.
+\]
+Differentiating $F$ with respect to $\bet$, we obtain
+\[
+\frac{\partial F}{\partial \bet}=\frac{1}{\sigma^2}\left(-\X\tr\y+\X\tr\X\bet\right)+\C\tr\lam.
+\]
+Setting it equal to $\zeros$ and denoting a stationary solution as $\hat{\bet}_c$, $\hat{\sigma}_c^2$, and $\hat{\lam}$, we obtain
+\[
+\bea
+\nnn \frac{1}{\hat{\sigma}_c^2}\left(-\X\tr\y+\X\tr\X\hat{\bet}_c\right)+\C\tr\hat{\lam} &=& \zeros \\
+\nnn (\X\tr\X)\hat{\bet}_c &=& \X\tr\y-\hat{\sigma}_c^2\C\tr\hat{\lam} \\
+\nnn \hat{\bet}_c &=& (\X\tr\X)^{-1}\X\tr\y-\hat{\sigma}_c^2(\X\tr\X)^{-1}\C\tr\hat{\lam} \\
+\nnn \hat{\bet}_c &=& \hat{\bet}-\hat{\sigma}_c^2(\X\tr\X)^{-1}\C\tr\hat{\lam}.
+\eea
+\]
+From the second stationary equation, we get $\ds{\frac{\partial F}{\partial \lam}=\C\bet-\t}$.  Setting this equal to $\zeros$, we obtain $\C\hat{\bet}_c=\t$.  Now plugging our previous expression for $\hat{\bet}_c$ into $\C\hat{\bet}_c=\t$, we compute $\hat{\lam}$ as follows.
+\[
+\bea
+\nnn \C(\hat{\bet}-(\X\tr\X)^{-1}\C\tr(\hat{\sigma}_c^2\hat{\lam}))&=&\t \\
+\nnn \C\hat{\bet}-\C(\X\tr\X)^{-1}\C\tr(\hat{\sigma}_c^2\hat{\lam})&=&\t \\
+\nnn \C(\X\tr\X)^{-1}\C\tr(\hat{\sigma}_c^2\hat{\lam})&=&\C\hat{\bet}-\t \\
+\nnn \hat{\sigma}_c^2\hat{\lam}&=&\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}\left(\C\hat{\bet}-\t \right).
+\eea
+\]
+Plugging $\sigma^2\hat{\lam}$ back into the expression for $\hat{\bet}_c$, we obtain 
+\[
+\hat{\bet}_c=\hat{\bet}-(\X\tr\X)^{-1}\C\tr(\C(\X\tr\X)^{-1}\C\tr)^{-1}(\C\hat{\bet}-\t).
+\]
+Differentiating $F$ with respect to $\bet$, we obtain
+\[
+\frac{\partial F}{\partial \sigma^2}=\frac{n}{2\sigma^2}+\frac{1}{2(\sigma^2)^2}Q(\hat{\bet}_c).
+\]
+Setting it equal to $\zeros$ and solving for $\hat{\sigma}^2_c$ in terms of $\hat{\bet}_c$, we obtain
+\[
+\hat{\sigma}_c^2=\frac{Q(\hat{\bet}_c)}{n}
+\]
+the same way as in the proof of Theorem 7.6.1.
+
+- **Theorem 8.7.2** (p.219): For a normal multiple linear regression model where $n>k$, $\X$ has rank $k+1$ (full rank), $\C$ is a $q\times (k+1)$ matrix of rank $q \leq k+1$, and $\t$ is a $q$-dimensional column vector, the likelihood ratio test of $H_0: \C\bet=\t$ versus $H_1:\C\bet\neq \t$ can be based on the $F$-statistic in Theorem 8.4.2 where we reject $H_0$ if $F>F_{\alpha,q,n-k-1}$ where $\alpha$ is the size of the test.
+- *Proof*: Maximizing the likelihood under the reduced model in Theorem 8.7.1 and in the full model in Theorem 7.6.1, we obtain
+\[
+\bea
+\nnn \LR &=& \frac{L(\hat{\bet}_c,\hat{\sigma}_c^2)}{L(\hat{\bet},\hat{\sigma}^2)} \\
+\nnn &=& \frac{\left(2\pi\hat{\sigma}_c^2\right)^{-n/2}\exp\left(-\frac{Q(\hat{\bet}_c)}{2\hat{\sigma}_c^2}\right)}{\left(2\pi\hat{\sigma}^2\right)^{-n/2}\exp\left(-\frac{Q(\hat{\bet})}{2\hat{\sigma}^2}\right)} \\
+\nnn &=& \frac{\left(2\pi\hat{\sigma}_c^2\right)^{-n/2}\exp\left(-\frac{n\hat{\sigma}_c^2}{2\hat{\sigma}_c^2}\right)}{\left(2\pi\hat{\sigma}^2\right)^{-n/2}\exp\left(-\frac{n\hat{\sigma}^2}{2\hat{\sigma}^2}\right)} \\
+\nnn &=& \frac{\left(2\pi\hat{\sigma}_c^2\right)^{-n/2}e^{-n/2}}{\left(2\pi\hat{\sigma}^2\right)^{-n/2}e^{-n/2}} \\
+\nnn &=& \left(\frac{\hat{\sigma}_c^2}{\hat{\sigma}^2}\right)^{-n/2} \\
+\nnn &=& \left(\frac{Q(\hat{\bet}_c)}{Q(\hat{\bet})}\right)^{-n/2}.
+\eea
+\]
+Since $Q(\b)=Q(\hat{\bet})+\|\X(\hat{\bet}-\b)\|^2$ for all $\b$ as shown in the proof of Theorem 7.3.2, we plug in $\b=\hat{\bet}_c$ and obtain 
+\[
+Q(\hat{\bet}_c)=Q(\hat{\bet})+\|\X(\hat{\bet}-\hat{\bet}_c)\|^2.
+\]
+So, the likelihood ratio can be expressed as
+\[
+\bea
+\nnn \LR &=& \left(\frac{Q(\hat{\bet})+\|\X(\hat{\bet}-\hat{\bet}_c)\|^2}{Q(\hat{\bet})}\right)^{-n/2} \\
+\nnn &=& \left(1+\frac{\|\X(\hat{\bet}-\hat{\bet}_c)\|^2}{Q(\hat{\bet})}\right)^{-n/2} \\
+\nnn &=& \left(1+\frac{q}{n-k-1}F\right)^{-n/2} 
+\eea
+\]
+which is a decreasing function of $\ds{F=\frac{\|\X(\hat{\bet}-\hat{\bet}_c)\|^2/q}{Q(\hat{\bet})/(n-k-1)}=\frac{\|\X(\hat{\bet}-\hat{\bet}_c)\|^2/q}{SSE/(n-k-1)}}$.
+To see that the numerator of $F$ equals $SSH/q$ as in Theorem 8.4.2, notice that
+\[
+\bea
+\nnn \|\X(\hat{\bet}-\hat{\bet}_c)\|^2 &=& \left(\X(\hat{\bet}-\hat{\bet}_c)\right)\tr\left(\X(\hat{\bet}-\hat{\bet}_c)\right) \\
+\nnn &=& (\hat{\bet}-\hat{\bet}_c)\tr\X\tr\X(\hat{\bet}-\hat{\bet}_c) \\
+\nnn &=& \left((\X\tr\X)^{-1}\C\tr(\C(\X\tr\X)^{-1}\C\tr)^{-1}(\C\hat{\bet}-\t)\right)\tr\X\tr\X\left((\X\tr\X)^{-1}\C\tr(\C(\X\tr\X)^{-1}\C\tr)^{-1}(\C\hat{\bet}-\t)\right) \\
+\nnn &=& (\C\hat{\bet}-\t)\tr(\C(\X\tr\X)^{-1}\C\tr)^{-1}\C(\X\tr\X)^{-1}\X\tr\X(\X\tr\X)^{-1}\C\tr(\C(\X\tr\X)^{-1}\C\tr)^{-1}(\C\hat{\bet}-\t) \\
+\nnn &=& (\C\hat{\bet}-\t)\tr(\C(\X\tr\X)^{-1}\C\tr)^{-1}\C(\X\tr\X)^{-1}\C\tr(\C(\X\tr\X)^{-1}\C\tr)^{-1}(\C\hat{\bet}-\t) \\
+\nnn &=& (\C\hat{\bet}-\t)\tr(\C(\X\tr\X)^{-1}\C\tr)^{-1}(\C\hat{\bet}-\t) \\
+\nnn &=& SSH.
+\eea
+\]

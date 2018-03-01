@@ -554,12 +554,14 @@ For (b), we compute
 be the estimator of $\sigma^2$ based only on $\X_1$ where $\hat{\bet}_1^*=(\X_1\tr\X_1)^{-1}\X_1\tr\y$.
 If $\y=\X_1\bet_1+\X_2\bet_2+\ep$ where $E(\ep)=\zeros$ and $\cov(\ep)=\sigma^2\I$, then
 \[
-E(s_1^2)=\sigma^2+\frac{\bet_2\tr\X_2\tr(\I-\X_1\tr(\X_1\tr\X_1)^{-1}\X_1\tr)\X_2\bet_2}{n-p-1}.
+E(s_1^2)=\sigma^2+\frac{\bet_2\tr\X_2\tr(\I-\color{red}{\X_1}(\X_1\tr\X_1)^{-1}\X_1\tr)\X_2\bet_2}{n-p-1}.
 \]
 - *Proof*: The result holds since Theorem 5.2.1 implies that
 \[
 \bea
-\nnn E\left[(y-\X_1\hat{\bet}_1^*)\tr(y-\X_1\hat{\bet}_1^*)\right]&=& E\left[\y\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\y\right]\\
+\nnn E\left[(y-\X_1\hat{\bet}_1^*)\tr(y-\X_1\hat{\bet}_1^*)\right]&=& \color{red}{E\left[(\y-\X_1(\X_1\tr\X_1)^{-1}\X\tr\y)\tr(\y-\X_1(\X_1\tr\X_1)^{-1}\X\tr\y)\right]}\\
+\nnn &=& \color{red}{E\left[(\I-\X_1(\X_1\tr\X_1)^{-1}\X)y)\tr(\y-\X_1(\X_1\tr\X_1)^{-1}\X\tr\y)\right]}\\
+\nnn &=& \color{red}{E\left[\y\tr(\I-\X_1(\X_1\tr\X_1)^{-1}\X)\tr(\y-\X_1(\X_1\tr\X_1)^{-1}\X\tr\y)\right]}\\
 \nnn &=& E\left[\y\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\y\right]\\
 \nnn &=& \trace{\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)(\sigma^2\I)}+\bet\tr\X\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\X\bet \\
 \nnn &=& \sigma^2\left(\trace{\I_n}-\trace{\X_1(\X_1\tr\X_1)^{-1}\X_1\tr}\right)+\bet\tr\X\tr\left(\I_n-\X_1(\X_1\tr\X_1)^{-1}\X_1\tr\right)\X\bet \\
@@ -637,7 +639,7 @@ Then we see that
 \]
 - Orthogonalization also provides a method for updating coefficient estimates for a regression model of $\y$ based only on $\X_1$ to obtain coefficient estimates for the full model based of $\y$ based on $\X=(\X_1,\X_2)$, even when the columns of $\X_2$ are not orthogonal to the columns of $\X_1$.  
 - Here are the steps:
-    + Step 1: Regress $\y$ on $\X_1$ to obtain $\hat{\bet}_1^*=(\X_1\tr\X)^{-1}\X_1\tr\y$ and residuals $\ep_1^*=\y-\hat{\y}_1$ where $\hat{\y}_1=\X_1\hat{\bet}_1^*$.
+    + Step 1: Regress $\y$ on $\X_1$ to obtain $\hat{\bet}_1^*=(\X_1\tr\color{red}{\X_1})^{-1}\X_1\tr\y$ and residuals $\ep_1^*=\y-\hat{\y}_1$ where $\hat{\y}_1=\X_1\hat{\bet}_1^*$.
     + Step 2: Simultaneously regress each column of $\X_2$ on $\X_1$ where each column of $(\X_1\tr\X_1)^{-1}\X_1\tr\X_2=\A$ gives the coefficients for the corresponding column.
 Then the residuals are $\X_{2\cdot 1}=\X_2-\X_1\A$.
     + Step 3: Regress $\y-\hat{\y}_1$ on $\X_{2\cdot 1}$ to obtain $\hat{\bet}_2$.  This gives
@@ -802,7 +804,8 @@ In R, we can also use C functions to make computations more efficiently.  Here i
 extern int dgels_(char *trans, int *m, int *n, int *nrhs, double *a, int *lda, double *b, int *ldb, double *work, int *lwork, int *info);
 
 void ls(double *X, double *y, int *n, int *p){
-/* http://www.netlib.org/lapack/explore-html/d7/d3b/group__double_g_esolve_ga225c8efde208eaf246882df48e590eac.html
+/* documentation for dgels_ at 
+http://www.netlib.org/lapack/explore-html/d7/d3b/group__double_g_esolve_ga225c8efde208eaf246882df48e590eac.html
 */
  double *wrk;
  char trans='N';
