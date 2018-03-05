@@ -1,0 +1,94 @@
+---
+title: 'HW 4 #2'
+author: "Jacob S Townson"
+date: "March 5, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## a) Given the definitions defined in problem #2 of Homework #4, compute the MLE of $\beta_0,\beta_1,...,\beta_9$ and $\sigma^2$.
+
+```{r}
+setwd("D:/obewa/Documents/My real documents/University of Louisville/public_work/Classes/Homework/Statistics 668")
+yield=read.table("YieldData.txt",sep="\t",header=TRUE)
+```
+
+Now that we have the data as a dataframe in R, we can get down to business. First Let's make life easier for making the linear model by adding in new columns to the dataframe containing the values we want:
+
+```{r, message=FALSE}
+require(dplyr)
+```
+
+```{r}
+yield2 = mutate(yield, x4 = x1*x1)
+yield2 = mutate(yield2, x5 = x2*x2)
+yield2 = mutate(yield2, x6 = x3*x3)
+yield2 = mutate(yield2, x7 = x1*x2)
+yield2 = mutate(yield2, x8 = x1*x3)
+yield2 = mutate(yield2, x9 = x2*x3)
+```
+
+Using the mutate function in dplyr, I have made new columns containing the values we want to use in our model, which will make using the lm function very easy.
+
+```{r, message=FALSE}
+require(knitr)
+```
+
+```{r}
+yield2.model = lm(y~x1+x2+x3+x4+x5+x6+x7+x8+x9, data = yield2)
+coefs = summary(yield2.model)$coefficients
+kable(coefs)
+```
+
+Here in this summary, we can see the maximum likelihood estimates for each $\beta_i$ coefficient where $\beta_i$ corresponds to $x_i$. 
+
+As for the estimate of $\sigma^2$, we use the following bit of code:
+
+```{r}
+sig = summary(yield2.model)$sigma
+sig^2
+```
+
+Thus the estimate of $\sigma^2$ is $10.13782$. 
+
+
+
+
+
+
+
+
+
+## b) Perform and $F$-test of $H_0: \beta_4=\beta_5=\beta_6=\beta_7=\beta_8=\beta_9=0$ at level $.05$.
+
+So in this situation we want to compare the model we created in part (a) above, and a new model without the extra elements added to it. This new model will be made below:
+
+```{r}
+yield.model = lm(y~x1+x2+x3, data = yield)
+```
+
+Notice this model only relies on the first three $x_i$ values, so we will only use $\beta_1,\beta_2,$ and $\beta_3$. To do this comparison and $F$-test, we will use the anova function.
+
+```{r}
+anova(yield.model,yield2.model)
+```
+
+Here in this table, we see that our $F_{\mathrm{obs}} = 3.0984$ and $P(F > F_{\mathrm{obs}}) = 0.0624 > 0.05$. Thus we cannot yet reject $H_0$, which leads us to believe further testing is required, especially with a probablility as small as $0.0624$. 
+
+
+
+
+
+
+
+
+
+
+
+
+```{r echo=FALSE}
+setwd("D:/obewa/Documents/My real documents/University of Louisville/public_work/")
+```
