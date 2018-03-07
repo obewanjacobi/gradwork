@@ -199,7 +199,7 @@ s2=SSE/(n-k-1);s2
 \hat{\bet}=(\X\tr\X)^{-1}\X\tr\y=\bpm 5.055665 \\ -1.188597 \\ 1.644441 \epm
 \]
 \[
-\hat{\sigma}^2=\frac{\y\tr\y-\hat{\beta}\tr\X\tr\y}{n-k-1}=7.045127
+\color{red}{s^2}=\frac{\y\tr\y-\hat{\beta}\tr\X\tr\y}{n-k-1}=7.045127
 \]
 The observed $F$-statistic can be computed as follows.
 ```{r}
@@ -277,9 +277,9 @@ where $SS(\bet_2|\bet_1)=\y\tr(\H-\H_1)\y=\hat{\bet}\tr\X\tr\y-\hat{\bet}_1^{*\t
 and $SSE=\y\tr(\I-\H)\y=\y\tr\y-\hat{\bet}\tr\X\tr\y$  
 with $\H=\X(\X\tr\X)^{-1}\X\tr$, $\H_1=\X_1(\X_1\tr\X_1)^{-1}\X_1\tr$,  $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$, and $\hat{\bet}_1^*=(\X_1\tr\X_1)^{-1}\X_1\tr\y$.
 
-    ( a ) If $H_0: \bet_1=\zeros$ is false, then $F$ ~ $F\left(h,n-k-1,\lambda_1=\frac{1}{2\sigma^2}\bet_2\X_2\tr\left(\I-\H_1\right)\X_2\bet_2\right)$.
+    ( a ) If $H_0: \color{red}{\bet_2}=\zeros$ is false, then $F$ ~ $F\left(h,n-k-1,\lambda_1=\frac{1}{2\sigma^2}\bet_2\X_2\tr\left(\I-\H_1\right)\X_2\bet_2\right)$.
 
-    ( b ) If $H_0: \bet_1=\zeros$ is true, then $\lambda_1=0$ and $F$ ~ $F\left(h,n-k-1\right)$.
+    ( b ) If $H_0: \color{red}{\bet_2}=\zeros$ is true, then $\lambda_1=0$ and $F$ ~ $F\left(h,n-k-1\right)$.
 
 ### 8.3 $F$ Test in Terms of $R^2$
 - For the model $\y=\X\bet+\ep$, recall that we defined the coefficient of determination as
@@ -337,7 +337,7 @@ F=\frac{SSH / q}{SSE / (n-k-1)}
 \]
 where $SSH=(\C\hat{\bet}-\t)\tr\left(\C(\X\tr\X)^{-1}\C\tr\right)^{-1}(\C\hat{\bet}-\t)$
 and $SSE=\y\tr(\I-\H)\y=\y\tr\y-\hat{\bet}\tr\X\tr\y$  
-with $\H=\X(\X\tr\X)^{-1}\X\tr$, $\H_1=\X_1(\X_1\tr\X_1)^{-1}\X_1\tr$,  and $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$.
+with <span style="color:red">$\H=\X(\X\tr\X)^{-1}\X\tr$ and $\hat{\bet}=(\X\tr\X)^{-1}\X\tr\y$</span>.
 
     ( a ) If $H_0: \C\bet=\t$ is false, then 
 \[
