@@ -1,0 +1,479 @@
+---
+title: 'Chapter 9: Multiple Regression: Model Validation and Diagnostics'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "March 20, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\d{\boldsymbol{d}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\s{\boldsymbol{s}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\w{\boldsymbol{w}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\G{\boldsymbol{\mathrm{G}}}$
+$\def\H{\boldsymbol{\mathrm{H}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\S{\boldsymbol{\mathrm{S}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\V{\boldsymbol{\mathrm{V}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\Z{\boldsymbol{\mathrm{Z}}}$
+$\def\rX{\mathcal{X}}$
+$\def\LR{\mbox{LR}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\ep{\boldsymbol{\varepsilon}}$
+$\def\bet{\boldsymbol{\beta}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\lam{\boldsymbol{\lambda}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\def\Fobs{F_{\mbox{obs}}}$
+$\def\tobs{t_{\mbox{obs}}}$
+$\def\sion{\sum_{i=1}^n}$
+$\def\res{\hat{\varepsilon}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+$\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}$
+
+### 9.1 Residuals
+- In this chapter, we consider the multiple regression model setting where 
+\[
+\y=\X\bet+\ep
+\]
+with $E(\ep)=\zeros$ and $\cov(\ep)=\sigma^2\I$.
+- Here $\X$ is a known non-random design matrix and $\bet$ and $\sigma^2$ are unknown parameters.
+- Recall from Section 7.7 that the vector of *fitted values* is
+\[
+\bea
+\nnn \hat{\y}&=&\X\hat{\bet} \\
+\nnn &=& \X(\X\tr\X)^{-1}\X\tr\y \\
+\nnn &=& \H\y
+\eea
+\]
+where $\H=\X(\X\tr\X)^{-1}\X\tr$ is called the *hat* matrix, and the *residual vector* is
+\[
+\bea
+\nnn \hat{\ep}&=& \y-\hat{\y} \\
+\nnn &=& \y-\H\y \\
+\nnn &=& (\I-\H)\y.
+\eea
+\]
+- **Theorem 9.1.1** (p.228): In this multiple regression model setting, suppose that $\X$ is an $n \times (k+1)$ matrix of rank $k+1\leq n$.  Then, it follows that
+
+    ( a ) $\H\x=\x$ for each column of $\x$ of $\X$, 
+
+    ( b ) $\hat{\ep}=(\I-\H)\ep$,
+
+    ( c ) $E(\hat{\ep})=\zeros$, 
+
+    ( d ) $\cov(\hat{\ep})=\sigma^2(\I-\H)$,
+
+    ( e ) $\cov(\hat{\ep},\y)=\sigma^2(\I-\H)$, and 
+
+    ( f ) $\cov(\hat{\ep},\hat{\y})=\O$.
+
+- *Proof*: ( a ) Denote the columns of $\X$ as $\x_0,\x_1,\ldots,\x_k$.  Since
+$\H\X=\H\left(\x_0, \x_1, \ldots, \x_k\right)=\left(\H\x_0,\H\x_1,\ldots,\H\x_k\right)$,
+\[
+\bea
+\nnn \H\X&=& \left[\X(\X\tr\X)^{-1}\X\tr\right]\X \\
+\nnn &=& \X\left[(\X\tr\X)^{-1}\X\tr\X\right] \\
+\nnn &=& \X = \left(\x_0, \x_1, \ldots, \x_k\right)
+\nnn 
+\eea
+\]
+implies that $\H\x_i=\x_i$ for $i=0,1,\ldots,k$.
+
+    ( b )
+\[
+\bea
+\nnn \hat{\ep}&=& \y-\H\y \\
+\nnn &=& \X\bet+\ep-\H(\X\bet+\ep) \\
+\nnn &=& \X\bet+\ep-\H\X\bet-\H\ep \\
+\nnn &=& \X\bet+\ep-\X\bet-\H\ep \\
+\nnn &=& \ep-\H\ep \\
+\nnn &=& (\I-\H)\ep
+\eea
+\]
+
+    ( c ) $E(\hat{\ep})=E\left((\I-\H)\ep\right)=(\I-\H)E(\ep)=\zeros$
+    
+    ( d )
+\[
+\bea
+\nnn \cov(\hat{\ep})&=&\cov\left((\I-\H)\ep\right) \\
+\nnn &=&(\I-\H)\cov(\ep)(\I-\H)\tr \\
+\nnn &=&(\I-\H)(\sigma^2\I)(\I-\H) \\
+\nnn &=&\sigma^2(\I-\H)
+\eea
+\]
+
+    ( e )
+\[
+\bea
+\nnn \cov(\hat{\ep},\y)&=& \cov((\I-\H)\ep,\X\bet+\ep) \\
+\nnn &=& \cov((\I-\H)\ep,\ep) \\
+\nnn &=& (\I-\H)\cov(\ep) \\
+\nnn &=& (\I-\H)(\sigma^2\I) \\
+\nnn &=& \sigma^2(\I-\H)
+\eea
+\]
+
+    ( f )
+\[
+\bea
+\nnn \cov(\hat{\ep},\hat{\y})&=& \cov(\hat{\ep},\H\y) \\
+\nnn &=& \cov(\hat{\ep},\y)\H\tr \\
+\nnn &=& \cov(\hat{\ep},\y)\H \\
+\nnn &=& \sigma^2(\I-\H)\H \\
+\nnn &=& \sigma^2(\H-\H^2) \\
+\nnn &=& \sigma^2(\H-\H) \\
+\nnn &=& \O
+\eea
+\]
+    
+- **Theorem 9.1.2** (p.229): In this multiple regression model setting, suppose that $\X$ is an $n \times (k+1)$ matrix of rank $k+1\leq n$ and $\j$ is one of the columns of $\X$. Then $\hat{\ep}\tr\j=\ds{\sum_{i=1}^n\hat{\varepsilon}_i}=0$.
+- *Proof*: From Theorem 9.1.1(b), we see that $\H\j=\j$ so that 
+\[
+\bea
+\nnn \sion \hat{\varepsilon}_i=\hat{\ep}\tr\j&=& \ep\tr(\I-\H)\tr\j \\
+\nnn &=& \ep\tr(\I-\H)\j \\
+\nnn &=& \ep\tr(\j-\H\j) \\
+\nnn &=& \ep\tr(\j-\j) \\
+\nnn &=& \ep\tr\zeros \\
+\nnn &=& 0.
+\eea
+\]
+
+- **R Example 9.1.1**: Consider the data available in the file "Forbes data.txt" which has the barometric pressure reading and the boiling point of water for each observation.  Let $x_i$ and $y_i$ denote the boiling point and pressure, respectively, for the $i$th observation, and assume a simple linear regression model $y_i\sim \mbox{independent Normal}(\beta_0+\beta_1x_i,\sigma^2)$.
+
+    ( a ) Create a scatterplot with $x$ on the horizontal axis and $y$ on the vertical axis, and superimpose a regression line obtained by fitting a simple linear regression model. 
+
+    ( b ) Create a residual plot with the fitted values on the horizontal axis. 
+
+    ( c ) Identify the outlier. 
+
+    ( d ) Re-do (a) without the outlier.
+
+- *Answer*: ( a ) First, we can read the data into R using the following commands.
+```{r}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+Forbes=read.table("Forbes data.txt",sep="\t",header=TRUE)
+```
+The following command displays the data set.
+```{r}
+t(Forbes)
+```
+We use the built-in `lm` function to fit the regression model.
+```{r}
+x=Forbes$BoilingPoint
+y=Forbes$Pressure
+lm.model=lm(y~x)
+lm.model$coef
+```
+Then we make a scatterplot and superimpose the regression line with the following commands.
+```{r}
+plot(x,y,main="scatterplot for Forbes data")
+abline(lm.model$coef)
+```
+
+( b ) The fitted values are stored in `lm.model$fit` and the residuals are stored in `lm.model$resid` so the following command produces the fitted versus residuals plot.  A horizontal line corresponding to a residual value of zero is also included.
+    
+```{r}
+plot(lm.model$fit,lm.model$resid,xlab="Fitted Values",ylab="Residuals",main="residual plot for Forbes data")
+abline(h=0)
+```
+
+From this plot, it appears a clear nonlinear pattern appears.
+
+( c ) We can use the following command to se that the 12th observation is the outlier apparent in the residual plot.  (An interactive function `identify(lm.model$resid,lm.model$fit)` can also be used if the plot is open in R.)
+```{r}
+rbind(lm.model$resid,lm.model$fit)
+```
+   
+( d ) The following code re-fits the model and creates the scatterplot with the 12th observation removed. The scatterplot shows the 12th data point in red and shows the fitted model based on all of the data with the dashed gray line.
+```{r}
+lm.model2=lm(y[-12]~x[-12])
+lm.model2$coef
+plot(x,y,col=c(rep("black",11),"red",rep("black",5)),main="scatterplot for Forbes data, fit without 12th observation")
+abline(lm.model2$coef)
+abline(lm.model$coef,lty=2,col="gray")
+```
+    
+### 9.3 Outliers
+- From Theorem 9.1.1(d), it follows that $\var(\hat{\varepsilon}_i)=\sigma^2(1-h_{ii})$.
+- Let $\X_{(i)}$ be the design matrix with its $i$th row $\rX_i\tr$ deleted.
+- Let $\y_{(i)}$ be the response vector with the $i$th row deleted.
+- Let $\ds{\hat{\bet}_{(i)}=(\X_{(i)}\tr\X_{(i)})^{-1}\X_{(i)}\tr\y_{(i)}}$ be the estimate of the vector of regression coefficients without using the $i$th observation.
+- Let $\hat{y}_{(i)}=\rX_i\tr\hat{\bet}_{(i)}$ be the prediction for the $i$th observation based on regression estimates without using the $i$th observation.
+- Let $\ds{SSE_{(i)}=\y_{(i)}\tr\y_{(i)}-\hat{\bet}_{(i)}\tr\X_{(i)}\tr\y_{(i)}}$ be the residual sum of squares without the $i$th observation. 
+- Let $\ds{s_{(i)}^2=\frac{SSE_{(i)}}{n-k-2}}$ be the *deleted sample variance*. 
+- Let $\ds{\hat{\varepsilon}_{(i)}=y_i-\hat{y}_{(i)}=y_i-\rX_i\tr\hat{\bet}_{(i)}}$ be the $i$th *deleted residual*.
+- **Definition 9.3.1** (p.233): The *studentized residuals* are defined by 
+\[
+r_i=\frac{\hat{\varepsilon}_i}{s\sqrt{1-h_{ii}}}.
+\]
+The *externally studentized residuals* are defined by 
+\[
+t_i=\frac{\hat{\varepsilon}_{(i)}}{s_{(i)}\sqrt{1-h_{ii}}}.
+\]
+- **Theorem 9.3.1** (p.234): Suppose $\X\tr\X$ is invertible. We can compute $\hat{\bet}_{(i)}$ without actually deleting the $i$th observation as follows:
+\[
+\hat{\bet}_{(i)}=\hat{\bet}-\frac{\hat{\varepsilon}_i}{1-h_{ii}}(\X\tr\X)^{-1}\x_i.
+\]
+- *Proof*: Let $\rX_i\tr$ denote the $i$th row of $\X$. Then we have
+\[
+\X\tr\X = \left(\rX_1,\cdots,\rX_n\right)\bpm \rX_1\tr \\ \vdots \\ \rX_n\tr\epm = \rX_1\rX_1\tr + \ldots + \rX_n\rX_n\tr.
+\]
+It follows that 
+\[
+\bea
+\nnn \X_{(i)}\tr\X_{(i)}&=&\X\tr\X-\rX_i\rX_i\tr \\
+\nnn &=& \X\tr\X(\I-(\X\tr\X)^{-1}\rX_i\rX_i\tr).
+\eea
+\]
+We also see that 
+\[
+\H=
+\left(\begin{array}{c} \rX_1\tr \\ \vdots \\ \rX_n\tr \end{array} \right)
+(\X\tr\X)^{-1} \left(\rX_1,\cdots,\rX_n\right) =
+\left(\begin{array}{ccc}
+\rX_1\tr(\X\tr\X)^{-1}\rX_1 & \cdots & \rX_1\tr(\X\tr\X)^{-1}\rX_n \\
+\vdots & \vdots & \vdots \\
+\X_n\tr(\X\tr\X)^{-1}\rX_1 & \cdots & \rX_n\tr(\X\tr\X)^{-1}\rX_n \\
+\end{array}\right).
+\]
+Using the general inverse formula
+\[
+(\A+\P\B\Q)^{-1}=\A^{-1}-\A^{-1}\P\B(\B+\B\Q\A^{-1}\P\B)^{-1}\B\Q\A^{-1}
+\]
+the inverse of $\X_{(i)}\tr\X_{(i)}$ can be computed by
+\[
+\bea
+\nnn (\X_{(i)}\tr\X_{(i)})^{-1}&=&(\I-(\X\tr\X)^{-1}\rX_i\rX_i\tr)^{-1} (\X\tr\X)^{-1}\\
+\nnn &=& \left(\I+(\X\tr\X)^{-1}\rX_i(1-\rX_i\tr(\X\tr\X)^{-1}\rX_i)^{-1}\rX_i\tr\right) (\X\tr\X)^{-1}\\
+\nnn &=& \left(\I+\frac{1}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i\rX_i\tr\right) (\X\tr\X)^{-1}.
+\eea
+\]
+Next, we compute
+\[
+\X\tr\y=\left(\rX_1, \cdots, \rX_n\right)
+\left(\begin{array}{c} y_1 \\ \vdots \\ y_n \end{array} \right)=
+\rX_1 y_1 + \ldots + \rX_n y_n
+\]
+and see that 
+\[
+\X_{(i)}\tr\y_{(i)}=\X\tr\y-\rX_i y_i.
+\]
+It follows that
+\[
+\bea
+\nnn \hat{\bet}_{(i)}&=& (\X_{(i)}\tr\X_{(i)})^{-1}\X_{(i)}\tr\y_{(i)} \\
+\nnn &=& (\I+\frac{1}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i\rX_i\tr)(\X\tr\X)^{-1}(\X\tr\y-\rX_i y_i) \\
+\nnn &=& (\I+\frac{1}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i\rX_i^T)(\hat{\bet}-(\X\tr\X)^{-1}\rX_i y_i) \\
+\nnn &=& \hat{\bet}+\frac{\hat{y}_i}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i-y_i(\X\tr\X)^{-1}\rX_i-\frac{y_i h_{ii}}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& \hat{\bet}+\frac{\hat{y}_i}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i-\frac{y_i}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& \hat{\bet}-\frac{y_i-\hat{y}_i}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& \hat{\bet}-\frac{\hat{\varepsilon}_i}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i.
+\eea
+\]
+- **Theorem 9.3.2** (p.234): Suppose $\X\tr\X$ is invertible $(k+1)\times (k+1)$ matrix. We can compute $s_{(i)}^2$
+without actually deleting the $i$th observation as follows:
+\[
+s_{(i)}^2=\left(\frac{n-k-1-r_i^2}{n-k-2}\right)s^2.
+\]
+- *Proof*: We have
+\[
+\bea
+\nnn y_i-\hat{y}_{(i)}&=& y_i - \rX_i\tr\hat{\bet}_{(i)} \\
+\nnn &=& y_i - \rX_i\tr\left(\hat{\bet}-\frac{\hat{\varepsilon}_i}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i\right) \\
+\nnn &=& y_i - \rX_i\tr\hat{\bet} + \frac{\hat{\varepsilon}_i}{1-h_{ii}}\rX_i\tr(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& y_i-\hat{y}_i+\frac{\hat{\varepsilon}_i}{1-h_{ii}}\rX_i\tr(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& \hat{\varepsilon}_i +\frac{\hat{\varepsilon}_i}{1-h_{ii}} h_{ii} \\
+\nnn &=& \hat{\varepsilon}_i\left(1+\frac{h_{ii}}{1-h_{ii}}\right) \\
+\nnn &=& \frac{\hat{\varepsilon}_i}{1-h_{ii}}.
+\eea
+\]
+Also, we have
+\[
+\bea
+\nnn \hat{\y}-\hat{\y}_{(i)}&=&\X(\hat{\bet}-\hat{\bet}_{(i)}) \\
+\nnn &=& \X\frac{\hat{\varepsilon}_i}{1-h_{ii}}(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& \frac{\hat{\varepsilon}_i}{1-h_{ii}}\X(\X\tr\X)^{-1}\rX_i \\
+\eea
+\]
+so that
+\[
+\bea
+\nnn (\hat{\y}-\hat{\y}_{(i)})\tr(\hat{\y}-\hat{\y}_{(i)})&=&\frac{\hat{\varepsilon}_i^2}{(1-h_{ii})^2}(\X(\X\tr\X)^{-1}\rX_i)\tr(\X(\X\tr\X)^{-1}\rX_i)\\
+\nnn &=& \frac{\hat{\varepsilon}_i^2}{(1-h_{ii})^2}\rX_i\tr(\X\tr\X)^{-1}\X\tr\X(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& \frac{\hat{\varepsilon}_i^2}{(1-h_{ii})^2}\rX_i\tr(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& \frac{\hat{\varepsilon}_i^2h_{ii}}{(1-h_{ii})^2}.
+\eea
+\]
+We also see that
+\[
+\bea
+\nnn (\y-\hat{\y})\tr(\hat{\y}-\hat{\y}_{(i)})&=&\frac{\hat{\varepsilon}_i}{1-h_{ii}}\y\tr(\I-\H)\tr\X(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& \frac{\hat{\varepsilon}_i\y\tr}{1-h_{ii}}(\I-\X(\X\tr\X)^{-1}\X\tr)\X(\X\tr\X)^{-1}\rX_i \\
+\nnn &=& \frac{\hat{\varepsilon}_i\y\tr}{1-h_{ii}}(\X(\X\tr\X)^{-1}-\X(\X\tr\X)^{-1}\X\tr\X(\X\tr\X)^{-1})\rX_i \\
+\nnn &=& \frac{\hat{\varepsilon}_i\y\tr}{1-h_{ii}}(\X(\X\tr\X)^{-1}-\X(\X\tr\X)^{-1})\rX_i \\
+\nnn &=& 0.
+\eea
+\]
+So, it follows that 
+\[
+\bea
+\nnn SSE_{(i)} &=& (\y-\hat{\y}_{(i)})\tr(\y-\hat{\y}_{(i)})-(y_i-\hat{y}_{(i)})^2 \\
+\nnn &=& (\y-\hat{\y}+\hat{\y}-\hat{\y}_{(i)})\tr(\y-\hat{\y}+\hat{y}-\hat{\y}_{(i)})-(y_i-\hat{y}_{(i)})^2 \\
+\nnn &=& (\y-\hat{\y})\tr(\y-\hat{\y})+(\hat{\y}-\hat{\y}_{(i)})\tr(\hat{\y}-\hat{\y}_{(i)})-(y_i-\hat{y}_{(i)})^2 \\
+\nnn &=& SSE+\frac{\hat{\varepsilon}_i^2h_{ii}}{(1-h_{ii})^2}-\left(\frac{\hat{\varepsilon}_i}{1-h_{ii}}\right)^2 \\
+\nnn &=& SSE-\frac{\hat{\varepsilon}_i^2(1-h_{ii})}{(1-h_{ii})^2} \\
+\nnn &=& SSE-\frac{\hat{\varepsilon}_i^2}{1-h_{ii}}
+\eea
+\]
+so that
+\[
+\bea
+\nnn s_{(i)}^2&=& \frac{SSE_{(i)}}{n-k-2} \\
+\nnn &=& \frac{SSE-\hat{\varepsilon}_i^2/(1-h_{ii})}{n-k-2} \\
+\nnn &=& \frac{(n-k-1)s^2-\hat{\varepsilon}_i^2/(1-h_{ii})}{n-k-2} \\
+\nnn &=& \frac{s^2}{n-k-2}\left[(n-k-1)-\left(\frac{\hat{\varepsilon}_i}{s\sqrt{1-h_{ii}}}\right)^2\right] \\
+\nnn &=& \frac{s^2}{n-k-2}\left[n-k-1-r_i^2\right].
+\eea
+\]
+
+- **R Example 9.3.1**: Here are R commands for computing each of the three types of residuals for the Forbes data.
+```{r}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+Forbes=read.table("Forbes data.txt",sep="\t",header=TRUE)
+lm.model=lm(Pressure~BoilingPoint,data=Forbes)
+epsilon.hat=residuals(lm.model)
+r=rstandard(lm.model)
+t=rstudent(lm.model)
+cbind(epsilon.hat,r,t)
+```
+The formulas can be implemented directly using the following code.
+```{r}
+n=nrow(Forbes)
+y=Forbes$Pressure
+X=cbind(1,Forbes$BoilingPoint)
+p=ncol(X)
+H=X%*%solve(t(X)%*%X)%*%t(X)
+epsilon.hat=y-H%*%y
+s2=sum(epsilon.hat^2)/(n-p)
+r=epsilon.hat/sqrt(s2*(1-diag(H)))
+si2=s2*(n-p-r^2)/(n-p-1)
+t=epsilon.hat/sqrt(si2*(1-diag(H)))
+cbind(epsilon.hat,r,t)
+```
+
+### 9.A Box-Cox Transformations
+- If we suspect that the model assumptions are not satisfied, we can attempt to transform the data so that the assumptions are more reasonable.
+- If $y_i$ is a non-negative random variable, then the Box-Cox approach is a popular method to attempt to identify an appropriate transformation.
+- We assume that there is a real number $\lambda$ such that $\u=\bpm u_1 \\ \vdots \\ u_n\epm \sim N_n(\X\bet,\sigma^2\I)$ where
+\[
+u_i=\left\{\begin{array}{cl} \frac{y^\lambda-1}{\lambda} & \mbox{for } \lambda\neq 0\\
+\ln y & \mbox{for } \lambda=0 \end{array}\right. 
+\]
+- Note that if $u_i$ are iid random variables each with pdf $f$, then 
+\[
+\bea
+\nnn \prod_{i=1}^n f(u_i)&=&\prod_{i=1}^n\left\{f\left(\frac{y_i^\lambda-1}{\lambda}\right)\frac{du_i}{dy_i}\right\} \\
+\nnn &=&\prod_{i=1}^n\left\{f\left(\frac{y_i^\lambda-1}{\lambda}\right) y_i^{\lambda-1}\right\} \\
+\nnn &=&\prod_{i=1}^n f\left(\frac{y_i^\lambda-1}{\lambda}\right) \left(\prod_{i=1}^n y_i^{1/n}\right)^{n(\lambda-1)}.
+\eea
+\]
+- Letting $\ds{G=\prod_{i=1}^n y_i^{1/n}}$, we can write the log-likelihood function as
+\[
+\ell(\bet,\sigma^2,\lambda)=-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln \sigma^2-\frac{Q(\bet,\lambda)}{2\sigma^2}+n(\lambda-1)\ln G
+\]
+where $Q(\bet,\lambda)=\|\u(\lambda)-\X\bet\|^2$.
+(see Section 7.6).
+- For fixed $\lambda$, the estimates of $\bet$ and $\sigma^2$ can be computed as in Section 7.6; i.e., $\hat{\bet}(\lambda)=(\X\tr\X)^{-1}\X\tr\u(\lambda)$ and $\hat{\sigma}^2(\lambda)=Q(\hat{\bet}(\lambda))/n$.
+- Then the Box-Cox method proceeds as follows:
+    + Set up a grid of $\lambda$'s.
+    + Estimate $\hat{\bet}(\lambda)$ and $\hat{\sigma}^2(\lambda)$ for each $\lambda$.
+    + Pick the $\lambda$ which maximizes $\ell(\hat{\bet}(\lambda),\hat{\sigma}^2(\lambda),\lambda)$.
+- **R Example 9.A.1**: Now we return to the Forbes data and see how the Box-Cox transformation works.  The following code uses the built-in function `boxcox` in the `MASS` package to find the Box-Cox transformation of the response variable (Pressure) based on the regression model with Boiling Point as the explanatory variable with the outlier removed.
+```{r}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+Forbes=read.table("Forbes data.txt",sep="\t",header=TRUE)
+x=Forbes$BoilingPoint
+y=Forbes$Pressure
+x1=x[-12]
+y1=y[-12]
+require(MASS)
+bc=boxcox(y1~x1,lambda=seq(-2,2,by=.001))
+```
+
+The plot above shows the profile log-likelihood function.  The following command can be used to extract the value of $\lambda$ which maximizes it.
+```{r}
+bc$x[which.max(bc$y)]
+```
+So we find $\lambda=0.105$ and make the transformation $u_i=y_i^{0.105}$.  Using this as the response, we fit the regression model with the `lm` function.
+```{r}
+u=y1^(.105)
+lm.model3=lm(u~x1)
+summary(lm.model3)
+```
+So, the fitted model is 
+\[
+\hat{y}=(0.7875+0.003024x)^{1/.105}.
+\]
+Now, let's look at the residual plot.
+```{r}
+plot(lm.model3$fit,lm.model3$resid,xlab="Fitted Values",ylab="Residuals",main="residual plot for Forbes data after Box-Cox transformation")
+abline(h=0)
+```
+
+There is no obvious pattern in this plot, so it appears more reasonable to use this model than to use the untransformed data.
+
+Here is a scatterplot of the original data with the fitted models based on the untransformed data (solid curve in black) and with the Box-Cox transformation (dashed curve in green).
+```{r}
+plot(x,y,col=c(rep("black",11),"red",rep("black",5)),main="scatterplot for Forbes data, fit without 12th observation")
+abline(lm.model2$coef)
+curve((lm.model3$coef[1]+lm.model3$coef[2]*x)^(1/.105),lty=2,col="green",add=TRUE)
+```
