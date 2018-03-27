@@ -1,0 +1,292 @@
+---
+title: 'Chapter 10: Multiple Regression: Random $x^\prime$s'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "March 27, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\d{\boldsymbol{d}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\s{\boldsymbol{s}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\w{\boldsymbol{w}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\G{\boldsymbol{\mathrm{G}}}$
+$\def\H{\boldsymbol{\mathrm{H}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\S{\boldsymbol{\mathrm{S}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\V{\boldsymbol{\mathrm{V}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\Z{\boldsymbol{\mathrm{Z}}}$
+$\def\rX{\mathcal{X}}$
+$\def\LR{\mbox{LR}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\bsig{\boldsymbol{\sigma}}$
+$\def\ep{\boldsymbol{\varepsilon}}$
+$\def\bet{\boldsymbol{\beta}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\lam{\boldsymbol{\lambda}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\corr{\mbox{corr}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\def\Fobs{F_{\mbox{obs}}}$
+$\def\tobs{t_{\mbox{obs}}}$
+$\def\sion{\sum_{i=1}^n}$
+$\def\res{\hat{\varepsilon}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+$\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}$
+
+### 10.1 Multiple Normal Regression Model
+- **Definition 10.1.1** (p.244): The *multivariate normal regression model* with $n$ observations assumes that $\bpm y_1 \\ \rX_1 \epm, \ldots, \bpm y_n \\ \rX_n \epm$ is a random sample from a $N_{k+1}\left(\bpm \mu_y \\ \bmu_x \epm, \Sig=\bpm \sigma_{yy} & \bsig_{yx}\tr \\ \bsig_{yx} & \Sig_{xx} \epm\right)$ distribution where $\rX_i=\bpm x_{i1} \\ \vdots \\ x_{ik}\epm$.
+- By Theorem 4.4.5, we have
+\[
+E(y|\x)=\mu_y+\bsig_{yx}\tr\Sig_{xx}^{-1}(\x-\bmu_x)
+\]
+and 
+\[
+\var(y|\x)=\sigma_{yy}-\bsig_{yx}\tr\Sig_{xx}^{-1}\bsig_{yx}.
+\]
+- The conditional expectation can be expressed as a linear function of $\x$ as follows:
+\[
+E(y|\x)=\beta_0+\bet_1\tr\x
+\]
+where 
+\[
+\beta_0=\mu_y-\bsig_{yx}\tr\Sig_{xx}^{-1}\bmu_x
+\]
+and
+\[
+\bet_1=\Sig_{xx}^{-1}\bsig_{yx}.
+\]
+
+### 10.2 Estimation and Testing in Multivariate Normal Regression
+- **Theorem 10.2.1** (p.245): Suppose we observe data $(x_{i1},\ldots,x_{ik},y_i)$ for $i=1,\ldots,n$ from a multivariate normal regression model where $n>k$.  Then the maximum likelihood estimates of $\bmu=\bpm \mu_y \\ \bmu_x \epm$ and $\Sig=\bpm \sigma_{yy} & \bsig_{yx}\tr \\ \bsig_{yx} & \Sig_{xx} \epm$ are 
+\[
+\hat{\bmu}=\bpm \hat{\mu}_y \\ \hat{\bmu}_x \epm=\bpm\bar{y} \\ \bar{\x}\epm
+\]
+where $\bar{\x}=\bpm \bar{x}_1 \\ \vdots \\ \bar{x}_k \epm$ with  $\bar{x}_i=\frac{1}{n}\sum_{i=1}^n x_{ij}$ and
+\[
+\hat{\Sig}=\frac{n-1}{n}\S=\frac{n-1}{n} \bpm s_{yy} & \s_{yx}\tr \\ \s_{yx} & \S_{xx} \epm 
+\]
+where $\S_{xx}=\bpm s_1^2 & s_{12} & \cdots & s_{1k} \\ s_{21} & s_2^2 & \cdots & s_{2k} \\ \vdots & \vdots & \ddots & \vdots \\ s_{k1} & s_{k2} & \cdots & s_k^2 \epm$ and
+$\s_{yx}=\bpm s_{y1} \\ s_{y2} \\ \vdots \\ s_{yk} \epm$ with 
+$s_{jg}=\frac{1}{n-1}\sion (x_{ij}-\bar{x}_j)(x_{ig}-\bar{x}_{g})$ and
+$s_{yj}=\frac{1}{n-1}\sion (y_i-\bar{y})(x_{ij}-\bar{x}_j)$,
+respectively.
+- **R Example 10.2.1**: Consider the data available in the file "Hematology data.txt" which has the observations for 6 variables
+\[
+\bea
+\nnn y &=& \mbox{ lymphocyte count} \\
+\nnn x_1 &=& \mbox{ hemoglobin concentration} \\
+\nnn x_2 &=& \mbox{ packed-cell volume} \\
+\nnn x_3 &=& \mbox{ white blood cell count}(\times .01) \\
+\nnn x_4 &=& \mbox{ neutrophil count} \\
+\nnn x_5 &=& \mbox{ serum lead concentration}.
+\eea
+\]
+Assuming the multivariate normal regression model, find the maximum likelihood estimates of $\bmu$ and $\Sig$.
+- *Answer*: First, we read the data into R and print the first few observations.
+```{r}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+dataset=read.table("Hematology data.txt",sep="\t",header=TRUE)
+head(dataset)
+```
+The `apply` function can be used to simultaneously compute the mean of each column of the `dataset`.  The second argument to the function tells R to compute the mean of the second dimension (the columns).
+```{r}
+mu.hat=apply(dataset[,-1],2,mean); mu.hat
+```
+So, $\hat{\mu}=\bpm 22.98039 \\ 15.10784 \\ 45.19608 \\ 53.82353 \\ 25.62745 \\ 21.07843\epm$.
+Alternately, we could compute the mean for each variable separately.
+```{r}
+mean(dataset$y)
+mean(dataset$x1)
+mean(dataset$x2)
+mean(dataset$x3)
+mean(dataset$x4)
+mean(dataset$x5)
+```
+The covariance matrix of the vector $\bpm \y, \X\epm$ can be computed directly with the `var` function.
+```{r}
+n=nrow(dataset)
+Sigma.hat=(n-1)/n*var(dataset[,-1]);Sigma.hat
+```
+So, $\hat{\Sigma}=\bpm 91.980008 & 1.8413303 & 5.552864 & 106.369089  & 1.6397539 & 3.3544790 \\
+1.841330 & 0.6771934 & 1.465129 & 3.191580 & 0.3440984 & -0.2908112 \\
+5.552864 &  1.4651288 & 5.294887 & 9.956171 & 1.3279508 & 1.2591311 \\
+106.369089 & 3.1915802 & 9.956171 & 196.733564 & 63.9930796 & 4.2295271 \\
+1.639754 & 0.3440984 & 1.327951 & 63.993080 & 57.0180700 & 1.0096117 \\
+3.354479 & -0.2908112 & 1.259131 & 4.229527 & 1.0096117 & 17.7977701\epm$.  
+Alternately, we can use loops to make the calculuations.
+```{r}
+attach(dataset)
+s.yy=sum((y-mean(y))^2)/(n-1);(n-1)/n*s.yy
+s.yx=rep(0,5)
+X=dataset[,-c(1,2)]
+for (i in 1:5)
+ s.yx[i]=sum((y-mean(y))*(X[,i]-mean(X[,i])))/(n-1)
+(n-1)/n*s.yx
+S.xx=matrix(0,5,5)
+for (i in 1:5) 
+ for (j in 1:5)
+  S.xx[i,j]=sum((X[,i]-mean(X[,i]))*(X[,j]-mean(X[,j])))/(n-1)
+(n-1)/n*S.xx
+detach(dataset)
+```
+
+- **Theorem 10.2.2** (p.248): Suppose we observe data $(x_{i1},\ldots,x_{ik},y_i)$ for $i=1,\ldots,n$ from a multivariate normal regression model where $n>k$.  Then the maximum likelihood estimates of $\beta_0$, $\bet_1$ and $\sigma^2=\var(y|\x)$ are
+\[
+\hat{\beta}_0=\bar{y}-\s_{yx}\tr\S_{xx}^{-1}\bar{\x},
+\]
+\[
+\hat{\bet}_1=\S_{xx}^{-1}\s_{yx},
+\]
+and 
+\[
+\hat{\sigma}^2=\frac{n-1}{n}s^2 \mbox{ where } s^2=\s_{yy}-\s_{yx}\tr\S_{xx}^{-1}\s_{yx},
+\]
+respectively. (Note that these formulas are equivalent to the normal multiple linear regression model derived in Section 7.5.)
+- *Proof*: This follows from the formulas in Section 10.1, Theorem 10.2.1, and the invariance property of the MLE (see Theorem L7.1 in MATH 667).
+
+- **R Example 10.2.2**: For the hematology data, find the maximum likelihood estimates of $\beta_0$, $\bet_1$, and $\sigma^2$ based on the multivariate normal regression model.
+- *Answer*: Using the work in R Example 10.1.1, we can make the calculations as follows.
+```{r}
+beta.hat0=mu.hat[1]-t(s.yx)%*%solve(S.xx)%*%mu.hat[-1];beta.hat0
+beta.hat1=solve(S.xx)%*%s.yx;beta.hat1
+s2=s.yy-t(s.yx)%*%solve(S.xx)%*%s.yx; (n-1)/n*s2
+```
+So, we have
+\[
+\hat{\beta}_0=15.65486,
+\hat{\bet}_1=\bpm
+-0.21318219\\
+-0.28884109\\
+0.85984756\\
+-0.92921309\\
+0.05380269
+\epm,
+\mbox{ and } \hat{\sigma}^2=3.858441.
+\]
+Alternately, we can use the formulas for non-random $x$'s since they are equivalent.
+```{r}
+y=dataset[,2]
+X=cbind(1,as.matrix(dataset[,3:7]))
+beta.hat=solve(t(X)%*%X)%*%t(X)%*%y;beta.hat
+sigma.hat2=sum((y-X%*%beta.hat)^2)/n;sigma.hat2
+```
+
+### 10.4 $R^2$ in Multivariate Normal Regression
+- **Definition 10.4.1** (p.254): The *population multiple correlation coefficient* is the correlation between $y$ and the linear function $w=\mu_y+\bsig_{yx}\tr\Sig_{xx}^{-1}(\x-\bmu)$ defined by
+\[
+\rho_{y|\x}=\corr(y,w)=\frac{\sigma_{yw}}{\sigma_y\sigma_w}.
+\]
+The *population coefficient of determination* is $\rho_{y|\x}^2$.
+- **Theorem 10.4.1** (p.255): $\ds{\rho_{y|\x}^2=\frac{\bsig_{yx}\tr\Sig_{xx}^{-1}\bsig_{yx}}{\sigma_{yy}}}$
+- *Proof*: Since 
+\[
+\bea
+\nnn \sigma_{yw}&=&\cov(y,\mu_y+\bsig_{yx}\tr\Sig_{xx}^{-1}(\x-\bmu))\\
+\nnn &=& \cov(y,\bsig_{yx}\tr\Sig_{xx}^{-1}\x) \\
+\nnn &=& \cov(y,\x)\tr(\bsig_{yx}\tr\Sig_{xx}^{-1})\tr \\
+\nnn &=& \bsig_{yx}\tr\Sig_{xx}^{-1}\bsig_{yx}
+\eea
+\]
+and
+\[
+\bea
+\nnn \sigma_w&=&\sqrt{\cov(\mu_y+\bsig_{yx}\tr\Sig_{xx}^{-1}(\x-\bmu))} \\
+\nnn &=&\sqrt{\cov(\bsig_{yx}\tr\Sig_{xx}^{-1}\x)} \\
+\nnn &=&\sqrt{\bsig_{yx}\tr\Sig_{xx}^{-1}\cov(\x)(\bsig_{yx}\tr\Sig_{xx}^{-1})\tr} \\
+\nnn &=&\sqrt{\bsig_{yx}\tr\Sig_{xx}^{-1}\Sig_{xx}\Sig_{xx}^{-1}\bsig_{yx}} \\
+\nnn &=&\sqrt{\bsig_{yx}\tr\Sig_{xx}^{-1}\bsig_{yx}},
+\eea
+\]
+we have
+\[
+\rho_{y|\x}^2=\frac{(\bsig_{yx}\tr\Sig_{xx}^{-1}\bsig_{yx})^2}{\sigma_{yy}\left(\bsig_{yx}\tr\Sig_{xx}^{-1}\bsig_{yx}\right)}=\frac{\bsig_{yx}\tr\Sig_{xx}^{-1}\bsig_{yx}}{\sigma_{yy}}.
+\]
+
+- **Theorem 10.4.2** (p.256): In the multivariate normal regression model setting where $n>k$, $\ds{R=\sqrt{\frac{\s_{yx}\tr\S_{xx}^{-1}\s_{yx}}{s_{yy}}}}$ is the maximum likelihood estimate of $\rho_{y|\x}$.
+- *Proof*: This follows from the invariance property of the MLE (see Theorem L7.1 in MATH 667) since $\hat{\Sig}=\frac{n-1}{n}\S$ is the MLE of $\Sig$ so that
+\[
+\hat{\rho}_{y|\x}=\sqrt{\frac{\hat{\bsig}_{yx}\tr\hat{\Sig}_{xx}^{-1}\hat{\bsig}_{yx}}{\hat{\sigma}_{yy}}}=\sqrt{\frac{\frac{n-1}{n}\s_{yx}\tr\left(\frac{n}{n-1}\S_{xx}^{-1}\right)\frac{n-1}{n}\s_{yx}}{\frac{n-1}{n}s_{yy}}}=R.
+\]
+- **R Example 10.4.1**: For the hematology data, compute the sample coefficient of determination.
+- *Answer*: Using the work in R Example 10.1.1, we can make the calculations as follows.
+```{r}
+R2=t(s.yx)%*%solve(S.xx)%*%s.yx/s.yy;R2
+```
+So, $R^2=0.9580513$.  
+An alternate method using formulas given in the book based on the correlation matrix for the data set is shown below.
+```{r}
+cor(dataset[,-1])
+1-1/solve(cor(dataset[,-1]))[1,1]
+```
+
+### 10.5 Test and Confidence Intervals for $R^2$
+- **Theorem 10.5.1** (p.258): For a multivariate normal regression model where $n>k$, the likelihood ratio test of $H_0: \bet_1=\zeros$ (or equivalently $\rho_{y|\x}^2=0$) versus $H_1:\bet_1\neq \zeros$ (or equivalently $\rho_{y|\x}^2>0$) can be based on the $F$-statistic in Theorem 8.1.1 where we reject $H_0$ if $F>F_{\alpha,k,n-k-1}$ where $\alpha$ is the size of the test.
+- **R Example 10.5.1**: For the hematology data assuming the multivariate normal regression model, test $H_0: \rho_{y|\x}^2=0$ versus $H_1: \rho_{y|\x}^2>0$.
+- *Answer*: This can be performed and summarized with the built-in functions as follows.
+```{r}
+lm.model=lm(y~x1+x2+x3+x4+x5,data=dataset)
+summary(lm.model)
+```
+So, the observed test statistic is $F=205.5$ and we fail to reject $H_0$ since the observed $F$ is larger than the critical value $F_{.05,5,45}=2.422$.
+
+### 10.7 Prediction for Multivariate Normal or Nonnormal Data
+- **Theorem 10.7.1** (p.265): For a random vector $\bpm y \\ \x\epm$, the function $t(\x)$ that minimizes $MSE=E\left\{(y-t(\x))^2\right\}^2$ is given by $E(y|\x)$, provided that the MSE exists.
+- **Theorem 10.7.2** (p.266): The linear function of $\x$ that minimizes $E\left\{(y-t(\x))^2\right\}$ is $t(\x)=\beta_0+\bet_1\tr\x$ where $\beta_0=\mu_y-\bsig_{yx}\tr\Sig_{xx}^{-1}\bmu_x$ and $\bet_1=\Sig_{xx}^{-1}\bsig_{yx}$.
+- **Theorem 10.7.3** (p.266): Let $\rX_i=\bpm x_{i1} \\ \vdots \\ x_{ik}\epm$.  If $\bpm y_1 \\ \rX_1 \epm, \ldots, \bpm y_n \\ \rX_n \epm$ is a random sample from a population with mean vector $\bpm \mu_y \\ \bmu_x \epm$ and covariance matrix $\Sig=\bpm \sigma_{yy} & \bsig_{yx}\tr \\ \bsig_{yx} & \Sig_{xx} \epm$, then the estimators which minimize 
+\[
+Q(\beta_0,\bet_1)=\frac{1}{n}\sum_{i=1}^n (y_i-\beta_0-\bet_1\tr\rX_i)^2
+\]
+are
+\[
+\hat{\beta}_0=\bar{y}-\s_{yx}\tr\S_{xx}^{-1}\bar{\x}
+\]
+and 
+\[
+\hat{\bet}_1=\S_{xx}^{-1}\s_{yx}.
+\]

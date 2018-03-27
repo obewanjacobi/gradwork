@@ -1,5 +1,5 @@
 ---
-title: "HW5"
+title: "Homework 5 Solutions"
 author: "Jacob S Townson"
 date: "March 26, 2018"
 output: pdf_document
@@ -7,9 +7,24 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+require(knitr)
+require(MASS)
 ```
 
 #1)
+
+Before we begin, we must read in our data, and create our variables with the new dataframe. Using these, we can answer the following parts of the question. 
+
+```{r}
+HeightData=read.table(...)
+g=as.numeric(HeightData$gender=="female")
+m=HeightData$mother
+f=HeightData$father
+X=cbind(g,g*m,g*f,1-g,(1-g)*m,(1-g)*f);dimnames(X)=NULL
+```
+
+##a)
+
 
 
 
@@ -42,7 +57,11 @@ x0=1:100/100
 x=c(x0,10)
 y0=sqrt(1+.1*x0+rnorm(100,sd=.0001))
 y=c(y0,0)
+hw5_3 = cbind(x,y)
+outrm_hw5_3 = hw5_3[1:100,]
 ```
+
+Note the last two lines of code contain the creation of two dataframes. The first of which contains the entire data set, the second of which removes the outlier. 
 
 ##a)
 
@@ -50,12 +69,24 @@ Below is a scatterplot of the data, with the line representing our model going t
 
 ```{r fig.height=4}
 model3 = lm(y~x)
-plot(x,y, main = "scatterplot for #3")
+plot(x,y, main = "scatterplot for #3a")
 abline(model3$coef)
 ```
 
 
 ##b)
+
+Two of the plots will be supplied below. To calculate the residuals, we use the following code:
+
+```{r}
+epsilon.hat=residuals(model3)
+r=rstandard(model3)
+t=rstudent(model3)
+resids=cbind(epsilon.hat,r,t)
+kable(resids[101,])
+```
+
+This is a table containing the values for the residuals of the outlier in the data. As we can see, these values lead us to believe that the outlier should most likely not be contained, as it throws off the entire model.
 
 Below is the residual plot.
 
@@ -63,25 +94,47 @@ Below is the residual plot.
 plot(model3, which = 1, labels.id = '')
 ```
 
-Below is the studentized residual plot.
+Below is the studentized residual plot with the outlier.
 
 ```{r fig.height=4}
-require(MASS)
 plot(studres(model3))
 ```
 
-Below is the externally studentized residual plot.
+Below is the studentized residual plot without the outlier.
 
 ```{r fig.height=4}
-
+x2=outrm_hw5_3[,1]
+y2=outrm_hw5_3[,2]
+model3_nout = lm(y2~x2)
+plot(studres(model3_nout))
 ```
-
 
 ##c)
 
+Below is the scatterplot for the data, excluding the outlier. As we can see, when the outlier is removed, the model follows the data extremely well. 
+
+```{r fig.height=4}
+plot(x2,y2, main = "scatterplot for #3c")
+abline(model3_nout$coef)
+```
+
 ##d)
 
+Below is the plot for the residuals without the outlier. As we can see, the model follows the line quite well, leading us to believe that the outlier was causing all of the problems in the previous model (suprise). 
+
+```{r fig.heigh=4}
+plot(model3_nout, which=1, labels.id='')
+```
+
 ##e)
+
+```{r fig.height=4}
+bc=boxcox(y2~x2,lambda=seq(-2,2,by=.001))
+bc$x[which.max(bc$y)]
+```
+
+The above code tells us that the value of $\lambda$ that maximizes the log-likelihood function is $\lambda = 1.947$.
+
 
 
 

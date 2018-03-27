@@ -261,7 +261,7 @@ t_i=\frac{\hat{\varepsilon}_{(i)}}{s_{(i)}\sqrt{1-h_{ii}}}.
 \]
 - **Theorem 9.3.1** (p.234): Suppose $\X\tr\X$ is invertible. We can compute $\hat{\bet}_{(i)}$ without actually deleting the $i$th observation as follows:
 \[
-\hat{\bet}_{(i)}=\hat{\bet}-\frac{\hat{\varepsilon}_i}{1-h_{ii}}(\X\tr\X)^{-1}\x_i.
+\hat{\bet}_{(i)}=\hat{\bet}-\frac{\hat{\varepsilon}_i}{1-h_{ii}}(\X\tr\X)^{-1}\color{red}{\rX_i}.
 \]
 - *Proof*: Let $\rX_i\tr$ denote the $i$th row of $\X$. Then we have
 \[
@@ -433,7 +433,7 @@ u_i=\left\{\begin{array}{cl} \frac{y^\lambda-1}{\lambda} & \mbox{for } \lambda\n
 where $Q(\bet,\lambda)=\|\u(\lambda)-\X\bet\|^2$.
 (see Section 7.6).
 - For fixed $\lambda$, the estimates of $\bet$ and $\sigma^2$ can be computed as in Section 7.6; i.e., $\hat{\bet}(\lambda)=(\X\tr\X)^{-1}\X\tr\u(\lambda)$ and $\hat{\sigma}^2(\lambda)=Q(\hat{\bet}(\lambda))/n$.
-- Then the Box-Cox method proceeds as follows:
+- Then the Box-Cox method proceed as follows:
     + Set up a grid of $\lambda$'s.
     + Estimate $\hat{\bet}(\lambda)$ and $\hat{\sigma}^2(\lambda)$ for each $\lambda$.
     + Pick the $\lambda$ which maximizes $\ell(\hat{\bet}(\lambda),\hat{\sigma}^2(\lambda),\lambda)$.
