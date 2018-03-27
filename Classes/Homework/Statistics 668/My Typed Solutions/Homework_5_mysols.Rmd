@@ -1,0 +1,92 @@
+---
+title: "HW5"
+author: "Jacob S Townson"
+date: "March 26, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1)
+
+
+
+
+
+
+
+
+
+
+
+#2)
+
+
+
+
+
+
+
+
+
+
+#3)
+
+First we must set up the data. It could have also been read in through a file, however this makes it easier to work from 2 different pc's on the same project.
+
+```{r}
+set.seed(123)
+x0=1:100/100
+x=c(x0,10)
+y0=sqrt(1+.1*x0+rnorm(100,sd=.0001))
+y=c(y0,0)
+```
+
+##a)
+
+Below is a scatterplot of the data, with the line representing our model going through it. As you can see, the outlier at $x=10$ makes the model seemingly strange for the rest of the data. We will address this in later parts of the problem.
+
+```{r fig.height=4}
+model3 = lm(y~x)
+plot(x,y, main = "scatterplot for #3")
+abline(model3$coef)
+```
+
+
+##b)
+
+Below is the residual plot.
+
+```{r fig.height=4}
+plot(model3, which = 1, labels.id = '')
+```
+
+Below is the studentized residual plot.
+
+```{r fig.height=4}
+require(MASS)
+plot(studres(model3))
+```
+
+Below is the externally studentized residual plot.
+
+```{r fig.height=4}
+
+```
+
+
+##c)
+
+##d)
+
+##e)
+
+
+
+
+
+
+
+
