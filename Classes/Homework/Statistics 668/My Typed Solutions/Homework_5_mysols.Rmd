@@ -9,6 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 require(knitr)
 require(MASS)
+require(dplyr)
 ```
 
 #1)
@@ -20,14 +21,36 @@ HeightData=read.table(...)
 g=as.numeric(HeightData$gender=="female")
 m=HeightData$mother
 f=HeightData$father
-X=cbind(g,g*m,g*f,1-g,(1-g)*m,(1-g)*f);dimnames(X)=NULL
+y=HeightData$childHeight
+X=cbind(g,g*m,g*f,1-g,(1-g)*m,(1-g)*f);dimnames(X)=list(NULL,c('x1','x2','x3','x4','x5','x6'))
+X=data.frame(X)
 ```
+
+The first 5 entries of the dataframe X is given below. These values will be used to do the following problems.
+
+```{r include=FALSE}
+kable(X[1:5,])
+```
+
 
 ##a)
 
+The MLE of $\beta$ can be found using the following bit of code:
 
+```{r}
+X=mutate(X, x7=x2+x5)
+X=mutate(X, x8=x3+x6)
+height.mod = lm(HeightData$childHeight~X$x1+X$x4+X$x7+X$x8)
+```
 
+Note, the reason we add $x_2+x_5=x_7$ and $x_3+x_6=x_8$ is so that we can make sure that the corresponding $\beta$ for $x_2$ and $x_5$ are the same, and the corresponding $\beta$ for $x_3$ and $x_6$ is the same. Now, from the above code, we find that the $\beta$'s are the following:
 
+```{r}
+coefs = summary(height.mod)$coefficients
+kable(coefs)
+```
+
+Thus $\beta = (\beta_1,\beta_2,\beta_3,\beta_4,\beta_5,\beta_6)^{\mathrm{T}}$ where $\beta_1 = $, $\beta_2=\beta_5= $, $\beta_3=\beta_6= $, and $\beta_4 = $. 
 
 
 
