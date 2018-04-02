@@ -1,0 +1,447 @@
+---
+title: 'Chapter 12: Analysis-of-Variance Models'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "April 3, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\d{\boldsymbol{d}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\s{\boldsymbol{s}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\w{\boldsymbol{w}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\G{\boldsymbol{\mathrm{G}}}$
+$\def\H{\boldsymbol{\mathrm{H}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\S{\boldsymbol{\mathrm{S}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\V{\boldsymbol{\mathrm{V}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\Z{\boldsymbol{\mathrm{Z}}}$
+$\def\rX{\mathcal{X}}$
+$\def\LR{\mbox{LR}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\bsig{\boldsymbol{\sigma}}$
+$\def\ep{\boldsymbol{\varepsilon}}$
+$\def\bet{\boldsymbol{\beta}}$
+$\def\gam{\boldsymbol{\gamma}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\lam{\boldsymbol{\lambda}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\corr{\mbox{corr}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\def\Fobs{F_{\mbox{obs}}}$
+$\def\tobs{t_{\mbox{obs}}}$
+$\def\sion{\sum_{i=1}^n}$
+$\def\res{\hat{\varepsilon}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+$\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}$
+
+### 12.1 Non-Full-Rank Models
+- **Definition 12.1.1** (p.295,p.339): The *one-way analysis-of-variance* (ANOVA) model can be written as
+\[
+\bea
+\nnn y_{ij}&=& \mu+\tau_i+\varepsilon_{ij}, i=1,\ldots,k, j=1,\ldots, n_i
+\eea
+\]
+with the assumptions that $E(\varepsilon_{ij})=0$ and $\var(\varepsilon_{ij})=\sigma^2$
+for all $i$ and $j$, and $\cov(\varepsilon_{ij},\varepsilon_{rs})=0$ for all $(i,j)\neq (r,s)$.
+- **Example 12.1.1**: Suppose we have two additives for increasing gas mileage.  Without additives, a gallon of gasoline yields $\mu$ miles on average in a particular type of car.  If additive 1 is added, the mileage increases by $\tau_1$ on average.  If additive 2 is added, the mileage increases by $\tau_2$ on average.  Suppose an experiment is conducted where we fill the gas tanks of 7 identical cars with gasoline.  Then additive 1 is used in the first 3 cars and additive 2 is used in the other 4 cars.  Assume a one-way ANOVA model
+and write it in matrix form $\y=\X\bet+\ep$ where $\bet=\bpm \mu \\ \tau_1 \\ \tau_2\epm$.
+- **Answer**: Let $y_{ij}$ be the observed average gas mileage for the $j$th car that contains additive $i$ and $\varepsilon_{ij}$ is the corresponding random error.  Then we have
+\[
+\bea
+y_{11}&=& \mu+\tau_1+\varepsilon_{11} = 1 \mu + 1 \tau_1 + 0 \tau_2 + \varepsilon_{11} \\
+y_{12}&=& \mu+\tau_1+\varepsilon_{12} = 1 \mu + 1 \tau_1 + 0 \tau_2 + \varepsilon_{12} \\
+y_{13}&=& \mu+\tau_1+\varepsilon_{13} = 1 \mu + 1 \tau_1 + 0 \tau_2 + \varepsilon_{13} \\
+y_{21}&=& \mu+\tau_2+\varepsilon_{21} = 1 \mu + 0 \tau_1 + 1 \tau_2 + \varepsilon_{21} \\
+y_{22}&=& \mu+\tau_2+\varepsilon_{22} = 1 \mu + 0 \tau_1 + 1 \tau_2 + \varepsilon_{22} \\
+y_{23}&=& \mu+\tau_2+\varepsilon_{23} = 1 \mu + 0 \tau_1 + 1 \tau_2 + \varepsilon_{23} \\
+y_{24}&=& \mu+\tau_2+\varepsilon_{24} = 1 \mu + 0 \tau_1 + 1 \tau_2 + \varepsilon_{24}.
+\eea
+\]
+So, we can write this as $\y=\X\bet+\ep$ where
+\[
+\y=\bpm y_{11} \\ y_{12} \\ y_{13} \\ y_{21} \\ y_{22} \\ y_{23} \\ y_{24} \epm,
+\X=\bpm 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \epm,
+\bet=\bpm \mu \\ \tau_1 \\ \tau_2\epm, \mbox{ and } 
+\ep=\bpm \varepsilon_{11} \\ \varepsilon_{12} \\ \varepsilon_{13} \\ \varepsilon_{21} \\ \varepsilon_{22} \\ \varepsilon_{23} \\ \varepsilon_{24} \epm.
+\]
+- Note that the matrix $\X$ in Example 12.1.1 is a $7\times 3$ design matrix of rank 2, so it is not full rank.
+
+### 12.2 Estimation
+- In this section, consider the multiple linear regression model $\y=\X\bet+\ep$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$.
+- In attempting to find the least squares estimate $\hat{\bet}$ which minimizes $Q(\b)=(\y-\X\b)\tr(\y-\X\b)$, the work is the same as in the proof of Theorem 7.3.2 up to the point where
+\[
+\X\tr\X\hat{\bet} = \X\tr\y.
+\]
+However, the inverse of $\X\tr\X$ does not exist here since $\X$ is not full rank so we cannot uniquely solve for $\hat{\bet}$.
+- Recall from Definition 2.8.1 that a generalized inverse of a matrix $\A$ is any matrix $\A^-$ such that $\A\A^{-}\A=\A$. 
+- **Theorem 12.2.1** (p.302): If $\X$ is an $n\times p$ matrix of rank $k<p\leq n$, then $\hat{\bet}=(\X\tr\X)^-\X\tr\y$ is a solution to the system of equations $\X\tr\X\hat{\bet}=\X\tr\y$ for any generalized inverse $(\X\tr\X)^-$. 
+- *Proof*: Note that for any matrix $\A$, $\A\tr\A=\O$ if and only if $\A=\O$ (or equivalently $\A\tr=\O$).  
+For any generalized inverse $(\X\tr\X)^-$, we have
+\[ 
+\bea
+\nnn & & \left\{(\X\tr\X)(\X\tr\X)^-\X\tr-\X\tr\right\}\left\{\X(\X\tr\X)^-(\X\tr\X)-\X\right\} \\
+\nnn && =(\X\tr\X)(\X\tr\X)^-\X\tr\X(\X\tr\X)^-(\X\tr\X) -(\X\tr\X)(\X\tr\X)^-\X\tr\X -\X\tr\X(\X\tr\X)^-(\X\tr\X)+\X\tr\X \\
+\nnn && =(\X\tr\X)(\X\tr\X)^-(\X\tr\X) -(\X\tr\X)(\X\tr\X)^-(\X\tr\X) -(\X\tr\X)(\X\tr\X)^-(\X\tr\X)+\X\tr\X \\
+\nnn && =\X\tr\X-\X\tr\X-\X\tr\X+\X\tr\X \\
+\nnn && =\O,
+\eea
+\]
+so we see that $(\X\tr\X)(\X\tr\X)^-\X\tr=\X\tr$.  Right multiplying by $\y$ we obtain
+\[
+(\X\tr\X)(\X\tr\X)^-\X\tr\y=\X\tr\y
+\]
+which implies that
+\[
+(\X\tr\X)\hat{\bet}=\X\tr\y.
+\]
+- **Theorem 12.2.2**: If $\X$ is an $n\times p$ matrix of rank $k<p\leq n$, $\X(\X\tr\X)^-\X\tr$ is the same for all choices of the generalized inverse $(\X\tr\X)^-$.
+Consequently, $\hat{\y}=\X\hat{\bet}=\X(\X\tr\X)^-\X\tr\y$ does not depend on the choice of $(\X\tr\X)^-$.
+- *Proof*: Let $(\X\tr\X)^-$ and $(\X\tr\X)^*$ be generalized inverses of $\X\tr\X$.
+Since $\X\tr=\X\tr\X(\X\tr\X)^-\X\tr=\X\tr\X(\X\tr\X)^*\X\tr$, we have
+\[
+\bea
+\nnn & & \left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\}\tr\left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\} \\
+\nnn & & \left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\}\left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\} \\
+\nnn & & =\left\{\X(\X\tr\X)^--\X(\X\tr\X)^*\right\}\X\tr\left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\} \\
+\nnn & & =\left\{\X(\X\tr\X)^--\X(\X\tr\X)^*\right\}\left\{(\X\tr\X)(\X\tr\X)^-\X\tr-(\X\tr\X)(\X\tr\X)^*\X\tr\right\} \\
+\nnn & & =\left\{\X(\X\tr\X)^--\X(\X\tr\X)^*\right\}\left\{\X\tr-\X\tr\right\} \\
+\nnn & & =\left\{\X(\X\tr\X)^--\X(\X\tr\X)^*\right\} \O \\
+\nnn & & =\O.
+\eea
+\]
+Thus, we have $\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr=\O$ so that
+$\X(\X\tr\X)^-\X\tr=\X(\X\tr\X)^*\X\tr$.
+- **Definition 12.2.1** (p.305): A linear function $\lam\tr\bet$ is *estimable* if there exists a vector $\a$ such that $E(\a\tr\y)=\lam\tr\bet$.
+- **Theorem 12.2.3** (p.305): In the multiple linear regression model $\y=\X\bet+\ep$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$, the linear function $\lam\tr\bet$ is estimable if and only if $\lam\tr$ is a linear combination of the rows of $\X$ (that is, there is a vector $\a$ such that $\a\tr\X=\lam\tr$).
+- *Proof*: 
+$\lam\tr\bet$ is estimable if and only if there exists an $\a$ such that $E(\a\tr\y)=\lam\tr\bet$ for all $\bet$.  This occurs if and only if
+$\a\tr\X\bet=\lam\tr\bet$ for all $\bet$ which occurs if and only if 
+$\a\tr\X=\lam\tr$.
+- **Example 12.2.1**: Consider the design matrix $\X$ in Example 12.1.1.  
+( a ) Show that $\tau_1-\tau_2$ is estimable.  
+( b ) Show that $\mu$ is not estimable.
+- *Answer*: (a) Since $\tau_1-\tau_2=(0,1,-1)\bpm \mu \\ \tau_1 \\ \tau_2 \epm$, we check whether there is a vector $\a$ such that $\X\tr\a=\lam$ where $\lam=\bpm 0 \\ 1 \\ -1\epm$.  It can be shown that 
+\[ 
+\left(
+\begin{array}{ccccccc|c}
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\ 
+1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 \\ 
+0 & 0 & 0 & 1 & 1 & 1 & 1 & -1 
+\end{array}
+\right)
+\mbox{ is row equivalent to }
+\left(
+\begin{array}{ccccccc|c}
+1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 \\ 
+0 & 0 & 0 & 1 & 1 & 1 & 1 & -1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0  
+\end{array}
+\right)
+\]
+so $a_1+a_2+a_3=1$ and $a_4+a_5+a_6+a_7=-1$ which implies that $\a=\bpm 1-r_1-r_2 \\ r_1 \\ r_2 \\ -1-r_3-r_4-r_5 \\ r_3 \\ r_4 \\ r_5 \epm$ satisfies $\X\tr\a=\lam$ for any $r_1,r_2,r_3,r_4,r_5$.  
+( b ) Since $\mu=(1,0,0)\bpm \mu \\ \tau_1 \\ \tau_2 \epm$, we check whether there is a vector $\a$ such that $\X\tr\a=\lam$ where $\lam=\bpm 1 \\ 0 \\ 0\epm$.  
+It can be shown that 
+\[ 
+\left(
+\begin{array}{ccccccc|c}
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 1 & 1 & 1 & 1 & 0
+\end{array}
+\right)
+\mbox{ is row equivalent to }
+\left(
+\begin{array}{ccccccc|c}
+1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 \\ 
+0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & -1  
+\end{array}
+\right)
+\]
+so there is no $\a$ such that $\X\tr\a=\lam$.
+
+### 12.3 Estimators
+- **Theorem 12.3.1** (p.309,311): Let $\lam\tr\bet$ be an estimable function of $\bet$ in the multiple linear regression model for which $\y=\X\bet+\ep$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$.  Let $\hat{\bet}$ be any solution to $\X\tr\X\hat{\bet}=\X\tr\y$.  Then we have
+\[
+E(\lam\tr\hat{\bet})=\bet \mbox{ and } \var(\lam\tr\hat{\bet})=\sigma^2\lam\tr(\X\tr\X)^-\lam.
+\]
+- **Theorem 12.3.2** (p.314): Let $\lam\tr\bet$ be an estimable function of $\bet$ in the multiple linear regression model for which $\y=\X\bet+\ep$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$.  Let $\hat{\bet}$ be any solution to $\X\tr\X\hat{\bet}=\X\tr\y$ and let 
+\[
+s^2=\frac{Q(\hat{\bet})}{n-k}=\frac{(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})}{n-k}.
+\]
+Then $s^2$ does not depend on the choice of $(\X\tr\X)^-$ and $E(s^2)=\sigma^2$.
+- **Theorem 12.3.3** (p.315): If $y\sim N_n(\X\bet,\sigma^2\I)$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$, then the maximum likelihood estimators of $\bet$ and $\sigma^2$ are 
+\[
+\hat{\bet}=(\X\tr\X)^-\X\tr\y
+\]
+and
+\[
+\hat{\sigma}^2=\frac{1}{n}(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet}),
+\]
+respectively.
+- **Theorem 12.3.4** (p.315): If $y\sim N_n(\X\bet,\sigma^2\I)$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$, then the following properties hold:  
+( a ) $\hat{\bet} \sim N_p((\X\tr\X)^-(\X\tr\X)\bet,\sigma^2(\X\tr\X)^-\X\tr\X(\X\tr\X)^-)$  
+( b ) $\ds{\frac{(n-k)s^2}{\sigma^2}\sim \chi^2(n-k)}$  
+( c ) $\hat{\bet}$ and $s^2$ are independent.
+
+### 12.5 Reparameterization
+- One approach for handling an overparametrized model is to reduce the dimension of the parameter space by reparametrization.
+- Here we transform the non-full rank model $\y=\X\bet+\ep$ where $\X$ is an $n\times p$ matrix of rank $k<p\leq n$ to a full-rank model $\y=\Z\gam+\ep$ where $\Z$ is an $n\times k$ matrix of rank $k$ and $\gam=\U\bet$ is a set of $k$ linearly independent estimable functions of $\bet$.
+- Then $\X\bet=\Z\gam=\Z\U\bet$ for all $\bet$ implies that $\X=\Z\U$.
+- Since $\U$ is full rank (a $k\times p$ matrix of rank $k$), $\U\U\tr$ is a $k\times k$ matrix of rank $k$ and thus invertible.
+- So, $\Z\U\U\tr=\X\U\tr$ implies that $\Z=\X\U\tr(\U\U\tr)^{-1}$.
+- Then, the least squares estimator of $\gam$ is $\hat{\gam}=(\Z\tr\Z)^{-1}\Z\tr\y$.
+- **Example 12.5.1**: Find the least squares estimator of $\gam=\bpm \mu+\tau_1 \\ \tau_2-\tau_1\epm$ for the one-way ANOVA model in Example 12.1.1.  Also, find an unbiased estimator of $\sigma^2$.
+- *Answer*: Here $\gam=\bpm 1 & 1 & 0 \\ 0 & 1 & -1 \epm \bpm \mu \\ \tau_1 \\ \tau_2 \epm$ so $\U=\bpm 1 & 1 & 0 \\ 0 & 1 & -1 \epm$. So, we have
+\[
+\bea
+\nnn \Z&=&\X\U\tr(\U\U\tr)^{-1} \\
+\nnn &=& 
+\bpm 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \epm \bpm 1 & 0 \\ 1 & 1 \\ 0 & -1\epm \left(\bpm 1 & 1 & 0 \\ 0 & 1 & -1 \epm\bpm 1 & 0 \\ 1 & 1 \\ 0 & -1\epm\right)^{-1} \\
+\nnn &=& \bpm 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \epm \bpm 1 & 0 \\ 1 & 1 \\ 0 & -1\epm \bpm 2 & 1 \\ 1 & 2\epm^{-1} \\
+\nnn &=& \bpm 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \\ 1 & 0 & 1 \epm \bpm 1 & 0 \\ 1 & 1 \\ 0 & -1\epm \frac{1}{3}\bpm 2 & -1 \\ -1 & 2\epm \\
+\nnn &=& \frac{1}{3} \bpm 2 & 1 \\ 2 & 1 \\ 2 & 1 \\ 1 & -1 \\ 1 & -1 \\ 1 & -1 \\ 1 & -1 \epm \bpm 2 & -1 \\ -1 & 2\epm \\
+\nnn &=& \frac{1}{3}\bpm 3 & 0 \\ 3 & 0 \\ 3 & 0 \\ 3 & -3 \\ 3 & -3 \\ 3 & -3\\ 3 & -3\epm \\
+\nnn &=& \bpm 1 & 0 \\ 1 & 0 \\ 1 & 0 \\ 1 & -1 \\ 1 & -1 \\ 1 & -1\\ 1 & -1\epm
+\eea
+\]
+and 
+\[
+\bea
+\nnn \hat{\gam}&=&(\Z\tr\Z)^{-1}\Z\tr\y \\
+\nnn &=& \left(\bpm 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 0 & 0 & 0 & -1 & -1 & -1 & -1\epm\bpm 1 & 0 \\ 1 & 0 \\ 1 & 0 \\ 1 & -1 \\ 1 & -1 \\ 1 & -1\\ 1 & -1\epm\right)^{-1} \bpm 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 0 & 0 & 0 & -1 & -1 & -1 & -1\epm \bpm y_{11} \\ y_{12} \\ y_{13} \\ y_{21} \\ y_{22} \\ y_{23} \\ y_{24} \epm \\
+\nnn &=& \bpm 7 & -4 \\ -4 & 4\epm^{-1} \bpm \sum_{i=1}^2 \sum_{j=1}^{n_i} y_{ij} \\ -\sum_{j=1}^{n_2} y_{2j}\epm \\
+\nnn &=& \frac{1}{28-16}\bpm 4 & 4 \\ 4 & 7\epm \bpm \sum_{i=1}^2 \sum_{j=1}^{n_i} y_{ij} \\ -\sum_{j=1}^{n_2} y_{2j}\epm \\
+\nnn &=& \frac{1}{12}\bpm 4\sum_{i=1}^2 \sum_{j=1}^{n_i} y_{ij}-4\sum_{j=1}^{n_2} y_{2j} \\ 4\sum_{i=1}^2 \sum_{j=1}^{n_i} y_{ij}-7\sum_{j=1}^{n_2} y_{2j}\epm \\
+\nnn &=& \frac{1}{12}\bpm 4\sum_{j=1}^{n_1} y_{1j} \\ 4\sum_{j=1}^{n_1} y_{1j}-3\sum_{j=1}^{n_2} y_{2j}\epm \\
+\nnn &=& \bpm\frac{1}{3}\sum_{j=1}^{n_1} y_{1j} \\ \frac{1}{3}\sum_{j=1}^{n_1} y_{1j}-\frac{1}{4}\sum_{j=1}^{n_2} y_{2j}\epm \\
+\nnn &=& \bpm \bar{y}_{1\cdot} \\ \bar{y}_{1\cdot}-\bar{y}_{2\cdot}\epm.
+\eea
+\]
+Since $\Z\hat{\gam}=\bpm \bar{y}_{1\cdot} \\ \bar{y}_{1\cdot} \\ \bar{y}_{1\cdot} \\ \bar{y}_{2\cdot} \\ \bar{y}_{2\cdot} \\ \bar{y}_{2\cdot} \\ \bar{y}_{2\cdot} \epm$,
+we have 
+\[
+\bea
+\nnn s^2&=& \frac{(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})}{n-k} \\ 
+\nnn &=& \frac{(\y-\Z\hat{\gam})\tr(\y-\Z\hat{\gam})}{7-2} \\
+\nnn &=& \frac{1}{5}\sum_{i=1}^2 \sum_{j=1}^{n_i} (y_{ij}-\bar{y}_{i\cdot})^2.
+\eea
+\]
+
+### 12.6 Side Conditions
+- Another approach for handling an overparametrized model is to add side conditions so that the model parameters are identifiable.
+- Here we define side conditions $\T\bet=0$ where $\T$ is a $(p-k)\times p$ matrix of rank $p-k$ such that $\T\bet$ is a set of nonestimable functions.
+- Then we solve the system of equations 
+\[
+\bea
+\nnn \y&=&\X\bet+\ep \\
+\nnn \zeros&=&\T\bet+\zeros.
+\eea
+\]
+- Since the rows of $\T$ are linearly independent and are not functions of the rows of $\X$, the matrix $\bpm \X \\ \T\epm$ is an $(n+p-k)\times p$ matrix of rank $p$, and $(\X\tr,\T\tr)\bpm \X \\ \T\epm=\X\tr\X+\T\tr\T$ is a $p\times p$ matrix of rank $p$ and thus invertible.
+- So, we can estimate $\bet$ by
+\[
+\bea
+\nnn \hat{\bet}&=&\left(\bpm \X \\ \T\epm\tr\bpm \X \\ \T\epm\right)^{-1}\bpm \X \\ \T\epm\tr\bpm \y \\ \zeros\epm \\
+\nnn &=& (\X\tr\X+\T\tr\T)^{-1}(\X\tr\y+\T\tr\zeros) \\
+\nnn &=& (\X\tr\X+\T\tr\T)^{-1}\X\tr\y.
+\eea
+\]
+- **Example 12.6.1**: Find the least squares estimator of $\bet$ for the one-way ANOVA model in Example 12.1.1 where $\tau_1+\tau_2=0$.  Also, find an unbiased estimator of $\sigma^2$.
+- *Answer*: Here $\tau_1+\tau_2=(0,1,1) \bpm \mu \\ \tau_1 \\ \tau_2 \epm$ so $\T=(0,1,1)$. So, we have
+\[
+\bea
+\nnn \hat{\bet}&=& (\X\tr\X+\T\tr\T)^{-1}\X\tr\y \\
+\nnn &=& \left(\bpm 7 & 3 & 4 \\ 3 & 3 & 0 \\ 4 & 0 & 4 \epm+\bpm 0 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 1 & 1 \epm\right)^{-1} \bpm 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 1 & 1 & 1\epm \bpm y_{11} \\ y_{12} \\ y_{13} \\ y_{21} \\ y_{22} \\ y_{23} \\ y_{24} \epm \\
+\nnn &=& \bpm 7 & 3 & 4 \\ 3 & 4 & 1 \\ 4 & 1 & 5 \epm^{-1} \bpm \sum_{i=1}^2 \sum_{j=1}^{n_i} y_{ij} \\ \sum_{j=1}^{n_1} y_{1j} \\ \sum_{j=1}^{n_2} y_{2j} \epm \\
+\nnn &=& \frac{1}{48}\bpm 19 & -11 & -13 \\ -11 & 19 & 5 \\ -13 & 5 & 19 \epm \bpm \sum_{i=1}^2 \sum_{j=1}^{n_i} y_{ij} \\ \sum_{j=1}^{n_1} y_{1j} \\ \sum_{j=1}^{n_2} y_{2j} \epm \\
+\nnn &=& \frac{1}{48}\bpm 19 \sum_{i=1}^2 \sum_{j=1}^{n_i} y_{ij} -11 \sum_{j=1}^{n_1} y_{1j} -13 \sum_{j=1}^{n_2} y_{2j} \\ -11 \sum_{i=1}^2 \sum_{j=1}^{n_i} y_{ij} + 19 \sum_{j=1}^{n_1} y_{1j} + 5 \sum_{j=1}^{n_2} y_{2j} \\ -13 \sum_{i=1}^2 \sum_{j=1}^{n_i} y_{ij} + 5 \sum_{j=1}^{n_1} y_{1j} + 19 \sum_{j=1}^{n_2} y_{2j} \epm \\
+\nnn &=& \frac{1}{48}\bpm 8 \sum_{j=1}^{n_1} y_{1j} +6 \sum_{j=1}^{n_2} y_{2j} \\ 8\sum_{j=1}^{n_1} y_{1j} -6 \sum_{j=1}^{n_2} y_{2j} \\ -8 \sum_{j=1}^{n_1} y_{1j} + 6 \sum_{j=1}^{n_2} y_{2j} \epm \\
+\nnn &=& \frac{1}{2}\bpm \bar{y}_{1\cdot}+\bar{y}_{2\cdot} \\ \bar{y}_{1\cdot}-\bar{y}_{2\cdot} \\ -\bar{y}_{1\cdot}+\bar{y}_{2\cdot} \epm.
+\eea
+\]
+(Note that $\ds{\frac{1}{48}}\bpm 19 & -11 & -13 \\ -11 & 19 & 5 \\ -13 & 5 & 19 \epm$ is a generalized inverse of $\X\tr\X$.)  
+Since $\X\hat{\bet}=\bpm \bar{y}_{1\cdot} \\ \bar{y}_{1\cdot} \\ \bar{y}_{1\cdot} \\ \bar{y}_{2\cdot} \\ \bar{y}_{2\cdot} \\ \bar{y}_{2\cdot} \\ \bar{y}_{2\cdot} \epm$,
+we have 
+\[
+\bea
+\nnn s^2&=& \frac{(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})}{n-k} \\ 
+\nnn &=& \frac{1}{5}\sum_{i=1}^2 \sum_{j=1}^{n_i} (y_{ij}-\bar{y}_{i\cdot})^2.
+\eea
+\]
+
+### 12.7 Testing Hypotheses
+- **Theorem 12.7.1** (p.327, p.329): Suppose $y\sim N_n(\X\bet,\sigma^2\I)$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$ and let $\hat{\bet}$ be any solution to $\X\tr\X\hat{\bet}=\X\tr\y$. Let $\C$ be an $m\times p$ matrix of rank $m \leq k$ such that $\C\bet$ is a set of linearly independent estimable functions. Then the following properties hold:  
+( a ) $\C(\X\tr\X)\C\tr$ is nonsingular,  
+( b ) $\C\hat{\bet} \sim N_m(\C\bet,\sigma^2\C(\X\tr\X)^-\C\tr)$,  
+( c ) $\ds{\frac{SSH}{\sigma^2}=\frac{1}{\sigma^2}(\C\hat{\bet})\tr(\C(\X\tr\X)^-\C\tr)^{-1}\C\hat{\bet} \sim \chi^2(m,\lambda)}$ where $\ds{\lambda=\frac{1}{2\sigma^2}(\C\bet)\tr(\C(\X\tr\X)^-\C\tr)^{-1}\C\bet}$,  
+( d ) $\ds{\frac{SSE}{\sigma^2}=\frac{1}{\sigma^2}\y\tr(\I-\X(\X\tr\X)^-\X\tr)\y\sim \chi^2(n-k)}$,  
+( e ) $SSH$ and $SSE$ are independent,  
+( f ) $\ds{F=\frac{SSH/m}{SSE/(n-k)}\sim F(m,n-k,\lambda)}$.
+- **Example 12.7.1**: Suppose that 
+\[
+y_{ijk}=\mu+\alpha_i+\beta_j+\gamma_{ij}+e_{ijk}
+\mbox{ for } i=1,2;j=1,2;k=1,\ldots,n_{ij}
+\]
+where $\alpha_1+\alpha_2=0$, $\beta_1+\beta_2=0$, and $\gamma_{11}+\gamma_{12}=\gamma_{12}+\gamma_{22}=\gamma_{21}+\gamma_{22}=0$.  
+Assume $e_{ijk}$ are independent $N(0,\sigma^2)$ random variables.  
+Given the data
+```{r, fig.align="center", out.width=200, echo=FALSE}
+knitr::include_graphics("data12.png")
+```
+test the hypothesis $H_0: \alpha_1=\alpha_2=0$ at level $0.05$.
+- *Answer*: We have $\alpha_2=-\alpha_1$, $\beta_2=-\beta_1$, $\gamma_{12}=-\gamma_{11}$, $\gamma_{21}=-\gamma_{11}$, $\gamma_{22}=\gamma_{11}$ so we can write
+\[
+\bea
+\nnn y_{111}&=&\mu+\alpha_1+\beta_1+\gamma_{11}+e_{111} \\
+\nnn y_{112}&=&\mu+\alpha_1+\beta_1+\gamma_{11}+e_{112} \\
+\nnn y_{121}&=&\mu+\alpha_1-\beta_1-\gamma_{11}+e_{121} \\
+\nnn y_{122}&=&\mu+\alpha_1-\beta_1-\gamma_{11}+e_{122} \\
+\nnn y_{211}&=&\mu-\alpha_1+\beta_1-\gamma_{11}+e_{211} \\
+\nnn y_{212}&=&\mu-\alpha_1+\beta_1-\gamma_{11}+e_{212} \\
+\nnn y_{221}&=&\mu-\alpha_1-\beta_1+\gamma_{11}+e_{221} \\
+\nnn y_{222}&=&\mu-\alpha_1-\beta_1+\gamma_{11}+e_{222} \\
+\nnn y_{223}&=&\mu-\alpha_1-\beta_1+\gamma_{11}+e_{223}.
+\eea
+\]
+Then we want to minimize $Q(\thet)=\|\y-\X\thet\|^2$ where
+\[
+\y=\left(\begin{array}{c}
+6 \\ 2 \\ 5 \\ 4 \\ 1 \\ 8 \\ 2 \\ 3 \\ 5
+\end{array}\right),
+\X=\left(\begin{array}{cccc}
+1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 \\
+1 & 1 & -1 & -1 \\
+1 & 1 & -1 & -1 \\
+1 & -1 & 1 & -1 \\
+1 & -1 & 1 & -1 \\
+1 & -1 & -1 & 1 \\
+1 & -1 & -1 & 1 \\
+1 & -1 & -1 & 1 
+\end{array}\right),
+\thet=\left(\begin{array}{c}
+\mu \\ \alpha_1 \\ \beta_1 \\ \gamma_{11}
+\end{array}\right),
+\]
+and we compute
+$\X\tr\X=\left(\begin{array}{cccc}
+9 & -1 & -1 & 1 \\
+-1 & 9 & 1 & -1 \\
+-1 & 1 & 9 & -1 \\
+1 & -1 & -1 & 9 
+\end{array}\right)$
+so that
+$(\X\tr\X)^{-1}=\ds{\frac{1}{96}}\bpm
+11 & 1 & 1 & -1 \\
+1 & 11 & -1 & 1 \\
+1 & -1 & 11 & 1 \\
+-1 & 1 & 1 & 11 
+\epm$.  
+Then $\hat{\thet}=(\X\tr\X)^{-1}\X\tr\y=\ds{\frac{1}{12}}\bpm
+49 \\ 2 \\ 2 \\ -5
+\epm\approx
+\bpm
+4.083 \\ 0.167 \\ 0.167 \\ -0.417
+\epm$.
+It follows that 
+\[
+\hat{\y}=\X\hat{\thet}=(4,4,4.5,4.5,4.5,4.5,10/3,10/3,10/3)\tr
+\]
+so that
+\[
+SSE=Q(\hat{\thet})=\|\y-\hat{\y}\|^2=\frac{113}{3}\approx 37.667.
+\]
+If $H_0:\alpha _1=0$ is true, then we use the design matrix 
+$\tilde{\X}=\bpm
+1 & 1 & 1 \\
+1 & 1 & 1 \\
+1 &  -1 & -1 \\
+1 & -1 & -1 \\
+1 &  1 & -1 \\
+1 &  1 & -1 \\
+1 &  -1 & 1 \\
+1 &  -1 & 1 \\
+1 &  -1 & 1 
+\epm$.
+We have 
+$\tilde{\X}\tr\tilde{\X}=\bpm
+9 & -1 & 1 \\
+-1 & 9 &-1 \\
+1 & -1 & 9 
+\epm$ 
+and
+$\tilde{\X}\tr\y=\bpm
+36 \\ -2 \\ 0
+\epm$
+so that 
+$(\tilde{\X}\tr\tilde{\X})^{-1}=\frac{1}{88}\bpm
+10 & 1 &  -1 \\
+1 & 10 & 1 \\
+-1 & 1 & 10 
+\epm$
+and 
+$(\tilde{\X}\tr\tilde{\X})^{-1}\tilde{\X}\tr\y=\frac{1}{44}\bpm
+179 \\ 8 \\ -19 
+\epm\approx
+\bpm
+4.068 \\ 0.182 \\ -0.432
+\epm$.
+Thus, it follows that
+$\hat{\thet}_c=\bpm
+4.068 \\ 0 \\ 0.182 \\ -0.432
+\epm$ so that
+$\tilde{\y}\tr=\frac{1}{22}(84,84,95,95,103,103,76,76,76)\tr$ which implies that
+$Q(\hat{\thet}_c)=\|\y-\tilde{\y}\|^2=\frac{417}{11}\approx 37.909$.  
+Thus, the observed $F$ statistic for testing $H_0:\alpha_1=0$ is
+\[
+F=\frac{(Q(\hat{\thet}_c)-Q(\hat{\thet}))/1}{Q(\hat{\thet})/(9-4)}=0.0321.
+\]
+The critical value for this test is $F_{.05,1,9-4}=6.608$
+so we fail to reject $H_0$ since $F<F_{.05,1,5}$.

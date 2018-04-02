@@ -148,12 +148,12 @@ mean(dataset$x3)
 mean(dataset$x4)
 mean(dataset$x5)
 ```
-The covariance matrix of the vector $\bpm \y, \X\epm$ can be computed directly with the `var` function.
+The covariance matrix of the vector $\color{red}{\bpm \y \\ \x\epm}$ can be computed directly with the `var` function.
 ```{r}
 n=nrow(dataset)
 Sigma.hat=(n-1)/n*var(dataset[,-1]);Sigma.hat
 ```
-So, $\hat{\Sigma}=\bpm 91.980008 & 1.8413303 & 5.552864 & 106.369089  & 1.6397539 & 3.3544790 \\
+So, $\hat{\Sig}=\bpm 91.980008 & 1.8413303 & 5.552864 & 106.369089  & 1.6397539 & 3.3544790 \\
 1.841330 & 0.6771934 & 1.465129 & 3.191580 & 0.3440984 & -0.2908112 \\
 5.552864 &  1.4651288 & 5.294887 & 9.956171 & 1.3279508 & 1.2591311 \\
 106.369089 & 3.1915802 & 9.956171 & 196.733564 & 63.9930796 & 4.2295271 \\
@@ -276,7 +276,7 @@ summary(lm.model)
 So, the observed test statistic is $F=205.5$ and we fail to reject $H_0$ since the observed $F$ is larger than the critical value $F_{.05,5,45}=2.422$.
 
 ### 10.7 Prediction for Multivariate Normal or Nonnormal Data
-- **Theorem 10.7.1** (p.265): For a random vector $\bpm y \\ \x\epm$, the function $t(\x)$ that minimizes $MSE=E\left\{(y-t(\x))^2\right\}^2$ is given by $E(y|\x)$, provided that the MSE exists.
+- **Theorem 10.7.1** (p.265): For a random vector $\bpm y \\ \x\epm$, the function $t(\x)$ that minimizes $\color{red}{MSE=E\left\{(y-t(\x))^2\right\}}$ is given by $E(y|\x)$, provided that the MSE exists.
 - **Theorem 10.7.2** (p.266): The linear function of $\x$ that minimizes $E\left\{(y-t(\x))^2\right\}$ is $t(\x)=\beta_0+\bet_1\tr\x$ where $\beta_0=\mu_y-\bsig_{yx}\tr\Sig_{xx}^{-1}\bmu_x$ and $\bet_1=\Sig_{xx}^{-1}\bsig_{yx}$.
 - **Theorem 10.7.3** (p.266): Let $\rX_i=\bpm x_{i1} \\ \vdots \\ x_{ik}\epm$.  If $\bpm y_1 \\ \rX_1 \epm, \ldots, \bpm y_n \\ \rX_n \epm$ is a random sample from a population with mean vector $\bpm \mu_y \\ \bmu_x \epm$ and covariance matrix $\Sig=\bpm \sigma_{yy} & \bsig_{yx}\tr \\ \bsig_{yx} & \Sig_{xx} \epm$, then the estimators which minimize 
 \[
