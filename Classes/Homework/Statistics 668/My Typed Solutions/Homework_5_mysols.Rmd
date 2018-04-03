@@ -14,10 +14,10 @@ require(dplyr)
 
 #1)
 
-Before we begin, we must read in our data, and create our variables with the new dataframe. Using these, we can answer the following parts of the question. 
+Before we begin, we must read in our data, and create our variables with the new data frame. Using these, we can answer the following parts of the question. 
 
 ```{r}
-HeightData=read.table(...)
+HeightData=read.table('D:/obewa/Documents/My real documents/University of Louisville/public_work/Classes/Homework/Statistics 668/HeightData.txt',header = TRUE)
 g=as.numeric(HeightData$gender=="female")
 m=HeightData$mother
 f=HeightData$father
@@ -26,7 +26,7 @@ X=cbind(g,g*m,g*f,1-g,(1-g)*m,(1-g)*f);dimnames(X)=list(NULL,c('x1','x2','x3','x
 X=data.frame(X)
 ```
 
-The first 5 entries of the dataframe X is given below. These values will be used to do the following problems.
+The first 5 entries of the data frame X is given below. These values will be used to do the following problems.
 
 ```{r include=FALSE}
 kable(X[1:5,])
@@ -40,7 +40,7 @@ The MLE of $\beta$ can be found using the following bit of code:
 ```{r}
 X=mutate(X, x7=x2+x5)
 X=mutate(X, x8=x3+x6)
-height.mod = lm(HeightData$childHeight~X$x1+X$x4+X$x7+X$x8)
+height.mod = lm(HeightData$childHeight~X$x1+X$x4+X$x7+X$x8+0)
 ```
 
 Note, the reason we add $x_2+x_5=x_7$ and $x_3+x_6=x_8$ is so that we can make sure that the corresponding $\beta$ for $x_2$ and $x_5$ are the same, and the corresponding $\beta$ for $x_3$ and $x_6$ is the same. Now, from the above code, we find that the $\beta$'s are the following:
@@ -50,7 +50,80 @@ coefs = summary(height.mod)$coefficients
 kable(coefs)
 ```
 
-Thus $\beta = (\beta_1,\beta_2,\beta_3,\beta_4,\beta_5,\beta_6)^{\mathrm{T}}$ where $\beta_1 = $, $\beta_2=\beta_5= $, $\beta_3=\beta_6= $, and $\beta_4 = $. 
+Thus the MLE is $\hat\beta = (\beta_1,\beta_2,\beta_3,\beta_4,\beta_5,\beta_6)^{\mathrm{T}}$ where $\beta_1 = 16.5212399$, $\beta_2=\beta_5= 0.3176101$, $\beta_3=\beta_6= 0.3928433$, and $\beta_4 = 21.7362293$. 
+
+
+
+
+##b)
+
+Let's rename $\hat\beta$ as $\hat\beta_c$. If we use the following code, we can find the $F$-statistic as desired in this problem:
+
+```{r}
+X=data.matrix(X)
+X.reduced=cbind(X[,1],X[,2]+X[,5],X[,3]+X[,6],X[,4])
+lm.reduced=lm(y~X.reduced+0)
+lm.full=lm(y~X+0)
+anova(lm.reduced,lm.full)
+```
+
+Thus $F=.407$ as in the example in the notes. 
+
+
+
+```{r include=FALSE}
+g=as.numeric(HeightData$gender=="female")
+m=HeightData$mother
+f=HeightData$father
+y=HeightData$childHeight
+X=cbind(g,g*m,g*f,1-g,(1-g)*m,(1-g)*f);dimnames(X)=list(NULL,c('x1','x2','x3','x4','x5','x6'))
+```
+
+
+##c)
+
+Here we want to find $A,B,C,D,$ and $E$ such that
+$$A(\beta_2-\beta_5)^2+B(\beta_3-\beta_6)^2+C(\beta_2-\beta_5)(\beta_3-\beta_6)+D(\beta_2-\beta_5)+E(\beta_3-\beta_6) \leq 1$$
+is a $95$% confidence ellipse for $(\beta_2-\beta_5 , \beta_3-\beta_6)^T$.
+
+Using the following code below will help us get started here, giving us numerical values we will need to solve the problem:
+
+```{r}
+C=rbind(c(0,1,0,0,-1,0),c(0,0,1,0,0,-1))
+beta.hat=solve(t(X)%*%X)%*%t(X)%*%y
+CB = C%*%beta.hat
+M=solve(C%*%solve(t(X)%*%X)%*%t(C))
+SSE=sum(y^2)-sum((X%*%beta.hat)^2)
+n=nrow(X)
+SSn=SSE/(n-6)
+C
+beta.hat
+CB
+M
+SSE
+n
+SSn
+```
+
+Now we must use the hint given to us in this problem to get a pivot. Note that $||{\bf y-X \hat\beta}||^2/(n-6) = SSE/(n-6)$. 
+
+After some manipulation, we find that
+
+$$\frac{3.801+1218.740(\beta_2-\beta_5)^2 + 1411.680(\beta_3-\beta_6)^2+160.588(\beta_2-\beta_5)(\beta_3-\beta_6)+68.164(\beta_2-\beta_5)+131.066(\beta_3-\beta_6)}{9.384} ~ F_{2,928}$$
+
+The critical point can be found in R by the following code:
+
+```{r}
+qf(.5,2,928)
+```
+
+Now we can use the pivot and the above critical value to find the $95$% confidence ellipse:
+$$P( \frac{3.801+1218.740(\beta_2-\beta_5)^2 + 1411.680(\beta_3-\beta_6)^2+160.588(\beta_2-\beta_5)(\beta_3-\beta_6)+68.164(\beta_2-\beta_5)+131.066(\beta_3-\beta_6)}{9.384}$$
+$$ \leq 3.005424 ) =.95$$
+$$P(49.944(\beta_2-\beta_5)^2 + 57.851(\beta_3-\beta_6)^2 + 6.581(\beta_2-\beta_5)(\beta_3-\beta_6)+2.793(\beta_2-\beta_5)+5.371(\beta_3-\beta_6) \leq 1)=.95$$
+
+This gives us that $A=49.944, B=57.851, C=6.581, D=2.793,$ and $E=5.371$. 
+
 
 
 
@@ -60,6 +133,8 @@ Thus $\beta = (\beta_1,\beta_2,\beta_3,\beta_4,\beta_5,\beta_6)^{\mathrm{T}}$ wh
 
 
 #2)
+
+Answer on separate page.
 
 
 
@@ -84,7 +159,7 @@ hw5_3 = cbind(x,y)
 outrm_hw5_3 = hw5_3[1:100,]
 ```
 
-Note the last two lines of code contain the creation of two dataframes. The first of which contains the entire data set, the second of which removes the outlier. 
+Note the last two lines of code contain the creation of two data frames. The first of which contains the entire data set, the second of which removes the outlier. 
 
 ##a)
 
@@ -143,7 +218,7 @@ abline(model3_nout$coef)
 
 ##d)
 
-Below is the plot for the residuals without the outlier. As we can see, the model follows the line quite well, leading us to believe that the outlier was causing all of the problems in the previous model (suprise). 
+Below is the plot for the residuals without the outlier. As we can see, the model follows the line quite well, leading us to believe that the outlier was causing all of the problems in the previous model (surprise). 
 
 ```{r fig.heigh=4}
 plot(model3_nout, which=1, labels.id='')

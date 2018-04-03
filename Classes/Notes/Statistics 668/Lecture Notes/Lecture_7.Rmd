@@ -392,9 +392,9 @@ and covariance matrix
 \[
 \bea
 \nnn \cov[(\X\tr\X)^{-1}\X\tr\y]&=&(\X\tr\X)^{-1}\X\tr\cov(\y)((\X\tr\X)^{-1}\X\tr)\tr \\
-\nnn &=&(\X\tr\X)^{-1}\X\tr\cov(\y)\X\tr(\X\tr\X)^{-1} \\
-\nnn &=&(\X\tr\X)^{-1}\X\tr(\sigma^2\I)\X\tr(\X\tr\X)^{-1} \\
-\nnn &=&\sigma^2(\X\tr\X)^{-1}\X\tr\X\tr(\X\tr\X)^{-1} \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr\cov(\y)\color{red}{\X}(\X\tr\X)^{-1} \\
+\nnn &=&(\X\tr\X)^{-1}\X\tr(\sigma^2\I)\color{red}{\X}(\X\tr\X)^{-1} \\
+\nnn &=&\sigma^2(\X\tr\X)^{-1}\X\tr\color{red}{\X}(\X\tr\X)^{-1} \\
 \nnn &=&\sigma^2(\X\tr\X)^{-1}.
 \eea
 \]
@@ -467,7 +467,7 @@ s_{jg}=\frac{1}{n-1}\sion (x_{ij}-\bar{x}_j)(x_{ig}-\bar{x}_{g}),
 \]
 and the sample covariance of $\y$ and the $j$th column of $\X_c$ as
 \[
-s_{yj}=\frac{1}{n-1}\sion (y-\bar{y})(x_{ij}-\bar{x}_j),
+s_{yj}=\frac{1}{n-1}\sion (y_i-\bar{y})(x_{ij}-\bar{x}_j),
 \]
 then 
 \[
