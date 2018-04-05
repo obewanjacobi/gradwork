@@ -125,10 +125,10 @@ However, the inverse of $\X\tr\X$ does not exist here since $\X$ is not full ran
 For any generalized inverse $(\X\tr\X)^-$, we have
 \[ 
 \bea
-\nnn & & \left\{(\X\tr\X)(\X\tr\X)^-\X\tr-\X\tr\right\}\left\{\X(\X\tr\X)^-(\X\tr\X)-\X\right\} \\
-\nnn && =(\X\tr\X)(\X\tr\X)^-\X\tr\X(\X\tr\X)^-(\X\tr\X) -(\X\tr\X)(\X\tr\X)^-\X\tr\X -\X\tr\X(\X\tr\X)^-(\X\tr\X)+\X\tr\X \\
-\nnn && =(\X\tr\X)(\X\tr\X)^-(\X\tr\X) -(\X\tr\X)(\X\tr\X)^-(\X\tr\X) -(\X\tr\X)(\X\tr\X)^-(\X\tr\X)+\X\tr\X \\
-\nnn && =\X\tr\X-\X\tr\X-\X\tr\X+\X\tr\X \\
+\nnn & & \left\{(\X\tr\X)(\X\tr\X)^-\X\tr-\X\tr\right\}\left\{\X\color{red}{((\X\tr\X)^-)\tr}(\X\tr\X)-\X\right\} \\
+\nnn && =(\X\tr\X)(\X\tr\X)^-\X\tr\X\color{red}{((\X\tr\X)^-)\tr}(\X\tr\X) -(\X\tr\X)(\X\tr\X)^-\X\tr\X -\X\tr\X\color{red}{((\X\tr\X)^-)\tr}(\X\tr\X)+\X\tr\X \\
+\nnn && =(\X\tr\X)\color{red}{((\X\tr\X)^-)\tr}(\X\tr\X) -(\X\tr\X)(\X\tr\X)^-(\X\tr\X) -(\X\tr\X)\color{red}{((\X\tr\X)^-)\tr}(\X\tr\X)+\X\tr\X \\
+\nnn && =(\X\tr\X)\color{red}{((\X\tr\X)^-)\tr}(\X\tr\X)-\X\tr\X-(\X\tr\X)\color{red}{((\X\tr\X)^-)\tr}(\X\tr\X)+\X\tr\X \\
 \nnn && =\O,
 \eea
 \]
@@ -140,6 +140,8 @@ which implies that
 \[
 (\X\tr\X)\hat{\bet}=\X\tr\y.
 \]
+- <span style="color:red">Note that $(\A^-)\tr$ does not necessarily equal $(\A\tr)^-$.  For instance, if $\A=\bpm 4 & 2 \\ 2 & 1\epm=\A\tr$, then one choice of $\A^-$ is $\bpm 0 & 0 \\ .5 & 0\epm$ which is not symmetric so $(\A^-)\tr\neq \A^-=(\A\tr)^-$. </span>
+
 - **Theorem 12.2.2**: If $\X$ is an $n\times p$ matrix of rank $k<p\leq n$, $\X(\X\tr\X)^-\X\tr$ is the same for all choices of the generalized inverse $(\X\tr\X)^-$.
 Consequently, $\hat{\y}=\X\hat{\bet}=\X(\X\tr\X)^-\X\tr\y$ does not depend on the choice of $(\X\tr\X)^-$.
 - *Proof*: Let $(\X\tr\X)^-$ and $(\X\tr\X)^*$ be generalized inverses of $\X\tr\X$.
@@ -147,17 +149,17 @@ Since $\X\tr=\X\tr\X(\X\tr\X)^-\X\tr=\X\tr\X(\X\tr\X)^*\X\tr$, we have
 \[
 \bea
 \nnn & & \left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\}\tr\left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\} \\
-\nnn & & \left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\}\left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\} \\
-\nnn & & =\left\{\X(\X\tr\X)^--\X(\X\tr\X)^*\right\}\X\tr\left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\} \\
-\nnn & & =\left\{\X(\X\tr\X)^--\X(\X\tr\X)^*\right\}\left\{(\X\tr\X)(\X\tr\X)^-\X\tr-(\X\tr\X)(\X\tr\X)^*\X\tr\right\} \\
-\nnn & & =\left\{\X(\X\tr\X)^--\X(\X\tr\X)^*\right\}\left\{\X\tr-\X\tr\right\} \\
-\nnn & & =\left\{\X(\X\tr\X)^--\X(\X\tr\X)^*\right\} \O \\
+\nnn & & =\left\{\X\color{red}{((\X\tr\X)^-)\tr}\X\tr-\X\color{red}{((\X\tr\X)^*)\tr}\X\tr\right\}\left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\} \\
+\nnn & & =\left\{\X\color{red}{((\X\tr\X)^-)\tr}-\X\color{red}{((\X\tr\X)^*)\tr}\right\}\X\tr\left\{\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr\right\} \\
+\nnn & & =\left\{\X\color{red}{((\X\tr\X)^-)\tr}-\X\color{red}{((\X\tr\X)^*)\tr}\right\}\left\{(\X\tr\X)(\X\tr\X)^-\X\tr-(\X\tr\X)(\X\tr\X)^*\X\tr\right\} \\
+\nnn & & =\left\{\X\color{red}{((\X\tr\X)^-)\tr}-\X\color{red}{((\X\tr\X)^*)\tr}\right\}\left\{\X\tr-\X\tr\right\} \\
+\nnn & & =\left\{\X\color{red}{((\X\tr\X)^-)\tr}-\X\color{red}{((\X\tr\X)^*)\tr}\right\} \O \\
 \nnn & & =\O.
 \eea
 \]
 Thus, we have $\X(\X\tr\X)^-\X\tr-\X(\X\tr\X)^*\X\tr=\O$ so that
 $\X(\X\tr\X)^-\X\tr=\X(\X\tr\X)^*\X\tr$.
-- **Definition 12.2.1** (p.305): A linear function $\lam\tr\bet$ is *estimable* if there exists a vector $\a$ such that $E(\a\tr\y)=\lam\tr\bet$.
+- **Definition 12.2.1** (p.305): A linear function $\lam\tr\bet$ is *estimable* if there exists a vector $\a$ such that $E(\a\tr\y)=\lam\tr\bet$ <span style="color:red">for all $\bet$</span>.
 - **Theorem 12.2.3** (p.305): In the multiple linear regression model $\y=\X\bet+\ep$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$, the linear function $\lam\tr\bet$ is estimable if and only if $\lam\tr$ is a linear combination of the rows of $\X$ (that is, there is a vector $\a$ such that $\a\tr\X=\lam\tr$).
 - *Proof*: 
 $\lam\tr\bet$ is estimable if and only if there exists an $\a$ such that $E(\a\tr\y)=\lam\tr\bet$ for all $\bet$.  This occurs if and only if
@@ -209,9 +211,9 @@ so there is no $\a$ such that $\X\tr\a=\lam$.
 ### 12.3 Estimators
 - **Theorem 12.3.1** (p.309,311): Let $\lam\tr\bet$ be an estimable function of $\bet$ in the multiple linear regression model for which $\y=\X\bet+\ep$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$.  Let $\hat{\bet}$ be any solution to $\X\tr\X\hat{\bet}=\X\tr\y$.  Then we have
 \[
-E(\lam\tr\hat{\bet})=\bet \mbox{ and } \var(\lam\tr\hat{\bet})=\sigma^2\lam\tr(\X\tr\X)^-\lam.
+E(\lam\tr\hat{\bet})=\color{red}{\lam\tr}\bet \mbox{ and } \var(\lam\tr\hat{\bet})=\sigma^2\lam\tr(\X\tr\X)^-\lam.
 \]
-- **Theorem 12.3.2** (p.314): Let $\lam\tr\bet$ be an estimable function of $\bet$ in the multiple linear regression model for which $\y=\X\bet+\ep$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$.  Let $\hat{\bet}$ be any solution to $\X\tr\X\hat{\bet}=\X\tr\y$ and let 
+- **Theorem 12.3.2** (p.314): <span style="color:red">In</span> the multiple linear regression model for which $\y=\X\bet+\ep$ where $\X$ is an $n\times p$ matrix of rank $k$ where $k<p\leq n$.  Let $\hat{\bet}$ be any solution to $\X\tr\X\hat{\bet}=\X\tr\y$ and let 
 \[
 s^2=\frac{Q(\hat{\bet})}{n-k}=\frac{(\y-\X\hat{\bet})\tr(\y-\X\hat{\bet})}{n-k}.
 \]
@@ -237,7 +239,7 @@ respectively.
 - Since $\U$ is full rank (a $k\times p$ matrix of rank $k$), $\U\U\tr$ is a $k\times k$ matrix of rank $k$ and thus invertible.
 - So, $\Z\U\U\tr=\X\U\tr$ implies that $\Z=\X\U\tr(\U\U\tr)^{-1}$.
 - Then, the least squares estimator of $\gam$ is $\hat{\gam}=(\Z\tr\Z)^{-1}\Z\tr\y$.
-- **Example 12.5.1**: Find the least squares estimator of $\gam=\bpm \mu+\tau_1 \\ \tau_2-\tau_1\epm$ for the one-way ANOVA model in Example 12.1.1.  Also, find an unbiased estimator of $\sigma^2$.
+- **Example 12.5.1**: Find the least squares estimator of $\gam=\bpm \mu+\tau_1 \\ \color{red}{\tau_1-\tau_2}\epm$ for the one-way ANOVA model in Example 12.1.1.  Also, find an unbiased estimator of $\sigma^2$.
 - *Answer*: Here $\gam=\bpm 1 & 1 & 0 \\ 0 & 1 & -1 \epm \bpm \mu \\ \tau_1 \\ \tau_2 \epm$ so $\U=\bpm 1 & 1 & 0 \\ 0 & 1 & -1 \epm$. So, we have
 \[
 \bea
