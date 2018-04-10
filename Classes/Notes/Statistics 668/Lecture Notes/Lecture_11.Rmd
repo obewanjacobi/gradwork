@@ -1,0 +1,301 @@
+---
+title: 'Chapter 11: Multiple Regression: Bayesian Inference'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "April 10, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\d{\boldsymbol{d}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\s{\boldsymbol{s}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\w{\boldsymbol{w}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\G{\boldsymbol{\mathrm{G}}}$
+$\def\H{\boldsymbol{\mathrm{H}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\S{\boldsymbol{\mathrm{S}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\V{\boldsymbol{\mathrm{V}}}$
+$\def\W{\boldsymbol{\mathrm{W}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\Z{\boldsymbol{\mathrm{Z}}}$
+$\def\rX{\mathcal{X}}$
+$\def\LR{\mbox{LR}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\bsig{\boldsymbol{\sigma}}$
+$\def\ep{\boldsymbol{\varepsilon}}$
+$\def\bet{\boldsymbol{\beta}}$
+$\def\gam{\boldsymbol{\gamma}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\lam{\boldsymbol{\lambda}}$
+$\def\bphi{\boldsymbol{\phi}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\corr{\mbox{corr}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\def\Fobs{F_{\mbox{obs}}}$
+$\def\tobs{t_{\mbox{obs}}}$
+$\def\sion{\sum_{i=1}^n}$
+$\def\res{\hat{\varepsilon}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+$\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}$
+
+### 11.1 Elements of Bayesian Statistical Inference
+- Recall from Lecture 7 Slide 22 in MATH 667 that the Bayesian approach considers the model parameters $\thet$ to be random with a *prior distribution* $p(\thet)$.
+- After observing data $\y$, the distribution is updated and the *posterior distribution* of $\thet$ given $\y$ is 
+\[
+\bea
+\nnn g(\thet|\y)&=& \frac{k(\y,\thet)}{h(\y)} \\
+\nnn &=& \frac{p(\thet)f(\y|\thet)}{h(\y)} \\
+\nnn &=& \frac{p(\thet)f(\y|\thet)}{\int_{-\infty}^\infty \cdots \int_{-\infty}^\infty p(\thet)f(\y|\thet)\ d\thet} \\
+\nnn &=& cp(\thet)f(\y|\thet)
+\eea
+\]
+where $k$ is the joint pdf of $\y$ and $\thet$, $h$ is the marginal pdf of $\y$, and $f$ is the conditional pdf of $\y$ given $\thet$; in the last equation, $c$ is a normalizing constant (which might depend on $\y$ but is constant with respect to $\thet$).
+
+### 11.2 A Bayesian Multiple Linear Regression Model
+- **Definition 11.2.1** (p.280): The parameter $\ds{\tau=\frac{1}{\sigma^2}}$ is called the *precision*.
+- **Definition 11.2.2** (p.280): The *Bayesian multiple regression model with a conjugate prior* assumes that 
+\[
+\y | (\bet, \tau) \sim N_n\left(\X\bet,\frac{1}{\tau}\I\right),
+\]
+\[
+\bet| \tau \sim N_{k+1}\left(\bphi, \frac{1}{\tau}\V\right),
+\]
+and 
+\[
+\tau \sim \mbox{Gamma}(\alpha,\delta)
+\]
+where $\X$ is a non-random design matrix, $\bphi$ is a known constant vector, $\V$ is a known constant matrix, and $\alpha$ and $\delta$ are known shape and rate parameters for the gamma distribution, respectively.
+- **Theorem 11.2.1** (p.281): Assume the Bayesian multiple regression model where $\X$ is a full rank $n \times (k+1)$ matrix with rank $k+1 \leq n$,
+$\y | (\bet, \tau) \sim N_n\left(\X\bet,\frac{1}{\tau}\I\right)$, $\bet| \tau \sim N_{k+1}\left(\bphi, \frac{1}{\tau}\V\right)$, and $\tau \sim \mbox{Gamma}(\alpha,\delta)$.  Then the prior distribution of $(\bet,\tau)$ has pdf
+\[
+p(\bet,\tau)=c_1 \tau^{(\alpha_*+k+1)/2} \exp\left\{\tau[(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)+\delta_*]/2\right\}, \tau>0
+\]
+where $\alpha_*=2\alpha-2$, $\delta_*=2\delta$, and $c_1$ is a normalizing constant for $p$,
+and the posterior distribution of $(\bet,\tau)$ given $\y$ has pdf
+\[
+g(\bet,\tau|\y)=c_2 \tau^{(\alpha_{**}+k+1)/2} \exp\left\{-\tau[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}]/2\right\}, \tau>0
+\]
+where $\alpha_{**}=\alpha_*+n$, $\V_*=(\V^{-1}+\X\tr\X)^{-1}$, $\bphi_*=\V_*(\V^{-1}\bphi+\X\tr\y)$, $\delta_{**}=\delta_*+\y\tr\y+\bphi\tr\V^{-1}\bphi-\bphi_*\tr\V_{*}^{-1}\bphi_*$, and $c_2$ is a normalizing constant for $g$.
+- *Proof*: The joint pdf of $\bet$ and $\tau$ is 
+\[
+\bea
+\nnn p(\bet,\tau)&=& p_2(\tau)p_1(\bet|\tau) \\
+\nnn &=& \frac{\delta^\alpha}{\Gamma(\alpha)}\tau^{\alpha-1}e^{-\delta\tau}I_{(0,\infty)}(\tau)\frac{1}{(2\pi/\tau)^{(k+1)/2}|\V|^{1/2}}\exp\left(-(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)/(2/\tau)\right) \\
+\nnn &=& c_1 \tau^{\alpha-1}e^{-\delta\tau}\tau^{(k+1)/2}\exp\left(-\tau(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)/2\right)I_{(0,\infty)}(\tau) \\
+\nnn &=& c_1 \tau^{((2\alpha-2)+k+1)/2}\exp\left(-[\tau(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)+2\delta]/2\right)I_{(0,\infty)}(\tau) \\
+\nnn &=& c_1 \tau^{(\alpha_*+k+1)/2}\exp\left(-[\tau(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)+\delta_*]/2\right)I_{(0,\infty)}(\tau).
+\eea
+\]
+The pdf of the posterior distribution of $(\bet,\tau)$ given $\y$ is 
+\[
+\bea
+\nnn g(\bet,\tau|\y) &=& cp(\bet,\tau) f(\y|\bet,\tau) \\
+\nnn &=& c c_1 \tau^{(\alpha_*+k+1)/2}\exp\left(-[\tau(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)+\delta_*]/2\right)I_{(0,\infty)}(\tau) \frac{1}{(2\pi/\tau)^{n/2}}\exp\left(-(\y-\X\bet)\tr(\y-\X\bet)/(2/\tau)\right)\\
+\nnn &=& c_2 \tau^{(\alpha_*+k+1)/2}\exp\left(-[\tau(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)+\delta_*]/2\right)\tau^{n/2} \exp\left(-(\y-\X\bet)\tr(\y-\X\bet)/(2/\tau)\right) I_{(0,\infty)}(\tau)\\
+\nnn &=& c_2 \tau^{(\alpha_*+n+k+1)/2}\exp\left(-\tau[(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)+\delta_*+(\y-\X\bet)\tr(\y-\X\bet)]/2\right)I_{(0,\infty)}(\tau) \\
+\nnn &=& c_2 \tau^{(\alpha_{**}+k+1)/2} \exp\left\{-\tau[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}]/2\right\} I_{(0,\infty)}(\tau)
+\eea
+\]
+since 
+\[
+\bea
+\nnn & & (\bet-\bphi)\tr\V^{-1}(\bet-\bphi)+\delta_*+(\y-\X\bet)\tr(\y-\X\bet) \\
+\nnn & & =\bet\tr(\V^{-1}+\X\tr\X)\bet-2(\V^{-1}\bphi+\X\tr\y)\tr\bet+\delta_*+\bphi\tr\V^{-1}\bphi+\y\tr\y \\
+\nnn & & =\bet\tr\V_*^{-1}\bet-2[\V_*(\V^{-1}\bphi+\X\tr\y)]\tr\V_*^{-1}\bet+\delta_*+\bphi\tr\V^{-1}\bphi+\y\tr\y \\
+\nnn & & =\bet\tr\V_*^{-1}\bet-2\bphi_*\tr\V_*^{-1}\bet+\delta_*+\bphi\tr\V^{-1}\bphi+\y\tr\y \\
+\nnn & & =(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)-\bphi_*\tr\V_*^{-1}\bphi_*+\delta_*+\bphi\tr\V^{-1}\bphi+\y\tr\y \\
+\nnn & & =(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}.
+\eea
+\]
+
+- **Theorem 11.2.2**: (p.282, 284, 285): Assume the Bayesian multiple regression model where $\X$ is a full rank $n \times (k+1)$ matrix with rank $k+1 \leq n$,
+$\y | (\bet, \tau) \sim N_n\left(\X\bet,\frac{1}{\tau}\I\right)$, $\bet| \tau \sim N_{k+1}\left(\bphi, \frac{1}{\tau}\V\right)$, and $\tau \sim \mbox{Gamma}(\alpha,\delta)$.  Then, for $\a\neq \zeros$, the marginal distribution of $\ds{\frac{\a\tr\bet-\a\tr\bphi_*}{\sqrt{\a\tr\W_*\a}}}$ given $\y$ is a $t(n+2\alpha)$ distribution where
+\[
+\W_*=\left[\frac{(\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)+2\delta}{n+2\alpha}\right](\V^{-1}+\X\tr\X)^{-1}
+\]
+and the marginal distribution of $\tau$ given $\y$ follows a $\ds{\mbox{Gamma}\left(\alpha+\frac{n}{2},\frac{1}{2}(2\delta+\y\tr\y+\bphi\tr\V^{-1}\bphi-\bphi_*\tr\V_{*}^{-1}\bphi_*)\right)}$ distribution
+where $\V_*=(\V^{-1}+\X\tr\X)^{-1}$ and $\bphi_*=\V_*(\V^{-1}\bphi+\X\tr\y)$.
+- *Proof*: The marginal distribution of $\bet$ given $\y$ is
+\[
+\bea
+\nnn u(\bet|\y)&=& \int_0^\infty g(\bet,\tau|\y) \ d\tau \\
+\nnn &=& c_2 \int_0^\infty \tau^{(\alpha_{**}+k+1)/2} \exp\left\{-\tau[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}]/2\right\} \ d\tau \\
+\nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}\right]^{-(\alpha_{**}+k+1)/2+1} \\
+\nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+2\delta+\y\tr\y+\bphi\tr\V^{-1}\bphi-\bphi_*\tr\V_{*}^{-1}\bphi_*\right]^{-(n+2\alpha+k+1)/2} \\
+\nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+2\delta+(\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)\right]^{-(n+2\alpha+k+1)/2} \\
+\nnn &=& c_4 \left[1+\frac{(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)/(n+2\alpha)}{2\delta+(\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)/(n+2\alpha)}\right]^{-(n+2\alpha+k+1)/2} \\
+\nnn &=& c_4 \left[1+\frac{(\bet-\bphi_*)\tr\W_{*}^{-1}(\bet-\bphi_*)}{n+2\alpha}\right]^{-(n+2\alpha+k+1)/2}.
+\eea
+\]
+This is the pdf of a multivariate $t$ distribution with $n+2\alpha$ degrees of freedom and parameters $\bphi_*$ and $\W_*$.  It can be shown (see https://www.sciencedirect.com/science/article/pii/0047259X72900218)
+that this implies that 
+\[
+(\a\tr\W_*\a)^{-1/2}\a\tr(\bet-\bphi_*)\sim t(n+2\alpha).
+\]
+    For $\tau>0$, the marginal distribution of $\tau$ given $\y$ is
+\[
+\bea
+\nnn v(\tau|\y)&=& \int_{-\infty}^\infty\cdots\int_{-\infty}^\infty g(\bet,\tau|\y) \ d\bet \\
+\nnn &=& c_2 \tau^{(\alpha_{**}+k+1)/2} e^{-\tau\delta_{**}/2}\int_{-\infty}^\infty\cdots\int_{-\infty}^\infty  \exp\left\{-\tau(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)/2\right\} \ d\bet \\ 
+\nnn &=& c_2 \tau^{(\alpha_{**}+k+1)/2} e^{-\tau\delta_{**}/2}\int_{-\infty}^\infty\cdots\int_{-\infty}^\infty  \exp\left\{-\tau(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)/2\right\} \ d\bet \\ 
+\nnn &=& c_2 \tau^{(\alpha_{**}+k+1)/2} e^{-\tau\delta_{**}/2} (2\pi/\tau)^{(k+1)/2}|\V_*|^{1/2} \\ 
+\nnn &=& c_5 \tau^{(\alpha_{**}+k+1)/2-(k+1)/2} e^{-\tau\delta_{**}/2} \\
+\nnn &=& c_5 \tau^{(2\alpha+n)/2-1} e^{-\tau\delta_{**}/2} \\
+\nnn &=& c_5 \tau^{(\alpha+n/2)-1} e^{-\tau\delta_{**}/2}.
+\eea
+\]
+which is the pdf of a Gamma distribution with shape parameter $\alpha+n/2$ and rate parameter $\delta_{**}$.
+
+### 11.3 Inference in Bayesian Multiple Linear Regression
+- Recall from Lecture 16 slide 23 in MATH 667 that if $g(\thet|\y)$ is the posterior pdf, then $A$ is a $100(1-\omega)\%$ credible set for $\thet$ if 
+\[
+P(\thet\in A|\y)=\int_A g(\thet|\y) \ d\thet = 1-\omega.
+\]
+- **R Example 11.3.1**: Consider the data available in the file "LandRentData.txt" which has the observations for the response variable and 3 explanatory variables from several counties in Minnesota in 1977.
+\[
+\bea
+\nnn y &=& \mbox{average rent paid per acre of land with alfalfa} \\
+\nnn x_1 &=& \mbox{average rent paid per acre for all land} \\
+\nnn x_2 &=& \mbox{average number of dairy cows per square mile} \\
+\nnn x_3 &=& \mbox{proportion of farmland in pasture.}
+\eea
+\]
+
+Assuming a Bayesian multiple regression model where 
+\[ 
+\y | (\bet, \tau) \sim N_n\left(\X\bet,\frac{1}{\tau}\I\right), 
+\]
+\[
+\bet| \tau \sim N_4\left(\bpm 0 \\ 0 \\ 0 \\ 0\epm, \frac{1}{\tau}(100\I)\right),
+\]
+and 
+\[
+\tau \sim \mbox{Gamma}(.0001,.0001),
+\]
+find a 95\% credible interval for $\beta_2$.
+- *Answer*: First, we read the data into R and look at the first few observations.
+```{r}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+dataset=read.table("LandRentData.txt",sep="\t",header=TRUE)
+head(dataset)
+```
+Now, we extract the response vector and design matrix, and create the vector $\a$. 
+```{r}
+y=dataset[,1]
+X=cbind(1,as.matrix(dataset[,2:4]))
+n=nrow(X)
+a=c(0,0,1,0)
+```
+Then we input the assumed parameters as follows.
+```{r}
+phi=c(0,0,0,0)
+V=100*diag(4)
+alpha=.0001
+delta=.0001
+```
+Then we update parameters using notation in Theorem 11.2.2.
+```{r}
+V.star=solve(solve(V)+t(X)%*%X)
+phi.star=V.star%*%(solve(V)%*%phi+t(X)%*%y)
+delta.star.star=2*delta+sum(y^2)+c(t(phi)%*%solve(V)%*%phi)-c(t(phi.star)%*%solve(V.star)%*%phi.star)
+W.star=c(t(y-X%*%phi)%*%solve(diag(n)+X%*%V%*%t(X))%*%(y-X%*%phi)+2*delta)/(n+2*alpha)*V.star
+```
+Then $\a\tr\bphi_*$ and $\a\tr\W_*\a$ can be computed as follows.
+```{r}
+t(a)%*%phi.star
+t(a)%*%W.star%*%a
+```
+So, a 95% credible set for $\beta_2$ is $\a\tr\bphi_*\pm t_{\omega/2,n+2\alpha}(\a\tr\W_*\a)$
+as we compute below.
+```{r}
+omega=.95
+c(t(a)%*%phi.star)+c(-1,1)*qt(1-(1-omega)/2,df=n+2*alpha)*c(sqrt(t(a)%*%W.star%*%a))
+```
+So, the 95% credible set for $\beta_2$ is $(0.2627,0.7386)$.
+
+### 11.4 Bayesian Inference Through Markov Chain Monte Carlo Simulation
+- Markov Chain Monte Carlo (MCMC) methods often make it tractable to make inferences in situations where we do not have closed-form expressions for the marginal posterior distributions.
+- A simple form of MCMC known as *Gibbs sampling* proceeds by successively drawing from each conditional distribution given the current draws of the other parameters.
+- For the Bayesian multiple regression model, the conditional distribution needed for Gibbs sampling are
+\[
+\varphi(\bet|\tau,\y)=c_6 e^{-\tau(\bet-\bphi_*)\tr\V_*^{-1}(\bet-\bphi_*)/2}
+\]
+and 
+\[
+\psi(\tau|\bet,\y)=c_7 \tau^{[(\alpha_{**}+k+3)/2]-1}e^{-\tau[(\bet-\bphi_*)\tr\V_*^{-1}(\bet-\bphi_*)+\delta_{**}]/2} I_{(0,\infty)}(\tau).
+\]
+- Here are the steps of Gibbs sampling for the Bayesian multiple regression model based on $M$ simulation steps.
+    + Specify a starting value $\tau_0$.
+    + Randomly generate $\bet_i$ from a $N_{k+1}\left(\bphi_{*},\frac{1}{\tau_{i-1}}\V_{*}\right)$ distribution and randomly generate $\tau_i$ from a $\mbox{Gamma}\left(\frac{1}{2}(\alpha_{**}+k+3),[(\bet_i-\bphi_*)\tr\V_*^{-1}(\bet_i-\bphi_*)+\delta_{**}]/2\right)$ distribution for $i=1,\ldots,M$.
+    + Discard the first $Q$ *burn-in* draws and consider the last $M-Q$ draws $(\bet_i,\tau_i)$ to be draws from the joint posterior distribution.
+- **R Example 11.4.1**: Under the setting of R Example 11.3.1, use the Gibbs sampling procedure to find an approximate 95\% credible interval for $\beta_2$.
+- *Answer*: We start with $\ds{\tau_0=\frac{1}{s^2}}$ as the starting value.
+```{r}
+lm.model=lm(y~X+0)
+s2=summary(lm.model)$sigma^2
+tau0=1/s2; tau0
+```
+Then we use the following R code to generate the MCMC samples based on random number generators `rmvnorm` in the `mvtnorm` package and `rgamma`.
+```{r}
+require(mvtnorm)
+set.seed(213498)
+M=100000
+tau=rep(0,M)
+beta=matrix(0,4,M)
+alpha.star.star=2*alpha-2+n
+delta.star.star=2*delta+sum(y^2)+c(t(phi)%*%solve(V)%*%phi)-c(t(phi.star)%*%solve(V.star)%*%phi.star)
+
+beta[,1]=rmvnorm(1,phi.star,V.star/tau0)
+tau[1]=rgamma(1,shape=(alpha.star.star+4+3)/2,rate=(c(t(beta[,1]-phi.star)%*%solve(V.star)%*%(beta[,1]-phi.star))+delta.star.star)/2)
+for (i in 2:M){
+ beta[,i]=rmvnorm(1,phi.star,V.star/tau[i-1])
+ tau[i]=rgamma(1,shape=(alpha.star.star+4+3)/2,rate=(c(t(beta[,i]-phi.star)%*%solve(V.star)%*%(beta[,i]-phi.star))+delta.star.star)/2)
+}
+Q=1000
+quantile(beta[3,(Q+1):M],c(.025,.975))
+```
+So, $(0.2651699, 0.7361311)$ is an approximate 95% credible interval for $\beta_2$.
