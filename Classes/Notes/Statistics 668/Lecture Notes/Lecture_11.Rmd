@@ -112,7 +112,7 @@ where $\X$ is a non-random design matrix, $\bphi$ is a known constant vector, $\
 - **Theorem 11.2.1** (p.281): Assume the Bayesian multiple regression model where $\X$ is a full rank $n \times (k+1)$ matrix with rank $k+1 \leq n$,
 $\y | (\bet, \tau) \sim N_n\left(\X\bet,\frac{1}{\tau}\I\right)$, $\bet| \tau \sim N_{k+1}\left(\bphi, \frac{1}{\tau}\V\right)$, and $\tau \sim \mbox{Gamma}(\alpha,\delta)$.  Then the prior distribution of $(\bet,\tau)$ has pdf
 \[
-p(\bet,\tau)=c_1 \tau^{(\alpha_*+k+1)/2} \exp\left\{\tau[(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)+\delta_*]/2\right\}, \tau>0
+p(\bet,\tau)=c_1 \tau^{(\alpha_*+k+1)/2} \exp\left\{\color{red}{-}\tau[(\bet-\bphi)\tr\V^{-1}(\bet-\bphi)+\delta_*]/2\right\}, \tau>0
 \]
 where $\alpha_*=2\alpha-2$, $\delta_*=2\delta$, and $c_1$ is a normalizing constant for $p$,
 and the posterior distribution of $(\bet,\tau)$ given $\y$ has pdf
@@ -164,7 +164,7 @@ where $\V_*=(\V^{-1}+\X\tr\X)^{-1}$ and $\bphi_*=\V_*(\V^{-1}\bphi+\X\tr\y)$.
 \bea
 \nnn u(\bet|\y)&=& \int_0^\infty g(\bet,\tau|\y) \ d\tau \\
 \nnn &=& c_2 \int_0^\infty \tau^{(\alpha_{**}+k+1)/2} \exp\left\{-\tau[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}]/2\right\} \ d\tau \\
-\nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}\right]^{-(\alpha_{**}+k+1)/2+1} \\
+\nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}\right]^{-\color{red}{[(\alpha_{**}+k+1)/2+1]}} \\
 \nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+2\delta+\y\tr\y+\bphi\tr\V^{-1}\bphi-\bphi_*\tr\V_{*}^{-1}\bphi_*\right]^{-(n+2\alpha+k+1)/2} \\
 \nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+2\delta+(\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)\right]^{-(n+2\alpha+k+1)/2} \\
 \nnn &=& c_4 \left[1+\frac{(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)/(n+2\alpha)}{2\delta+(\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)/(n+2\alpha)}\right]^{-(n+2\alpha+k+1)/2} \\
@@ -217,6 +217,7 @@ and
 \tau \sim \mbox{Gamma}(.0001,.0001),
 \]
 find a 95\% credible interval for $\beta_2$.
+
 - *Answer*: First, we read the data into R and look at the first few observations.
 ```{r}
 setwd("C:/Users/ryan/Desktop/S18/668/data")
@@ -249,7 +250,7 @@ Then $\a\tr\bphi_*$ and $\a\tr\W_*\a$ can be computed as follows.
 t(a)%*%phi.star
 t(a)%*%W.star%*%a
 ```
-So, a 95% credible set for $\beta_2$ is $\a\tr\bphi_*\pm t_{\omega/2,n+2\alpha}(\a\tr\W_*\a)$
+So, a 95% credible set for $\beta_2$ is $\a\tr\bphi_*\pm t_{\omega/2,n+2\alpha}\color{red}{\sqrt{\a\tr\W_*\a}}$
 as we compute below.
 ```{r}
 omega=.95
