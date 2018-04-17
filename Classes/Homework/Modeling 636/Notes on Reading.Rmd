@@ -1,0 +1,132 @@
+---
+title: "Notes on Reading"
+author: "Jacob S Townson"
+date: "April 14, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Abstract
+
+
+
+##Intro
+
+- Working with the Lotka-Volterra model with a Michaelis-Menten functional response. This model is basically a more detailed version of the original version we learned in class. Recall, the original L-V model is
+
+$$\begin{cases}
+v' = av - bvp, \\
+p' = -cp + dvp
+\end{cases}$$
+
+- non ratio dependent models seem to run into paradoxes
+
+- Ratio-dependent models are becoming more popular, example given on page 2
+
+- The model we are studying in this paper:
+
+$$\begin{cases}
+x'(t) = ax(1-x/K)-cxy/(my+x) = F(x,y), \\
+y'(t) = y(-d+fx/(my+x)) = G(x,y), \\
+x(0) = x_0 > 0, y(0) = y_0 > 0
+\end{cases}$$
+
+- $x = v =$ prey density
+
+- $y = p =$ predator density
+
+- $a =$ prey intrinsic growth rate
+
+- $K =$ carrying capacity
+
+- $c =$ capturing rate
+
+- $m =$ half saturation constant
+
+- $f =$ maximal predator growth rate
+
+- $d =$ predator death rate
+
+- $u =x/y$
+
+- $s = \frac{c}{ma}$
+
+- $\delta=\frac{f}{a}$
+
+- $r =\frac{d}{f}$
+
+- Interesting things about this model:
+-- for some initial conditions, the predator and prey can go extinct at the same time. 
+-- there are no nontrivial periodic solutions given the positive steady state is locally asymptotic stable
+
+- The goal of this paper is to give an almost complete classification for the asymptotic behavior of the solutions of the model in question.
+
+- The final part of the intro contains a table with all previously found results about the model in discussion. It also includes all open questions still had about the model. 
+
+##Main Results
+
+- They begin the main results by finding a lemma which describes the qualitative behavior of 
+$$y = h(u) = \frac{1+\delta r - s+(1+\delta r - \delta)u}{u(u+1)}$$
+
+### Equilibrium Analysis
+
+- The trivial and the boundary equilibria are here and fairly obvious. 
+
+- Iff $0<r<1$ and $y^* = h(u^*) > 0$, we find a unique positive equilibrium solution $E^* = (u^*,y^*)$. 
+
+- The stability of all the equilibria is described in lemma 2.2. The proof revolves around finding the eigenvalues of the variational matrix $J$.
+
+- Theorem 2.1 answers the first open question about the model: **If $r>1$ and $s \in (0,1+\delta r]$, then the equilibrium $(1,0)$ is globally asymptotically stable for our system in $\mathbb{R}^2$.** The proof involves looking at the eigenvalues again of the variational matrix, as well as the use of the previous lemmas in this section.
+
+- The next theorem doesn't answer an open question about the model, but precisely states how the outcomes depend on the initial conditions for the model. 
+
+- Theorem 2.3 answers the second open question on the list (answers YES), basically saying that the positive equilibrium point $E^*$ exists and is globally asymptotically stable in $\mathbb{R}^2$ for the model given some boundary conditions. The proof is similar to some of the previous, but requires the use of the Lyapunov function (labelled as $V(u,y)$ in the text).
+
+- The next theorem looks at the similar boundary conditions as the theorem above, but observing what happens at the other equilibrium points (trivial and boundary equilibria).
+
+- Open question number 3 is answered by Theorem 2.5, the proof of which involves the same Lyapunov function as the proof of Theorem 2.3. This theorem once again proves that $E^*$ is globally asymptotically stable in $\mathbb{R}^2$ for the model for different boundary conditions. 
+
+- Theorem 2.6 does the same for the other two equilibria.
+
+- We have one more case for boundary conditions, given at (2.9). 
+
+- Theorem 2.7 states that the model has at most one limit cycle in $\mathbb{R}^2$ if we have the conditions stated in 2.9. The proof of this seems to be mostly compromised of an older proof done by Hwang. A result of this theorem is that if $E^*$ is locally asymptotically stable, then there is no positive periodic solution surrounding it. 
+
+- Lemma 2.4 is used to classify the behavior of the stable manifold $\Gamma$ of the equilibrium $E_1$. 
+
+- Theorem 2.8 deals with the case of when $E^*$ is stable, and what happens to the stable manifold because of it. 
+
+- Theorem 2.9 deals with the opposite scenario, when $E^*$ is unstable.
+
+##Discussion
+
+- They answered all 3 open questions of the Kuang and Beretta paper described.(theorems 2.1,2.3,2.5)
+
+- The only issue left open after the calculations in section 2 is how to determine the relative location of the stable manifold $\Gamma$ of equilibrium $E_1$ of the model.
+
+- This paper shows through the answering of these questions that the ratio-dependent models are capable of producing much more detailed dynamics and more interesting outcomes than the non ratio-dependent models.
+
+- Much of the difference mentioned above comes from the fact that in the original models, the carrying capacity plays a key role in the behavior of the solutions, while in the ratio-dependent models, the solutions are independent of carrying capacity.
+
+- The above is explained in a case by case argument for all possible cases of boundary conditions for the model.
+
+- deterministic mutual extinction is an extreme outcome and calls for extreme measures. Ratio-dependence is currently the only type of model that provides a simple and plausible explanation of such dynamics. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

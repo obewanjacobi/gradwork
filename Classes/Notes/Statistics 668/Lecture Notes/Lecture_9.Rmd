@@ -257,7 +257,7 @@ r_i=\frac{\hat{\varepsilon}_i}{s\sqrt{1-h_{ii}}}.
 \]
 The *externally studentized residuals* are defined by 
 \[
-t_i=\frac{\hat{\varepsilon}_{(i)}}{s_{(i)}\sqrt{1-h_{ii}}}.
+t_i=\frac{\color{red}{\hat{\varepsilon}_{i}}}{s_{(i)}\sqrt{1-h_{ii}}}.
 \]
 - **Theorem 9.3.1** (p.234): Suppose $\X\tr\X$ is invertible. We can compute $\hat{\bet}_{(i)}$ without actually deleting the $i$th observation as follows:
 \[
@@ -322,8 +322,9 @@ It follows that
 - **Theorem 9.3.2** (p.234): Suppose $\X\tr\X$ is invertible $(k+1)\times (k+1)$ matrix. We can compute $s_{(i)}^2$
 without actually deleting the $i$th observation as follows:
 \[
-s_{(i)}^2=\left(\frac{n-k-1-r_i^2}{n-k-2}\right)s^2.
+s_{(i)}^2=\left(\frac{n-k-1-r_i^2}{n-k-2}\right)s^2
 \]
+<span style="color:red">where $r_i$ is studentized residual from Definition 9.3.1.</span>
 - *Proof*: We have
 \[
 \bea
@@ -415,8 +416,8 @@ cbind(epsilon.hat,r,t)
 - If $y_i$ is a non-negative random variable, then the Box-Cox approach is a popular method to attempt to identify an appropriate transformation.
 - We assume that there is a real number $\lambda$ such that $\u=\bpm u_1 \\ \vdots \\ u_n\epm \sim N_n(\X\bet,\sigma^2\I)$ where
 \[
-u_i=\left\{\begin{array}{cl} \frac{y^\lambda-1}{\lambda} & \mbox{for } \lambda\neq 0\\
-\ln y & \mbox{for } \lambda=0 \end{array}\right. 
+u_i=\left\{\begin{array}{cl} \frac{\color{red}{y_i}^\lambda-1}{\lambda} & \mbox{for } \lambda\neq 0\\
+\ln \color{red}{y_i} & \mbox{for } \lambda=0 \end{array}\right. 
 \]
 - Note that if $u_i$ are iid random variables each with pdf $f$, then 
 \[
