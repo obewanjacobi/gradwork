@@ -166,7 +166,41 @@ where $\V_*=(\V^{-1}+\X\tr\X)^{-1}$ and $\bphi_*=\V_*(\V^{-1}\bphi+\X\tr\y)$.
 \nnn &=& c_2 \int_0^\infty \tau^{(\alpha_{**}+k+1)/2} \exp\left\{-\tau[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}]/2\right\} \ d\tau \\
 \nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+\delta_{**}\right]^{-\color{red}{[(\alpha_{**}+k+1)/2+1]}} \\
 \nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+2\delta+\y\tr\y+\bphi\tr\V^{-1}\bphi-\bphi_*\tr\V_{*}^{-1}\bphi_*\right]^{-(n+2\alpha+k+1)/2} \\
-\nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+2\delta+(\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)\right]^{-(n+2\alpha+k+1)/2} \\
+\nnn &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+2\delta+(\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)\right]^{-(n+2\alpha+k+1)/2} 
+\eea
+\]
+<span style="color:red">since</span>
+\[
+\color{red}{
+\bea
+\nnn (\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)&=& 
+(\y-\X\bphi)\tr\left(\I-\X\V(\V+\V\X\tr\X\V)^{-1}\V\X\tr\right)(\y-\X\bphi) \\
+\nnn &=& (\y-\X\bphi)\tr\left(\I-\X(\V^{-1}\V\V^{-1}+\V^{-1}\V\X\tr\X\V\V^{-1})^{-1}\X\tr\right)(\y-\X\bphi) \\
+\nnn &=& (\y-\X\bphi)\tr\left(\I-\X(\V^{-1}+\X\tr\X)^{-1}\X\tr\right)(\y-\X\bphi) \\
+\nnn &=& (\y-\X\bphi)\tr\left(\I-\X\V_*\X\tr\right)(\y-\X\bphi) \\
+\nnn &=& (\y-\X\bphi)\tr\left(\I-\X\V_*\X\tr\right)(\y-\X\bphi) \\
+\nnn &=& \y\tr\y-2\bphi\tr\X\tr\y+\bphi\tr\X\tr\X\bphi-\y\tr\X\V_*\X\tr\y+2\bphi\tr\X\tr\X\V_*\X\tr\y-\bphi\tr\X\tr\X\V_*\X\tr\X\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V_*\X\tr\y-2\bphi\tr\X\tr\y+2\bphi\tr\X\tr\X\V_*\X\tr\y+\bphi\tr\X\tr\X\bphi-\bphi\tr\X\tr\X\V_*\X\tr\X\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V_*\X\tr\y-2\bphi\tr\V_*^{-1}\V_*\X\tr\y+2\bphi\tr\X\tr\X\V_*\X\tr\y+\bphi\tr\X\tr\X\bphi-\bphi\tr\X\tr\X\V_*\X\tr\X\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V_*\X\tr\y-2\bphi\tr(\V_*^{-1}-\X\tr\X)\V_*\X\tr\y+\bphi\tr\X\tr\X\bphi-\bphi\tr\X\tr\X\V_*\X\tr\X\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V_*\X\tr\y-2\bphi\tr\V^{-1}\V_*\X\tr\y+\bphi\tr\X\tr\X\bphi-\bphi\tr\X\tr\X\V_*\X\tr\X\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V_*\X\tr\y-2\bphi\tr\V^{-1}\V_*\X\tr\y+\bphi\tr(\V_*^{-1}-\V^{-1})\bphi-\bphi\tr(\V_*^{-1}-\V^{-1})\V_*(\V_*^{-1}-\V^{-1})\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V_*\X\tr\y-2\bphi\tr\V^{-1}\V_*\X\tr\y+\bphi\tr(\V_*^{-1}-\V^{-1})\bphi-\bphi\tr(\V_*^{-1}-\V^{-1})\V_*(\V_*^{-1}-\V^{-1})\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V_*\X\tr\y-2\bphi\tr\V^{-1}\V_*\X\tr\y+\bphi\tr\V_*^{-1}\bphi-\bphi\tr\V^{-1}\bphi-\bphi\tr\V_*^{-1}\bphi+\bphi\tr\V_*^{-1}\V_*\V^{-1}\bphi+\bphi\tr\V^{-1}\V_*\V_*^{-1}\bphi-\bphi\tr\V^{-1}\V^*\V^{-1}\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V_*\X\tr\y-2\bphi\tr\V^{-1}\V_*\X\tr\y-\bphi\tr\V^{-1}\bphi+\bphi\tr\V^{-1}\bphi+\bphi\tr\V^{-1}\bphi-\bphi\tr\V^{-1}\V^*\V^{-1}\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V_*\X\tr\y-2\bphi\tr\V^{-1}\V_*\X\tr\y+\bphi\tr\V^{-1}\bphi-\bphi\tr\V^{-1}\V^*\V^{-1}\bphi \\
+\nnn &=& \y\tr\y-\y\tr\X\V^*\X\tr\y-2\bphi\tr\V^{-1}\V_*\X\tr\y+\bphi\tr\V^{-1}\bphi- \bphi\tr\V^{-1}\V_*\V^{-1}\bphi \\
+\nnn &=& \y\tr\y+\bphi\tr\V^{-1}\bphi- \bphi\tr\V^{-1}\V_*\V^{-1}\bphi-2\bphi\tr\V^{-1}\V_*\X\tr\y-\y\tr\X\V^*\X\tr\y \\
+\nnn &=& \y\tr\y+\bphi\tr\V^{-1}\bphi-(\bphi\tr\V^{-1}+\y\tr\X)\V_*(\V^{-1}\bphi+\X\tr\y) \\
+\nnn &=& \y\tr\y+\bphi\tr\V^{-1}\bphi-(\V^{-1}\bphi+\X\tr\y)\tr\V_*\V_*^{-1}\V_*(\V^{-1}\bphi+\X\tr\y) \\
+\nnn &=& \y\tr\y+\bphi\tr\V^{-1}\bphi-\bphi_*\tr\V_{*}^{-1}\bphi_*.
+\eea
+}
+\]
+<span style="color:red">Then it follows that</span>
+\[
+\bea
+\nnn u(\bet|\y) &=& c_3 \left[(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)+2\delta+(\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)\right]^{-(n+2\alpha+k+1)/2} \\
 \nnn &=& c_4 \left[1+\frac{(\bet-\bphi_*)\tr\V_{*}^{-1}(\bet-\bphi_*)/(n+2\alpha)}{2\delta+(\y-\X\bphi)\tr(\I+\X\V\X\tr)^{-1}(\y-\X\bphi)/(n+2\alpha)}\right]^{-(n+2\alpha+k+1)/2} \\
 \nnn &=& c_4 \left[1+\frac{(\bet-\bphi_*)\tr\W_{*}^{-1}(\bet-\bphi_*)}{n+2\alpha}\right]^{-(n+2\alpha+k+1)/2}.
 \eea

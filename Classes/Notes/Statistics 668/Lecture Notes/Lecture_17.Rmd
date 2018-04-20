@@ -1,0 +1,328 @@
+---
+title: 'Chapter 17: Linear Mixed Models'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "April 17, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\d{\boldsymbol{d}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\k{\boldsymbol{k}}$
+$\def\m{\boldsymbol{m}}$
+$\def\q{\boldsymbol{q}}$
+$\def\s{\boldsymbol{s}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\w{\boldsymbol{w}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\G{\boldsymbol{\mathrm{G}}}$
+$\def\H{\boldsymbol{\mathrm{H}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\K{\boldsymbol{\mathrm{K}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\S{\boldsymbol{\mathrm{S}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\V{\boldsymbol{\mathrm{V}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\Z{\boldsymbol{\mathrm{Z}}}$
+$\def\rX{\mathcal{X}}$
+$\def\LR{\mbox{LR}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\bsig{\boldsymbol{\sigma}}$
+$\def\ep{\boldsymbol{\varepsilon}}$
+$\def\bet{\boldsymbol{\beta}}$
+$\def\gam{\boldsymbol{\gamma}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\lam{\boldsymbol{\lambda}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\corr{\mbox{corr}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\def\Fobs{F_{\mbox{obs}}}$
+$\def\tobs{t_{\mbox{obs}}}$
+$\def\sion{\sum_{i=1}^n}$
+$\def\res{\hat{\varepsilon}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+$\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}$
+
+### 17.2 The Linear Mixed Model
+- **Definition 17.2.1** (p.480): The *linear mixed model* with $n$ observations can be written as
+\[
+\y=\X\bet+\sum_{j=1}^m \Z_j \a_j+\ep
+\]
+where $\y$ is the response vector, $\X$ is a known $n\times p$ design matrix, $\bet$ is an unknown but fixed $p$-dimensional vector of parameters, the $\Z_j$'s are known $n\times r_j$ full-rank matrices, the $\a_j$'s are $r_j$-dimensional random vectors such that 
+\[
+E(\a_j)=\zeros_{r_j}, \cov(\a_j)=\sigma_j^2\I_{\color{red}{r_j}}, \mbox{ and } \cov(a_j,a_k)=\O_{r_j,r_k},
+\]
+and $\ep$ is an $n$-dimensional random vector such that
+\[
+E(\ep)=\zeros_n, \color{red}{\cov(\ep)=\sigma^2\I_n}, \mbox{ and } \cov(\ep,\a_j)=\O_{n,r_j} \mbox{ for all } j.
+\]
+- Sometimes, we re-write the model as $\ds{\y=\X\bet+\sum_{j=0}^m \Z_j \a_j}$
+where $r_0=n$, $\Z_0=\I_n$, and $\a_0=\ep$.
+- **Theorem 12.2.1** (p.480): Suppose we observe $n$ observations from a linear mixed model.  Then $E(\y)=\X\bet$ and $\cov(\y)=\Sig=\sum_{\color{red}{j}=1}^m \sigma_{\color{red}{j}}^2\Z_{\color{red}{j}}\Z_{\color{red}{j}}\tr+\sigma^2\I_n$.
+- *Proof*: We have
+\[
+\bea
+\nnn E(\y)&=& E\left(\X\bet+\sum_{j=1}^m \Z_j \a_j+\ep\right) \\
+\nnn &=& \X\bet+\sum_{j=1}^m \Z_j E(\a_j)+E(\ep) \\
+\nnn &=& \X\bet+\sum_{j=1}^m \Z_j \zeros_{r_j}+\zeros_n \\
+\nnn &=& \X\bet
+\eea
+\]
+and
+\[
+\bea
+\nnn \cov(\y)&=& \cov\left(\X\bet+\sum_{j=1}^m \Z_j \a_j+\ep\right) \\
+\nnn &=& \cov\left(\sum_{j=0}^m \Z_j \a_j\right) \\
+\nnn &=& \cov\left(\sum_{j=0}^m \Z_j \a_j, \sum_{k=0}^m \Z_k\a_k\right) \\
+\nnn &=& \sum_{j=0}^m\sum_{k=0}^m\cov\left(\Z_j \a_j, \Z_k\a_k\right) \\
+\nnn &=& \sum_{j=0}^m\sum_{k=0}^m\Z_j\cov\left(\a_j, \a_k\right)\Z_k\tr \\
+\nnn &=& \sum_{j=0}^m\left(\Z_j\cov\left(\a_j, \a_j\right)\Z_j\tr+\sum_{k\neq j}\Z_j\cov\left(\a_j, \a_k\right)\Z_k\tr\right) \\
+\nnn &=& \sum_{j=0}^m \left(\Z_j(\sigma_j^2\I_{\color{red}{r_j}})\Z_j\tr+\sum_{k\neq j}\Z_j\O_{r_j,r_k}\Z_k\tr\right) \\
+\nnn &=& \sum_{j=0}^m \sigma_j^2\Z_j\Z_j\tr \\
+\nnn &=& \sigma^2\I_n+\sigma_j^2\color{red}{\sum_{j=1}^m}\Z_j\Z_j\tr.
+\eea
+\]
+
+### 17.3 Examples
+- In this section, we consider an example of a linear mixed model.
+- In the *balanced one-way random effects model*, we assume
+\[
+y_{ij}=\mu+a_i+\varepsilon_{ij}, i=1,\ldots,r_1, j=1,\ldots, N
+\]
+where $a_i$ is a random effect such that $E(a_i)=0$, $\cov(a_i)=\sigma_1^2$, and $\cov(a_i,a_k)=0$ if $i\neq k$ and $\varepsilon_{ij}$ are random errors such that $E(\varepsilon_{ij})=0$, $\var(\varepsilon_{ij})=\sigma^2$,  $\cov(\varepsilon_{ij},\varepsilon_{k\ell})=0$ if $(i,j)\neq (k,\ell)$, and $\cov(a_i,\varepsilon_{k\ell})=0$ for all $i,k,\ell$.
+- This is a linear mixed model with 
+\[
+\y=\bpm y_{11} \\ \vdots \\ y_{1N} \\ \vdots \\ y_{r_1,1} \\ \vdots \\ y_{r_1,N} \epm,
+\X=\j, \bet=\mu, \Z=\bpm \j_N & \zeros_N & \cdots & \zeros_N \\ \zeros_N & \j_N & & \zeros_N \\ \vdots & & \ddots & \vdots \\ \zeros_N & \zeros_N & \cdots & \j_N \\ \epm = \I_{r_1} \otimes \j_N, \a_1=\bpm a_1 \\ \vdots \\ a_{r_1} \epm, \ep=\bpm \varepsilon_{11} \\ \vdots \\ \varepsilon_{1N} \\ \vdots \\ \varepsilon_{r_1,1} \\ \vdots \\ \varepsilon_{r_1,N} \epm.
+\]
+- **Example 17.3.1**:  Consider experimental data to measure the improvement in the status of patients with a particular disease.  A random sample of 10 clinics are selected from a large population of clinics and random samples of 5 patients are selected from each clinic. It is assumed that the patients are reasonably homogenous with respect to physical characteristics associated with the disease and that the patients are randomly assigned to clinics.  Set up a one-way random effects model for this data set.
+- *Answer*: Here $y_{ij}$ is the improvement for the $j$th patient at the $i$th clinic, $\X=\j_{50}$, $\bet=\mu$ is the mean improvement, $\Z=\I_{10} \otimes \j_5$, and $a_i$ is the random effect for the $i$th clinic.
+- **R Example 17.3.1**: Experimental data is available in the file ``Clinic Data.txt''.  The following R commands read the data into R and displays it.
+```{r}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+dataset=read.table("Clinic Data.txt",sep="\t",header=TRUE)
+dataset
+```
+Then we set up the one-way random effects model as follows.
+```{r}
+y=c(t(as.matrix(dataset[,2:6])))
+y
+X=rep(1,50)
+Z=matrix(0,50,10)
+for (i in 1:10)
+ Z[5*(i-1)+(1:5),i]=1
+```
+Alternately, the Kronecker product can be used to specify `Z`.
+```{r}
+diag(10)%x%rep(1,5)
+```
+
+### 17.4 Estimation of Variance Components
+- For the remaining sections, we also assume that the $\a_i$'s and $\ep$ are normally distributed.
+- One method for estimating the variance components is referred to as *restricted maximum likelihood* (REML).
+- In this approach, we find the maximum likelihood estimate of the variance components based on $\K\y$ rather than $\y$ where $\K$ is chosen to be a full rank matrix such that $\K\X=\O$ with the maximum number of rows.
+- The following proof uses a result from linear algebra: If $\A\x=\c$ is consistent, then the solutions have the form $\x=\A^-\c+(\I-\A^-\A)\h$ where $\h$ is an arbitrary vector of dimension equal to the number of columns of $\A$.
+- **Theorem 17.4.1** (p.487): Let $\X$ be an $n\times p$ matrix of rank $r\leq p < n$.  Then the full rank matrix $\K$ with the maximal number of rows such that $\K\X=\O$ is an $(n-r)\times n$ matrix of the form $\K=\C(\I-\H)=\C(\I-\X(\X\tr\X)^-\X\tr)$ where $\C$ is a full rank transformation of the rows of $\I-\H$.
+- *Proof*: The rows $\k_i\tr$ of $\K$ must satisfy $\k_i\tr\X=\zeros_n\tr$ which implies $\X\tr\k_i=\zeros_n$ and occurs if $\k_i=(\I_n-(\X\tr)^-\X\tr)\c=(\I_n-\X\X^-)\tr\c$ for some $\c$.   Furthermore, $\X\X^-$ is an idempotent matrix with $\rank(\X\X^-)=\rank(\X)=r$.  
+It follows that $\I_n-\X\X^-$ is also idempotent with $\rank(\I_n-\X\X^-)=\trace{\I_n-\X\X^-}=\trace{\I_n}-\trace{\X\X^-}=n-r$.  
+Thus, we can choose $n-r$ linearly independent vectors $\k_i$ that satisfy $\X\tr\k_i=\zeros_n$.  
+This implies there exists a matrix $\K=\C(\I_n-\X\X^-)$ which satisfies the conditions of the theorem.  
+Similar to the proof of Theorem 12.2.1, we can show that $\X(\X\tr\X)^-(\X\tr\X)=\X$ so 
+$\X[(\X\tr\X)^-\X\tr]\X=\X$ shows that $(\X\tr\X)^-\X\tr$ is a generalized inverse of $\X$.  By Theorem 12.2.1, $\X(\X\tr\X)^-\X\tr$ does not depend on the choice of $(\X\tr\X)^-$ so $\K=\C(\I_n-\X\X^-)=\C(\I_n-\X(\X\tr\X)^-\X\tr)$.
+
+- **Theorem 17.4.2** (p.487): Suppose that $\y\sim N_n(\X\bet,\Sig)$ where $\ds{\Sig=\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr}$ where $\X$ is a known $n\times p$ design matrix of rank $r\leq p < n$, and the $\Z_j$'s are known $n\times r_j$ full-rank matrices and $\K$ is specified in Theorem 17.4.1.  Then 
+\[
+\K\y \sim N_{n-r}\left(\zeros,\K\left(\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\right)\K\tr\right).
+\]
+- *Proof*: The result follows from Theorem 4.4.1 since
+\[
+E(\K\y)=\K E(\y)=\K\X\bet=\O\bet=\zeros.
+\]
+and
+\[
+\cov(\K\y)=\K\cov(\y)\K\tr=\K\Sig\K\tr.
+\]
+
+- **Theorem 17.4.3** (p.488): Suppose that $\y\sim N_n(\X\bet,\Sig)$ where $\ds{\Sig=\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr}$ where $\X$ is a known $n\times p$ design matrix of rank $r\leq p < n$, and the $\Z_j$'s are known $n\times r_j$ full-rank matrices and $\K$ is specified in Theorem 17.4.1.  Then the REML estimates of $\sigma_0^2, \sigma_1^2, \ldots, \sigma_m^2$ can be obtained by solving the equations
+\[
+\trace{\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr}=\y\tr\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr(\K\Sig\K\tr)^{-1}\K\y
+\]
+for $i=0,1,\ldots,m$.
+- *Proof*: From Theorem 17.4.2, the likelihood function for $\sigma_0^2, \sigma_1^2, \ldots, \sigma_m^2$ based on $\K\y$ is
+\[
+L(\sigma_0^2, \sigma_1^2, \ldots, \sigma_m^2)=\frac{1}{(2\pi)^{(n-r)/2}|\K\Sig\K\tr|^{1/2}}e^{-(\K\y-\zeros)\tr(\K\Sig\K\tr)^{-1}(\K\y-\zeros)\color{red}{/2}}.
+\]
+Thus, the log-likelihood can be written as
+\[
+\bea
+\nnn \ell(\sigma_0^2, \sigma_1^2, \ldots, \sigma_m^2)&=& \ln L(\sigma_0^2, \sigma_1^2, \ldots, \sigma_m^2) \\
+\nnn &=& \color{red}{-}\frac{(n-r)}{2}\ln (2\pi)-\frac{1}{2}\ln |\K\Sig\K\tr|-\frac{1}{2}\y\tr\K\tr(\K\Sig\K\tr)^{-1}\K\y \\
+\nnn &=& \color{red}{-}\frac{(n-r)}{2}\ln (2\pi)-\frac{1}{2}\ln \left|\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right|-\frac{1}{2}\y\tr\K\tr\left(\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right)^{-1}\K\y.
+\eea
+\]
+Differentiating with respect to $\sigma_i^2$, we obtain
+\[
+\bea
+\nnn \frac{\partial \ell}{\partial \sigma_i^2}&=& -\frac{1}{2}\trace{\left(\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right)^{-1}\frac{\partial}{\partial \sigma_i^2}\left[\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right]}+\frac{1}{2}\y\tr\K\tr\left(\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right)^{-1}\frac{\partial}{\partial \sigma_i^2}\left[\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right]\left(\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right)^{-1}\K\y \\
+\nnn &=& -\frac{1}{2}\trace{\left(\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right)^{-1}\K\Z_i\Z_i\tr\K\tr}+\frac{1}{2}\y\tr\K\tr\left(\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right)^{-1}\K\Z_i\Z_i\tr\K\tr\left(\K\sum_{j=0}^m \sigma_j^2 \Z_j\Z_j\tr\K\tr\right)^{-1}\K\y \\
+\nnn &=& -\frac{1}{2}\trace{\left(\K\Sig\K\tr\right)^{-1}\K\Z_i\Z_i\tr\K\tr}+\frac{1}{2}\y\tr\K\tr\left(\K\Sig\K\tr\right)^{-1}\K\Z_i\Z_i\tr\K\tr\left(\K\Sig\K\tr\right)^{-1}\K\y \\
+\nnn &=& -\frac{1}{2}\trace{\K\tr\left(\K\Sig\K\tr\right)^{-1}\K\Z_i\Z_i\tr}+\frac{1}{2}\y\tr\K\tr\left(\K\Sig\K\tr\right)^{-1}\K\Z_i\Z_i\tr\K\tr\left(\K\Sig\K\tr\right)^{-1}\K\y
+\eea
+\]
+for $i=0,1,\ldots,m$.  Setting these equations equal to 0, the result is obtained.
+- The left side of equation $i$ can be expressed as 
+\[
+\bea
+\nnn \trace{\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr}&=&\trace{(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr}\\
+\nnn &=& \trace{(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr(\K\Sig\K\tr)^{-1}\K\Sig\K\tr}\\
+\nnn &=& \trace{\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr(\K\Sig\K\tr)^{-1}\K\Sig}\\
+\nnn &=& \trace{\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr(\K\Sig\K\tr)^{-1}\K\sum_{j=0}^m \sigma_j^2\Z_j\Z_j\tr}\\
+\nnn &=& \sum_{j=0}^m \sigma_j^2\trace{\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr(\K\Sig\K\tr)^{-1}\K\Z_j\Z_j\tr}\\
+\nnn &=& \m_i\tr\bsig
+\eea
+\]
+where $\m_i=\bpm \trace{\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr(\K\Sig\K\tr)^{-1}\K} \\
+\trace{\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr(\K\Sig\K\tr)^{-1}\K\Z_1\Z_1\tr} \\
+\vdots \\
+\trace{\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr(\K\Sig\K\tr)^{-1}\K\Z_m\Z_m\tr} \\
+\epm$ and $\bsig=\bpm \sigma_0^2 \\ \sigma_1^2 \\ \vdots \\ \sigma_m^2\epm$.  
+The right side of equation $i$ is 
+\[
+q_i=\y\tr\K\tr(\K\Sig\K\tr)^{-1}\K\Z_i\Z_i\tr\K\tr(\K\Sig\K\tr)^{-1}\K\y.
+\]
+So, the system of equations can be expressed as 
+\[
+\M\bsig=\q
+\]
+where $\M=\bpm \m_0\tr \\ \m_1\tr \\ \vdots \\ \m_m\tr\epm$ and $\q=\bpm q_0 \\ q_1 \\ \vdots \\ q_m\epm$.
+- Typically, closed form solutions of the equations in Theorem 17.4.3 are not available so we can attempt to use numerical algorithms to find the solution.  
+- One simple iterative algorithm proceeds as follows. 
+    + Choose an initial starting value $\bsig_{(0)}$.
+    + On step $t=0,1,2,\ldots$: Compute $\M_{(t)}$ and $\q_{(t)}$ using $\bsig_{(t)}$ and let $\bsig_{(t+1)}=\M_{(t)}^{-1}\q_{(t)}$.
+    + Iterate until convergence.
+- Iterative algorithms like the one above are only designed to find local extrema, so it may be necessary to use multiple starting values to search for the global maximizer of $\ell$.
+
+- **R Example 17.4.1**: Consider the data set "Clinic Data.txt" and the one-way random effects model set up in Example 17.3.1.  Under the additional assumption that $a_i$ and $\varepsilon_{ij}$ are normally distributed, find the REML estimates of the variance components $\sigma_1^2$ and $\sigma^2$.
+- *Answer*: First, use the code in R Example 17.3.1 to create `y`, `X`, and `Z`.  
+Here $\X=\j$, we can choose $\C$ to be any full rank $49\times 50$ matrix since
+\[
+\K\X=\C(\I-\H)\j=\C(\j-\H\j)=\C(\j-\j)=\C\zeros=\zeros.
+\]
+So, we choose $\C=(\I_{49},\color{red}{\zeros_{49}})$ and compute $\K\color{red}{=\C(\I-\H)=\C(\I-\j(\j\tr\j)^{-1}\j\tr)=\C(\I-\frac{1}{n}\j\j\tr)=\C(\I-\frac{1}{n}\J)}$.
+```{r}
+C=cbind(diag(49),0)
+K=C%*%(diag(50)-1/50*matrix(1,50,50))
+```
+Then we use the iterative algorithm with initial value $\bsig_{(0)}=\bpm 1 \\ 1 \epm$.
+```{r}
+sigma=c(1,1)
+```
+We also create matrices `M` and `q` that we will fill in later.
+```{r}
+M=matrix(0,2,2)
+q=c(0,0)
+```
+It is helpful to store $\Z\Z\tr$ in a matrix `ZZt` to avoid repeating its computation multiple times.
+```{r}
+ZZt=Z%*%t(Z)
+```
+Now, we perform one step of the iterative algorithm.
+```{r}
+Sigma=sigma[1]*diag(50)+sigma[2]*ZZt
+P=t(K)%*%solve(K%*%Sigma%*%t(K))%*%K
+M[1,1]=sum(diag(P%*%P))
+M[1,2]=sum(diag(P%*%P%*%ZZt))
+M[2,1]=sum(diag(P%*%ZZt%*%P))
+M[2,2]=sum(diag(P%*%ZZt%*%P%*%ZZt))
+q[1]=sum((P%*%y)^2)
+q[2]=sum((t(Z)%*%P%*%y)^2)
+sigma=solve(M)%*%q
+sigma
+```
+So, we see that $\bsig_{(1)}=\bpm 1.38670 \\ 0.75002 \epm$.  Then we perform the next step of the iterative algorithm.
+```{r}
+Sigma=sigma[1]*diag(50)+sigma[2]*ZZt
+P=t(K)%*%solve(K%*%Sigma%*%t(K))%*%K
+M[1,1]=sum(diag(P%*%P))
+M[1,2]=sum(diag(P%*%P%*%ZZt))
+M[2,1]=sum(diag(P%*%ZZt%*%P))
+M[2,2]=sum(diag(P%*%ZZt%*%P%*%ZZt))
+q[1]=sum((P%*%y)^2)
+q[2]=sum((t(Z)%*%P%*%y)^2)
+sigma=solve(M)%*%q
+sigma
+```
+So, we see that $\bsig_{(2)}=\bpm 1.38670 \\ 0.75002 \epm$.  
+There is no change and the algorithm has converged.  
+So the REML estimates are $\hat\sigma^2=1.38670$ and $\hat{\sigma}_1^2=0.75002$.
+
+### 17.5 Inference for $\bet$
+- Next, we want to estimate $\bet$ based on the estimates of the variance components.  
+- One method for doing this is to insert the estimates of the variance components into the generalized least squares estimate from Section 7.8.
+- So, the *estimated generalized least squares* (EGLS) estimate of $\bet$ based on the REML estimate $\ds{\hat{\Sig}=\sum_{j=0}^m \hat{\sigma}_j^2 \Z_i\Z_i\tr}$ is $\hat{\bet}=(\X\tr\hat{\Sig}^{-1}\X)^- \X\tr\hat{\Sig}^{-1}\y$.
+- **R Example 17.5.1**: Consider the data set "Clinic Data.txt" and the one-way random effects model set up in Example 17.3.1.  Under the additional assumption that $a_i$ and $\varepsilon_{ij}$ are normally distributed, find the EGLS estimate of $\mu$ based on the REML estimate of $\Sig$ from R Example 17.4.1.
+- *Answer*: First, we compute $\hat{\Sig}$ and display the first 8 rows and columns.
+```{r}
+Sigma=sigma[1]*diag(50)+sigma[2]*ZZt
+Sigma[1:8,1:8]
+```
+This is then used to compute the EGLS estimate of $\bet=\mu$.
+```{r}
+invSigma=solve(Sigma)
+beta.hat=solve(t(X)%*%invSigma%*%X)%*%t(X)%*%invSigma%*%y
+beta.hat
+```
+Not surprisingly, this is the mean of $\y$.
+```{r}
+mean(y)
+```
+- Alternately, the built-in function `lmer` in the R package `lme4` can be used to fit linear mixed models.
+```{r}
+require(lme4)
+clinic=sort(rep(1:10,5))
+clinic=as.factor(clinic)
+clinic
+lmer.model=lmer(y~(1|clinic))
+summary(lmer.model)
+```

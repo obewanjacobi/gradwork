@@ -1,0 +1,335 @@
+---
+title: 'Chapter 18: Additional Models'
+author: Notes for MATH 668 based on Linear Models in Statistics by Alvin C. Rencher
+  and G. Bruce Schaalje, second edition, Wiley, 2008.
+date: "April 19, 2018"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\a{\boldsymbol{a}}$
+$\def\b{\boldsymbol{b}}$
+$\def\c{\boldsymbol{c}}$
+$\def\d{\boldsymbol{d}}$
+$\def\f{\boldsymbol{f}}$
+$\def\g{\boldsymbol{g}}$
+$\def\h{\boldsymbol{h}}$
+$\def\j{\boldsymbol{j}}$
+$\def\k{\boldsymbol{k}}$
+$\def\m{\boldsymbol{m}}$
+$\def\q{\boldsymbol{q}}$
+$\def\s{\boldsymbol{s}}$
+$\def\t{\boldsymbol{t}}$
+$\def\u{\boldsymbol{u}}$
+$\def\v{\boldsymbol{v}}$
+$\def\w{\boldsymbol{w}}$
+$\def\x{\boldsymbol{x}}$
+$\def\y{\boldsymbol{y}}$
+$\def\z{\boldsymbol{z}}$
+$\def\A{\boldsymbol{\mathrm{A}}}$
+$\def\B{\boldsymbol{\mathrm{B}}}$
+$\def\C{\boldsymbol{\mathrm{C}}}$
+$\def\D{\boldsymbol{\mathrm{D}}}$
+$\def\E{\boldsymbol{\mathrm{E}}}$
+$\def\G{\boldsymbol{\mathrm{G}}}$
+$\def\H{\boldsymbol{\mathrm{H}}}$
+$\def\I{\boldsymbol{\mathrm{I}}}$
+$\def\J{\boldsymbol{\mathrm{J}}}$
+$\def\K{\boldsymbol{\mathrm{K}}}$
+$\def\M{\boldsymbol{\mathrm{M}}}$
+$\def\N{\boldsymbol{\mathrm{N}}}$
+$\def\O{\boldsymbol{\mathrm{O}}}$
+$\def\P{\boldsymbol{\mathrm{P}}}$
+$\def\Q{\boldsymbol{\mathrm{Q}}}$
+$\def\S{\boldsymbol{\mathrm{S}}}$
+$\def\T{\boldsymbol{\mathrm{T}}}$
+$\def\U{\boldsymbol{\mathrm{U}}}$
+$\def\V{\boldsymbol{\mathrm{V}}}$
+$\def\W{\boldsymbol{\mathrm{W}}}$
+$\def\X{\boldsymbol{\mathrm{X}}}$
+$\def\Y{\boldsymbol{\mathrm{Y}}}$
+$\def\Z{\boldsymbol{\mathrm{Z}}}$
+$\def\rX{\mathcal{X}}$
+$\def\LR{\mbox{LR}}$
+$\def\bmu{\boldsymbol{\mu}}$
+$\def\bsig{\boldsymbol{\sigma}}$
+$\def\ep{\boldsymbol{\varepsilon}}$
+$\def\bet{\boldsymbol{\beta}}$
+$\def\gam{\boldsymbol{\gamma}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\lam{\boldsymbol{\lambda}}$
+$\def\Sig{\boldsymbol{\Sigma}}$
+$\def\zeros{\boldsymbol{0}}$
+$\def\diag{\mathrm{diag}}$
+$\def\rank{\mathrm{rank}}$
+$\def\tr{^\top}$
+$\def\ds{\displaystyle}$
+$\def\bea{\begin{eqnarray}}$
+$\def\nnn{\nonumber}$
+$\def\eea{\nnn\end{eqnarray}}$
+$\def\bpm{\begin{pmatrix}}$
+$\def\epm{\end{pmatrix}}$
+$\def\var{\mbox{var}}$
+$\def\cov{\mbox{cov}}$
+$\def\corr{\mbox{corr}}$
+$\def\Reals{\mathbb{R}}$
+$\def\abs{\mbox{abs}}$
+$\def\Fobs{F_{\mbox{obs}}}$
+$\def\tobs{t_{\mbox{obs}}}$
+$\def\sion{\sum_{i=1}^n}$
+$\def\res{\hat{\varepsilon}}$
+$\def\Bernoulli{\mbox{Bernoulli}}$
+$\def\Binomial{\mbox{Binomial}}$
+$\newcommand{\EV}[1]{E\left(#1\right)}$
+$\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}$
+
+### 18.2 Logistic Regression
+- Suppose we want to create a regression model for the relationship between an explantory variable $x$ and a response variable $y$ which follows a Bernoulli distribution with probability of success $p$.
+- Clearly, a regression model with additive errors such as 
+\[
+y_i=\beta_0+\beta_1 x_i+\varepsilon_i, i=1,\ldots, n
+\]
+with real-valued parameters $\beta_0$ and $\beta_1$ is problematic since $y_i$ can only take values $0$ and $1$.
+- Recall that, when we assume normality, we can write the regression model as
+\[
+y_i \sim N(\beta_0+\beta_1 x_i,\sigma^2), i=1,\ldots, n.
+\]
+- So, a more natural way to "generalize" the linear regression model when the $y$'s follow a different distribution is to model $\rX_i\tr\bet=\beta_0+\beta_1 \color{red}{x_i}$ as a function of the mean of the distribution.
+- For Bernoulli random variables, the model needs to specify a function $g: (0,1) \to \Reals$ such that
+\[
+g(p_i)=\beta_0+\beta_1 x_i.
+\]
+- The most popular choice of $g$ is the *logit* function $\ds{g(p)=\ln\left(\frac{p}{1-p}\right)}$ which is the inverse of the *logistic* function $\ds{g^{-1}(\eta)=\frac{e^{\eta}}{1+e^{\eta}}}$.
+- **Definition 18.2.1** (p.509): The *logistic regression model* with $n$ observations can be written as
+\[
+y_i \sim \Bernoulli\left(\frac{e^{\rX_i\tr\bet}}{1+e^{\rX_i\tr\bet}}\right)
+\]
+where $y_1,\ldots, y_n$ are independent, $\rX_i=(1,x_{i1},\ldots,x_{ik})$ are known non-random explanatory variables, and $\bet\tr=(\beta_0,\beta_1,\ldots,\beta_k)$ are fixed but unknown parameters.
+
+### 18.5 Generalized Linear Models
+- The logistic regression model is a special case of what is known as a generalized linear model.
+- Recall the definition of an exponential family from Lecture 6 of MATH 667. Natural exponential families are defined on slide 10.
+- **Definition 18.5.1** (p.514): A family $f(y;\theta)$ of pdfs or pmfs belongs to a (*natural*) *exponential family* if it has the form
+\[
+f(y;\theta)=e^{y\theta-\psi(\theta)} h(y)
+\]
+where $\psi(\theta)=\ln E(e^{y\theta})$ is the logarithm of the moment generating function of $y$.
+- For natural exponential families of the form in Definition 18.5.1, recall that 
+\[
+E(y)=\frac{d\psi}{d\theta} \mbox{ and } \var(y)=\frac{d^2\psi}{d\theta^2}.
+\]
+- **Definition 18.5.2** (p.513): For a *generalized linear model* involving a response variable $y_i$ based on a known fixed vector-valued explanatory variable $\rX_i$ for $i=1,\ldots,n$, we make the following assumptions:  
+    1. $y_i$, $i=1,\ldots,n$ are independent random variables with pdf or pmf
+\[
+f(y_i;\theta_i)=e^{y_i\theta_i-\psi(\theta_i)} h(y_i),
+\]
+    2. the $i$th response variable can be modeled based on a linear predictor
+\[
+\eta_i=\rX_i\tr\bet,
+\]
+    3. there is a one-to-one *link function* $g$ which relates the mean $\mu_i=E(y_i)$ to the $i$th predictor
+\[
+\eta_i=g(\mu_i) \Longleftrightarrow \mu_i=g^{-1}(\eta_i).
+\]
+- Often, the *canonical* link function is chosen so that $\theta_i=\eta_i$.
+- **Example 18.5.1**: If $y_1,\ldots,y_n$ are independent random variables such that $y_i\sim \Binomial(N_i,p_i)$ where $N_i$ is a known size so that $p_i$ is the only unknown parameter, write the generalized linear model for $p_i$ as a function of $\rX_i$ using the canonical link function.
+- *Answer*: First, we write the pmf of $y_i$ in the form of an exponential family as follows.
+\[
+\bea
+\nnn f(y_i;p_i)&=& {N_i \choose y_i} p_i^{y_i}(1-p_i)^{N_i-y_i} I_{\left\{0,1,\ldots,N_i\right\}}(y_i)\\
+\nnn &=& {N_i \choose y_i} \exp\left\{\ln\left(p_i^{y_i}(1-p_i)^{N_i-y_i}\right)\right\} I_{\left\{0,1,\ldots,N_i\right\}}(y_i)\\
+\nnn &=& {N_i \choose y_i} \exp\left\{y_i\ln p_i+(N_i-y_i)\ln(1-p_i)\right\} I_{\left\{0,1,\ldots,N_i\right\}}(y_i)\\
+\nnn &=& {N_i \choose y_i} \exp\left\{y_i\left(\ln p_i-\ln(1-p_i)\right)+N_i\ln(1-p_i)\right\} I_{\left\{0,1,\ldots,N_i\right\}}(y_i)\\
+\nnn &=&\exp\left\{y_i\ln \frac{p_i}{1-p_i}+N_i\ln(1-p_i)\right\} {N_i \choose y_i} I_{\left\{0,1,\ldots,N_i\right\}}(y_i)\\
+\nnn &=& e^{y_i\theta_i-\psi(\theta_i)} h(y_i)
+\eea
+\]
+where $\ds{\theta_i=\ln \frac{p_i}{1-p_i}}$ so that $\ds{p_i=\frac{e^{\theta_i}}{1+e^{\theta_i}}}$ and 
+\[
+\bea
+\nnn \psi(\theta_i)&=&-N_i\ln(1-p_i) \\
+\nnn &=& -N_i\ln\left(1-\frac{e^{\theta_i}}{1+e^{\theta_i}}\right) \\
+\nnn &=& -N_i\ln\left(\frac{1}{1+e^{\theta_i}}\right) \\
+\nnn &=& N_i\ln\left(1+e^{\theta_i}\right). \\
+\eea
+\]
+Here we want $\theta_i=\eta_i=\rX_i\tr\bet$ which implies 
+\[
+p_i=\frac{e^{\eta_i}}{1+e^{\eta_i}}=\frac{e^{\rX_i\tr\bet}}{1+e^{\rX_i\tr\bet}}.
+\]
+
+### 18.A.1 Parameter Estimation
+- Suppose that we have $n$ observations $(\rX_i,y_i)$ from a generalized linear model where $y_i$ are independent random variables with pdf or pmf
+\[
+f(y_i;\color{red}{\theta_i})=e^{y_i\color{red}{\theta_i}-\psi(\color{red}{\theta_i})} h(y_i)
+\]
+and $\theta_i=\rX_i\tr\bet$.  Then the log-likelihood function can be expressed as
+\[
+\bea
+\nnn \ell(\bet)&=& \ln L(\bet) \\
+\nnn &=& \ln \prod_{i=1}^n f(y_i) \\
+\nnn &=& \sion \ln f(y_i) \\
+\nnn &=& \sion \left(y_i\theta_i-\psi(\theta_i) + \ln h(y_i) \right) \\
+\nnn &=& \sion \left(y_i\rX_i\tr\bet-\psi(\rX_i\tr\bet) + \ln h(y_i) \right).
+\eea
+\]
+- Next, we will differentiate $\ell$ with respect to $\bet$.
+- Recall from Theorem 2.14.1 that $\ds{\frac{\partial[\c\tr\x]}{\partial\x}=\c}$.
+- Letting $\dot{\psi}$ denote the derivative of $\psi$, we have
+\[
+\bea
+\nnn \frac{\partial\ell}{\partial\bet}&=&\sion \left(y_i\frac{\partial}{\partial\bet}\left[\rX_i\tr\bet\right]-\frac{\partial}{\partial\bet}\left[\psi(\rX_i\tr\bet)\right] + \frac{\partial}{\partial\bet}\left[\ln h(y_i) \right]\right) \\
+\nnn &=& \sion \left(y_i\frac{\partial}{\partial\bet}\left[\rX_i\tr\bet\right]-\dot{\psi}(\rX_i\tr\bet)\frac{\partial}{\partial\bet}\left[\rX_i\tr\bet\right] + \zeros_{k+1} \right) \\
+\nnn &=& \sion \left(y_i\rX_i-\dot{\psi}(\rX_i\tr\bet)\rX_i\right) \\
+\nnn &=& \sion \left(y_i-\dot{\psi}(\rX_i\tr\bet)\right)\rX_i \\
+\nnn &=& \X\tr(\y-\m(\bet))
+\eea
+\]
+where
+\[ \X=\bpm \rX_1\tr \\ \vdots \\ \rX_n\tr\epm, \y=\bpm y_1 \\ \vdots \\ y_n\epm, \mbox{ and } \m(\bet)=\bpm \dot{\psi}(\rX_1\tr\bet) \\ \vdots \\ \dot{\psi}(\rX_n\tr\bet)\epm.
+\]
+- We will also need the matrix of second partial derivatives of $\ell$.
+- Letting $\ddot{\psi}$ denote the second derivative of $\psi$, we have
+\[
+\bea
+\nnn \frac{\partial^2\ell}{\partial\bet\partial\bet\tr}&=&\frac{\partial}{\partial\bet}\left[\frac{\partial\ell}{\partial\bet\tr}\right] \\
+\nnn &=&\frac{\partial}{\partial\bet}\left[\sion \left(y_i-\dot{\psi}(\rX_i\tr\bet)\right)\rX_i\tr\right] \\
+\nnn &=&\sion \frac{\partial}{\partial\bet}\left[y_i-\dot{\psi}(\rX_i\tr\bet)\right]\rX_i\tr \\
+\nnn &=&\sion \left(\zeros_{k+1}-\frac{\partial}{\partial\bet}\left[\dot{\psi}(\rX_i\tr\bet)\right]\right)\rX_i\tr \\
+\nnn &=&-\sion \ddot{\psi}(\rX_i\tr\bet)\frac{\partial}{\partial\bet}\left[\rX_i\tr\bet\right]\rX_i\tr \\
+\nnn &=&-\sion \ddot{\psi}(\rX_i\tr\bet)\rX_i\rX_i\tr \\
+\nnn &=&-\sion \rX_i\ddot{\psi}(\rX_i\tr\bet)\rX_i\tr \\
+\nnn &=&-\X\tr\W(\bet)\X
+\eea
+\]
+where $\W(\bet)=\diag(\ddot{\psi}(\rX_1\tr\bet),\ldots,\ddot{\psi}(\rX_n\tr\bet))$.
+- To find the maximum likelihood estimate of $\bet$, we need to find the vector $\bet$ such that $\ds{\frac{\partial\ell}{\partial\bet}}=\zeros_{k+1}$.
+- Typically, closed form solutions do not exist so we need to solve the problem numerically.
+- For this problem, the Newton-Raphson method often works well.
+- The approach begins by considering the first-order Taylor series approximation 
+\[
+\frac{\partial \ell}{\partial\bet}\approx\frac{\partial \ell}{\partial\bet}\Bigg|_{\bet=\bet_0}+\frac{\partial^2 \ell}{\partial \bet\partial\bet\tr}\Bigg|_{\bet=\bet_0}(\bet-\bet_0).
+\]
+or, in dot notation,
+\[
+\dot{\ell}(\bet)\approx \dot{\ell}(\bet_0)+\ddot{\ell}(\bet_0)(\bet-\bet_0)
+\]
+- If $\bet_0$ is the estimate of $\bet$ on the current step and we want to try to find $\bet$ such that $\dot{\ell}(\bet)=\zeros$, we obtain
+\[
+\bea
+\nnn \zeros &\approx& \dot{\ell}(\bet_0)+\ddot{\ell}(\bet_0)(\bet-\bet_0) \\
+\nnn \ddot{\ell}(\bet_0)(\bet-\bet_0) &\approx& -\dot{\ell}(\bet_0) \\
+\nnn \bet-\bet_0 &\approx& -(\ddot{\ell}(\bet_0))^{-1}\dot{\ell}(\bet_0) \\
+\nnn \bet &\approx& \bet_0-(\ddot{\ell}(\bet_0))^{-1}\dot{\ell}(\bet_0).
+\eea
+\]
+- So, the Newton-Raphson method applied to the problem of finding the MLE of $\bet$ in the generalized linear model setting with a canonical link proceeds as follows. 
+    + Choose an initial starting value $\bet_{(0)}$.
+    + On step $t=1,2,\ldots$: Compute
+\[
+\bea
+\nnn \bet_{(t)} &=& \bet_{(t-1)}-(\ddot{\ell}(\bet_{(t-1)}))^{-1}\dot{\ell}(\bet_{(t-1)})\\
+\nnn &=& \bet_{(t-1)}+(\X\tr\W(\bet_{(t-1)})\X)^{-1}\X\tr(\y-\m(\color{red}{\bet_{(t-1)}})).
+\eea
+\]
+    + Iterate until convergence.
+- In the generalized linear model context, this method is sometimes also referred to as *iterative re-weighted least squares* (IWLS).
+- Iterative algorithms like the one above are only designed to find local extrema, so it may be necessary to use multiple starting values to search for the global maximizer of $\ell$.
+- **R Example 18.A.1**: The file "us65+rates.txt" contains yearly cancer mortality in the US for individuals age 65 and over during the period 1979-1993, and
+this data set can be used to illustrate logistic regression. Here the response
+variable $y_i$ is the number of US individuals 65 and over who died for cancer in
+the $i$th year, and we model this by a Binomial random variable with $N_i$ trials
+where $N_i$ is the US 65+ population in the $i$th year and $p_i$ is the probability of
+cancer mortality for an individual in the $i$th year. The explanatory variable
+in this example is the midpoint of the $i$th year: $x_i=1978.5+i$ for $i=1,\ldots,15$.
+
+Then we can use the logistic regression model 
+\[
+y_i\mathop{\sim}^{indept} \Binomial\left(N_i,p_i=\frac{e^{\beta_0+\beta_1x_i}}{1+e^{\beta_0+\beta_1x_i}}\right).
+\]
+We can load and view the data using the following commands.
+```{r}
+setwd("C:/Users/ryan/Desktop/S18/668/data")
+mortality=read.table("us65+rates.txt",sep="\t",header=TRUE)
+mortality
+```
+To use the IWLS algorithm, we first need to set up $\X$ and $\y$ and create a column vector $\N=\bpm N_1 \\ \vdots \\ N_n\epm$.
+```{r}
+x=mortality$year
+X=cbind(1,x)
+y=mortality$y
+N=mortality$n
+```
+In the IWLS algorithm, we will use the starting value $\bet_{(0)}=\bpm 0 \\ 0 \epm$.
+
+```{r}
+beta=c(0,0)
+```
+Now, since $\psi(\theta_i)=N_i\ln\left(1+e^{\theta_i}\right)$
+we see that 
+\[
+\dot{\psi}(\theta_i)=\frac{N_ie^{\theta_i}}{1+e^{\theta_i}}=N_ip_i
+\]
+and 
+\[
+\ddot{\psi}(\theta_i)=\frac{N_ie^{\theta_i}}{(1+e^{\theta_i})^2}=N_i\frac{e^{\theta_i}}{(1+e^{\theta_i})}\frac{1}{(1+e^{\theta_i})}=N_ip_i(1-p_i)
+\]
+so we can compute 
+\[
+\m(\bet_{(0)})=\bpm \dot{\psi}(\rX_1\tr\color{red}{\bet_{(0)}}) \\ \vdots \\ \dot{\psi}(\rX_n\tr\color{red}{\bet_{(0)}})\epm=\bpm N_1 p_1(\bet_{(0)}) \\ \vdots \\ N_n p_n(\bet_{(0)})\epm
+\]
+and 
+\[
+\bea
+\nnn \W(\bet_{(0)})&=&\diag(\ddot{\psi}(\rX_1\tr\color{red}{\bet_{(0)}}),\ldots,\ddot{\psi}(\rX_n\tr\color{red}{\bet_{(0)}})) \\
+\nnn &=&\diag\left(N_1 p_1(\bet_{(0)})(1-p_1(\bet_{(0)})),\ldots,N_n p_n(\bet_{(0)})(1-p_n(\bet_{(0)}))\right)
+\eea
+\]
+with $\ds{p_i(\bet_{(0)})=\frac{e^{\rX_i\tr\bet_{(0)}}}{1+e^{\rX_i\tr\bet_{(0)}}}}$.
+This is computed with the following code.
+```{r}
+eta=c(X%*%beta)
+p=exp(eta)/(1+exp(eta))
+m=N*p
+W=diag(N*p*(1-p))
+```
+Then the next command updates our estimate of $\bet$.
+```{r}
+beta=beta+solve(t(X)%*%W%*%X)%*%t(X)%*%(y-m)
+beta
+```
+So, we have $\bet_{(1)}=\bpm -2.7533336543 \\ 0.0004009325 \epm$.
+It is easy to use a for-loop and iteratively update this estimate to obtain the
+IWLS solution for the MLE.
+```{r}
+for (t in 2:10){
+ eta=c(X%*%beta)
+ p=exp(eta)/(1+exp(eta))
+ m=N*p
+ W=diag(N*p*(1-p)) 
+ beta=beta+solve(t(X)%*%W%*%X)%*%t(X)%*%(y-m)
+ cat(paste("beta_(",t,")= ",sep=""),beta,"\n")
+}
+```
+So, we obtain the MLE $\hat{\bet}=\bpm -23.17397 \\ 0.009390345 \epm$.
+
+Here is a plot that illustrates the fitted model.
+```{r}
+plot(x,y/N,xlab="Year",ylab="Cancer mortality rate");curve(exp(beta[1]+beta[2]*x)/(1+exp(beta[1]+beta[2]*x)),add=TRUE)
+```
+
+Within the range of the data, the link function is roughly linear. The following code can be used to see the nonlinearity in the link function. In this case, the fitted model is not meaningful outside the range of the explanatory variable, but it is useful to see the general shape of the fitted curve.
+```{r}
+plot(x,y/N,xlab="Year",ylab="Cancer mortality rate",xlim=c(1000,3000),ylim=c(0,1));curve(exp(beta[1]+beta[2]*x)/(1+exp(beta[1]+beta[2]*x)),add=TRUE)
+```
+
+- Alternately, the built-in function `glm` in the R package can be used to fit generalized linear models.  For the logistic regression model with binomial responses, the response is a matrix with two columns representing the number of "successes" and number of "failures", respectively.
+```{r}
+glm.model=glm(cbind(y,N-y)~x,family="binomial")
+summary(glm.model)
+```
