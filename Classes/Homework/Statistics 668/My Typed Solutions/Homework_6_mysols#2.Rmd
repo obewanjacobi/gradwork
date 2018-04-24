@@ -1,0 +1,66 @@
+---
+title: 'HW 6 #2'
+author: "Jacob S Townson"
+date: "April 20, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Assuming a one-way random effects model $y_{i} = \mu + a_i + \epsilon_{ij}$ where $\mu$ is the mean battery weight, $ai ~N(0, \sigma_1^2)$ is a random effect for each batch, and $\epsilon_{ij} ~ N(0; \sigma^2)$ are independent random errors, compute the restricted maximum likelihood (REML) estimates of $E(y)$ and $var(y)$ where $y^T = (y_{11}, y_{12}, y_{13}, y_{21}, y_{22}, y_{23}, y_{31}, y_{32}, y_{33})$.
+
+Based off of the definition then, 
+
+```{r}
+yT = c(11.2,11.4,11.6,11.9,11.8,11.3,11.0,11.2,11.3)
+y = t(yT)
+y = t(y)
+```
+
+Then we simply follow the required steps to find the REML!
+
+```{r}
+X=rep(1,9)
+Z=diag(3)%x%rep(1,3)
+C=cbind(diag(8),0)
+K=C%*%(diag(9)-1/9*matrix(1,9,9))
+sigma=c(1,1)
+M=matrix(0,2,2)
+q=c(0,0)
+ZZt=Z%*%t(Z)
+Sigma=sigma[1]*diag(9)+sigma[2]*ZZt
+P=t(K)%*%solve(K%*%Sigma%*%t(K))%*%K
+M[1,1]=sum(diag(P%*%P))
+M[1,2]=sum(diag(P%*%P%*%ZZt))
+M[2,1]=sum(diag(P%*%ZZt%*%P))
+M[2,2]=sum(diag(P%*%ZZt%*%P%*%ZZt))
+q[1]=sum((P%*%y)^2)
+q[2]=sum((t(Z)%*%P%*%y)^2)
+sigma=solve(M)%*%q
+sigma
+```
+
+Then we perform the next step of the iterative algorithm:
+
+
+```{r}
+Sigma=sigma[1]*diag(9)+sigma[2]*ZZt
+P=t(K)%*%solve(K%*%Sigma%*%t(K))%*%K
+M[1,1]=sum(diag(P%*%P))
+M[1,2]=sum(diag(P%*%P%*%ZZt))
+M[2,1]=sum(diag(P%*%ZZt%*%P))
+M[2,2]=sum(diag(P%*%ZZt%*%P%*%ZZt))
+q[1]=sum((P%*%y)^2)
+q[2]=sum((t(Z)%*%P%*%y)^2)
+sigma=solve(M)%*%q
+sigma
+```
+
+
+So there is no change and the algorithm has converged. So the REML estimates are $\hat{\sigma}^2=0.0555556$, and $\hat{\sigma}_1^2 = 0.04407407$.
+
+
+
+
