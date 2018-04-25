@@ -1,0 +1,58 @@
+---
+title: "My Solutions to Old Modeling Quals"
+author: "Jacob S Townson"
+date: "April-August 2018"
+output:
+  pdf_document: default
+  html_document:
+    fig_height: 4
+    fig_width: 5
+  word_document:
+    fig_height: 4
+    fig_width: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Prelude
+This document is written in reference to qualifying exams given at the University of Louisville in past years. These solutions are not given from the University, but of my work alone as a way to study for my own qualifying exam. If any tips or recommendations come up and you feel you should share, feel free to raise an issue on GitHub where I have this document saved and open to the public [here](https://github.com/obewanjacobi/gradwork/tree/master/Classes/Old%20Qualifying%20Exams/My%20Solutions). To see the qualifying exams for yourself, [visit this link](http://www.math.louisville.edu/GraduateFAQ/qualifiers/QualifierStudyGuides/). When referencing the Perko book, this is in reference to the *Differential Equations and Dynamical Systems, 3rd Edition*. Thank you for reading, and for all advice.
+
+Jacob Townson
+
+
+# What to Expect:
+
+- Mechanical Vibrations: Newton's Laws, spring-mass systems, two-mass oscillators, friction, damping, pendulum, linear stability and equilibria, energy analysis, phase place analysis, nonlinear oscillations, control oscillations, inverse problem
+
+- Traffic Flow: Welocities and velocity fields, traffic flow and density, conservation laws, linear and nonlinear car-following models, steady state, first order partial differential equations, green light models and rarefaction solution, shock waves, highway with entrance, traffic wave propagation, optimization problem. (**NOTE: WE DID NOT COVER TRAFFIC FLOW IN CLASS, THUS IT IS LIKELY TO NOT BE ON THE QUAL THIS SUMMER [2018]**)
+
+- Dynamical Systems: Nonlinear systems in the plane, interacting species, limit cycles, Hamiltonian systems, Liapunov functions and stability, bifurcation theory, three-dimensional autonomous system and chaos, Poincare maps and nonautonomous systems in the plane, linear discrete synamical systems
+
+
+
+# My Solutions from Quals
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Important Notes
+
+
+
+
+
+
+
+

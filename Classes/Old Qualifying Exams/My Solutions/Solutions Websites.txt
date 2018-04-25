@@ -15,6 +15,13 @@ https://obewanjacobi.github.io/gradwork/Classes/Old%20Qualifying%20Exams/My%20So
 RPubs
 http://rpubs.com/obewanjacobi/analysisquals
 -----------------------------------------------------
+MODELING
+GitHub
+https://obewanjacobi.github.io/gradwork/Classes/Old%20Qualifying%20Exams/My%20Solutions/My_Solutions_to_Modeling_Quals.html
+
+RPubs
+http://rpubs.com/obewanjacobi/modelingquals
+-----------------------------------------------------
 
 Note the GitHub version will always be the most 
 recent, but possibly not the best version.
