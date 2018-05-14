@@ -1,0 +1,167 @@
+---
+title: '1. Model Assessment: Training and Test Data'
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\ds{\displaystyle}$
+$\def\x{\boldsymbol{x}}$
+$\def\X{\boldsymbol{X}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\sT{\mathcal{T}}$
+$\def\terr{\overline{\mbox{err}}}$
+$\def\Err{\mbox{Err}}$
+$\def\sion{\sum_{i=1}^N}$
+$\newcommand{\L}[2]{L\left(#1,#2\right)}$
+$\newcommand{\EV}[1]{E\left[#1\right]}$
+
+### Notation and Terminology
+
+The following notation and terminology is similar to that used in Section 7.2 of HTF.
+
+Suppose we want to predict a univariate response variable $Y$ based on a vector of explanatory variables $\X$ based on a prediction model $\hat{f}(\X)\equiv f(\X;\hat{\thet})$
+where $f(\x;\thet)$ is a function parameterized by an unknown vector $\thet$ and where $\hat{\thet}$ is an estimate of $\thet$ based on training dataset $\sT=\left\{(\x_1,y_1), \ldots, (\x_N,y_N)\right\}$.  
+
+The response variable is also referred to as the output variable or the *target* variable, and the explanatory variables are also referred to as input variables.
+
+The goal might be to minimize a *loss function* $\L{Y}{\hat{f}(\X)}$ which measures the difference between the true value and the predicted value for $Y$ based on $\X$.  
+
+Usually, it is assumed that the random variable $(Y,\X)$ is independent of $\sT$.  
+
+The *training error*
+$\ds{\terr=\frac{1}{N}\sion \L{y_i}{\hat{f}(\x_i)}}$
+is the average loss over the observed data.
+
+The *test error* 
+$\Err_{\sT}=\EV{ \L{Y}{\hat{f}(\X)} \Big|\sT}$
+is the expected value of the loss conditional on the training data.
+
+The *expected test error* (sometimes called the *risk*) 
+$\Err=\EV{ \L{Y}{\hat{f}(\X)}}=\EV{ \L{Y}{f(\X;\hat{\thet})}}$ is an unconditional expectation where both $(Y,\X)$ and the training data (and consequently, the estimator $\hat{\thet}$) are considered to be random.
+
+### Example
+
+Consider the Prostate Cancer Data described in Example 2 on page 3 of HTF.  
+
+The data is available at https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data
+and additional information about the data is available at
+https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.info.txt
+
+The following commands read the data into R and look at the first few lines and dimensions of the data frame.
+```{r}
+setwd("C:/Users/ryan/Desktop/699U18")
+dataset=read.table("prostate.data")
+head(dataset)
+dim(dataset)
+```
+
+The last column of the data frame `train` indicates whether the data should be included in the training set or whether it should be used for assessment to test the model.  We can look at which observation are in the training set and which are in the test set with the following commands.
+
+```{r}
+which(dataset$train)
+which(!dataset$train)
+```
+
+The following command creates a new data frame which only has the training data.  We also display the dimensions of this data frame.
+
+```{r}
+training.data=dataset[dataset$train,]
+dim(training.data)
+```
+
+Let's illustrate some of the ideas for the multiple linear regression model 
+\[
+f(x_1,\ldots,x_p;\beta_0,\beta_1,\ldots,\beta_p)=\beta_0+\beta_1 x_1+\ldots\beta_p x_p
+\]
+for the $p=8$ covariates used to predict the repsonse variable `lpsa`.
+The parameters can be estimated in R using the `lm` function; the generic `summary` function for `lm` objects displays some of the results.
+
+```{r}
+lm.model=lm(lpsa~.,data=training.data[,-10])
+summary(lm.model)
+```
+
+Now, let's compute the training error and test error for the squared-error loss function
+\[
+L(y,\hat{y})=(y-\hat{y})^2.
+\]  
+The training error can be computed directly from the residuals using the following command. 
+
+```{r}
+training.error=mean(lm.model$resid^2)
+training.error
+```
+So, the training error for this data set is $\terr\equiv \terr_{\sT}=0.4391998$.
+
+To estimate the test error for this data set, we need to create a data frame for the test data.
+```{r}
+test.data=dataset[!dataset$train,]
+dim(test.data)
+```
+
+Let's also create an R function which computes the loss.  This could be useful to save time in rewriting code if we later want to change the loss function.
+```{r}
+L=function(y,y.hat){(y-y.hat)^2}
+```
+
+The `lm` function has a generic funciton `predict` which can be used to predict responses for new data based on a fitted model.
+```{r}
+lpsa.hat=predict(lm.model,test.data)
+lpsa.hat
+```
+
+Then the test.error for this training data can be estimated from the test data using the following command.
+```{r}
+obs.test.error=mean(L(test.data$lpsa,lpsa.hat))
+obs.test.error
+```
+So, an estimated test error for this data set is $\widehat{\Err}_{\sT}=0.521274$.
+
+It is natural to consider how the training error and estimated test error conditioned on this partitioning with these 67 observations in the training data and 30 observations in the test data compares with what typically happens if we randomly partition the data into a training set with 67 observations and a test set with 30 observations.  So, we can select the 67 indices from $\left\{1,2,\ldots,97\right\}$ at random without replacement for the training set, and repeat the process above.  The following code repeats this process $R=1000$ times, and stores the results in vectors `training.error` and `obs.test.error`.
+```{r}
+set.seed(34957)
+R=1000
+training.error=rep(0,R)
+obs.test.error=rep(0,R)
+for (i in 1:R){
+ training.indices=sample(1:97,67)
+ training.data=dataset[training.indices,]
+ lm.model=lm(lpsa~.,data=training.data[,-10])
+ training.error[i]=mean(lm.model$resid^2)
+ test.data=dataset[-training.indices,]
+ lpsa.hat=predict(lm.model,test.data)
+ obs.test.error[i]=mean(L(test.data$lpsa,lpsa.hat))
+}
+mean(training.error)
+mean(obs.test.error)
+```
+Letting $\sT_j$ denote the $j$th training set, the average training error is
+$\ds{\frac{1}{R}\sum_{j=1}^R \terr_{\sT_j}=0.4237008}$ and the estimated expected test error is
+$\ds{\widehat{\Err}=\frac{1}{R}\sum_{j=1}^R \widehat{\Err}_{\sT_j}=0.5687165}$.
+
+Another natural question is to ask how the number of observations $N$ in the training set affects the errors.  Fortunately, it is easy to modify the previous code and recompute the average training error and the estimated expected test error.  Let's see what happens when we use $N=90$ observations in the training set and $97-N=7$ observations in the test set.
+```{r}
+set.seed(34572)
+N=90
+R=1000
+training.error=rep(0,R)
+obs.test.error=rep(0,R)
+for (i in 1:R){
+ training.indices=sample(1:97,N)
+ training.data=dataset[training.indices,]
+ lm.model=lm(lpsa~.,data=training.data[,-10])
+ training.error[i]=mean(lm.model$resid^2)
+ test.data=dataset[-training.indices,]
+ lpsa.hat=predict(lm.model,test.data)
+ obs.test.error[i]=mean(L(test.data$lpsa,lpsa.hat))
+}
+mean(training.error)
+mean(obs.test.error)
+```
+So, for $N=90$, the average training error is $0.4407262$
+and the estimated expected test error is $0.5382007$.

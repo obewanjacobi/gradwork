@@ -1,0 +1,171 @@
+---
+title: '2. Model Selection'
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\ds{\displaystyle}$
+$\def\x{\boldsymbol{x}}$
+$\def\X{\boldsymbol{X}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\sT{\mathcal{T}}$
+$\def\terr{\overline{\mbox{err}}}$
+$\def\Err{\mbox{Err}}$
+$\def\sion{\sum_{i=1}^N}$
+$\newcommand{\L}[2]{L\left(#1,#2\right)}$
+$\newcommand{\EV}[1]{E\left[#1\right]}$
+
+### Training, Validation, and Test Data
+If we are interested in using concepts about test error to choose the best model, then part of the training data is often used for validation to choose the model.  In other words, we partition the data into three parts:
+
+- Training data
+- Validation data
+- Test data
+
+as discussed on p.222 of HTF.
+
+Given a set of possible models, we use the training data to fit each model, and we compute the average loss in the validation data using each fitted model.  Then the test data can be used to assess the performance of the method for choosing the best model based on a set of possible models.
+
+### Prostate Cancer Example: Train37/Validate30 Linear Regression Method
+In this example, we compare a few methods for choosing the explanatory variables in a multiple linear regression model for predicting `lpsa` in the Prostate Cancer Data.  Suppose here that we reserve the 30 observations in the test data for assessing the model; that is, we pretend that it is not available until after we build our model.  
+
+So, we have 67 observations available to try to choose the "best" model that will be used to predict the test data.  In the previous notes, we used all 67 observations as training data based on a multiple linear regression model with all 8 explanatory variables and obtained a (estimated) test error $\widehat{\Err}_{\sT}=0.521274$.
+
+We want to see if we can do better with a more parsimonious model based on fewer explanatory variables.
+
+Here, we read the Prostate Cancer Data into R.  Instead of doing this from a local file, we can obtain it directly from the HTF book's website.
+```{r}
+dataset=read.table("https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data")
+```
+
+Now, we create a data frame with the test data.
+```{r}
+test.data=dataset[!dataset$train,-10]
+dim(test.data)
+```
+
+We use the remaining 67 observation to try to choose the best model.  Suppose that we decide to partition this data into a training set of 37 observations and a validation set of 30 observations.  A random partition can be obtained as follows.
+
+```{r}
+set.seed(34652)
+validation.indices=sample(which(dataset$train),30)
+sort(validation.indices)
+training.indices=setdiff(which(dataset$train),validation.indices)
+training.indices
+```
+
+Then, we create data frames with the training and validation data.
+```{r}
+training.data=dataset[training.indices,-10]
+dim(training.data)
+validation.data=dataset[validation.indices,-10]
+dim(validation.data)
+```
+
+We will use the squared error loss function $\L{y}{\hat{y}}=(y-\hat{y})^2$.
+```{r}
+L=function(y,y.hat){(y-y.hat)^2}
+```
+
+Now, we need to prepare all of the $2^8=256$ possible models based on subsets of the available explanatory variables.  We create a data frame `all.models` which will store the result for each of the models.
+```{r}
+all.models=data.frame(var=matrix(rep(FALSE,8*256),256,8),validation.error=rep(0,256))
+for (i in 1:256)
+ all.models[i,1:8]=as.integer(intToBits(i-1))[1:8]==1
+head(all.models)
+```
+
+Now, for each subset of explanatory variables, we fit a linear regression model based on the training data and then compute the average loss for predicting `lpsa` in the validation set using the fitted model.
+```{r}
+for (i in 1:256){
+ include.variables=which(all.models[i,1:8]==TRUE)
+ if (i>1)
+  lm.model=lm(lpsa~.,data=training.data[,c(include.variables,9)])
+ else
+  lm.model=lm(training.data$lpsa~1)
+ lpsa.hat=predict(lm.model,validation.data)
+ all.models[i,9]=mean(L(validation.data$lpsa,lpsa.hat))
+}
+head(all.models)
+```
+
+The following command finds the subset which minimizes the validation error.
+```{r}
+which.min(all.models$validation.error)
+all.models[which.min(all.models$validation.error),]
+```
+
+We keep the list of variables included in model that this method has determined to be "best".
+```{r}
+include.variables=which(all.models[which.min(all.models$validation.error),1:8]==TRUE)
+include.variables
+```
+So, this model excludes `lcp` and `gleason`.
+
+Now, let's compute the estimated test error based on the 30 observations in the test data.
+```{r}
+lm.model.train37=lm(lpsa~.,data=training.data[,c(include.variables,9)])
+lpsa.hat.train37=predict(lm.model.train37,test.data)
+mean(L(test.data$lpsa,lpsa.hat.train37))
+```
+So, the estimated test error for the model excluding `lcp` and `Gleason` is $0.4114329$, which is smaller than $0.521274$ based on the linear regression model using all 8 explanatory variables.
+
+### Backward Selection Procedure
+When discussing variable selection, often simple *stepwise* procedures are considered. HTF discusses stepwise procedures in Section 3.3.2.  Here, we describe a simple procedure called *backward elimination*.
+
+- Start with all $p$ explanatory variables.
+- Compute the $P$-values for two-sided tests of $H_0: \beta_j=0$ for $j=1,\ldots, p$.
+- If all tests are rejected at level $\alpha$, then keep all explanatory variables in the model and stop.
+- Otherwise, remove the explanatory variable with the largest $P$-value and repeat the process with the reamining explanatory variables.
+
+### Example: Prostate Cancer Example: Backward Elimination with Exit Level $\alpha=.05$
+Here, we use all 67 observations in the training data and start with the model with all explanatory variables.
+```{r}
+training.data=dataset[dataset$train,-10]
+summary(lm(lpsa~.,data=training.data))
+```
+
+Then we remove `gleason` and re-fit the model.
+```{r}
+summary(lm(lpsa~.,data=training.data[-7]))
+```
+
+Next, we remove `age` and re-fit the model.
+```{r}
+summary(lm(lpsa~.,data=training.data[-c(3,7)]))
+```
+
+Next, we remove `lcp` and re-fit the model.
+```{r}
+summary(lm(lpsa~.,data=training.data[-c(3,6,7)]))
+```
+
+Next, we remove `ppg45` and re-fit the model.
+```{r}
+summary(lm(lpsa~.,data=training.data[-c(3,6,7,8)]))
+```
+
+Next, we remove `lbph` and re-fit the model.
+```{r}
+summary(lm(lpsa~.,data=training.data[-c(3,4,6,7,8)]))
+```
+
+Next, we remove `svi` and re-fit the model.
+```{r}
+summary(lm(lpsa~.,data=training.data[-c(3,4,5,6,7,8)]))
+```
+
+So, the remaining explanatory variables `lcavol` and `lweight` are significant at level $\alpha=.05$.
+
+Let's see how well this model does at predicting `lpsa` in the test data.
+```{r}
+lm.model.backward=lm(lpsa~.,data=training.data[,c(1,2,9)])
+lpsa.hat.backward=predict(lm.model.backward,test.data)
+mean(L(test.data$lpsa,lpsa.hat.backward))
+```
+So,. the estimated test error $0.4924823$ using backward elimination is worse than $0.4114329$ which we obtained using the linear regression method with variable selection using 37 observations for training and 30 observations for validation. 
