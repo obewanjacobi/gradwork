@@ -1,8 +1,8 @@
 ---
 title: '1. Model Assessment: Training and Test Data'
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
   word_document: default
 ---
 ```{r include=FALSE}
@@ -54,8 +54,8 @@ https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.info.txt
 
 The following commands read the data into R and look at the first few lines and dimensions of the data frame.
 ```{r}
-setwd("C:/Users/ryan/Desktop/699U18")
-dataset=read.table("prostate.data")
+setwd("C:/Users/obewa_000/Documents/My real documents/University of Louisville/public_work/Classes/Notes/The Elements of Statistical Learing 699")
+dataset=read.table("prostate.data.txt")
 head(dataset)
 dim(dataset)
 ```
