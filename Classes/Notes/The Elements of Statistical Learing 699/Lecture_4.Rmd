@@ -1,0 +1,119 @@
+---
+title: '4. Bootstrap and Estimation of Test Error'
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\ds{\displaystyle}$
+$\def\x{\boldsymbol{x}}$
+$\def\X{\boldsymbol{X}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\sT{\mathcal{T}}$
+$\def\terr{\overline{\mbox{err}}}$
+$\def\Err{\mbox{Err}}$
+$\def\CV{\mbox{CV}}$
+$\def\sion{\sum_{i=1}^N}$
+$\newcommand{\L}[2]{L\left(#1,#2\right)}$
+$\newcommand{\EV}[1]{E\left[#1\right]}$
+
+### Bootstrap
+The *leave-one-out bootstrap* is described in Section 7.11 of HTF.
+
+Draw $B$ random samples with replacement of size $N$ from the training set $\sT=\left\{(\x_1,y_1),\ldots,(\x_N,y_N)\right\}$.
+
+In the $b$th bootstrap sample, denote the new training set as $\sT^{*b}$ and let $\hat{f}^{*b}(x)$ be the predicted value of $y$ at $x$ based on $\sT^{*b}$.
+
+### Estimation of Prediction Error
+Let $C^{-i}$ be the set of indices of bootstrap samples that do not contain the $i$th observation from the training sample.
+
+The leave-one-out bootstrap estimate of prediction error is 
+\[
+\widehat{\Err}^{(1)}=\frac{1}{N}\sion \frac{1}{\left|C^{-i}\right|}\mathop{\sum_{b\in C^{-i}}} \L{y_i}{\hat{f}^{*b}(x_i)}.
+\]
+
+This estimate is biased upward so an adjusted estimate known as the $.632+$ *bootstrap estimate* of the test error is a weighted average of $\widehat{\Err}^{(1)}$ and the training error $\terr$ defined by
+\[
+\widehat{\Err}^{(.632+)}=(1-\hat{w})\terr+\hat{w} \ \widehat{\Err}^{(1)}
+\]
+where $\ds{\hat{w}=\frac{.632}{1-.368\hat{R}}}$ with $\ds{\hat{R}=\frac{\widehat{\Err}^{(1)}-\terr}{\hat{\gamma}-\terr}}$ and 
+\[
+\hat{\gamma}=\frac{1}{N^2}\sion\sum_{i'=1}^N \L{y_i}{\hat{f}(x_{i'})}.
+\]
+
+### Prostate Cancer Example: $.632+$ Bootstrap Estimate of the Test Error
+First, we create data frames with the test data and the full set of training data, and we use the squared-error loss function.
+```{r}
+dataset=read.table("https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data")
+test.data=dataset[!dataset$train,-10]
+dim(test.data)
+full.training.data=dataset[dataset$train,-10]
+dim(full.training.data)
+L=function(y,y.hat){(y-y.hat)^2}
+```
+
+Now, we perform the bootstrap procedure by generating $B=1000$ bootstrap samples, using each sample to fit the linear regression model, using the observations not in each sample for validation, and computing the leave-one-out bootstrap estimate of the test error.
+```{r}
+set.seed(234879)
+B=1000
+Error.Boot.sum=rep(0,67)
+Error.Boot.n=rep(0,67)
+for (b in 1:B){
+ training.indices=sample(1:67,67,replace=TRUE) 
+ validation.indices=setdiff(1:67,unique(training.indices))
+ training.data=full.training.data[training.indices,-10]
+ validation.data=full.training.data[validation.indices,-10]
+ lm.model=lm(lpsa~.,data=training.data)
+ lpsa.hat=predict(lm.model,validation.data)
+ Error.Boot.sum[validation.indices]=Error.Boot.sum[validation.indices]+L(validation.data$lpsa,lpsa.hat)
+ Error.Boot.n[validation.indices]=Error.Boot.n[validation.indices]+1
+}
+Error.Boot=mean(Error.Boot.sum/Error.Boot.n,na.rm=TRUE)
+Error.Boot.n
+Error.Boot
+```
+We see that $\ds{\widehat{\Err}^{(1)}=0.6730007}$.  Notice that each of the $|C^{-i}|$'s are fairly close to $1000-632=368$.
+
+Now, we fit the linear regression model based on the original data set.
+```{r}
+lm.model=lm(lpsa~.,data=full.training.data)
+```
+
+This can be used to compute $\hat{\gamma}$.
+```{r}
+L.gamma=matrix(0,67,67)
+for (i in 1:67)
+ L.gamma[i,]=L(full.training.data$lpsa[i],lm.model$fitted)
+gamma=mean(L.gamma)
+gamma
+```
+We see that $\hat{\gamma}=2.434873$.
+
+The diagonal of `L.gamma` also gives us the training error.
+```{r}
+training.Error=mean(diag(L.gamma))
+training.Error
+```
+So, we see that $\terr=0.4391998$.
+
+Fially, we compute $\hat{R}$ and $\hat{w}$.
+```{r}
+R=(Error.Boot-training.Error)/(gamma-training.Error)
+R
+w=.632/(1-.368*R)
+w
+```
+We see that $\hat{R}=0.1171539$ and $\hat{w}=0.6604748$.
+
+Now, we compute the weighted average of the training error and the leave-one-out bootstrap estimate.
+```{r}
+Error.Boot.632p=(1-w)*training.Error+w*Error.Boot
+Error.Boot.632p
+```
+So, we obtain $\widehat{\Err}^{(.632+)}=0.5936194$.
+
+Note that the (estimated) test error based on the test data is $0.521274$ as seen in Notes1.

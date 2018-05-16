@@ -1,0 +1,198 @@
+---
+title: '3. Cross-Validation'
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$\def\ds{\displaystyle}$
+$\def\x{\boldsymbol{x}}$
+$\def\X{\boldsymbol{X}}$
+$\def\thet{\boldsymbol{\theta}}$
+$\def\sT{\mathcal{T}}$
+$\def\terr{\overline{\mbox{err}}}$
+$\def\Err{\mbox{Err}}$
+$\def\CV{\mbox{CV}}$
+$\def\sion{\sum_{i=1}^N}$
+$\newcommand{\L}[2]{L\left(#1,#2\right)}$
+$\newcommand{\EV}[1]{E\left[#1\right]}$
+
+### Leave-$k$-Out Cross-Validation
+The ideas in the previous set of notes can be extended by repeating the process of partitioning the data available for building the model into a training set and validation set and by averaging over all possible partitions.  
+
+That is, we denumerate the ${N \choose k}$ possible partitions where $N-k$ observations are in the training set and $k$ observations are in the validation set, letting $\sT_j$ denote the $j$th partition.  
+
+Then we compute the *leave-$k$-out cross-validation error* for a prediction model $f$ based on $N-k$ observations by the formula
+\[
+\CV_{N-k,k}(f)=\frac{1}{{N\choose k}}\sum_{j=1}^{{N\choose k}}\frac{1}{k} \sum_{i\in \sT_j^C} \L{y_i}{f(\x_i;\hat{\thet}(\sT_j))}
+\]
+where $\hat{\thet}(\sT)$ is the estimate of $\thet$ based on the training set $\sT$.
+
+If the number of combinations is too large, then we can randomly select $R$ partitions and adjust the formula accordingly.
+
+### $K$-Fold Cross-Validation
+A slightly different way to perform cross-validation is to split the data available for fitting the model into $K$ parts defined by a function $\kappa: \left\{1, \ldots, N\right\} \to \left\{1, \ldots, K\right\}$.
+
+This version of cross-validation is described in Section 7.10.1 (p.241) of HTF.
+
+Then when computing the loss for each observation, we use the part that includes the observation as the validation set and use the remaining parts as the training set.  
+
+The cross-validation error is then defined to be the average loss over all observations.  
+
+That is, the *$K$-fold cross-validation error* for a prediction model $f$ (based on approximately $N/k$ observations) is
+\[
+\CV_{K}(f)=\frac{1}{N}\sion \L{y_i}{f(\x_i;\hat{\thet}(\sT_{-\kappa(i)}))}
+\]
+where $\sT_{-\kappa(i)}$ is the set of all observations not in group $\kappa(i)$.
+
+### Prostate Cancer Example: Leave-$30$-Out Cross-Validation
+First, we read in the data and set up the test data and loss function as in the previous set of notes.
+```{r}
+dataset=read.table("https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data")
+test.data=dataset[!dataset$train,-10]
+dim(test.data)
+full.training.data=dataset[dataset$train,-10]
+dim(full.training.data)
+L=function(y,y.hat){(y-y.hat)^2}
+```
+
+Ideally, we would make $R$ very large, but to illustrate the method in a timely manner, we only use $50$ of the possible combinations.
+```{r}
+choose(67,30)
+set.seed(15243)
+R=50
+```
+
+Now, when we set up `all.models`, we will store the validation error for each partition.
+```{r}
+all.models=data.frame(var=matrix(rep(FALSE,8*256),256,8),validation.error=matrix(0,256,R))
+for (i in 1:256)
+ all.models[i,1:8]=as.integer(intToBits(i-1))[1:8]==1
+```
+
+The computation of the average loss can be performed for each partition inside a for-loop.
+```{r}
+for (j in 1:R){
+ validation.indices=sample(which(dataset$train),30)
+ training.indices=setdiff(which(dataset$train),validation.indices)
+ validation.data=dataset[validation.indices,-10]
+ training.data=dataset[training.indices,-10]
+ for (i in 1:256){
+  include.variables=which(all.models[i,1:8]==TRUE)
+  if (i>1)
+   lm.model=lm(lpsa~.,data=training.data[,c(include.variables,9)])
+  else
+   lm.model=lm(training.data$lpsa~1)
+  lpsa.hat=predict(lm.model,validation.data)
+  all.models[i,8+j]=mean(L(validation.data$lpsa,lpsa.hat))
+ }
+}
+head(all.models)
+```
+
+Then the `apply` function can be used to compute the average of the average losses for each possible model. 
+```{r}
+CV=apply(all.models[,9:(8+R)],1,mean)
+CV
+```
+
+Then, we choose the model which minimizes `CV`.
+```{r}
+which.min(CV)
+include.variables=which(all.models[which.min(CV),1:8]==TRUE)
+names(dataset)[include.variables]
+```
+So, this model uses the explanatory variables `lcavol`, `lweight`, `svi`, `lcp`, and `ppg45`.
+
+Finally, let's compute the estimated test error using the test data.
+```{r}
+lm.model.L30outCV=lm(lpsa~.,data=full.training.data[,c(include.variables,9)])
+lpsa.hat.L30outCV=predict(lm.model.L30outCV,test.data)
+mean(L(test.data$lpsa,lpsa.hat.L30outCV))
+```
+So, the estimated test error for the model based on leave-30-out cross-validation is $0.5098823$.
+
+### Prostate Cancer Example: $5$-Fold Cross-Validation
+Now, we consider $5$-fold cross-validation.  First, we need to randomly assign each observation in the training set to one of 5 groups; we make the groups approximately the same size (2 groups with 14 and 3 groups with 13).
+```{r}
+set.seed(2342)
+K=5
+group=c(rep(1,14),rep(2,14),rep(3,13),rep(4,13),rep(5,13))
+group=sample(group)
+group
+```
+
+Next, we set up `all.models` and compute the 5-fold cross-validation error within a for loop.
+```{r}
+all.models=data.frame(var=matrix(rep(FALSE,8*256),256,8),validation.error=rep(0,256))
+for (i in 1:256){
+ all.models[i,1:8]=as.integer(intToBits(i-1))[1:8]==1
+ include.variables=which(all.models[i,1:8]==TRUE)
+ lpsa.hat=rep(0,67)
+ for (k in 1:K){
+  validation.indices=which(dataset$train)[group==k]
+  training.indices=which(dataset$train)[!(group==k)]
+  validation.data=dataset[validation.indices,-10]
+  training.data=dataset[training.indices,-10]
+  if (i>1)
+   lm.model=lm(lpsa~.,data=training.data[,c(include.variables,9)])
+  else
+   lm.model=lm(training.data$lpsa~1)
+  lpsa.hat[group==k]=predict(lm.model,validation.data)
+ }
+ all.models[i,9]=mean(L(full.training.data$lpsa,lpsa.hat))
+}
+head(all.models)
+```
+
+Then, we choose the model which minimizes the CV error.
+```{r}
+which.min(all.models$validation.error)
+include.variables=which(all.models[which.min(all.models$validation.error),1:8]==TRUE)
+names(dataset)[include.variables]
+```
+
+So, this model uses the explanatory variables `lcavol`, `lweight`, `svi`, `lcp`, and `ppg45`.
+
+Finally, let's compute the estimated test error using the test data.
+```{r}
+lm.model.5foldCV=lm(lpsa~.,data=full.training.data[,c(include.variables,9)])
+lpsa.hat.5foldCV=predict(lm.model.5foldCV,test.data)
+mean(L(test.data$lpsa,lpsa.hat.5foldCV))
+```
+So, the best model based on 5-fold cross-validation is the same as the leave-30-out cross-validation, and the estimated test error is $0.5098823$.
+
+### Prostate Cancer Example: Leave-One-Out Cross-Validation
+Leave-one-out cross-validation can be performed in a very similar way.  Note that no randomization is needed.
+```{r}
+all.models=data.frame(var=matrix(rep(FALSE,8*256),256,8),CV.error=rep(0,256))
+for (i in 1:256){
+ all.models[i,1:8]=as.integer(intToBits(i-1))[1:8]==1
+ include.variables=which(all.models[i,1:8]==TRUE)
+ lpsa.hat=rep(0,67)
+ for (k in 1:67){
+  validation.indices=which(dataset$train)[k]
+  training.indices=which(dataset$train)[-k]
+  validation.data=dataset[validation.indices,-10]
+  training.data=dataset[training.indices,-10]
+  if (i>1)
+   lm.model=lm(lpsa~.,data=training.data[,c(include.variables,9)])
+  else
+   lm.model=lm(training.data$lpsa~1)
+  lpsa.hat[k]=predict(lm.model,validation.data)
+ }
+ all.models[i,9]=mean(L(full.training.data$lpsa,lpsa.hat))
+}
+head(all.models)
+which.min(all.models$CV.error)
+include.variables=which(all.models[which.min(all.models$CV.error),1:8]==TRUE)
+names(dataset)[include.variables]
+lm.model.L1outCV=lm(lpsa~.,data=full.training.data[,c(include.variables,9)])
+lpsa.hat.L1outCV=predict(lm.model.L1outCV,test.data)
+mean(L(test.data$lpsa,lpsa.hat.L1outCV))
+```
+So, the best model based on leave-one-out cross-validation uses all variables except for `gleason`, and the estimated test error is $0.5165135$.
