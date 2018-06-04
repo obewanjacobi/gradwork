@@ -34,6 +34,54 @@ Jacob Townson
 
 # My Solutions from Quals
 
+## Summer 2016
+
+### Consider the initial value problem in $\mathbb{R}$ where $\dot{x} = x^2$ and $x(0) = 1$. (a) Find the first three successive approximations $u_1(t), u_2(t),$ and $u_3(t)$ by using integration. (b) Use mathematical induction to show that for all $n \geq 1$, $u_n(t) = 1+t+...+t^n+O(t)$. (c) Solve the IVP and show that the function $x(t) = \frac{1}{1-t}$ is a solution on the interval $(-\infty,1)$. (d) Show that the first $(n+1)$-terms in $u_n(t)$ agree with the first $(n+1)$-terms in Taylor series of the function $x(t) = \frac{1}{1-t}$ about $t=0$.
+#### My Solution:
+
+
+
+### Show that the system with $\dot{x} = y$ and $\dot{y} = -2x-y-3x^4+y^2$ has no limit cycle in $\mathbb{R}^2$. (HINT: a function in the form $\mathrm{e}^{\beta x}$ might be useful)
+#### My Solution:
+
+
+
+### Consider the following model defined in $\mathbb{D} = \{(x,y) \in \mathbb{R}^2 : x \geq 0, y\geq 0\}$: $\dot{x} = 1-x-\frac{2xy}{2+x}$, $\dot{y} = y \left( \frac{2x}{2+x} -1\right)$ where $x(0) > 0$ and $y(0) > 0$. 
+### (a) Show that the $\omega$-limit set of any orbit is on the set $K = \{(x,y) \in \mathbb{D} : x+y = 1\}$. (b) Show that the system has a unique steady state in $\mathbb{D}$ and the unique equilibrium point is globally stable in $\mathbb{D}$.
+#### My Solution:
+
+
+
+### Show that the system with $\dot{x} = x-y-(x^2 + \frac{3}{2} y^2)x$ and $\dot{y} = x+y-(x^2 + \frac{1}{2} y^2)y$ has a limit cycle.
+#### My Solution:
+
+
+
+### Determine the qualitative behavior near the non-hyperbolic critical point at the origin for the system with $\dot{x} = xy$ and $\dot{y} = -y-x^2$. Sketch the phase portrait.
+#### My Solution:
+
+
+
+### Consider the Lorenz model with $\dot{x} = \frac{3}{2}y-x$, $\dot{y} = \frac{1}{2}x-y-xz$, and $\dot{z} = xy-z$.
+### (a) Show that the Lorenz model has a unique equilibrium point. (b) Show that the equilibrium point is globally stable. (HINT: Use a Liapunov function.)
+#### My Solution:
+
+
+
+### Consider a spring-mass system that describes a motion with a force caused by friction or magnification or both: $\ddot{x} - \epsilon \dot{x} +x - x^3 + x^5 = 0$ where $\epsilon \in (-2,2)$. 
+### (a) Without solving the equation, show that $\epsilon = 0$ is a bifurcation point. In more details, show that when $\epsilon = 0$ the system is a Hamiltonian system and find an expression for the Hamiltonian. Then sow that when $\epsilon < 0$ the origin is a stable equilibrium point; but when $\epsilon > 0$ the system has a limit cycle. (b) Classify the type of the bifurcation and then draw the bifurcation diagram. Label the diagram clearly.
+#### My Solution:
+
+
+
+
+
+
+
+
+
+## Winter 2016
+
 
 
 
