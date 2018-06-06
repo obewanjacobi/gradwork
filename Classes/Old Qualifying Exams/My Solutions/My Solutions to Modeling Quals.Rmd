@@ -82,6 +82,108 @@ Jacob Townson
 
 ## Winter 2016
 
+### Consider the predator-prey model with $\dot{x} = x(1-x-y)$ and $\dot{y} = (4x-1)y$. Let $x(0)>0$ and $y(0)>0$. Determine $\lim_{t \to \infty}(x(t),y(t))$.
+#### My Solution:
+
+
+
+### Consider the predator-prey model with $\dot{x} = x(1-y)$ and $\dot{y} = (2x-1)y$. Show that every non-constant positive solution is periodic.
+#### My Solution:
+
+
+
+### Prove that the system with $\dot{x} = x+y-4x^3$ and $\dot{y} = y-x-4y^3$ has a limit cycle.
+#### My Solution:
+
+
+
+### Consider $\dot{x} = y+x^2-y^2$ and $\dot{y} = -x-2xy$. (a) Find all equilibria for this system and determine their stability. (b) Find the Hamiltonian of the system. (c) Find a solution curve that connects a saddle point. (d) Does the curve obtained in (c) connect any other saddle points?
+#### My Solution:
+
+
+
+### Consider the mass spring system subject to an external force $f(t)$:
+
+$$\ddot{x}+\dot{x}+x=f(t)$$
+
+### Assume $x(0) = 0$ and $\dot{x}(0) = 0$. Assume also that $f(t)$ is the force describing the striking effect on the mass of the mass spring system in a short time period $0<T<\frac{1}{2}$, given as $f(t) = \frac{\pi}{4T}\sin{\frac{\pi t}{2T}}$ when $0 \leq t<2T$ and $f(t) = 0$ when $t \geq 2T$. 
+
+### (a) Solve the given IVP first for all $t \geq 0$. (b) Compute the limits $\lim_{t \to \infty} x(t)$ and $\lim_{t \to \infty} \dot{x}(t)$. (c) Compute the limits $\lim_{T \to 0}x(T)$ and $\lim_{T \to 0} \dot{x}(T)$, and discuss their physical meanings.
+#### My Solution:
+
+
+
+### Suppose that the motion of a mass is described by the nonlinear differential equation $\frac{d^2 x}{dt^2} + 2x+3(\frac{dx}{dt})^5 = 0$. Determine how solutions of this equation behave.
+#### My Solution:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Summer 2015
+
+### Consider the Lotka-Volterra predator-prey model with $\dot{x} = x(2-y)$ and $\dot{y} = y(x-1)$. Show that every non-constant positive solution is periodic.
+#### My Solution:
+
+
+
+### Consider the system
+
+$$\dot{x} = y+x\sqrt{x^2+y^2} \sin \left({\frac{1}{\sqrt{x^2+y^2}}} \right), \dot{y} = -x +y \sqrt{x^2+y^2} \sin \left( \frac{1}{\sqrt{x^2+y^2}} \right)$$
+
+### Show that this system has infinitely many limit cycles, and discuss how the solutions behavior. (Hint: use polar coordinates.)
+#### My Solution:
+
+
+
+### The Hamiltonian function of a Hamiltonian system is given by $H(x,y) = \frac{y^2}{2} - \frac{x^2}{2} + \frac{x^4}{4}$. (a) Find the equilibria of the system and discuss their stability. (b) Sketch the phase portrait for the system.
+#### My Solution:
+
+
+
+### Consider the predator-prey model
+
+$$\dot{x} = x \left(6-x-\frac{3y}{1+x} \right), \dot{y} = y(x-2)$$
+
+### Assume that all positive solutions are bounded. (a) Find all critical points and determine their local stability. (b) Show that this system has a limit cycle in the first quadrant.
+#### My Solution:
+
+
+
+### Suppose that the motion of a mass is described by the nonlinear differential equation $\frac{d^2 x}{dt^2} + \frac{dx}{dt} + x^5 = 0$. Determine how solutions of this equation behave.
+#### My Solution:
+
+
+
+### Suppose that the motion of a mass is described by the nonlinear differential equation $\frac{d^2 x}{dt^2} + x+x^3 = 0$. Determine how solutions of this equation behave.
+#### My Solution:
+
+
+
+
+
+
+
+
+
+
+
+
+## Summer 2014
+
 
 
 
