@@ -137,7 +137,16 @@ $$\ddot{x}+\dot{x}+x=f(t)$$
 
 ### Consider the Lotka-Volterra predator-prey model with $\dot{x} = x(2-y)$ and $\dot{y} = y(x-1)$. Show that every non-constant positive solution is periodic.
 #### My Solution:
+First note that 
+$$\dot{x} = x(2-y) = 0 \implies x = 0, y = 2$$
+and
+$$\dot{y} = y(x-1) = 0 \implies y = 0, x =1$$
 
+Thus we let $E_0 = (0,0)$ and $E_1 = (1,2)$. Then
+$$\dot{V} = \left( 1- \frac{1}{x} \right)(2x-xy)+ \left( 1- \frac{2}{y}  \right)(yx-y)$$
+$$= 2x-xy-2+y+yx-y-2x+2 = 0$$
+
+Thus every trajectory along the closed curve $V(x,y) = c$ where $c$ is constant. Thus every non-constant positive solution is periodic.
 
 
 ### Consider the system
@@ -146,11 +155,32 @@ $$\dot{x} = y+x\sqrt{x^2+y^2} \sin \left({\frac{1}{\sqrt{x^2+y^2}}} \right), \do
 
 ### Show that this system has infinitely many limit cycles, and discuss how the solutions behavior. (Hint: use polar coordinates.)
 #### My Solution:
+$$\dot{r} = r^{-1}\left[\left(y+xr \sin\left(\frac{1}{r}\right)\right)x + \left(-x+yr \sin\left(\frac{1}{r}\right)\right)y\right]$$
+$$=r^{-1}\left(xy+x^2 r \sin\left(\frac{1}{r}\right) -xy + y^2 r \sin \left( \frac{1}{r} \right) \right) = r^{-1}r \sin\left( \frac{1}{r}\right)\left( x^2 + y^2 \right)$$
+$$=r^2 \left[ \sin \left( \frac{1}{r} \right)(\cos^2 \theta + \sin^2 \theta) \right] = r^2 \sin \left( \frac{1}{r} \right)$$
 
+Note that $r^2 \sin \left( \frac{1}{r} \right)$ equals $0$ on $r = k \pi$. Thus we have an infinite number of limit cycles. 
+
+Now 
+$$\dot{\theta} = r^{-2}(x\dot{y}-y\dot{x}) = r^{-2}\left(x\left(-x+yr\sin\left( \frac{1}{r} \right) \right) -y\left(y+xr \sin\left(\frac{1}{r}\right)\right)\right)$$
+$$= r^{-2}\left(-x^2 + xyr \sin \left( \frac{1}{r} \right) - y^2 - xyr \sin \left(\frac{1}{r} \right)\right)= r^{-2}\left(-r^2\right) = -1<0$$
+
+Thus the trajectories go clockwise.
 
 
 ### The Hamiltonian function of a Hamiltonian system is given by $H(x,y) = \frac{y^2}{2} - \frac{x^2}{2} + \frac{x^4}{4}$. (a) Find the equilibria of the system and discuss their stability. (b) Sketch the phase portrait for the system.
 #### My Solution:
+a)
+$$\dot{x} = 0 \implies y = 0$$
+$$\dot{y} = 0 \implies x\left(1-x^2 \right) = 0 \implies x=0,1,-1$$
+
+Thus $E_0 = (0,0)$, $E_1 = (1,0)$, and $E_2 = (-1,0)$. We know the equilibrium of a Newtonian system is relative to the equilibrium points of $U(x)$ where $H(x,y) = T(y) + U(x)$.
+
+$$U(x) = - \frac{x^2}{2} + \frac{x^4}{4}$$
+$$U'(x) = -x + x^3$$
+$$U''(x) = -1 + 3x^2$$
+
+b)
 
 
 
