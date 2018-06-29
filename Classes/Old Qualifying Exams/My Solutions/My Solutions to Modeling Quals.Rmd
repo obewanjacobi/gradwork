@@ -99,6 +99,17 @@ Jacob Townson
 
 ### Consider $\dot{x} = y+x^2-y^2$ and $\dot{y} = -x-2xy$. (a) Find all equilibria for this system and determine their stability. (b) Find the Hamiltonian of the system. (c) Find a solution curve that connects a saddle point. (d) Does the curve obtained in (c) connect any other saddle points?
 #### My Solution:
+a)
+
+
+b)
+
+
+c)
+
+
+d)
+
 
 
 
