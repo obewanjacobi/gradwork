@@ -182,17 +182,7 @@ Thus the trajectories go clockwise.
 ### The Hamiltonian function of a Hamiltonian system is given by $H(x,y) = \frac{y^2}{2} - \frac{x^2}{2} + \frac{x^4}{4}$. (a) Find the equilibria of the system and discuss their stability. (b) Sketch the phase portrait for the system.
 #### My Solution:
 a)
-$$\dot{x} = 0 \implies y = 0$$
-$$\dot{y} = 0 \implies x\left(1-x^2 \right) = 0 \implies x=0,1,-1$$
 
-Thus $E_0 = (0,0)$, $E_1 = (1,0)$, and $E_2 = (-1,0)$. We know the equilibrium of a Newtonian system is relative to the equilibrium points of $U(x)$ where $H(x,y) = T(y) + U(x)$.
-
-$$U(x) = - \frac{x^2}{2} + \frac{x^4}{4}$$
-$$U'(x) = -x + x^3$$
-$$U''(x) = -1 + 3x^2$$
-
-Now note $U''(0) = -1 < 0$, $U''(-1) = 2 > 0$, and $U''(1) = 2 > 0$. 
-****NOT YET FINISHED****
 
 b)
 
