@@ -233,6 +233,104 @@ $$\dot{x} = x \left(6-x-\frac{3y}{1+x} \right), \dot{y} = y(x-2)$$
 
 # Important Notes
 
+## Notes from Perko Book
+
+Please note, this does not contain anywhere near all of the information contained in the Perko book. Instead, I have only chosen to include what seems absolutely necessary for the exam.
+
+### Linear Systems
+
+- A *phase portrait* of a system of differential equations with $x \in \mathbb{R}^n$ is the set of all solution curves of the DE in the phase space of $\mathbb{R}^n$
+
+- Find eigenvalues using the following: $\det(A-\lambda I) = 0$. For a $2 \times 2$ matrix, this simplifies to 
+$$\lambda_1 = \frac{a+d}{2}+\sqrt{\frac{(a+d)^2}{4-ad+bc}}$$
+$$\lambda_2 = \frac{a+d}{2}-\sqrt{\frac{(a+d)^2}{4-ad+bc}}$$
+where our matrix is $A = \bigl( \begin{smallmatrix}a & b\\ c & d\end{smallmatrix}\bigr)$
+
+- Let $A$ be a square matrix, then 
+$$\frac{d}{dt} \mathrm{e}^{At} = A \mathrm{e}^{At}$$
+
+
+
+### Nonlinear Systems: Local Theory
+
+- The linear transformation $D \mathbf{f}(\mathbf{x}_0)$ is called the *derivative* of $\mathbf{f}$ at $\mathbf{x}_0$.
+
+- Suppose that $\mathbf{f}: E \rightarrow \mathbb{R}^n$ is differentiable on $E$. Then $\mathbf{f} \in C^1(E)$ if the derivative $D\mathbf{f}:E \rightarrow L(\mathbb{R}^n)$ is continuous on $E$.
+
+- A point $\mathbf{x}_0 \in \mathbb{R}^n$ is called an *equilibrium point* or *critical point* of the nonlinear system if $\mathbf{f}(\mathbf{x}_0)= \mathbf{0}$. An equilibrium point $\mathbf{x}_0$ is called a *hyperbolic equilibrium point* of the nonlinear system if none of the eigenvalues of the matrix $D\mathbf{f}(\mathbf{x}_0)$ have zero real part. The linear system with the matrix $A = D\mathbf{f}(\mathbf{x}_0)$ is called the *linearization* of the nonlinear system at $\mathbf{x}_0$.
+
+***The following 3 facts are important!***
+
+- An equilibrium point $\mathbf{x}_0$ of the nonlinear system is called a *sink* if all of the eigenvalues of the matrix $D\mathbf{f}(\mathbf{x}_0)$ have negative real part. 
+
+- An equilibrium point $\mathbf{x}_0$ of the nonlinear system is called a *source* if all of the eigenvalues of $D\mathbf{f}(\mathbf{x}_0)$ have positive real part. 
+
+- An equilibrium point $\mathbf{x}_0$ of the nonlinear system is called a *saddle* if it is a hyperbolic equilibrium point and $D\mathbf{f}(\mathbf{x}_0)$ has at least one eigenvalue with a positive real part and at least one with a negative real part.
+
+- Any sink is asymptotically stable, and any source or saddle is unstable. Hence any hyperbolic equilibrium point is either asymptotically stable or unstable.
+
+- If $\mathbf{x}_0$ is a stable equilibrium point, no eigenvalue of $D\mathbf{f}(\mathbf{x}_0)$ has positive real part.
+
+- A function $V: \mathbb{R}^n \to \mathbb{R}$ statisfying the hypotheses of the below theorem is called a *Liapunov function*
+
+- Let $E$ be an open subset of $\mathbb{R}^n$ containing $\mathbf{x}_0$. Suppose that $\mathbf{f} \in C^1(E)$ and that $\mathbf{f}(\mathbf{x}_0)=\mathbf{0}$. Suppose further that there exists a real valued function $V \in C^1(E)$ satisfying $V(\mathbf{x}_0) = 0$ and $V(\mathbf{x}) >0$ if $\mathbf{x} \neq \mathbf{x}_0$. Then (a) if $\dot{V}(\mathbf{x}) \leq 0$ for all $\mathbf{x} \in E$, $\mathbf{x}_0$ is stable; (b) if $\dot{V}(\mathbf{x}) < 0$ for all $\mathbf{x} \in E \sim \{\mathbf{x}_0\}$, $\mathbf{x}_0$ is asymptotically stable; (c) if $\dot{V}(\mathbf{x}) > 0$ for all $\mathbf{x} \in E \sim \{\mathbf{x}_0\}$, $\mathbf{x}_0$ is unstable.
+
+- If $\dot{V}(\mathbf{x}) = 0$ for all $\mathbf{x} \in E$ then the trajectories of the system lie on the surfaces in $\mathbb{R}^n$ (or curves in $\mathbb{R}^2$) defined by $V(\mathbf{x}) = c$.
+
+***Note the below 6 facts refer to a two dimentional system, ie. a two dimensional $D\mathbf{f}(\mathbf{x}_0)$ matrix***
+
+- If you have two negative real eigenvalues for $D\mathbf{f}(\mathbf{x}_0)$, then you have a *stable node*.
+
+- If you have two complex eigenvalues with a negative real part for $D\mathbf{f}(\mathbf{x}_0)$, then you have a *stable focus*.
+
+- If you have two positive real eigenvalues for $D\mathbf{f}(\mathbf{x}_0)$, then you have an *unstable node*.
+
+- If you have two complex eigenvalues both with a positive real part for $D\mathbf{f}(\mathbf{x}_0)$, then you have an *unstable focus*.
+
+- If you have one positive real eigenvalue and one negative real eigenvalue for $D\mathbf{f}(\mathbf{x}_0)$, then you have a *saddle*. 
+
+- If you have two complex eigenvalues with real part zero for $D\mathbf{f}(\mathbf{x}_0)$ then you have a *center*.
+
+- Let $E$ be an open subset of $\mathbb{R}^{2n}$ and let $H \in C^2(E)$ where $H = H(\mathbf{x},\mathbf{y})$ with $\mathbf{x,y} \in \mathbb{R}^n$. A system of the form
+$$\mathbf{\dot{x}} = \frac{\partial H}{\partial \mathbf{y}}$$
+$$\mathbf{\dot{y}} = -\frac{\partial H}{\partial \mathbf{x}}$$
+where $\frac{\partial H}{\partial \mathbf{x}}$ and $\frac{\partial H}{\partial \mathbf{y}}$ is called a *Hamiltonian system* with $n$ degrees of freedom on $E$.
+
+- (Conservation of Energy) The total energy $H(\mathbf{x},\mathbf{y})$ of the Hamiltonian system remains constant along the trajectories of the system.
+
+- The total energy for this system $H(x,y) = T(y) + U(x)$ where $T(y) = \frac{y^2}{2}$ is the kinetic energy and 
+$$U(x) = - \int_{x_0} ^x f(s) ds$$
+is the potential energy.
+
+- The critical points of the NEwtonian system all lie on the $x$-axis. The point $x_0,0$ is a critical point of the Newtonian system iff it is a critical point of the function $U(x)$, i.e., a zero of the function $f(x)$. If $(x_0,0)$ is a strict local maximum of the analytic function $U(x)$, it is a saddle for the system. If $(x_0,0)$ is a strict local minimum of the analytic function $U(x)$, it is a center for the system. If $(x_0,0)$ is a horizontal inflection point of the function $U(x)$, it is a cusp for the system. And finally, the phase portrait of the system is symmetric with respect to the $x$-axis.
+
+- Let $E$ be an open subset of $\mathbb{R}^n$ and let $V \in C^2(E)$. A system of the form 
+$$\dot{\mathbf{x}} = - \nabla V(\mathbf{x})$$
+where 
+$$\nabla V = \left( \frac{\partial V}{\partial x_1},..., \frac{\partial V}{ \partial x_n} \right)^T$$
+is called a *gradient system on* $E$.
+
+
+
+### Nonlinear Systems: Global Theory
+
+- A point $\mathbf{p} \in E$ is an $\omega$-*limit point* of the trajectory $\phi (*,\mathbf{x})$ of the system if there is a sequence $t_n \to \infty$ such that
+$$\lim_{n \to \infty} \phi(t_n,\mathbf{x}) = \mathbf{p}$$.
+
+- Similarly to above, if there is a sequence $t_n \to - \infty$ such that 
+$$\lim_{n \to \infty} \phi(t_n, \mathbf{x}) = \mathbf{q}$$, at the point $\mathbf{q} \in E$, then the point $\mathbf{q}$ is called an $\alpha$-*limit point* of the trajectory.
+
+- The $\alpha$ and $\omega$-limit sets of a trajectory $\Gamma$ of the system, $\alpha(\Gamma)$ and $\omega(\Gamma)$, are closed subsets of $E$ and if $\Gamma$ is contained in a compact subset of the $\mathbb{R}^n$, then $\alpha(\Gamma)$ and $\omega(\Gamma)$, are non-empty, connected, compact subsets of $E$. 
+
+- 
+
+
+
+
+### Nonlinear Systems: Bifurcation Theory
+
+
+
 
 
 
