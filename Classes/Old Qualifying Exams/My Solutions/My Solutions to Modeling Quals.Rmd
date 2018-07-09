@@ -26,9 +26,9 @@ Jacob Townson
 
 - Mechanical Vibrations: Newton's Laws, spring-mass systems, two-mass oscillators, friction, damping, pendulum, linear stability and equilibria, energy analysis, phase place analysis, nonlinear oscillations, control oscillations, inverse problem
 
-- Traffic Flow: Welocities and velocity fields, traffic flow and density, conservation laws, linear and nonlinear car-following models, steady state, first order partial differential equations, green light models and rarefaction solution, shock waves, highway with entrance, traffic wave propagation, optimization problem. (**NOTE: WE DID NOT COVER TRAFFIC FLOW IN CLASS, THUS IT IS LIKELY TO NOT BE ON THE QUAL THIS SUMMER [2018]**)
+- Traffic Flow: Velocities and velocity fields, traffic flow and density, conservation laws, linear and nonlinear car-following models, steady state, first order partial differential equations, green light models and rarefaction solution, shock waves, highway with entrance, traffic wave propagation, optimization problem. (**NOTE: WE DID NOT COVER TRAFFIC FLOW IN CLASS, THUS IT IS LIKELY TO NOT BE ON THE QUAL THIS SUMMER [2018]**)
 
-- Dynamical Systems: Nonlinear systems in the plane, interacting species, limit cycles, Hamiltonian systems, Liapunov functions and stability, bifurcation theory, three-dimensional autonomous system and chaos, Poincare maps and nonautonomous systems in the plane, linear discrete synamical systems
+- Dynamical Systems: Nonlinear systems in the plane, interacting species, limit cycles, Hamiltonian systems, Liapunov functions and stability, bifurcation theory, three-dimensional autonomous system and chaos, Poincare maps and nonautonomous systems in the plane, linear discrete dynamical systems
 
 
 
@@ -271,7 +271,7 @@ $$\frac{d}{dt} \mathrm{e}^{At} = A \mathrm{e}^{At}$$
 
 - If $\mathbf{x}_0$ is a stable equilibrium point, no eigenvalue of $D\mathbf{f}(\mathbf{x}_0)$ has positive real part.
 
-- A function $V: \mathbb{R}^n \to \mathbb{R}$ statisfying the hypotheses of the below theorem is called a *Liapunov function*
+- A function $V: \mathbb{R}^n \to \mathbb{R}$ satisfying the hypotheses of the below theorem is called a *Liapunov function*
 
 - Let $E$ be an open subset of $\mathbb{R}^n$ containing $\mathbf{x}_0$. Suppose that $\mathbf{f} \in C^1(E)$ and that $\mathbf{f}(\mathbf{x}_0)=\mathbf{0}$. Suppose further that there exists a real valued function $V \in C^1(E)$ satisfying $V(\mathbf{x}_0) = 0$ and $V(\mathbf{x}) >0$ if $\mathbf{x} \neq \mathbf{x}_0$. Then (a) if $\dot{V}(\mathbf{x}) \leq 0$ for all $\mathbf{x} \in E$, $\mathbf{x}_0$ is stable; (b) if $\dot{V}(\mathbf{x}) < 0$ for all $\mathbf{x} \in E \sim \{\mathbf{x}_0\}$, $\mathbf{x}_0$ is asymptotically stable; (c) if $\dot{V}(\mathbf{x}) > 0$ for all $\mathbf{x} \in E \sim \{\mathbf{x}_0\}$, $\mathbf{x}_0$ is unstable.
 
@@ -302,7 +302,7 @@ where $\frac{\partial H}{\partial \mathbf{x}}$ and $\frac{\partial H}{\partial \
 $$U(x) = - \int_{x_0} ^x f(s) ds$$
 is the potential energy.
 
-- The critical points of the NEwtonian system all lie on the $x$-axis. The point $x_0,0$ is a critical point of the Newtonian system iff it is a critical point of the function $U(x)$, i.e., a zero of the function $f(x)$. If $(x_0,0)$ is a strict local maximum of the analytic function $U(x)$, it is a saddle for the system. If $(x_0,0)$ is a strict local minimum of the analytic function $U(x)$, it is a center for the system. If $(x_0,0)$ is a horizontal inflection point of the function $U(x)$, it is a cusp for the system. And finally, the phase portrait of the system is symmetric with respect to the $x$-axis.
+- The critical points of the Newtonian system all lie on the $x$-axis. The point $x_0,0$ is a critical point of the Newtonian system iff it is a critical point of the function $U(x)$, i.e., a zero of the function $f(x)$. If $(x_0,0)$ is a strict local maximum of the analytic function $U(x)$, it is a saddle for the system. If $(x_0,0)$ is a strict local minimum of the analytic function $U(x)$, it is a center for the system. If $(x_0,0)$ is a horizontal inflection point of the function $U(x)$, it is a cusp for the system. And finally, the phase portrait of the system is symmetric with respect to the $x$-axis.
 
 - Let $E$ be an open subset of $\mathbb{R}^n$ and let $V \in C^2(E)$. A system of the form 
 $$\dot{\mathbf{x}} = - \nabla V(\mathbf{x})$$
@@ -322,12 +322,63 @@ $$\lim_{n \to \infty} \phi(t_n, \mathbf{x}) = \mathbf{q}$$, at the point $\mathb
 
 - The $\alpha$ and $\omega$-limit sets of a trajectory $\Gamma$ of the system, $\alpha(\Gamma)$ and $\omega(\Gamma)$, are closed subsets of $E$ and if $\Gamma$ is contained in a compact subset of the $\mathbb{R}^n$, then $\alpha(\Gamma)$ and $\omega(\Gamma)$, are non-empty, connected, compact subsets of $E$. 
 
-- 
+- A *cycle* or *periodic orbit* of a system is any closed solution curve of the system which is not an equilibrium point of the system
+
+- A *limit cycle* $\Gamma$ of a planar system is a cycle of the system which is the $\alpha$ or $\omega$-limit set of some trajectory of the system other than $\Gamma$. 
+
+- If a cycle $\Gamma$ is the $\omega$-limit set of every trajectory in some neighborhood of $\Gamma$, then $\Gamma$ is called an $\omega$-*limit cycle* or *stable limit cycle*; if $\Gamma$ is the $\alpha$-limit set of every trajectory in some neighborhood of $\Gamma$, then $\Gamma$ is called an $\alpha$-*limit cycle* or an *unstable limit cycle*; and if $\Gamma$ is the $\omega$-limit set of one trajectory other than $\Gamma$ and the $\alpha$-limit set of another trajectory other than $\Gamma$, then $\Gamma$ is called a *semi-stable limit cycle*.
+
+- (**Dulac**) In any bounded region of the plane, a planar analytic system with $\mathbf{f(x)}$ analytic in $\mathbb{R}^2$ has at most a finite number of limit cycles. Any polynomial system has at most a finite number of limit cycles in $\mathbb{R}^2$.
+
+- (**Poincare**) A planar analytic system cannot have an infinite number of limit cycles which accumulate on a cycle of the system.
+
+- If $\Gamma$ and $\omega(\Gamma)$ have a point in common, then $\Gamma$ is either a critical point or a periodic orbit.
+
+- If $\omega(\Gamma)$ contains no critical points $\omega(\Gamma)$ contains a periodic orbit $\Gamma_0$, then $\omega(\Gamma) = \Gamma_0$.
+
+- (**Bendixson's Criteria**) Let $\mathbf{f} \in C^1(E)$ where $E$ is a simply connected region in $\mathbb{R}^2$. If the divergence of the vector field $\mathbf{f}, \nabla \mathbf{f}$ is not identically zero and does not change sign in $E$, then the system has no closed orbit lying entirely in $E$.
+
+- (**Dulac's Criteria**) Let $\mathbf{f} \in C^1(E)$ where $E$ is a simply connected region in $\mathbb{R}^2$. If there exists a function $B \in C^1(E)$ such that $\nabla (B\mathbf{f})$ is not identically zero and does not change sign in $E$, then the system has no closed orbit lying entirely in $E$. If $A$ is an annular region contained in $E$ on which $\nabla(B\mathbf{f})$ does not change sign, then there is at most one limit cycle of the system in $A$.
 
 
 
 
 ### Nonlinear Systems: Bifurcation Theory
+
+- (**Sotomayor**) Suppose that $\mathbf{f}(\mathbf{x}_0, \mu _0) = \mathbf{0}$ and that the $n \times n$ matrix $A = D \mathbf{f}(\mathbf{x}_0, \mu_0)$ has a simple eigenvalue $\lambda=0$ with eigenvector $\mathbf{v}$ and that $A^T$ has an eigenvector $\mathbf{w}$ corresponding to the eigenvalue $\lambda = 0$. Furthermore, suppose that $A$ has $k$ eigenvalues with negative real part and $(n-k-1)$ eigenvalues with positive real part and the following conditions are satisfied:
+$$\mathbf{w}^T \mathbf{f}_{\mu}(\mathbf{x}_0,\mu_0) \neq 0, \mathbf{w}^T[D^2 \mathbf{f} (\mathbf{x}_0, \mu_0)(\mathbf{v,v})] \neq 0$$
+Then there is a smooth curve of equilibrium points of the system in $\mathbb{R}^n \times \mathbb{R}$ passing through $(\mathbf{x}_0,\mu_0)$ and tangent to the hyperplane $\mathbb{R}^n \times \{\mu_0\}$. Depending on the signs of the expressions in the conditions, there are no equilibrium points of the system near $\mathbf{x}_0$ when $\mu<\mu_0$ (or when $\mu > \mu_0$) and there are two equilibrium points of the system near $\mathbf{x}_0$ when $\mu > \mu_0$ (or when $\mu < \mu_o$). The two equilibrium points of the system near $\mathbf{x}_0$ are hyperbolic and have stable manifolds of dimensions $k$ and $k+1$ respectively. I.E. the system experiences a **saddle-node** bifurcation at the equilibrium point $\mathbf{x}_0$ as the parameter $\mu$ passes through the bifurcation value $\mu = \mu_0$. The set of $C^{\infty}$-vector fields satisfying the above condition is an open, dense subset in the Banach space of all $C^{\infty}$, one-parameter, vector fields with an equilibrium point at $\mathbf{x}_0$ having a simple zero eigenvalue.
+
+- If the above conditions are changed to
+$$\mathbf{w}^T \mathbf{f}_{\mu} (\mathbf{x}_0,\mu_0) = 0,$$
+$$\mathbf{w}^T[D\mathbf{f}_{\mu}(\mathbf{x}_0,\mu_0)\mathbf{v}] \neq 0,$$
+$$\mathbf{w}^T[D^2\mathbf{f}(\mathbf{x}_0,\mu_0)(\mathbf{v,v})] \neq 0$$
+then the system experiences a **transcritical bifurcation**.
+
+- If the above conditions are changed to
+$$\mathbf{w}^T \mathbf{f}_{\mu}(\mathbf{x}_0, \mu_0) = 0,$$
+$$\mathbf{w}^T [D \mathbf{f}_{\mu}(\mathbf{x}_0, \mu_0)\mathbf{v}] \neq 0,$$
+$$\mathbf{w}^T[D^2 \mathbf{f}(\mathbf{x}_0, \mu_0) (\mathbf{v,v})] = 0,$$
+$$\mathbf{w}^T [D^3 \mathbf{f}(\mathbf{x}_0, \mu_0) (\mathbf{v,v,v})] \neq 0$$
+then the system experiences a **pitchfork bifurcation**.
+
+- Hopf bifurcations are explained in this book, but I won't include notes on them because I seriously doubt they will be on the exam.
+
+
+
+
+## Other Important Notes
+
+- 
+
+
+
+
+
+
+
+
+
 
 
 
