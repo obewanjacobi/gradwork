@@ -44,12 +44,30 @@ Jacob Townson
 ### Show that the system with $\dot{x} = y$ and $\dot{y} = -2x-y-3x^4+y^2$ has no limit cycle in $\mathbb{R}^2$. (HINT: a function in the form $\mathrm{e}^{\beta x}$ might be useful)
 #### My Solution:
 
+Consider $\beta = -2$. Then
+$$\frac{\partial}{\partial x} \left( \mathrm{e}^{-2x} \cdot y \right) + \frac{\partial}{\partial y} \left( \mathrm{e}^{-2x} \cdot (-2x-y-3x^4+y^2) \right)$$
+$$=-2 \mathrm{e}^{-2x} \cdot y + \mathrm{e}^{-2x} \cdot (-1+2y) = - \mathrm{e}^{-2x}<0$$
+Now we apply Dulac's Criteria, and we have proven that there are no limit cycles in $\mathbb{R}^2$.
 
 
 ### Consider the following model defined in $\mathbb{D} = \{(x,y) \in \mathbb{R}^2 : x \geq 0, y\geq 0\}$: $\dot{x} = 1-x-\frac{2xy}{2+x}$, $\dot{y} = y \left( \frac{2x}{2+x} -1\right)$ where $x(0) > 0$ and $y(0) > 0$. 
 ### (a) Show that the $\omega$-limit set of any orbit is on the set $K = \{(x,y) \in \mathbb{D} : x+y = 1\}$. (b) Show that the system has a unique steady state in $\mathbb{D}$ and the unique equilibrium point is globally stable in $\mathbb{D}$.
 #### My Solution:
 
+(a)
+Consider the Liapunov function
+$$V = (x+y-1)^2$$
+Its derivative along the trajectories of the system is 
+$$\dot V = 2(x+y-1)(\dot x + \dot y) = 2(x+y-1)\left( 1-x- \frac{2xy}{2+x} + {2xy}{2+x} - y \right)$$
+$$=2(x+y-1)(1-x-y) = -2V^2 \leq 0,$$
+Thus according to the [LaSalle's invairance principle](https://en.wikipedia.org/wiki/LaSalle%27s_invariance_principle#Global_version), the $\omega$-limit set of the system is contained in $K$.
+
+(b)
+The right part of the system is equal to zero iff $x=1$, $y=0$, thus, $(1,0)$ is a unique stady state. $\dot y$ is negative on $K$ except for the point $(1,0)$ (because $\frac{2x}{2+x}<1$ for any $x<2$), thus, $y$ is decreasing along the trajectories on $K$, thus, any solution that contained in $K$ moves toward the point $(1,0)$. It means that the $\omega$-limit set of the system contains the point $(1,0)$ only, i.e. for any initial point in $\mathbb{D}$, $\lim_{t \to \infty} (x(t),y(t))=(1,0).$
+
+In order to prove the global asymptotic stability of $(1,0)$ we need also to prove its (local) Lyapunov stability. It is given by the Lyapunov function $W(x,y) = V(x,y) + y^2$ since the derivative is 
+$$\dot W = -2V^2 + 2y^2 \left( \frac{2x}{2+x}-1 \right)$$
+is negative in some neighborhood of the equilibrium point $(1,0)$.
 
 
 ### Show that the system with $\dot{x} = x-y-(x^2 + \frac{3}{2} y^2)x$ and $\dot{y} = x+y-(x^2 + \frac{1}{2} y^2)y$ has a limit cycle.
