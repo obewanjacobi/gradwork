@@ -69,10 +69,44 @@ In order to prove the global asymptotic stability of $(1,0)$ we need also to pro
 $$\dot W = -2V^2 + 2y^2 \left( \frac{2x}{2+x}-1 \right)$$
 is negative in some neighborhood of the equilibrium point $(1,0)$.
 
+Note, we chose these $V$ and $W$ functions because of the following:
+
+In the first case we know the function must be equal to zero on $K$ and positive on $\mathbb{D}/ K$. In the second case, it was just a guess. The simplest possible Lyapunov function is a quadratic form. We need a positive definite quadratic form; $V$ is not positive definite. What can we do to $V$ in order to obtain a positive definite quadratic form? $(x-1)^2$ and $y^2$, fir instance. $y^2$ is suitable for us because its derivative is $\leq 0$ and the overall derivative is negative definite.
+
 
 ### Show that the system with $\dot{x} = x-y-(x^2 + \frac{3}{2} y^2)x$ and $\dot{y} = x+y-(x^2 + \frac{1}{2} y^2)y$ has a limit cycle.
 #### My Solution:
 
+Let $\dot x$ and $\dot y$ be defined as above. Then the equilibrium point of this system is $x=0$ and $y=0$. The Jacobian matrix gives us
+$$Df(0,0) = \left( \begin{matrix}1 & -1\\ 1 & 1\end{matrix}\right)$$
+The eigenvalues are $1+i$ and $1-i$. Hence the system is unstable (node or focus), which is the ***first*** criterion of the Poincare-Bendixon theorem.
+
+Secondly, let us choose a closed bounded subset given by 
+$$V(x,y) = x^2 + y^2 \leq c$$
+where $c$ is a positive constant. Therefore the closed subset $V(x,y)$ is a circle of radius $\sqrt c$.
+We only need to show that there exists a finite value of $c$ for which the vector field of $f(x,y)$ never leaves the set enclosed by $c$. This is identical to the statement:
+$$\nabla V(x,y) \cdot f(x,y) \leq 0$$
+
+Now,
+$$\nabla V(x,y) \cdot f(x,y) = \frac{\partial V}{\partial x} \dot x + \frac{\partial V}{\partial y} \dot y$$
+
+Therefore
+$$\nabla V(x,y) \cdot f(x,y) = 2x \left[ x-y-\left( x^2 + \frac{3}{2} y^2 \right) x \right]+ 2y \left[ x+y- \left(x^2+ \frac{1}{2} y^2 \right) y\right]$$
+$$=2(x^2 + y^2) - 2(x^2 + y^2)^2 + y^4 -x^2 y^2$$
+
+But
+$$y^4 - x^2 y^2 \leq (x^2 + y^2)^2$$
+
+Therefore
+$$2(x^2+y^2) - 2(x^2+y^2)^2 +y^4 -x^2y^2 \leq 2(x^2+y^2) - 2(x^2+y^2)^2-(x^2+y^2)$$
+$$= 2(x^2+y^2)-(x^2+y^2)^2$$
+
+This implies that
+$$\nabla V(x,y) \cdot f(x,y) \leq 2(x^2+y^2 - (x^2+y^2)^2 = 2c-c^2 = (2-c)c$$
+
+Finally if we choose $c=2$ we are guaranteed that $\nabla V(x,y) \cdot f(x,y) \leq 0$ which satisfies the ***second*** criterion of the Poincare-Bendixson theorem. 
+
+Therefore it can be concluded that a limit cycle does indeed exist. QED
 
 
 ### Determine the qualitative behavior near the non-hyperbolic critical point at the origin for the system with $\dot{x} = xy$ and $\dot{y} = -y-x^2$. Sketch the phase portrait.
