@@ -3,10 +3,10 @@ title: "My Solutions to Old Modeling Quals"
 author: "Jacob S Townson"
 date: "April-August 2018"
 output:
-  pdf_document: default
   html_document:
     fig_height: 4
     fig_width: 5
+  pdf_document: default
   word_document:
     fig_height: 4
     fig_width: 5
@@ -143,7 +143,25 @@ Therefore it can be concluded that a limit cycle does indeed exist. QED
 ### Determine the qualitative behavior near the non-hyperbolic critical point at the origin for the system with $\dot{x} = xy$ and $\dot{y} = -y-x^2$. Sketch the phase portrait.
 #### My Solution:
 
-![Phase Portrait](/Classes/Old Qualifying Exams/My Solutions/pportrait.png)
+First off, here it is easy to tell that the only equilibrium point we have here is indeed the origin. Next, let's discuss the behavior of this solution point.
+
+$$Df(x,y) = \left( \begin{matrix}y & x\\ -2x & -1\end{matrix}\right)$$
+$$Df(0,0) = \left( \begin{matrix}0 & 0\\ 0 & -1\end{matrix}\right)$$
+
+We get then that our eigenvalues are $\lambda_1 = 0$ and $\lambda_2 = -1$. This shows us that the point is indeed stable, and will behave similarly to a stable node. In other words, any solution will sink towards the origin, however, when approaching from $y > 0$, the trajectory will move around the origin because of the first zero eigenvalue. 
+
+```{r echo=FALSE}
+setwd('D:/obewa/Documents/My real documents/University of Louisville/public_work/Classes/Old Qualifying Exams/My Solutions')
+```
+
+
+![Phase Portrait](pportrait.png)
+
+
+```{r echo=FALSE}
+setwd('D:/obewa/Documents/My real documents/University of Louisville/public_work')
+```
+
 
 ### Consider the Lorenz model with $\dot{x} = \frac{3}{2}y-x$, $\dot{y} = \frac{1}{2}x-y-xz$, and $\dot{z} = xy-z$.
 ### (a) Show that the Lorenz model has a unique equilibrium point. (b) Show that the equilibrium point is globally stable. (HINT: Use a Liapunov function.)
