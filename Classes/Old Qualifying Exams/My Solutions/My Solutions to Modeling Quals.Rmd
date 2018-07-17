@@ -148,7 +148,11 @@ First off, here it is easy to tell that the only equilibrium point we have here 
 $$Df(x,y) = \left( \begin{matrix}y & x\\ -2x & -1\end{matrix}\right)$$
 $$Df(0,0) = \left( \begin{matrix}0 & 0\\ 0 & -1\end{matrix}\right)$$
 
-We get then that our eigenvalues are $\lambda_1 = 0$ and $\lambda_2 = -1$. This shows us that the point is indeed stable, and will behave similarly to a stable node. In other words, any solution will sink towards the origin, however, when approaching from $y > 0$, the trajectory will move around the origin because of the first zero eigenvalue. 
+Thus we can't show anything from the eigenvalues of $\lambda_1 = 0$ and $\lambda_2 = -1$. So we will use the Lyapunov function of $V = x^2 + y^2$. Then
+
+$$\dot V = 2x(xy) + 2y \left(-y-x^2 \right) = 2x^2y - 2y^2-2x^2 y = -2y^2 \leq 0$$
+
+This is true for all values of $y$. Thus the origin is stable
 
 ```{r echo=FALSE}
 setwd('D:/obewa/Documents/My real documents/University of Louisville/public_work/Classes/Old Qualifying Exams/My Solutions')
@@ -189,7 +193,7 @@ This is a negative definite quadratic form, therefore it is less than $0$ unless
 ### Consider a spring-mass system that describes a motion with a force caused by friction or magnification or both: $\ddot{x} - \epsilon \dot{x} +x - x^3 + x^5 = 0$ where $\epsilon \in (-2,2)$. 
 ### (a) Without solving the equation, show that $\epsilon = 0$ is a bifurcation point. In more details, show that when $\epsilon = 0$ the system is a Hamiltonian system and find an expression for the Hamiltonian. Then sow that when $\epsilon < 0$ the origin is a stable equilibrium point; but when $\epsilon > 0$ the system has a limit cycle. (b) Classify the type of the bifurcation and then draw the bifurcation diagram. Label the diagram clearly.
 #### My Solution:
-
+***NOT YET SOLVED***
 
 
 
@@ -203,7 +207,19 @@ This is a negative definite quadratic form, therefore it is less than $0$ unless
 ### Consider the predator-prey model with $\dot{x} = x(1-x-y)$ and $\dot{y} = (4x-1)y$. Let $x(0)>0$ and $y(0)>0$. Determine $\lim_{t \to \infty}(x(t),y(t))$.
 #### My Solution:
 
+First we can see here that we have three equilibrium points. $E_1 = (0,0)$, $E_2 = (1,0)$, and $E_3 = \left( \frac{1}{4}, \frac{3}{4} \right)$. As defined in the problem, $x(0), y(0) > 0$, so only one of our equilibrium points is in the desired area. However, for the sake of practice, we will include the analysis of all equilibrium points in this problem.
 
+First note:
+
+$$Df(x,y) = \left( \begin{matrix}1 -2x-y & -x\\ 4y & 4x-1\end{matrix}\right)$$
+
+Then we get the following:
+
+$$Df(0,0) = \left( \begin{matrix} 1 & 0\\ 0 & -1\end{matrix}\right) \implies \lambda_1 = 1, \lambda_2 = -1$$
+$$Df(1,0) = \left( \begin{matrix}-1 & -1\\ 0 & 3\end{matrix}\right) \implies \lambda_1 = -1, \lambda_2 = 3$$
+$$Df\left(\frac{1}{4} , \frac{3}{4} \right) = \left( \begin{matrix}\frac{-1}{4} & \frac{1}{4}\\ 3 & 0\end{matrix}\right) \implies \lambda_{1,2} = \frac{1}{8} \left(-1 \pm i \sqrt{47} \right)$$
+
+Thus we get a saddle at $(0,0)$ and $(1,0)$, and then a stable focus at $\left( \frac{1}{4}, \frac{3}{4} \right)$. Because $\left( \frac{1}{4}, \frac{3}{4} \right)$ is the only point in the first quadrant as we desire in this problem, we can see that for any $x(0), y(0) >0$, $\lim_{t \to \infty} (x(t),y(t)) = \left( \frac{1}{4}, \frac{3}{4} \right)$.
 
 ### Consider the predator-prey model with $\dot{x} = x(1-y)$ and $\dot{y} = (2x-1)y$. Show that every non-constant positive solution is periodic.
 #### My Solution:
@@ -408,6 +424,13 @@ $$\frac{d}{dt} \mathrm{e}^{At} = A \mathrm{e}^{At}$$
 - If you have one positive real eigenvalue and one negative real eigenvalue for $D\mathbf{f}(\mathbf{x}_0)$, then you have a *saddle*. 
 
 - If you have two complex eigenvalues with real part zero for $D\mathbf{f}(\mathbf{x}_0)$ then you have a *center*.
+
+***If the above facts don't work, use the following 2 facts***
+
+- Let $f \in C^1(E), V \in C^1(E)$, and $\phi_t$ the flow of the differential equation. Then for $x \in E$ the derivative of the function $V(x)$ along the solution $\phi_t(x)$ is 
+$$\dot V(x) = \frac{d}{dt} V(\phi_t(x)) = DV(x) f(x)$$
+
+- Let $E$ be an open subset of $\mathbb{R}^n$ containing $x_0$. Suppose $f \in C^1(E)$ and that $f(x_0) = 0$. Suppose further that there exists a real values function $V \in C^1(E)$ satisfying $V(x_0) = 0$ and $V(x) > 0$ if $x \neq x_0$. Then if $\dot V(x) \leq 0$ for all $x \in E$, $x_0$ is stable; if $\dot V(x) < 0$ for all $x \in E -\{x_0\}$, $x_0$ is asymptotically stable; and if $\dot V(x) > 0$ for all $x \in E -\{x_0\}$, $x_0$ is unstable. 
 
 - Let $E$ be an open subset of $\mathbb{R}^{2n}$ and let $H \in C^2(E)$ where $H = H(\mathbf{x},\mathbf{y})$ with $\mathbf{x,y} \in \mathbb{R}^n$. A system of the form
 $$\mathbf{\dot{x}} = \frac{\partial H}{\partial \mathbf{y}}$$
