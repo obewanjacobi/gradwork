@@ -224,7 +224,14 @@ Thus we get a saddle at $(0,0)$ and $(1,0)$, and then a stable focus at $\left( 
 ### Consider the predator-prey model with $\dot{x} = x(1-y)$ and $\dot{y} = (2x-1)y$. Show that every non-constant positive solution is periodic.
 #### My Solution:
 
+First off we can see here that we have two equilibrium points, $E_1 = (0,0)$, and $E_2 = \left( \frac{1}{2},1 \right)$. Since we only care about the non constant positive solutions, we will focus our efforts on $E_2$. 
 
+$$Df\left(x , y \right) = \left( \begin{matrix} 1-y & -x \\ 2y & 2x-1 \end{matrix}\right)$$
+So, 
+$$Df\left( \frac{1}{2}, 1 \right) = \left( \begin{matrix} 0 & -\frac{1}{2} \\ 2 & 0\end{matrix}\right) \implies \lambda_{1,2} = \pm i$$
+
+Thus, since we get complex eigenvalues with a zero real part, this implies that we have a center at the point $\left(\frac{1}{2},1 \right)$. Thus, since there are no more positive equilibrium points, all positive nonconstant solutions of the system must be periodic. 
+***NOT YET FINISHED***
 
 ### Prove that the system with $\dot{x} = x+y-4x^3$ and $\dot{y} = y-x-4y^3$ has a limit cycle.
 #### My Solution:
