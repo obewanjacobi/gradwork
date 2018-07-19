@@ -3,10 +3,10 @@ title: "My Solutions to Old Modeling Quals"
 author: "Jacob S Townson"
 date: "April-August 2018"
 output:
+  pdf_document: default
   html_document:
     fig_height: 4
     fig_width: 5
-  pdf_document: default
   word_document:
     fig_height: 4
     fig_width: 5
@@ -230,23 +230,56 @@ $$Df\left(x , y \right) = \left( \begin{matrix} 1-y & -x \\ 2y & 2x-1 \end{matri
 So, 
 $$Df\left( \frac{1}{2}, 1 \right) = \left( \begin{matrix} 0 & -\frac{1}{2} \\ 2 & 0\end{matrix}\right) \implies \lambda_{1,2} = \pm i$$
 
-Thus, since we get complex eigenvalues with a zero real part, this implies that we have a center at the point $\left(\frac{1}{2},1 \right)$. Thus, since there are no more positive equilibrium points, all positive nonconstant solutions of the system must be periodic. 
+Thus, since we get complex eigenvalues with a zero real part, this implies that we have a center at the point $\left(\frac{1}{2},1 \right)$. 
+
+
 ***NOT YET FINISHED***
 
 ### Prove that the system with $\dot{x} = x+y-4x^3$ and $\dot{y} = y-x-4y^3$ has a limit cycle.
 #### My Solution:
 
+Using the squared radius $V = x^2 + y^2$ as a Lyapunov function, one finds that
+$$\dot V = 2V - 8(x^4 + y^4)$$
+Then using
+$$\frac{1}{2}(x^2+y^2)^2 + \frac{1}{2}(x^2 - y^2 )^2 = x^4 + y^4 = (x^2+y^2)^2 - 2(xy)^2$$
+gives us that 
+$$2V-8V^2 \leq \dot V \leq 2V -4V^2$$
 
+This already tells us that the vector field points outwards, away from zero, for $V \leq \frac{1}{4}$ and inwards towards zero for $V \geq \frac{1}{2}$. This statement is sufficient to apply Poincare-Bendixon, thus the system has a limit cycle. 
 
 ### Consider $\dot{x} = y+x^2-y^2$ and $\dot{y} = -x-2xy$. (a) Find all equilibria for this system and determine their stability. (b) Find the Hamiltonian of the system. (c) Find a solution curve that connects a saddle point. (d) Does the curve obtained in (c) connect any other saddle points?
 #### My Solution:
 a)
 
+There are four equilibrium points here, all of which can be found using relatively simple algebra. They are $E_1 = (0,0), E_2 = (0,1), E_{3,4} = \left( \pm \frac{\sqrt{3}}{2}, - \frac{1}{2} \right)$. The stability of these is found below:
+
+$$Df\left( x, y \right) = \left( \begin{matrix} 2x & 1-2y \\ -1-2y & -2x\end{matrix}\right)$$
+
+$$Df\left( E_1 \right) = \left( \begin{matrix} 0 & 1 \\ -1 & 0\end{matrix}\right) \implies \lambda_{1,2} = \pm i$$
+
+Thus $E_1$ is a center.
+
+$$Df\left( E_2 \right) = \left( \begin{matrix} 0 & -1 \\ -3 & 0\end{matrix}\right) \implies \lambda_{1,2} = \pm \sqrt 3$$
+Thus $E_2$ is a saddle.
+
+$$Df\left( E_3 \right) = \left( \begin{matrix} \sqrt 3 & 2 \\ 0 & - \sqrt 3\end{matrix}\right) \implies \lambda_{1,2} = \pm \sqrt 3$$
+Thus $E_3$ is a saddle.
+
+$$Df\left( E_4 \right) = \left( \begin{matrix} -\sqrt{3} & 2 \\ 0 & \sqrt 3\end{matrix}\right) \implies \lambda_{1,2} = \pm \sqrt 3$$
+Thus $E_4$ is a saddle.
 
 b)
 
+$$H(x,y) = \int (y + x^2 - y^2)dy = \frac{1}{2}y^2 + x^2 y - \frac{1}{3}y^3 + f(x)$$
+Thus
+$$-\frac{d}{dx} H(x,y) = -\frac{d}{dx} [x^2 y + f(x)] = \dot y = -x-2xy$$
+which implies
+$$-2xy -f'(x) = -x-2xy \implies f'(x) = x$$
+thus $f(x) = \frac{1}{2}x^2$. So the Hamiltonian is
+$$H(x,y) = \frac{1}{2}y^2 + x^2 y - \frac{1}{3}y^3 + \frac{1}{2}x^2$$
 
 c)
+
 
 
 d)
