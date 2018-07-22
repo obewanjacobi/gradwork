@@ -152,7 +152,7 @@ Thus we can't show anything from the eigenvalues of $\lambda_1 = 0$ and $\lambda
 
 $$\dot V = 2x(xy) + 2y \left(-y-x^2 \right) = 2x^2y - 2y^2-2x^2 y = -2y^2 \leq 0$$
 
-This is true for all values of $y$. Thus the origin is stable
+This is true for all values of $y$. Thus the origin is stable. For the phase portrait, see figure 1.
 
 ```{r echo=FALSE}
 setwd('D:/obewa/Documents/My real documents/University of Louisville/public_work/Classes/Old Qualifying Exams/My Solutions')
@@ -233,7 +233,11 @@ $$Df\left( \frac{1}{2}, 1 \right) = \left( \begin{matrix} 0 & -\frac{1}{2} \\ 2 
 Thus, since we get complex eigenvalues with a zero real part, this implies that we have a center at the point $\left(\frac{1}{2},1 \right)$. 
 
 
-***NOT YET FINISHED***
+However, I am not sure if this is enough to show that every nonconstant positive solution is periodic, so to do that we will use Lyapunov functions. First off notice that $\frac{dy}{dx} = \frac{(2x-1)y}{x(1-y)}$, which is seperable. If we separate the variables and integrate accordingly, we get
+$$\ln(y) - y = 2x - \ln(x) +C$$
+If we move some things around, we notice that
+$$\ln(y)-y-2x+\ln(x) = C$$
+So this gives us a constant solution of our DE. Thus all of the trajectories along this function are closed, proving to us that all of the solutions are indeed periodic.
 
 ### Prove that the system with $\dot{x} = x+y-4x^3$ and $\dot{y} = y-x-4y^3$ has a limit cycle.
 #### My Solution:
@@ -280,11 +284,13 @@ $$H(x,y) = \frac{1}{2}y^2 + x^2 y - \frac{1}{3}y^3 + \frac{1}{2}x^2$$
 
 c)
 
-
+We want a curve that connects a saddle point. If it goes through $\left( \frac{\sqrt 3}{2}, \frac{1}{2} \right)$, then we're done. Well
+$$H \left( \frac{\sqrt 3}{2}, \frac{1}{2} \right) = \frac{1}{2} \left( -\frac{1}{2} \right) ^2 + \left( \frac{\sqrt 3}{2} \right) ^2 \left( -\frac{1}{2} \right) - \left(-\frac{1}{2} \right) ^3 + \frac{1}{2}\left( \frac{\sqrt 3}{2} \right)^2= \frac{1}{4}$$
+Hence $H(x,y) = \frac{1}{4}$ connects a saddle point.....?
 
 d)
 
-
+***NOT YET FINISHED***
 
 
 ### Consider the mass spring system subject to an external force $f(t)$:
@@ -301,7 +307,11 @@ $$\ddot{x}+\dot{x}+x=f(t)$$
 ### Suppose that the motion of a mass is described by the nonlinear differential equation $\frac{d^2 x}{dt^2} + 2x+3(\frac{dx}{dt})^5 = 0$. Determine how solutions of this equation behave.
 #### My Solution:
 
+Let $\dot x = y$ and $\dot y = -2x -3y^5$. Then we only get one equilibrium point of $(0,0)$. If we do some analysis of this point, we find:
 
+$$Df\left( x,y \right) = \left( \begin{matrix} 0 & 1 \\ -2 & -15y^4\end{matrix}\right)$$
+$$\implies Df\left( 0,0 \right) = \left( \begin{matrix} 0 & 1 \\ -2 & 0 \end{matrix}\right) \implies \lambda_{1,2} = \pm i \sqrt{2}$$
+Thus since we have two complex eigenvalues with real part zero, we have a center at $(0,0)$. ***Note after finding this, phase plane analysis must be done to find the direction of the curve***.
 
 
 
@@ -357,10 +367,23 @@ Thus the trajectories go clockwise.
 #### My Solution:
 a)
 
+Recall that 
+$$\dot x = \frac{dH}{dy} = y$$ and
+$$\dot y = -\frac{dH}{dx} = x^3 -x = x(x^2 -1)$$
+Thus our equilibrium points are $E_1 = (0,0)$ and $E_{2,3} = (\pm 1,0)$. Now we just need to study their stability.
 
-b)
+$$Df\left( x,y \right) = \left( \begin{matrix} 0 & 1 \\ 3x^2-1 & 0 \end{matrix}\right)$$
+
+$$\implies Df\left( E_1 \right) = \left( \begin{matrix} 0 & 1 \\ -1 & 0 \end{matrix}\right) \implies \lambda_{1,2} = \pm i$$
+
+$$\implies Df\left( E_2 \right) = \left( \begin{matrix} 0 & 1 \\ 2 & 0 \end{matrix}\right) \implies \lambda_{1,2} = \pm \sqrt{2}$$
+
+$$\implies Df\left( E_3 \right) = \left( \begin{matrix} 0 & 1 \\ 2 & 0 \end{matrix}\right) \implies \lambda_{1,2} = \pm \sqrt{2}$$
+
+Thus, $E_1$ is a center since the eigenvalues are complex with zero real part, and $E_2$ and $E_3$ are saddles since we have one positive real eigenvalue and one negative real eigenvalue for each one. 
 
 
+b) ![Phase Portrait](pportrait(2).png)
 
 ### Consider the predator-prey model
 
@@ -374,7 +397,31 @@ $$\dot{x} = x \left(6-x-\frac{3y}{1+x} \right), \dot{y} = y(x-2)$$
 ### Suppose that the motion of a mass is described by the nonlinear differential equation $\frac{d^2 x}{dt^2} + \frac{dx}{dt} + x^5 = 0$. Determine how solutions of this equation behave.
 #### My Solution:
 
+Let $\dot x = y$ so that $\dot y = -y -x^5$. Thus our only equilibrium point of this system is $(0,0)$. Then 
 
+$$Df\left( x,y \right) = \left( \begin{matrix} 0 & 1 \\ -5x^4 & -1 \end{matrix}\right)$$
+
+$$\implies Df\left( 0,0 \right) = \left( \begin{matrix} 0 & 1 \\ 0 & -1 \end{matrix}\right) \implies \lambda_{1} = -1, \lambda_2 = 0$$
+
+This doesn't tell us anything about the system though, which is unfortunate. 
+
+Instead, consider the following:
+
+$$\frac{dx}{dt} \left( \frac{d^2 x}{dt^2} \right) + \frac{dx}{dt} \frac{dx}{dt} + \frac{dx}{dt} x^5 = 0$$
+$$ \implies \frac{d}{dt} \left( \frac{1}{2} \left( \frac{dx}{dt} \right)^2 \right) + \left( \frac{dx}{dt} \right)^2 +\frac{dx}{dt} x^5 = 0$$
+
+$$\implies \frac{d}{dt} \left( \frac{1}{2} \left( \frac{dx}{dt} \right)^2 \right)dt + \left( \frac{dx}{dt} \right)^2 dt + x^5 dx = 0$$
+
+Then we integrate the entire equation to get
+$$\frac{1}{2} y^2 + \int \left( \frac{dx}{dt} \right)^2 dt + \frac{1}{6} x^6 = (0,0)$$
+
+$$\implies \frac{1}{2}y^2 + \frac{1}{6} x^6 = (0,0) - \int \left( \frac{dx}{dt} \right)^2 dt$$
+
+Using what we found here, let $V(x,y) = \frac{1}{2} y^2 + \frac{1}{6} x^6$. Thus 
+
+$$\dot V(x,y) = y \dot y + x^5 \dot x = y(-y-x^5) + x^5(y) = -y^2 < 0$$
+
+This implies that the equilibrium point is globally asymptotically stable, giving us insight into how the solutions of the system behave. 
 
 ### Suppose that the motion of a mass is described by the nonlinear differential equation $\frac{d^2 x}{dt^2} + x+x^3 = 0$. Determine how solutions of this equation behave.
 #### My Solution:
@@ -389,8 +436,6 @@ $$\dot{x} = x \left(6-x-\frac{3y}{1+x} \right), \dot{y} = y(x-2)$$
 
 
 
-
-## Summer 2014
 
 
 
