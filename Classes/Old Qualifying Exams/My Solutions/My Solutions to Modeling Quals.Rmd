@@ -392,7 +392,23 @@ $$\dot{x} = x \left(6-x-\frac{3y}{1+x} \right), \dot{y} = y(x-2)$$
 ### Assume that all positive solutions are bounded. (a) Find all critical points and determine their local stability. (b) Show that this system has a limit cycle in the first quadrant.
 #### My Solution:
 
+a)
 
+It's fairly easy to see here that we have three equilibrium points here. We have $E_1 = (0,0), E_2 = (6,0)$, and $E_3 = (2,4)$. Now we just need to study their stability.
+
+$$Df\left( x,y \right) = \left( \begin{matrix} 6-2x-\frac{3y}{1+x^2} & \frac{-3x}{1+x} \\ y & x-2 \end{matrix}\right)$$
+
+$$\implies Df\left( E_1 \right) = \left( \begin{matrix} 6 & 0 \\ 0 & -2 \end{matrix}\right) \implies \lambda_1 = 6, \lambda_2 = -2$$
+
+$$\implies Df\left( E_2 \right) = \left( \begin{matrix} -6 & -\frac{18}{7} \\ 0 & 4 \end{matrix}\right) \implies \lambda_1 = -6, \lambda_2 = 4$$
+
+$$\implies Df\left( E_3 \right) = \left( \begin{matrix} -\frac{2}{5} & -2 \\ 4 & 0 \end{matrix}\right) \implies \lambda_{1,2} = \frac{1}{5}\left(- 1 \pm i \sqrt{199} \right)$$
+
+Thus $E_1$ and $E_2$ are saddle points, and $E_3$ is a stable focus.
+
+b)
+
+***NOT YET FINISHED***
 
 ### Suppose that the motion of a mass is described by the nonlinear differential equation $\frac{d^2 x}{dt^2} + \frac{dx}{dt} + x^5 = 0$. Determine how solutions of this equation behave.
 #### My Solution:
