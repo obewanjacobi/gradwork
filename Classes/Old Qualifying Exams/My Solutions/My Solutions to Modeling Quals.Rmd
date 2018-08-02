@@ -191,9 +191,42 @@ This is a negative definite quadratic form, therefore it is less than $0$ unless
 
 
 ### Consider a spring-mass system that describes a motion with a force caused by friction or magnification or both: $\ddot{x} - \epsilon \dot{x} +x - x^3 + x^5 = 0$ where $\epsilon \in (-2,2)$. 
-### (a) Without solving the equation, show that $\epsilon = 0$ is a bifurcation point. In more details, show that when $\epsilon = 0$ the system is a Hamiltonian system and find an expression for the Hamiltonian. Then sow that when $\epsilon < 0$ the origin is a stable equilibrium point; but when $\epsilon > 0$ the system has a limit cycle. (b) Classify the type of the bifurcation and then draw the bifurcation diagram. Label the diagram clearly.
+### (a) Without solving the equation, show that $\epsilon = 0$ is a bifurcation point. In more details, show that when $\epsilon = 0$ the system is a Hamiltonian system and find an expression for the Hamiltonian. Then show that when $\epsilon < 0$ the origin is a stable equilibrium point; but when $\epsilon > 0$ the system has a limit cycle. (b) Classify the type of the bifurcation and then draw the bifurcation diagram. Label the diagram clearly.
 #### My Solution:
-***NOT YET SOLVED***
+
+(a)
+
+When $\epsilon = 0$, we get that $\ddot x + x - x^3 +x^5 = 0$. So if we let $\dot x = y$, then $\dot y = -x^5 + x^3 - x$. Now recall that $\dot x = \frac{\partial H}{\partial y}$ and $\dot y = - \frac{\partial H}{\partial x}$. So we get the following:
+
+$$\dot x \partial y = \partial H \implies \frac{1}{2} y ^2 + f(x) = H$$
+
+and
+$$\dot y \partial x = -\partial H \implies (x^5 -x^3 +x) \partial x = \partial H$$
+$$\implies H = \int(x^5 -x^3 + x) \partial x = \frac{1}{6}x^6 - \frac{1}{4} x^4 + \frac{1}{2}x^2 + g(y)$$
+
+Putting all of this together, we find that 
+$$H = \frac{1}{2} y^2 + \frac{1}{6}x^6 - \frac{1}{4} x^4 + \frac{1}{2}x^2$$.
+
+Now, when $\epsilon < 0$, and if we set $\dot x = y$, then we get that $\dot y = \ddot x = \epsilon y -x + x^3 -x^5$. We know that $(0,0)$ is indeed an equilibrium point. Now we just need to study the stability. Well
+
+$$Df(x,y) = \left( \begin{matrix}0 & 1\\ 3x^2 -5x^4 -1 & \epsilon\end{matrix}\right)$$
+$$\implies Df(0,0) = \left( \begin{matrix}0 & 1\\ -1 & \epsilon\end{matrix}\right) \implies \lambda_{1,2} = \frac{\epsilon \pm \sqrt{\epsilon^2 -4}}{2}$$
+
+Notice the part under the radical here is negative, as is $\epsilon$. So we have two complex eigenvalues both with a negative real part, hence $(0,0)$ is a stable focus.
+
+Now notice in the same situation above, if $\epsilon > 0$, then we get two complex eigenvalues both with a positive real part, implying we have an unstable focus at the origin. Now we just need to show that in this situation, there exists a limit cycle.
+
+Well, assume that all solutions starting in $\mathbb{R}_+ ^2 = \{(x,y):x \geq 0, y \geq 0\}$ are bounded for $t > 0$. It follows then that the domain of any such solution contains $[0, \infty)$, and that the $\omega$-limit set is compact and nonempty. Let $L$ stand for the $\omega$-limit set of some point, $(x_0,y_0)$, sufficiently close to the unstable focus $(0,0)$. By the Poincare-Bendixson theorem, $L$ is either a limit cycle or an equilibrium. $L$ cannot be an equilibrium. This is because the only equilibrium point in this situation is $(0,0)$, and the only point whose $\omega$-limit set is $\{(0,0)\}$ is $(0,0)$ itself. We proceed now to excluding the case of the heteroclinic cycle. But since we only have one equilibrium point, this is not the case. Consequently, $L$ is a limit cycle surrounding $(0,0)$.
+
+Because of all of these facts put together, we can indeed say that $\epsilon = 0$ is a bifurcation point. 
+
+(b)
+
+As $\epsilon < 0$, $x = 0, x' = 0$ is the only steady state, and is stable. And as $\epsilon > 0$, zero is the only unstable steady state, and a cycle emerges from here. Thus this must be a Hopf bifurcation. The bifurcation diagram can be found in figure 2:
+
+![Hopf Bifurcation](hopf.jpg)
+
+
 
 
 
@@ -408,9 +441,15 @@ Thus $E_1$ and $E_2$ are saddle points, and $E_3$ is a stable focus.
 
 b)
 
-Consider when $\dot x = 0$. This implies that either $x = 0$ or $y = \frac{(1+x)(6-x)}{3} = -\frac{1}{3}x^2 + \frac{5}{3}x +2$. If we were to plot this, we would get a porabola. 
+Assume that all solutions starting in $\mathbb{R}_+ ^2 = \{(x,y):x \geq 0, y \geq 0\}$ are bounded for $t > 0$. It follows then that the domain of any such solution contains $[0, \infty)$, and that the $\omega$-limit set is compact and nonempty.
 
-Then if $\dot y = 0$, this implies that $y = 0$ or $x = 2$. If we plot either of these, we get straight lines. Now, if we plot all of the lines mentioned, and do some phase plane analysis, we see that we have an area where the phase portrait always points inward. But we also have the point $(2,4)$ which is an unstable focus. Thus by Poincare-Bendixon, we know that we must have a limit cycle in the first quadrant.
+Let $L$ stand for the $\omega$-limit set of some point, $(x_0,y_0)$, sufficiently close to the unstable focus $(2,4)$. By the Poincare-Bendixson theorem, $L$ is either a limit cycle or an equilibrium. 
+
+$L$ cannot be an equilibrium. Indeed, there are three possibilities: either $L = \{(0,0)\}$, or $L = \{(6,0)\}$, or else $L = \{(2,4)\}$. In the first two cases, the equilibria are saddles, so $(x_0,y_0)$ must belong to the stable manifold, thus either $\{(0,y): y > 0\}$ or $\{(x,0):x \in (0,6) \cup (6, \infty)\}$. In the third case, the only point whose $\omega$-limit set is $\{(2,4)\}$ is $(2,4)$ itself. 
+
+We proceed now to excluding the case of the heteroclinic cycle. But the only possible connection is from $(0,0)$ to $(6,0)$, so there are no heteroclinic cycles. 
+
+Consequently, $L$ is a limit cycle surrounding $(2,4)$.
 
 ### Suppose that the motion of a mass is described by the nonlinear differential equation $\frac{d^2 x}{dt^2} + \frac{dx}{dt} + x^5 = 0$. Determine how solutions of this equation behave.
 #### My Solution:
@@ -457,6 +496,22 @@ This shows that $U'(x) = 0$ means that $x = 0$. Now
 $$U''(x) = 1 + 3x^2$$
 
 So $U''(0) = 1 > 0$ which implies that we have a min at $x = 0$. This implies that we have a center at $x =0$.
+
+
+
+
+
+
+
+
+
+## Summer 2014
+
+### Consider the Lotka-Volterra competition model $\dot x = x(3-x-y)$, $\dot y = y(4-x-2y)$. Let $x(0) > 0$, $y(0) > 0$. Determine $\lim_{t \to \infty}(x(t),y(t))$
+#### My Solution:
+
+
+
 
 
 
@@ -528,7 +583,15 @@ Thus $(1,3)$ is an unstable focus.
 
 (b)
 
-***NOT YET FINISHED***
+Assume that all solutions starting in $\mathbb{R}_+ ^2 = \{(x,y):x \geq 0, y \geq 0\}$ are bounded for $t > 0$. It follows then that the domain of any such solution contains $[0, \infty)$, and that the $\omega$-limit set is compact and nonempty.
+
+Let $L$ stand for the $\omega$-limit set of some point, $(x_0,y_0)$, sufficiently close to the unstable focus $(1,3)$. By the Poincare-Bendixson theorem, $L$ is either a limit cycle or an equilibrium. 
+
+$L$ cannot be an equilibrium. Indeed, there are three possibilities: either $L = \{(0,0)\}$, or $L = \{(4,0)\}$, or else $L = \{(1,3)\}$. In the first two cases, the equilibria are saddles, so $(x_0,y_0)$ must belong to the stable manifold, thus either $\{(0,y): y > 0\}$ or $\{(x,0):x \in (0,4) \cup (4, \infty)\}$. In the third case, the only point whose $\omega$-limit set is $\{(1,3)\}$ is $(1,3)$ itself. 
+
+We proceed now to excluding the case of the heteroclinic cycle. But the only possible connection is from $(0,0)$ to $(4,0)$, so there are no heteroclinic cycles. 
+
+Consequently, $L$ is a limit cycle surrounding $(1,3)$.
 
 
 
