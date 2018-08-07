@@ -3,10 +3,10 @@ title: "My Solutions to Old Modeling Quals"
 author: "Jacob S Townson"
 date: "April-August 2018"
 output:
-  pdf_document: default
   html_document:
     fig_height: 4
     fig_width: 5
+  pdf_document: default
   word_document:
     fig_height: 4
     fig_width: 5
@@ -94,7 +94,7 @@ $$=2(x+y-1)(1-x-y) = -2V^2 \leq 0,$$
 Thus according to the [LaSalle's invairance principle](https://en.wikipedia.org/wiki/LaSalle%27s_invariance_principle#Global_version), the $\omega$-limit set of the system is contained in $K$.
 
 (b)
-The right part of the system is equal to zero iff $x=1$, $y=0$, thus, $(1,0)$ is a unique stady state. $\dot y$ is negative on $K$ except for the point $(1,0)$ (because $\frac{2x}{2+x}<1$ for any $x<2$), thus, $y$ is decreasing along the trajectories on $K$, thus, any solution that contained in $K$ moves toward the point $(1,0)$. It means that the $\omega$-limit set of the system contains the point $(1,0)$ only, i.e. for any initial point in $\mathbb{D}$, $\lim_{t \to \infty} (x(t),y(t))=(1,0).$
+The right part of the system is equal to zero iff $x=1$, $y=0$, thus, $(1,0)$ is a unique steady state. $\dot y$ is negative on $K$ except for the point $(1,0)$ (because $\frac{2x}{2+x}<1$ for any $x<2$), thus, $y$ is decreasing along the trajectories on $K$, thus, any solution that contained in $K$ moves toward the point $(1,0)$. It means that the $\omega$-limit set of the system contains the point $(1,0)$ only, i.e. for any initial point in $\mathbb{D}$, $\lim_{t \to \infty} (x(t),y(t))=(1,0).$
 
 In order to prove the global asymptotic stability of $(1,0)$ we need also to prove its (local) Lyapunov stability. It is given by the Lyapunov function $W(x,y) = V(x,y) + y^2$ since the derivative is 
 $$\dot W = -2V^2 + 2y^2 \left( \frac{2x}{2+x}-1 \right)$$
@@ -266,7 +266,7 @@ $$Df\left( \frac{1}{2}, 1 \right) = \left( \begin{matrix} 0 & -\frac{1}{2} \\ 2 
 Thus, since we get complex eigenvalues with a zero real part, this implies that we have a center at the point $\left(\frac{1}{2},1 \right)$. 
 
 
-However, I am not sure if this is enough to show that every nonconstant positive solution is periodic, so to do that we will use Lyapunov functions. First off notice that $\frac{dy}{dx} = \frac{(2x-1)y}{x(1-y)}$, which is seperable. If we separate the variables and integrate accordingly, we get
+However, I am not sure if this is enough to show that every non-constant positive solution is periodic, so to do that we will use Lyapunov functions. First off notice that $\frac{dy}{dx} = \frac{(2x-1)y}{x(1-y)}$, which is separable. If we separate the variables and integrate accordingly, we get
 $$\ln(y) - y = 2x - \ln(x) +C$$
 If we move some things around, we notice that
 $$\ln(y)-y-2x+\ln(x) = C$$
@@ -334,7 +334,85 @@ $$\ddot{x}+\dot{x}+x=f(t)$$
 
 ### (a) Solve the given IVP first for all $t \geq 0$. (b) Compute the limits $\lim_{t \to \infty} x(t)$ and $\lim_{t \to \infty} \dot{x}(t)$. (c) Compute the limits $\lim_{T \to 0}x(T)$ and $\lim_{T \to 0} \dot{x}(T)$, and discuss their physical meanings.
 #### My Solution:
-***NOT YET FINISHED***
+
+(a)
+
+The homogeneous solutions $x_h$ are of the form
+
+$$x_h(t)=\exp\left(-\frac{t}{2}\right)\,\Biggl(a\,\cos\left(\frac{\sqrt{3}}{2}t\right)+b\,\sin\left(\frac{\sqrt{3}}{2}t\right)\Biggr)\,.\tag{*}$$
+
+For $t \in [0,T]$, we have $x(t) = x_h(t) +x_p(t)$ for some appropriate choice $x_h$ of homogeneous solutions, where $x_p$ is a particular solution. If we let $\omega:=\frac{\pi}{2T}$ and $x_p(t) = A \cos(\omega t) + B \sin (\omega t)$, then we find that
+
+$$\ddot{x}_p(t)=-\omega^2\,A\,\cos(\omega t)-\omega^2\,B\,\sin(\omega t)\,,$$ and 
+$$\dot{x}_p(t)=\omega\,B\,\cos(\omega t)-\omega\,A\,\sin(\omega t)\,.$$
+
+Hence
+$$\ddot{x}_p(t)+\dot{x}_p(t)+x_p(t)=\Big((1-\omega^2)\,A+\omega\,B\Big)\,\cos(\omega t)+\Big(-\omega \,A+(1-\omega^2)\,B\Big)\,\sin(\omega t)\,.$$
+
+Then we balance the coefficients, using $\ddot{x}_p(t)+\dot{x}_p(t)+x_p(t)=f(t)=\frac{\omega}{2}\,\sin(\omega t)$. Therefore
+
+$$(1-\omega^2)\,A+\omega\,B=0\text{ and }-\omega \,A+(1-\omega^2)\,B=\frac{\omega}{2}\,.$$
+
+Thus
+$$\small(1-\omega^2)^2 A +\omega^2 A=(1-\omega^2)\big((1-\omega^2)\,A+\omega\,B\big)-\omega\big(-\omega \,A+(1-\omega^2)\,B\big)= (1-\omega^2)\cdot 0 -\omega\left(\frac{\omega}{2}\right)\,.$$
+This gives us $A=-\frac{\omega^2}{2(1-\omega^2+\omega^4)}$, and so $B=-\frac{1-\omega^2}{\omega}A=\frac{\omega(1-\omega^2)}{2(1-\omega^2+\omega^4)}$.
+
+From the work above, we find that 
+$$x_p(t)=-\frac{\omega^2}{2(1-\omega^2+\omega^4)}\,\cos(\omega t)+\frac{\omega(1-\omega^2)}{2(1-\omega^2+\omega^4)}\,\sin(\omega t)\,.$$
+
+
+Thus $x_p(0)=-\frac{\omega^2}{2(1-\omega^2+\omega^4)}$ and $\dot{x}_p(0)=\frac{\omega^2(1-\omega^2)}{2(1-\omega^2+\omega^4)}$. Because $x = x_p + x_h$ with $x(0) = 0$ and $\dot x(0) = 0$, you need $x_h$ such that $x_h(0)=\frac{\omega^2}{2(1-\omega^2+\omega^4)}$ and $\dot{x}_h(0)=-\frac{\omega^2(1-\omega^2)}{2(1-\omega^2+\omega^4)}$. From (*), you immediately get $a=\frac{\omega^2}{2(1-\omega^2+\omega^4)}$.The remaining part is to find $b$, noting that $\dot{x}_h(0)=\frac{\sqrt{3}b-a}{2}$. That is, $b=-\frac{\omega^2(1-2\omega^2)}{2\sqrt{3}(1-\omega^2+\omega^4)}$. Thus we finally arrive at
+
+$$x_h(t)=\exp\left(-\frac{t}{2}\right)\,\Biggl(\frac{\omega^2}{2(1-\omega^2+\omega^4)}\,\cos\left(\frac{\sqrt{3}}{2}t\right)-\frac{\omega^2(1-2\omega^2)}{2\sqrt{3}(1-\omega^2+\omega^4)}\,\sin\left(\frac{\sqrt{3}}{2}t\right)\Biggr)\,.$$
+
+We have now solved the case $t \in [0,2T]$.
+
+For$t > 2T$, the solution should be a homogeneous solution. From the work above, we can get $x(t)$ for $t \in [0,2T]$. Therefore, we know the value $x(2T)$ and $\dot x(2T)$. Which homogeneous solution satisfies these new boundary conditions?
+
+Observe that 
+$$x(2T)=\small\frac{\omega^2}{2(1-\omega^2+\omega^4)}+\exp(-T)\,\left(\frac{\omega^2}{2(1-\omega^2+\omega^4)}\,\cos\left(\sqrt{3}T\right)-\frac{\omega^2(1-2\omega^2)}{2\sqrt{3}(1-\omega^2+\omega^4)}\,\sin\left(\sqrt{3}T\right)\right)$$
+
+and that
+$$\dot{x}(2T)=-\small\frac{\omega^2(1-\omega^2)}{2(1-\omega^2+\omega^4)}-\exp(-T)\,\left(\frac{\omega^2(1-\omega^2)}{2(1-\omega^2+\omega^4)}\,\cos\left(\sqrt{3}T\right)+\frac{\omega^2(1+\omega^2)}{2\sqrt{3}(1-\omega^2+\omega^4)}\,\sin\left(\sqrt{3}T\right)\right)\,.$$
+
+We can write
+$$x(t+2T)=\exp\left(-\frac{t}{2}\right)\,\Biggl(\alpha\,\cos\left(\frac{\sqrt{3}}{2}t\right)+\beta\,\sin\left(\frac{\sqrt{3}}{2}t\right)\Biggr)\,.$$
+
+Then we get $\alpha = x(2T)$ and $\frac{\sqrt{3}\beta-\alpha}{2}=\dot{x}(2T)$. This gives you
+$$x(t+2T)=\exp\left(-\frac{t}{2}\right)\,\Biggl(x(2T)\,\cos\left(\frac{\sqrt{3}}{2}t\right)+\frac{x(2T)+2\,\dot{x}(2T)}{\sqrt{3}}\,\sin\left(\frac{\sqrt{3}}{2}t\right)\Biggr)$$
+
+for $t \geq 0$. Use $x(2T)$ and $\dot x(2T)$ from above, and we get one ugly expression for $x(t+2T)$, when $t \geq 0$. We may then write
+
+$$x(t)=\small\exp\left(-\frac{(t-2T)}{2}\right)\,\Biggl(x(2T)\,\cos\left(\frac{\sqrt{3}}{2}(t-2T)\right)+\frac{x(2T)+2\,\dot{x}(2T)}{\sqrt{3}}\,\sin\left(\frac{\sqrt{3}}{2}(t-2T)\right)\Biggr)$$
+
+for $t \geq 2T$. In other words, $x(t)=\exp\left(-\frac{t}{2}\right)\,\Biggl(C\,\cos\left(\frac{\sqrt{3}}{2}t\right)+S\,\sin\left(\frac{\sqrt{3}}{2}t\right)\Biggr)$ for $t \geq 2T$, where
+
+$$C:=\frac{\omega^2}{2(1-\omega^2+\omega^4)}\,\big(\exp(T)\,\cos(\sqrt{3}T)+1\big)+\frac{\omega(1-2\omega^2)}{2\sqrt{3}(1-\omega^2+\omega^4)}\,\exp(T)\,\sin(\sqrt{3}T)$$
+
+and
+
+$$S:=-\frac{\omega(1-2\omega^2)}{2\sqrt{3}(1-\omega^2+\omega^4)}\,\exp(T)\,\cos(\sqrt{3}T)-\frac{\omega^2}{2(1-\omega^2+\omega^4)}\,\big(\exp(T)\,\sin(\sqrt{3}T)+1\big)\,.$$
+
+(b)
+
+Luckily for us here (especially after the brutality of part (a)), we don't need to actually do any calculations here. Because the system is stable (it is a second order DE with constant positive coefficients) and $f$ has a finite duration, we then know that both limits here are zero.
+
+(c)
+
+This part is a little more intensive. First off, note what is happening as $T \to 0$. It means that we are approaching a situation where $f(t) = 0$. The physical meaning of this is that the striking force is instantaneous It happens at a single point in time. Lucky for us we have the homogeneous solution. Through some simple algebra and trigonometry, we find that $x(0) = 1 \times (x(2T))$. Using what we found above, we find that 
+$$x(2T) = \frac{\frac{\pi^2}{4T^2}}{\left( 1-\frac{\pi^2}{4T^2} + \frac{\pi^4}{16T^4} \right)} = \frac{4T^2 \pi}{16T^4 -4T^2 \pi^2 + \pi^4}$$
+
+Now if we let $T=0$, we find that $x(2T) = \frac{0}{\pi^4}=0$. Thus the limit as $T \to 0$ for $x(T)$ is $0$. 
+
+Now for $\lim_{T \to 0} \dot x(T)$. First off, as $T \to 0$, we know that $\dot x (T) = \dot x(2T)$. And we know what $x(2T)$ is from above, thus 
+
+$$\lim_{t \to 0} x(2T) = -\frac{\omega^2(1- \omega^2)}{1-\omega^2 + \omega^4} = \frac{\frac{\pi^2}{4T^2} \left(1-\frac{\pi^2}{4T^2} \right)}{1-\frac{\pi^2}{4T^2} + \frac{\pi^4}{16T^4}}$$
+$$=\left( \frac{\pi^4}{16T^4} - \frac{\pi^2}{4T^2} \right) \times \frac{16T^4}{16T^4 - 4T^2 \pi^2 + \pi^4}$$
+
+Now if we let $T =0$, we get that the above equation is equal to $\frac{\pi^4}{\pi^4}=1$. Thus the limit as $T \to 0$ for $\dot x(T) = 1$
+
+Let's discuss what exactly this part means physically. First off, because $x(T)$ approaches zero, we can tell that as the striking time gets closer to zero, the pendulum will stay closer to its equilibrium point of $0$. Thus, if the striking force was instantaneous and was only one single point in time, the object wouldn't move at all (theoretically). Then, as $T \to 0$, the velocity approaches a constant value, implying that there is no force applied to the mass. If there was an external force taking the mass out of equilibrium, then there would be acceleration, but since the velocity is a constant value, we can see that there is no external force. Thus the strike (if it were indeed instantaneous) would not move the mass.
+
 
 
 ### Suppose that the motion of a mass is described by the nonlinear differential equation $\frac{d^2 x}{dt^2} + 2x+3(\frac{dx}{dt})^5 = 0$. Determine how solutions of this equation behave.
@@ -510,6 +588,27 @@ So $U''(0) = 1 > 0$ which implies that we have a min at $x = 0$. This implies th
 ### Consider the Lotka-Volterra competition model $\dot x = x(3-x-y)$, $\dot y = y(4-x-2y)$. Let $x(0) > 0$, $y(0) > 0$. Determine $\lim_{t \to \infty}(x(t),y(t))$
 #### My Solution:
 
+Through some simple algebra, we find that the equilibrium points are $E_1 = (0,0), E_2 = (2,1), E_3 = (0,2)$, and $E_4 = (3,0)$. Though, the problem requires $x(0), y(0) > 0$ so we will ignore $E_1, E_3,$ and $E_4$. So then
+
+$$Df\left( x,y \right) = \left( \begin{matrix} 3-2x-y & x \\ y & 4-x-4y \end{matrix}\right)$$
+$$\implies Df(2,1) = \left( \begin{matrix} -2 & 2 \\ 1 & -2 \end{matrix}\right) \implies \lambda_{1,2} = -2 \pm \sqrt2$$
+
+Thus we can see that $E_2$ is a stable node, which implies that $\lim_{t \to \infty}(x(t),y(t)) = E_2$.
+
+
+
+### Prove that the system $\dot x = -y +x(1-2x^2 -3y^2)$, and $\dot y = x+y(1-2x^2 -3y^2)$ has a limit cycle in an annulus.
+#### My Solution:
+
+Recall that $r \dot r = x \dot x + y \dot y$ and that $x = r \cos \theta$ and $y = r \sin \theta$. Also recall that $r^2 \theta = \dot y x - \dot x y$. After a decent bit of conversions, one can find that $\dot r = r -r^3(2 \cos ^2 \theta + 3 \sin ^2 \theta)$. It can also be found that $\dot \theta = 1$. Notice that 
+
+$$2 \leq 2 \cos ^2 \theta + 3 \sin ^2 \theta \leq 5$$
+
+Using this, we can tell that 
+
+$$r - 5r^3 \leq \dot r \leq r - 2r^3$$ by our definition or $\dot r$. Notice for all $r \leq \frac{1}{4}$, $\dot r > 0$. Also for all $r \geq 1$, $\dot r < 0$. Thus by Poincare-Bendixson, there exists a limit cycle between the circles with radii $\frac{1}{4}$ and $1$. Thus we have a limit cycle in an annulus. 
+
+
 
 
 
@@ -568,7 +667,7 @@ Now we just need to plot the phase portrait (which is below). Recall that plotti
 
 (a)
 
-First after some simplet algebra, we find that $E_1 = (0,0), E_2 = (4,0)$, and $E_3 = (1,3)$. So by linearizing the system, we find that
+First after some simple algebra, we find that $E_1 = (0,0), E_2 = (4,0)$, and $E_3 = (1,3)$. So by linearizing the system, we find that
 
 $$Df(x,y) = \left( \begin{matrix}4-2x-\frac{2y}{(1+x)^2} & -\frac{2x}{1+x}\\ y & x-1\end{matrix}\right)$$
 
@@ -794,13 +893,142 @@ then the system experiences a **pitchfork bifurcation**.
 
 - Hopf bifurcations are explained in this book, but I won't include notes on them because I seriously doubt they will be on the exam.
 
+- Below are example bifurcation diagrams of each type:
+
+![Saddle-node Bifurcation](saddle-node.png)
+
+![Transcritical Bifurcation](transcritical.png)
+
+![Pitchfork Bifurcation](pitchfork.png)
+
+![Hopf Bifurcation](hopf.jpg)
 
 
 
-## Other Important Notes
 
-- 
 
+
+
+
+
+
+
+## Other Notes:
+
+### Pendulum Tricks
+
+- $\frac{d^2 \theta}{dt^2} \cdot \frac{d \theta}{dt} = \frac{d}{dt} \left[ \frac{1}{2} \left( \frac{d \theta}{dt} \right)^2 \right]$
+
+- Let $v = \frac{d \theta}{dt}$. Then
+$$\frac{d^2 \theta}{dt^2} = \frac{d}{dt} \left( \frac{d \theta}{dt} \right) = \frac{dv}{dt} = \frac{dv}{d \theta} \cdot \frac{d \theta}{dt}$$
+
+- Let $v = \frac{d \theta}{dt}$. Then
+$$\frac{d^2 \theta}{dt^2} = \frac{d}{d \theta} (v^2)$$
+
+- Integration by parts: $\int u dv = uv - \int v du$
+
+### Springs and 2nd Order DE Tricks
+
+#### Springs
+
+- set up two models
+
+- Use one model to find equilibrium positions
+
+- Use the other model to solve for $x(t)$: $\ddot x = Cx$
+
+- Let $\omega = \sqrt C$. Then $$x(t) = A \cos(\omega t) + B \cos (\omega t) = D \sin(\omega t + O)$$ where $T = \frac{2 \pi}{\omega}$ is the period.
+
+#### 2nd Order DEs
+
+- Transform to first order system
+
+- Find critical points and linearize
+
+- Let $v = \frac{dx}{dt}$. Then $\frac{dv}{dt} = \frac{dv}{dx} \cdot \frac{dx}{dt} = \frac{dv}{dx} \cdot v$
+
+### Phase Plane Analysis
+
+- Find critical points
+
+- Linearize and study stability
+
+- then draw phase portrait
+
+### Existence and Uniqueness of Limit Cycles
+
+#### Poincare-Bendixson (show existence)
+
+- Suppose $\gamma$ is contained in a bounded region in which there are finitely many critical points. Then $L$ is either a single critical point, a single limit cycle, or a spearatrix cycle. 
+
+- If $D$ is a bounded, closed set containing **no** critical points and $D$ is positively invariant, then there is a limit cycle in $D$.
+
+#### Bendixson (non-existence)
+
+- Suppose $D$ is a simply connected domain and that for some $\psi$, 
+$$\nabla (\psi X) = \frac{\partial}{\partial x} (\psi P) + \frac{\partial}{\partial y} (\psi Q) \neq 0$$ 
+in $D$. Then there are **no** limit cycles in $D$.
+
+#### Dulac's Criteria
+
+Same idea as Bendixson's, but we consider an annular region, and if $\nabla (\psi X)$ does not change sign, then there is at most one limit cycle in $A$. More formal definition is given in the Perko notes.
+
+### Liapunov Functions
+
+- Use Liapunov functions to determine behavior around non-hyperbolic equilibrium points.
+
+- Let $E \subset \mathbb{R}^n$ be open, $x_0 \in E$, $f \in C^1(E)$, and $f(x_0) = 0$. So $x_0$ is an equilibrium point. If there is a function $V:E \to \mathbb{R}$ such that $V(x_0) = 0$ and $V(x) > 0$ for $x \neq x_0$, then:
+
+(a) If $\dot V(x) \leq 0$ for all $x \in E$, then $x_0$ is stable
+
+(b) If $\dot V(x) < 0$ for all $x \in E$, then $x_0$ is asymptotically stable.
+
+(c) If $\dot V(x) >0$ for all $x \in E -\{x_0\}$, then $x_0$ is unstable.
+
+- $\dot V = V_x \dot x + V_y \dot y$
+
+- A common Liapunov function is 
+$$V(x,y) = \left[ x - x^*\ln x + y - y^* \ln y \right] - \left[ x^* -x^* \ln x^* + y^* -y^* \ln y^* \right]$$
+To show $v(x,y) > 0$ for all $(x,y) \neq (x^*,y^*)$, show $(x^*,y^*)$ is a minimum by showing $V_{xx}V_{yy} - V_{xy}^2 > 0$ at $(x^*,y^*)$ **and** $V_{xx} > 0$ at $(x^*,y^*)$.
+
+### Bifurcations
+
+#### Polar
+
+- Cases where $\mu < 0$, $\mu = 0$, and $\mu > 0$
+
+- Find critical points and possible limit cycles, then analyze stability by considering sign of $\dot r$
+
+- $\dot \theta = 1 \implies$ it's counter clockwise with time
+
+- $\dot \theta = -1 \implies$ it's clockwise with time
+
+- Bifurcation diagram $(r,\mu)$: rotate the 2-D plot to form a 3-D plot (in terms of $(x,y,\mu)$)
+
+#### 2D Nonpolar
+
+- $\dot x = f(x,y)$ and $\dot y = -y$
+
+- Find critical points, consider $Df(x,\mu)$ to study stability. Consider $\mu <0, \mu = 0, \mu >0$, then draw the bifurcation diagram.
+
+### Some DE Practice
+
+#### Solve the IVP with $\dot x = x^2$ where $x(0) = 1$.
+
+$$\frac{dx}{dt} = x^2$$
+$$\implies x^{-2} dx = dt \implies \int_{x_0}^x s^{-2} ds = \int_0 ^t du$$
+$$\implies -\frac{1}{x} + \frac{1}{x_0} = t \implies x = \frac{x_0}{1-tx_0} = \frac{1}{1-t}$$
+
+
+
+#### Solve $\dot r = ar$, $\dot \theta = b$, where $r(0) = r_0$ and $\theta(0) = \theta_0$.
+
+$$\dot r = ar \implies r^{-1} dr = adt$$
+$$\implies \int_{r_0} ^r s^{-1} ds = \int_0 ^t a du \implies \ln r - \ln r_0 = at$$
+$$\ln \left(\frac{r}{r_0} \right) = at \implies r(t) = r_0 \mathrm{e}^{at}$$
+and 
+$$\dot \theta = t \implies d \theta = b dt \implies $$
+$$\int_{\theta_0} ^{\theta} d \mu = \int_0 ^t b d u \implies \theta - \theta_0 = bt \implies \theta(t) = \theta_0 + bt$$
 
 
 
